@@ -1,0 +1,127 @@
+
+  
+    <div class="col-lg-12">
+      <div class="card p-0">
+        <div class="card-header d-flex justify-content-between p-3">
+          <h3 class="font-18 mb-0">Upcoming Retirements</h3>
+        </div>
+
+        
+        <div class="row mt-1 p-3">
+          <div class="col-lg-12">
+            <div class="upcoming_box p-4 py-4 bg_light_green rounded d-flex justify-content-between">
+              <span class="fs-7">Retirees in 1 month</span>
+              <h3 class="mb-0 text-end fs-4">{{upcomingRetirementData?.totalEmp ? upcomingRetirementData?.totalEmp : 0}}</h3>
+            </div>
+
+            <div class="upcoming_box p-4 py-4 bg_light_purpol rounded mt-3 d-flex justify-content-between">
+              <span class="fs-7">Retirees in 2 - 4 month</span>
+              <h3 class="mb-0 fs-4">{{upcomingRetirementData?.totalEmp2 ? upcomingRetirementData?.totalEmp2 : 0}}</h3>
+            </div>
+
+            <div class="upcoming_box p-4 py-4 bg_light_blue rounded mt-3 d-flex justify-content-between">
+              <span class="fs-7">Retirees in 5 - 6  month</span>
+              <h3 class="mb-0 fs-4">{{upcomingRetirementData?.totalEmp5 ? upcomingRetirementData?.totalEmp5 : 0}}</h3>
+            </div>
+
+          </div>
+          <div class="col-lg-8 border-start">
+            <!-- <div class="row">
+              <div class="col-lg-2">
+                <h5 class="mt-4 fs-6" style="margin-top: 2.3rem !important;">Select</h5>
+              </div>
+              <div class="col-lg-4">
+             
+
+                <form class="example-form">
+                  <mat-label class="fs-7">Department</mat-label>
+                  <mat-form-field class="w-100 " appearance="outline"  >                    
+                    <input type="text"
+                    
+                           matInput
+                           [formControl]="myControl"
+                           aria-label="Department"
+                           [matAutocomplete]="auto"
+                           forceSelection="v_dept_name"
+                           >
+                          
+                    <mat-autocomplete   [panelWidth]="'auto'"
+                    autoActiveFirstOption  (optionSelected)="getOfficeDetailsByDeptId()" #auto="matAutocomplete"  [displayWith]="displayFn">
+                     
+                      <mat-option *ngFor="let data of filteredOptions | async " [value]="data">
+                        {{data?.v_dept_name}} ({{data?.v_DEPT_ID}})
+                      </mat-option>
+                
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  </form>
+          
+                
+              </div>
+              <div class="col-lg-4">
+             
+                <form class="example-form">
+                  <mat-label>Office</mat-label>
+                  <mat-form-field class="example-full-width w-100" appearance="outline" >                    
+                    <input type="text"
+                     
+                           matInput
+                           [formControl]="offcmyControl"
+                          
+                           [matAutocomplete]="auto1"
+                          
+                           >
+                    <mat-autocomplete  [panelWidth]="'auto'" autoActiveFirstOption  #auto1="matAutocomplete" (optionSelected)=" filterEmploye()" [displayWith]="displayofFn">
+                     
+                      <mat-option *ngFor="let data of $filterdOfficelist | async " [value]="data">
+                        {{data?.v_ofc_name}} ({{data?.v_OFC_ID}})
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  </form>
+              </div>
+              <div class="col-lg-2 mt-4">
+                <a routerLink="/pension/upcomingPensionerReport" class="" style="font-size: 12px; margin-top: 2.3rem !important;">View All</a>
+                <br>
+                <a  (click)="resetUpcomingEmployee()" class="resetbuttonupcoming" style="font-size: 12px; margin-top: 2.3rem !important;">Reset</a>
+              </div>
+            </div> -->
+
+            <!-- <div class="card-body min-height" style="height:212px;">
+              <div class="row w-100">
+                <ng-container *ngIf="filterEmplist?.length; else noResults">
+                <ng-container *ngFor="let emp of filterEmplist">
+                <div class="col-lg-12">
+                  <div class="auto_sec_outer ">
+                    <div class="bg-white row">                              
+                        <div class="col-lg-2 text-center">
+                          <img class="img-fluid" src="assets/images/upcoming_retirement01.png">
+                       
+                        </div>
+                        <div class="col-lg-10">
+                          <h5 class="mb-0 fs-6">{{emp?.empname  ? emp?.empname : 'N/A'}}</h5>
+                          <p class="fs-7">Employee ID : {{emp.empId ? emp.empId : 'N/A'}} {{emp.desgignation ? emp.desgignation : 'N/A' }} | Finance Date of Retirement - {{emp.dor}}</p>
+                        </div>                              
+                    </div>
+                  </div>
+                </div>
+                </ng-container>
+                </ng-container>
+          
+                
+               <ng-template #noResults>
+              <div class="card text-center ">
+                No employee found.
+        
+              </div>
+            </ng-template>
+       
+              </div>        
+            </div>                       -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  

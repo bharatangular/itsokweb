@@ -1,0 +1,1310 @@
+
+<div class="">
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" >close</mat-icon>
+  </button>
+  
+<div class="container-fluid full dialogheight" #dashdialog>
+
+
+    <div class="row">
+
+        
+        <!-- <div class=" m-12 example-container "  *ngIf="flag == 3" >
+               
+            <table mat-table [dataSource]="dataSource"  class="w-100" id="pension_summary" >
+                <ng-container matColumnDef="pensionerId" >
+                    <th mat-header-cell *matHeaderCellDef >Pensioner ID</th>
+                    <td mat-cell *matCellDef="let row">{{row.pensionerId ? row.pensionerId : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="nameEn" >
+                    <th mat-header-cell *matHeaderCellDef >Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.nameEn ? row.nameEn : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="empCode" >
+                    <th mat-header-cell *matHeaderCellDef >Emp. code</th>
+                    <td mat-cell *matCellDef="let row">{{row.empCode ? row.empCode : '-'}}                         
+                    </td>
+                </ng-container>
+
+
+
+        
+                <ng-container matColumnDef="designation" >
+                    <th mat-header-cell *matHeaderCellDef >Designation</th>
+                    <td mat-cell *matCellDef="let row">{{row.designation ? row.designation : '-'}}                         
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ppoNo" >
+                    <th mat-header-cell *matHeaderCellDef >ppoNo</th>
+                    <td mat-cell *matCellDef="let row">{{row.ppoNo ? row.ppoNo : '-'}}                         
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="officeId" >
+                    <th mat-header-cell *matHeaderCellDef >Office Id</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeId ? row.officeId : '-'}}                         
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="officeName" >
+                    <th mat-header-cell *matHeaderCellDef >Office Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeName ? row.officeName : '-'}}                         
+                    </td>
+                </ng-container>  
+              
+                <ng-container matColumnDef="deptName" >
+                    <th mat-header-cell *matHeaderCellDef >Department Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.deptName ? row.deptName : '-'}}                         
+                    </td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; "></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center " [attr.colspan]="displayedColumns.length">
+                      No record found.
+                    </td>
+                  </tr>
+       
+           
+               
+            </table>
+           
+            <mat-paginator [length]="10" 
+            [pageSizeOptions]="[25,50,75,100 ]" aria-label="Select page of users"></mat-paginator>   
+       
+          
+        </div>
+    
+        
+        <div class=" m-12 example-container "  *ngIf="flag == 5" >
+               
+            <table mat-table [dataSource]="dataSource"  class="w-100" id="pension_summary" >
+                <ng-container matColumnDef="pensionerId" >
+                    <th mat-header-cell *matHeaderCellDef >Pensioner ID</th>
+                    <td mat-cell *matCellDef="let row">{{row.pensionerId ? row.pensionerId : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="nameEn" >
+                    <th mat-header-cell *matHeaderCellDef >Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.nameEn ? row.nameEn : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="dob" >
+                    <th mat-header-cell *matHeaderCellDef >DOB</th>
+                    <td mat-cell *matCellDef="let row">{{row.dob ? row.dob : '-'}}                         
+                    </td>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="dor" >
+                    <th mat-header-cell *matHeaderCellDef >DOR</th>
+                    <td mat-cell *matCellDef="let row">{{row.dor ? row.dor : '-'}}                         
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="CpoNo" >
+                    <th mat-header-cell *matHeaderCellDef >CpoNo</th>
+                    <td mat-cell *matCellDef="let row">{{row.CpoNo ? row.CpoNo : '-'}}                         
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="desgignation" >
+                    <th mat-header-cell *matHeaderCellDef >Designation</th>
+                    <td mat-cell *matCellDef="let row">{{row.desgignation ? row.desgignation : '-'}}                         
+                    </td>
+                </ng-container>
+
+        
+
+            
+
+                <ng-container matColumnDef="officeName" >
+                    <th mat-header-cell *matHeaderCellDef >Office Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeName ? row.officeName : '-'}}                         
+                    </td>
+                </ng-container>  
+              
+                <ng-container matColumnDef="deptName" >
+                    <th mat-header-cell *matHeaderCellDef >Department Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.deptName ? row.deptName : '-'}}                         
+                    </td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns5; "></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns5;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center " [attr.colspan]="displayedColumns5.length">
+                      No record found.
+                    </td>
+                  </tr>
+       
+               
+               
+            </table>
+           
+           
+            <mat-paginator [length]="10" 
+            [pageSizeOptions]="[25,50,75,100 ]" aria-label="Select page of users"></mat-paginator>   
+    
+          
+        </div>
+     
+        <div class=" m-12 example-container "  *ngIf="flag == 4" >
+               
+            <table mat-table [dataSource]="dataSource"  class="w-100" id="pension_summary" >
+                <ng-container matColumnDef="pensionerId" >
+                    <th mat-header-cell *matHeaderCellDef >Pensioner ID</th>
+                    <td mat-cell *matCellDef="let row">{{row.pensionerId ? row.pensionerId : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="nameEn" >
+                    <th mat-header-cell *matHeaderCellDef >Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.nameEn ? row.nameEn : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="dob" >
+                    <th mat-header-cell *matHeaderCellDef >DOB</th>
+                    <td mat-cell *matCellDef="let row">{{row.dob ? row.dob : '-'}}                         
+                    </td>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="dor" >
+                    <th mat-header-cell *matHeaderCellDef >DOR</th>
+                    <td mat-cell *matCellDef="let row">{{row.dor ? row.dor : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="desgignation" >
+                    <th mat-header-cell *matHeaderCellDef >Designation</th>
+                    <td mat-cell *matCellDef="let row">{{row.desgignation ? row.desgignation : '-'}}                         
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ppoNo" >
+                    <th mat-header-cell *matHeaderCellDef >ppoNo</th>
+                    <td mat-cell *matCellDef="let row">{{row.ppoNo ? row.ppoNo : '-'}}                         
+                    </td>
+                </ng-container>
+
+            
+
+                <ng-container matColumnDef="officeName" >
+                    <th mat-header-cell *matHeaderCellDef >Office Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeName ? row.officeName : '-'}}                         
+                    </td>
+                </ng-container>  
+              
+                <ng-container matColumnDef="deptName" >
+                    <th mat-header-cell *matHeaderCellDef >Department Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.deptName ? row.deptName : '-'}}                         
+                    </td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns4; "></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns4;"></tr>
+    
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center " [attr.colspan]="displayedColumns4.length">
+                      No record found.
+                    </td>
+                  </tr>
+             
+               
+            </table>
+           
+           
+            <mat-paginator [length]="10"
+         
+            [pageSizeOptions]="[25,50,75,100 ]" aria-label="Select page of users">
+        
+        </mat-paginator>   
+          
+        </div>
+        <div class=" m-12 example-container "  *ngIf="flag == 6" >
+               
+            <table mat-table [dataSource]="dataSource"  class="w-100" id="pension_summary" >
+                <ng-container matColumnDef="pensionerId" >
+                    <th mat-header-cell *matHeaderCellDef >Pensioner ID</th>
+                    <td mat-cell *matCellDef="let row">{{row.pensionerId ? row.pensionerId : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="nameEn" >
+                    <th mat-header-cell *matHeaderCellDef >Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.nameEn ? row.nameEn : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="dob" >
+                    <th mat-header-cell *matHeaderCellDef >DOB</th>
+                    <td mat-cell *matCellDef="let row">{{row.dob ? row.dob : '-'}}                         
+                    </td>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="dor" >
+                    <th mat-header-cell *matHeaderCellDef >DOR</th>
+                    <td mat-cell *matCellDef="let row">{{row.dor ? row.dor : '-'}}                         
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="GpoNo" >
+                    <th mat-header-cell *matHeaderCellDef >GpoNo</th>
+                    <td mat-cell *matCellDef="let row">{{row.GpoNo ? row.GpoNo : '-'}}                         
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="desgignation" >
+                    <th mat-header-cell *matHeaderCellDef >Designation</th>
+                    <td mat-cell *matCellDef="let row">{{row.desgignation ? row.desgignation : '-'}}                         
+                    </td>
+                </ng-container>
+
+        
+
+            
+
+                <ng-container matColumnDef="officeName" >
+                    <th mat-header-cell *matHeaderCellDef >Office Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeName ? row.officeName : '-'}}                         
+                    </td>
+                </ng-container>  
+              
+                <ng-container matColumnDef="deptName" >
+                    <th mat-header-cell *matHeaderCellDef >Department Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.deptName ? row.deptName : '-'}}                         
+                    </td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns6; "></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns6;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center " [attr.colspan]="displayedColumns6.length">
+                      No record found.
+                    </td>
+                  </tr>
+       
+             
+               
+            </table>
+           
+          
+            <mat-paginator [length]="10" 
+            [pageSizeOptions]="[25,50,75,100 ]" aria-label="Select page of users"></mat-paginator>   
+          
+        </div>
+
+        <div class=" m-12 example-container "  *ngIf="flag == 7" >
+               
+            <table mat-table [dataSource]="dataSource"  class="w-100" id="pension_summary" >
+                <ng-container matColumnDef="requestId" >
+                    <th mat-header-cell *matHeaderCellDef >Request ID </th>
+                    <td mat-cell *matCellDef="let row">{{row.requestId ? row.requestId : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="empCode" >
+                    <th mat-header-cell *matHeaderCellDef >Emp. Code</th>
+                    <td mat-cell *matCellDef="let row">{{row.empCode ? row.empCode : '-'}}                         
+                    </td>
+                </ng-container>
+               
+                <ng-container matColumnDef="name" >
+                    <th mat-header-cell *matHeaderCellDef >Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.name ? row.name : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="ssoId" >
+                    <th mat-header-cell *matHeaderCellDef >ssoId</th>
+                    <td mat-cell *matCellDef="let row">{{row.ssoId ? row.ssoId : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="desgignation" >
+                    <th mat-header-cell *matHeaderCellDef >Designation</th>
+                    <td mat-cell *matCellDef="let row">{{row.desgignation ? row.desgignation : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="officeid" >
+                    <th mat-header-cell *matHeaderCellDef >Office Id</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeid ? row.officeid : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="officeName" >
+                    <th mat-header-cell *matHeaderCellDef >Office Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeName ? row.officeName : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="deptname" >
+                    <th mat-header-cell *matHeaderCellDef >Department Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.deptname ? row.deptname : '-'}}                         
+                    </td>
+                </ng-container>
+              
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns8; "></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns8;"></tr>
+
+
+               
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center " [attr.colspan]="displayedColumns8.length">
+                      No record found.
+                    </td>
+                  </tr>
+         
+            </table>
+         
+           
+            <mat-paginator [length]="10" 
+            [pageSizeOptions]="[25,50,75,100 ]" aria-label="Select page of users"></mat-paginator>   
+          
+        </div>
+        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="content-wrapper mb-2">
+            <div class="row justify-content-end mt-3">
+                <div class="col-lg-4 " >
+                    <h2 class="mb-0 py-2">{{reportName}} </h2>
+                </div>
+
+                <div class="col-lg-6 text-end">
+                    <mat-form-field class="">
+                        <mat-label><mat-icon>search</mat-icon></mat-label>
+                        <input matInput (keyup)="applyFilter($event)"  placeholder="Search" #input >
+                   
+                    </mat-form-field>
+        
+                  
+        
+                </div>
+                <div class="col-lg-2 text-end px-4 d-flex justify-content-end align-items-center">
+                    <ng-container *ngIf="reportType== 'pss'" >
+                    <button (click)="exportToPdf('e-Pension Status', 'e-Pension Status')" class="btn btn_custome_r d-inline me-2 align-items-center justify-content-center mb-1 px-2"> 
+                        <img src="assets/images/pdf.png">
+                    </button>
+                    <button (click)="exportToExcel('e-Pension Status')"  class="btn btn_custome_g d-inline align-items-center justify-content-center mb-1 px-2"> 
+                        <img src="assets/images/excel.svg">
+                      
+                    </button>
+                    </ng-container>
+                    <ng-container *ngIf="reportType== 'ess' " >
+                        <button (click)="exportToPdf('e-Pension Status ess', 'e-Pension Status ess')" class="btn btn_custome_r d-inline me-2 align-items-center justify-content-center mb-1 px-2"> 
+                            <img src="assets/images/pdf.png">
+                        </button>
+                        <button (click)="exportToExcel('e-Pension Status ess')"  class="btn btn_custome_g d-inline align-items-center justify-content-center mb-1 px-2"> 
+                            <img src="assets/images/excel.svg">
+                          
+                        </button>
+                        </ng-container>
+                        <ng-container *ngIf="reportType== 'cpogpo' " >
+                            <button (click)="exportToPdf('cpogpo', 'cpogpo')" class="btn btn_custome_r d-inline me-2 align-items-center justify-content-center mb-1 px-2"> 
+                                <img src="assets/images/pdf.png">
+                            </button>
+                            <button (click)="exportToExcel('cpogpo')"  class="btn btn_custome_g d-inline align-items-center justify-content-center mb-1 px-2"> 
+                                <img src="assets/images/excel.svg">
+                              
+                            </button>
+                            </ng-container>
+                            <ng-container *ngIf="reportType== 'cpogpodetail' " >
+                                <button (click)="exportToPdf('cpogpodetail', 'cpogpodetail')" class="btn btn_custome_r d-inline me-2 align-items-center justify-content-center mb-1 px-2"> 
+                                    <img src="assets/images/pdf.png">
+                                </button>
+                                <button (click)="exportToExcel('cpogpodetail')"  class="btn btn_custome_g d-inline align-items-center justify-content-center mb-1 px-2"> 
+                                    <img src="assets/images/excel.svg">
+                                  
+                                </button>
+                                </ng-container>
+                            
+            </div>         
+        </div>
+
+        <!-- <div class="col-lg-12 text-end">
+            <mat-form-field class="">
+                <mat-label><mat-icon>search</mat-icon></mat-label>
+                <input matInput (keyup)="applyFilter($event)"  placeholder="Search" #input >
+           
+            </mat-form-field>
+            reportName
+            <ng-container *ngIf="reportType== 'pss'" >
+            <div class="col-lg-12 text-end px-4 d-flex justify-content-end align-items-center">
+                <button (click)="exportToPdf('e-Pension Status', 'e-Pension Status')" class="btn btn_custome_r d-inline me-2 align-items-center justify-content-center mb-1 px-2"> 
+                    <img src="assets/images/pdf.png">
+                </button>
+                <button (click)="exportToExcel('e-Pension Status')"  class="btn btn_custome_g d-inline align-items-center justify-content-center mb-1 px-2"> 
+                    <img src="assets/images/excel.svg">
+                  
+                </button>
+            </div>
+            </ng-container>
+
+        </div> -->
+
+
+        <div class=" m-12 example-container "  *ngIf=" reportType =='cpogpo' " >
+               
+            <table mat-table [dataSource]="dataSource"  class="w-100 " id="pension_summary" >
+
+                <ng-container matColumnDef="sNo" >
+                    <th mat-header-cell *matHeaderCellDef >S.NO.</th>
+                    <td mat-cell *matCellDef="let row" style="text-align:left">{{row?.sNo ? row?.sNo : '-'}}                         
+                    </td>
+                </ng-container> 
+
+                <ng-container matColumnDef="pensionerId" >
+                    <th mat-header-cell *matHeaderCellDef >Pensioner ID</th>
+                    <td mat-cell *matCellDef="let row">{{row.pensionerId ? row.pensionerId : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="nameEn" >
+                    <th mat-header-cell *matHeaderCellDef >Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.nameEn ? row.nameEn : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="empCode" >
+                    <th mat-header-cell *matHeaderCellDef >Emp. code</th>
+                    <td mat-cell *matCellDef="let row">{{row.empCode ? row.empCode : '-'}}                         
+                    </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="zoneName" >
+                    <th mat-header-cell *matHeaderCellDef >Zone Name                    </th>
+                    <td mat-cell *matCellDef="let row">{{row.zoneName ? row.zoneName : '-'}}                         
+                    </td>
+                </ng-container>  
+
+        
+                <ng-container matColumnDef="designation" >
+                    <th mat-header-cell *matHeaderCellDef >Designation</th>
+                    <td mat-cell *matCellDef="let row">{{row.designation ? row.designation : '-'}}                         
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ppoNo" >
+                    <th mat-header-cell *matHeaderCellDef >ppoNo</th>
+                    <td mat-cell *matCellDef="let row">{{row.ppoNo ? row.ppoNo : '-'}}                         
+                    </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="officeId" >
+                    <th mat-header-cell *matHeaderCellDef >Office Id</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeId ? row.officeId : '-'}}                         
+                    </td>
+                </ng-container> -->
+
+                <ng-container matColumnDef="officeName" >
+                    <th mat-header-cell *matHeaderCellDef >Office Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeName ? row.officeName : '-'}}    ({{row.officeId ? row.officeId : '-'}} )                     
+                    </td>
+                </ng-container>  
+              
+                <ng-container matColumnDef="deptName" >
+                    <th mat-header-cell *matHeaderCellDef >Department Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.deptName ? row.deptName : '-'}}      ({{row.deptId ? row.deptId : '-'}})                   
+                    </td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true "></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns; sticky : true"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center " [attr.colspan]="displayedColumns.length">
+                      No record found.
+                    </td>
+                  </tr>
+       
+           
+               
+            </table>
+           
+            <mat-paginator [length]="10" 
+            [pageSizeOptions]="[25,50,75,100 ]" aria-label="Select page of users"></mat-paginator>   
+       
+          
+        </div>
+
+        <div class=" m-12 example-container "  *ngIf="reportType== 'pss'" >
+               
+    
+
+            <table mat-table [dataSource]="dataSource"  class="w-100 " id="pension_summary" >
+                <ng-container matColumnDef="ssoId" >
+                    <th mat-header-cell *matHeaderCellDef >Pendding at - ssoId </th>
+                    <td mat-cell *matCellDef="let row">{{row.ssoId ? row.ssoId : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="sNo" >
+                    <th mat-header-cell *matHeaderCellDef >S.NO.</th>
+                    <td mat-cell *matCellDef="let row" style="text-align:left">{{row?.sNo ? row?.sNo : '-'}}                         
+                    </td>
+                </ng-container> 
+                <ng-container matColumnDef="empId" >
+                    <th mat-header-cell class="w-10" *matHeaderCellDef >Emp. Code</th>
+                    <td mat-cell class="w-10" *matCellDef="let row">{{row.empId ? row.empId : '-'}}                         
+                    </td>
+                </ng-container>
+               
+                <ng-container matColumnDef="dor" >
+                    <th mat-header-cell *matHeaderCellDef >DOR</th>
+                    <td mat-cell *matCellDef="let row">{{row.dor ? row.dor : '-'}}                         
+                    </td>
+                </ng-container>
+                
+
+
+
+
+
+
+
+
+
+
+
+                <ng-container matColumnDef="empName" >
+                    <th mat-header-cell  *matHeaderCellDef >Employee Name</th>
+                    <td mat-cell  *matCellDef="let row">{{row.empName ? row.empName : '-'}}                         
+                    </td>
+                </ng-container>
+               
+                <ng-container matColumnDef="deptName" >
+                    <th mat-header-cell *matHeaderCellDef >Dept. Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.deptName ? row.deptName : '-'}}                         
+                    </td>
+                </ng-container>
+
+
+
+
+
+                <ng-container matColumnDef="displayName" >
+                    <th mat-header-cell *matHeaderCellDef >Pending at -  Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.displayName ? row.displayName : '-'}}                         
+                    </td>
+                </ng-container>
+                <!-- <ng-container matColumnDef="ofcId" >
+                    <th mat-header-cell *matHeaderCellDef >Office Id</th>
+                    <td mat-cell *matCellDef="let row">{{row.ofcId ? row.ofcId : '-'}}                         
+                    </td>
+                </ng-container> -->
+                <ng-container matColumnDef="ddoCode" >
+                    <th mat-header-cell *matHeaderCellDef >ddoCode</th>
+                    <td mat-cell *matCellDef="let row">{{row.ddoCode ? row.ddoCode : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="officeName" >
+                    <th mat-header-cell *matHeaderCellDef >Office Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeName ? row.officeName : '-'}}    ({{row.officeId ? row.officeId : '-'}}  )                     
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="reqId" >
+                    <th mat-header-cell *matHeaderCellDef >Request ID</th>
+                    <td mat-cell *matCellDef="let row">{{row.reqId ? row.reqId : '-'}}                         
+                    </td>
+                </ng-container>
+
+
+
+
+
+                
+                <ng-container matColumnDef="pendingHoChecker" >
+                    <th mat-header-cell *matHeaderCellDef >PendingHoChecker</th>
+                    <td mat-cell *matCellDef="let row">{{row.pendingHoChecker ? row.pendingHoChecker : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="zoneOfcId" >
+                    <th mat-header-cell *matHeaderCellDef >ZoneOfc Id</th>
+                    <td mat-cell *matCellDef="let row">{{row.zoneOfcId ? row.zoneOfcId : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="empCode" >
+                    <th mat-header-cell *matHeaderCellDef >Employee code</th>
+                    <td mat-cell *matCellDef="let row">{{row.empCode ? row.empCode : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="pensingHoMaker" >
+                    <th mat-header-cell *matHeaderCellDef >PensingHoMaker</th>
+                    <td mat-cell *matCellDef="let row">{{row.pensingHoMaker ? row.pensingHoMaker : '-'}}                         
+                    </td>
+                </ng-container>
+
+                
+                <ng-container matColumnDef="mobile" >
+                    <th mat-header-cell *matHeaderCellDef >Mobile Number</th>
+                    <td mat-cell *matCellDef="let row">{{row.mobile ? row.mobile : '-'}}                       
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dob" >
+                    <th mat-header-cell *matHeaderCellDef >DOB</th>
+                    <td mat-cell *matCellDef="let row">{{row.dob ? row.dob : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="status" >
+                    <th mat-header-cell *matHeaderCellDef >Status</th>
+                    <td mat-cell *matCellDef="let row">{{row.status ? row.status : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="pensingHOOapprov" >
+                    <th mat-header-cell *matHeaderCellDef >PensingHOOapprov</th>
+                    <td mat-cell *matCellDef="let row">{{row.pensingHOOapprov ? row.pensingHOOapprov : '-'}}                         
+                    </td>
+                </ng-container>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <ng-container matColumnDef="zoneName" >
+                    <th mat-header-cell *matHeaderCellDef >Zone Name                    </th>
+                    <td mat-cell *matCellDef="let row">{{row.zoneName ? row.zoneName : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="pendingFrom" >
+                    <th mat-header-cell *matHeaderCellDef >Pending From
+                    </th>
+                    <td mat-cell *matCellDef="let row">{{row.pendingFrom ? row.pendingFrom : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="pendingDays" >
+                    <th mat-header-cell *matHeaderCellDef >Total Pending Days                    </th>
+                    <td style="text-align: center;"  mat-cell *matCellDef="let row">{{row.pendingDays ? row.pendingDays : '-'}}                        
+                    </td>
+                </ng-container>  
+
+                <ng-container matColumnDef="objection" >
+                    <th mat-header-cell *matHeaderCellDef >Objection                 </th>
+                    <td   mat-cell *matCellDef="let row">{{row.objection ? row.objection : '-'}}                        
+                    </td>
+                </ng-container>  
+
+                
+
+
+
+
+
+
+                <ng-container matColumnDef="Action">
+                    <th mat-header-cell *matHeaderCellDef >Action</th>
+                    <td td mat-cell *matCellDef="let row">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <!-- <button mat-menu-item *ngIf="isShow" (click)="View_Profile(row.requestID,row.taskTranId,row.taskRoleId)" type="button">
+                            <mat-icon>visibility</mat-icon>
+                            <span>View</span>
+                            </button> -->
+                            <!-- <button mat-menu-item disabled></button> -->
+                            <!-- <button mat-menu-item *ngIf="isShow" (click)="updateRequest()" type="button">
+                            <mat-icon style="color: green;">check_box</mat-icon>
+                            <span>Approve</span>
+                            </button> -->
+                            <!-- <button mat-menu-item *ngIf="isShow" (click)="updateRequest()" type="button">
+                            <mat-icon style="color: red;">highlight_off</mat-icon>
+                            <span>Reject</span>
+                            </button> -->
+                            <button mat-menu-item (click)="View_History(row.reqId)" type="button">
+                                <mat-icon>history</mat-icon>
+                                <span>View History</span>
+                            </button>
+                            <button mat-menu-item (click)="View_Objection(row.reqId)" type="button">
+                                <mat-icon>history</mat-icon>
+                                <span>View Objection</span>
+                            </button>
+                            <button mat-menu-item (click)="View_Document(row.reqId)" type="button">
+                                <mat-icon>history</mat-icon>
+                                <span>View Documents</span>
+                            </button>
+                        </mat-menu>
+                    </td>
+                </ng-container> 
+                
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns1; sticky: true  "></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns1; sticky: true "></tr>
+
+
+               
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center " [attr.colspan]="displayedColumns1.length">
+                      No record found.
+                    </td>
+                  </tr>
+         
+            </table>
+         
+           
+            <mat-paginator [length]="10" 
+            [pageSizeOptions]="[25,50,75,100 ]" aria-label="Select page of users"></mat-paginator>   
+          
+        </div>
+
+        <div class=" m-12 example-container "  *ngIf="reportType== 'ess'" >
+               
+            <table mat-table [dataSource]="dataSource"  class="w-100 " id="pension_summary" >
+                <!-- <ng-container matColumnDef="empId" >
+                    <th mat-header-cell *matHeaderCellDef >Emp. Code </th>
+                    <td mat-cell *matCellDef="let row">{{row.empId ? row.empId : '-'}}                         
+                    </td>
+                </ng-container>   -->
+                <!-- <ng-container matColumnDef="fatherName" >
+                    <th mat-header-cell *matHeaderCellDef >fatherName</th>
+                    <td mat-cell *matCellDef="let row">{{row.fatherName ? row.fatherName : '-'}}                         
+                    </td>
+                </ng-container> -->
+                <ng-container matColumnDef="sNo" >
+                    <th mat-header-cell *matHeaderCellDef >S.NO.</th>
+                    <td mat-cell *matCellDef="let row" style="text-align:left">{{row?.sNo ? row?.sNo : '-'}}                         
+                    </td>
+                </ng-container> 
+
+                <ng-container matColumnDef="officeName" >
+                    <th mat-header-cell *matHeaderCellDef >Office Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeName ? row.officeName : '-'}}   ({{row.officeId ? row.officeId : '-'}}  )                     
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="deptName" >
+                    <th mat-header-cell *matHeaderCellDef >Dept. Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.deptName ? row.deptName : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="dor" >
+                    <th mat-header-cell *matHeaderCellDef >DOR</th>
+                    <td mat-cell *matCellDef="let row">{{row.dor ? row.dor : '-'}}                         
+                    </td>
+                </ng-container>
+                <!-- <ng-container matColumnDef="ddoCode" >
+                    <th mat-header-cell *matHeaderCellDef >ddoCode</th>
+                    <td mat-cell *matCellDef="let row">{{row.ddoCode ? row.ddoCode : '-'}}                         
+                    </td>
+                </ng-container> -->
+                <ng-container matColumnDef="zoneOfcId" >
+                    <th mat-header-cell *matHeaderCellDef >zoneOfcId</th>
+                    <td mat-cell *matCellDef="let row">{{row.zoneOfcId ? row.zoneOfcId : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="empCode" >
+                    <th mat-header-cell *matHeaderCellDef >Emp. Code</th>
+                    <td mat-cell *matCellDef="let row">{{row.empCode ? row.empCode : '-'}}                         
+                    </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="officeid" >
+                    <th mat-header-cell *matHeaderCellDef >officeid</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeid ? row.officeid : '-'}}                         
+                    </td>
+                </ng-container> -->
+
+
+
+                
+                <ng-container matColumnDef="pendingHoChecker" >
+                    <th mat-header-cell *matHeaderCellDef >PendingHoChecker</th>
+                    <td mat-cell *matCellDef="let row">{{row.pendingHoChecker ? row.pendingHoChecker : '-'}}                         
+                    </td>
+                </ng-container>
+            
+              
+                <ng-container matColumnDef="dob" >
+                    <th mat-header-cell *matHeaderCellDef >DOB</th>
+                    <td mat-cell *matCellDef="let row">{{row.dob ? row.dob : '-'}}                         
+                    </td>
+                </ng-container>
+
+
+
+
+                <ng-container matColumnDef="empName" >
+                    <th mat-header-cell *matHeaderCellDef >
+                        Employee name</th>
+                    <td mat-cell *matCellDef="let row">{{row.empName ? row.empName : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="payComm" >
+                    <th mat-header-cell *matHeaderCellDef >payComm</th>
+                    <td mat-cell *matCellDef="let row">{{row.payComm ? row.payComm : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="treasCode" >
+                    <th mat-header-cell *matHeaderCellDef >treasCode</th>
+                    <td mat-cell *matCellDef="let row">{{row.treasCode ? row.treasCode : '-'}}                         
+                    </td>
+                </ng-container>  
+                <!-- <ng-container matColumnDef="status" >
+                    <th mat-header-cell *matHeaderCellDef >Status</th>
+                    <td mat-cell *matCellDef="let row">{{row.status ? row.status : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="mobile" >
+                    <th mat-header-cell *matHeaderCellDef >Mobile</th>
+                    <td mat-cell *matCellDef="let row">{{row.mobile ? row.mobile : '-'}}                         
+                    </td>
+                </ng-container>   -->
+               
+
+                <ng-container matColumnDef="zoneName" >
+                    <th mat-header-cell *matHeaderCellDef >Zone Name                    </th>
+                    <td mat-cell *matCellDef="let row">{{row.zoneName ? row.zoneName : '-'}}                         
+                    </td>
+                </ng-container>  
+
+                <!-- <ng-container matColumnDef="pendingFrmDate" >
+                    <th mat-header-cell *matHeaderCellDef >Pending From
+                    </th>
+                    <td mat-cell *matCellDef="let row">{{row.pendingFrmDate ? row.pendingFrmDate : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="totalPendingDays" >
+                    <th mat-header-cell *matHeaderCellDef >Total Pending Days                    </th>
+                    <td style="text-align: center;"  mat-cell *matCellDef="let row">{{row.totalPendingDays ? row.totalPendingDays : '-'}}                         
+                    </td>
+                </ng-container>   -->
+
+                
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsemployee; sticky: true  "></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsemployee; sticky: true "></tr>
+
+
+               
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center " [attr.colspan]="displayedColumnsemployee.length">
+                      No record found.
+                    </td>
+                  </tr>
+         
+            </table>
+         
+           
+            <mat-paginator [length]="10" 
+            [pageSizeOptions]="[25,50,75,100 ]" aria-label="Select page of users"></mat-paginator>   
+          
+        </div>
+
+
+
+
+
+        <div class=" m-12 example-container "  *ngIf="reportType== 'esign'" >
+               
+            <table mat-table [dataSource]="dataSource"  class="w-100 " id="pension_summary" >
+
+                <ng-container matColumnDef="sNo" >
+                    <th mat-header-cell *matHeaderCellDef >S.NO.</th>
+                    <td mat-cell *matCellDef="let row" style="text-align:left">{{row?.sNo ? row?.sNo : '-'}}                         
+                    </td>
+                </ng-container> 
+
+                <ng-container matColumnDef="requestId" >
+                    <th mat-header-cell *matHeaderCellDef >Request ID </th>
+                    <td mat-cell *matCellDef="let row">{{row.requestId ? row.requestId : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="empCode" >
+                    <th mat-header-cell *matHeaderCellDef >Emp. Code</th>
+                    <td mat-cell *matCellDef="let row">{{row.empCode ? row.empCode : '-'}}                         
+                    </td>
+                </ng-container>
+               
+                <ng-container matColumnDef="name" >
+                    <th mat-header-cell *matHeaderCellDef >Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.name ? row.name : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="ssoId" >
+                    <th mat-header-cell *matHeaderCellDef >ssoId</th>
+                    <td mat-cell *matCellDef="let row">{{row.ssoId ? row.ssoId : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="desgignation" >
+                    <th mat-header-cell *matHeaderCellDef >Designation</th>
+                    <td mat-cell *matCellDef="let row">{{row.desgignation ? row.desgignation : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="officeid" >
+                    <th mat-header-cell *matHeaderCellDef >Office Id</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeid ? row.officeid : '-'}}                         
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="officeName" >
+                    <th mat-header-cell *matHeaderCellDef >Office Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeName ? row.officeName : '-'}}                         
+                    </td>
+                </ng-container>  
+                <ng-container matColumnDef="deptname" >
+                    <th mat-header-cell *matHeaderCellDef >Department Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.deptname ? row.deptname : '-'}}                         
+                    </td>
+                </ng-container>
+              
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns8; sticky: true  "></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns8; sticky: true "></tr>
+
+
+               
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center " [attr.colspan]="displayedColumns8.length">
+                      No record found.
+                    </td>
+                  </tr>
+         
+            </table>
+         
+           
+            <mat-paginator [length]="10" 
+            [pageSizeOptions]="[25,50,75,100 ]" aria-label="Select page of users"></mat-paginator>   
+          
+        </div>
+
+
+        <div class="m-12 example-container " *ngIf="reportType== 'cpogpodetail'">
+            <table mat-table [dataSource]="dataSource" matSort class="w-100 mt-4 " id="first_Pensioner" >
+                
+                <ng-container matColumnDef="sNo" >
+                <th mat-header-cell *matHeaderCellDef >S.NO.</th>
+                <td mat-cell *matCellDef="let row" style="text-align:left">{{row?.sNo ? row?.sNo : '-'}}                         
+                </td>
+            </ng-container> 
+          
+                <ng-container matColumnDef="empName">
+                    <th mat-header-cell *matHeaderCellDef >Emp. Name</th>
+                    <td mat-cell *matCellDef="let row"> {{row.empName}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="pensionerId">
+                    <th mat-header-cell *matHeaderCellDef >Pensioner Id</th>
+                    <td mat-cell *matCellDef="let row"> {{row.pensionerId}} </td>
+                </ng-container>
+                
+        
+              <ng-container matColumnDef="ppoNo">
+                    <th mat-header-cell *matHeaderCellDef >PPO No</th>
+                    <td mat-cell *matCellDef="let row"> {{row.ppoNo}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="deptName">
+                    <th mat-header-cell *matHeaderCellDef >Dept. Name</th>
+                    <td mat-cell *matCellDef="let row"> {{row.deptName}} </td>
+                </ng-container>
+               
+                <ng-container matColumnDef="designation" >
+                    <th mat-header-cell *matHeaderCellDef >Designation</th>
+                    <td mat-cell *matCellDef="let row" > {{row.designation}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="dor">
+                    <th mat-header-cell *matHeaderCellDef >DOR</th>
+                    <td mat-cell *matCellDef="let row"> {{row.dor}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="gpoNo" *ngIf="columnVisibility[6]">
+                    <th mat-header-cell *matHeaderCellDef >GPO No</th>
+                    
+                    <td mat-cell *matCellDef="let row"> 
+                        {{row.gpoNo}}
+                        <!-- <tr *ngFor="let eachGPONo of row.gpoNo">
+                            {{eachGPONo}} 
+                        </tr> -->
+                    </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="gpoAmt" *ngIf="columnVisibility[7]">
+                    <th mat-header-cell *matHeaderCellDef >GPO Amount</th>
+                    <td mat-cell *matCellDef="let row"> {{row.gpoAmt}} </td>
+                </ng-container>
+        
+        
+                <ng-container matColumnDef="refNo">
+                    <th mat-header-cell *matHeaderCellDef >Payement Ref. No.</th>
+                    <td mat-cell *matCellDef="let row"> {{row?.refNo ? row?.refNo : '-'}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="cpoNo" *ngIf="columnVisibility[9]">
+                    <th mat-header-cell *matHeaderCellDef >CPO No</th>
+                    <td mat-cell *matCellDef="let row"> 
+                      {{row.cpoNo}}
+                        <!-- <tr *ngFor="let eachCPONo of row.cpoNo">
+                            {{eachCPONo}} 
+                        </tr> -->
+                     </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="cpoAmt"  *ngIf="columnVisibility[10]">
+                    <th mat-header-cell *matHeaderCellDef >CPO Amount</th>
+                    <td mat-cell *matCellDef="let row"> {{row.cpoAmt}} </td>
+                </ng-container> 
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumnscpogpo; sticky:true" ></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnscpogpo; sticky: true "></tr>
+                
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center" colspan="14">No record found. </td>
+                </tr>
+              
+                 <!-- <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="7">No data matching the filter "{{input.value}}"</td>
+                </tr> -->
+                
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+            <!-- <mat-paginator *ngIf="!isPdf" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
+            <!-- <mat-paginator *ngIf="isPdf" [pageSizeOptions]="totalDataLength" aria-label="Select page of users"></mat-paginator> -->
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="m-12 example-container " *ngIf="reportType== 'zoneDetail'">
+            <table mat-table [dataSource]="dataSource"  class="w-100 mt-4 " id="pension_summary" >
+                
+                <ng-container matColumnDef="sNo" >
+                    <th mat-header-cell *matHeaderCellDef >S.NO.</th>
+                    <td mat-cell *matCellDef="let row" style="text-align:left">{{row?.sNo ? row?.sNo : '-'}}                         
+                    </td>
+                </ng-container> 
+          
+                <ng-container matColumnDef="zoneName" >
+                    <th mat-header-cell *matHeaderCellDef >Zone Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.zoneName ? row.zoneName : '0'}}                         
+                    </td>
+                </ng-container> 
+                
+                <ng-container matColumnDef="pendingInprocess">
+                    <th mat-header-cell *matHeaderCellDef >{{columnName}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.pendingInprocess ? row.pendingInprocess : '0' }}  </td>
+                </ng-container>
+              
+                
+        
+                <ng-container matColumnDef="pendingObjection">
+                    <th mat-header-cell *matHeaderCellDef >{{columnName}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.pendingObjection ? row.pendingObjection : '0' }}  </td>
+                </ng-container>
+                <ng-container matColumnDef="pendingAuditor">
+                    <th mat-header-cell *matHeaderCellDef >Pending at Auditor Zonal </th>
+                    <td mat-cell *matCellDef="let row"> {{row.pendingAuditor ? row.pendingAuditor : '0' }} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="pensingAaoZonal">
+                    <th mat-header-cell *matHeaderCellDef >Pending at AAO Zonal </th>
+                    <td mat-cell *matCellDef="let row"> {{row.pensingAaoZonal ? row.pensingAaoZonal : '0' }}  </td>
+                </ng-container>
+        
+                 
+                <ng-container matColumnDef="pendingZoneApprover">
+                    <th mat-header-cell *matHeaderCellDef >Pending at Zonal (Approver)</th>
+                    <td mat-cell *matCellDef="let row"> {{row.pendingZoneApprover ? row.pendingZoneApprover : '0' }}  </td>
+                </ng-container>
+                 
+                   <ng-container matColumnDef="approved">
+                       <th mat-header-cell *matHeaderCellDef >Approved at Zonal</th>
+                       <td mat-cell *matCellDef="let row"> {{row.approved ? row.approved :'0'}} </td>
+                   </ng-container>
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumnszone; sticky:true" ></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnszone; sticky: true "></tr>
+                
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center" colspan="14">No record found. </td>
+                </tr>
+              
+             
+                
+            </table>
+
+            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
+        
+        </div>
+
+
+        <div class="m-12 example-container " *ngIf="reportType== 'zoneDetail1'">
+            <table mat-table [dataSource]="dataSource"  class="w-100 mt-4 " id="pension_summary" >
+                
+             
+                <ng-container matColumnDef="sNo" >
+                    <th mat-header-cell *matHeaderCellDef >S.NO.</th>
+                    <td mat-cell *matCellDef="let row" style="text-align:left">{{row?.sNo ? row?.sNo : '-'}}                         
+                    </td>
+                </ng-container> 
+                <ng-container matColumnDef="zoneName" >
+                    <th mat-header-cell *matHeaderCellDef >Zone Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.zoneName ? row.zoneName : '0'}}                         
+                    </td>
+                </ng-container> 
+                
+                <ng-container matColumnDef="totalPsnKit">
+                    <th mat-header-cell *matHeaderCellDef >{{columnName}}</th>
+                    <td mat-cell *matCellDef="let row">{{row?.totalPsnKit ? row?.totalPsnKit : '0' }}  </td>
+                </ng-container>
+              
+        
+                    
+          
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumnszone1; sticky:true" ></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnszone1; sticky: true "></tr>
+                
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center" colspan="14">No record found. </td>
+                </tr>
+              
+             
+                
+            </table>
+
+            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
+        
+        </div>
+
+
+
+
+
+
+        <div class="m-12 example-container " *ngIf="reportType== 'commutationRequest'">
+            <table mat-table [dataSource]="dataSource"  class="w-100 mt-4 " id="pension_summary" >
+                
+             
+                <ng-container matColumnDef="sNo" >
+                    <th mat-header-cell *matHeaderCellDef >S.NO.</th>
+                    <td mat-cell *matCellDef="let row" style="text-align:left">{{row?.sNo ? row?.sNo : '-'}}                         
+                    </td>
+                </ng-container> 
+                <ng-container matColumnDef="pensionerId" >
+                    <th mat-header-cell *matHeaderCellDef >Pensioner ID</th>
+                    <td mat-cell *matCellDef="let row">{{row.pensionerId ? row.pensionerId : '-'}}                         
+                    </td>
+                </ng-container> 
+                <ng-container matColumnDef="employeeCode" >
+                    <th mat-header-cell *matHeaderCellDef >Emp. Code</th>
+                    <td mat-cell *matCellDef="let row">  {{row.employeeCode ? row.employeeCode : '-'}}                      
+                    </td>
+                </ng-container> 
+                <ng-container matColumnDef="employeeName" >
+                    <th mat-header-cell *matHeaderCellDef >Emp. Name</th>
+                    <td mat-cell *matCellDef="let row">  {{row.employeeName ? row.employeeName : '-'}}                      
+                    </td>
+                </ng-container> 
+                <ng-container matColumnDef="dob" >
+                    <th mat-header-cell *matHeaderCellDef >DOB</th>
+                    <td mat-cell *matCellDef="let row">{{row.dob ? row.dob : '-'}}                         
+                    </td>
+                </ng-container> 
+                <ng-container matColumnDef="officeName" >
+                    <th mat-header-cell *matHeaderCellDef >Office Name (Office Id)</th>
+                    <td mat-cell *matCellDef="let row">{{row.officeName ? row.officeName : '-'}} ({{row.officeId ? row.officeId : '-'}})                         
+                    </td>
+                </ng-container> 
+                <ng-container matColumnDef="deptName" >
+                    <th mat-header-cell *matHeaderCellDef >Dept Name (Dept Id)</th>
+                    <td mat-cell *matCellDef="let row">{{row.deptName ? row.deptName : '-'}} ({{row.deptId ? row.deptId : '-'}})                         
+                    </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="dor" >
+                    <th mat-header-cell *matHeaderCellDef >DOR</th>
+                    <td mat-cell *matCellDef="let row">{{row.dor ? row.dor : '-'}}                         
+                    </td>
+                </ng-container> 
+                <ng-container matColumnDef="initiatedDate" >
+                    <th mat-header-cell *matHeaderCellDef >Initiated Date</th>
+                    <td mat-cell *matCellDef="let row">{{row.initiatedDate ? row.initiatedDate : '-'}}                         
+                    </td>
+                </ng-container> 
+
+                <ng-container matColumnDef="pendingAt" >
+                    <th mat-header-cell *matHeaderCellDef >Status (Name)</th>
+                    <td mat-cell *matCellDef="let row">{{row.pendingAt ? row.pendingAt : '-'}}  ({{row.pendingAtName ? row.pendingAtName : '-'}} )                       
+                    </td>
+                </ng-container> 
+                <!-- <ng-container matColumnDef="commutationDate" >
+                    <th mat-header-cell *matHeaderCellDef >Commutation Date</th>
+                    <td mat-cell *matCellDef="let row">{{row.commutationDate ? row.commutationDate : '-'}}                         
+                    </td>
+                </ng-container>  -->
+              
+                
+              
+                
+                
+
+                
+                
+                
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsCommutationRequest; sticky:true" ></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsCommutationRequest; sticky: true "></tr>
+                
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell text-center" colspan="14">No record found. </td>
+                </tr>
+              
+             
+                
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        
+        </div>
+
+    </div>
+
+<div *ngIf="!flag" >
+    <div class="card card-body">
+        Something went wrong happend , please try again.
+    </div>
+</div>
+
+    </div>
+    </div>
+
+
+
+
+           
+
+

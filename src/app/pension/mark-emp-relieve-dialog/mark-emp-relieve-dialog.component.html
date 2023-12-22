@@ -1,0 +1,115 @@
+<div class="container-fluid" style="background-color: #edf0f2;">
+    <div class="row">
+        <div class="col-12 mb-5">
+            <div class="registration-card">
+                <div class="heading-2 bodytext-color d-flex align-items-center mt-1 px-4 py-2 wbg stepper-title">
+                    Mark Relieve Employee 
+                    <mat-icon class="primary ms-2">info</mat-icon>
+                </div>
+                <div>
+                    <form [formGroup]="relieveEmpForm" #options="ngForm">
+                        <div class="tab-container mt-4">
+                            <div class="container-fluid">
+                                <mat-card class="mt-3" *ngIf="empDetails">
+                                    <div class="row">
+                                        <h4 class="fs-5">Employee Basic Details </h4>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span><b>Employee Code</b></span>  &nbsp;
+                                              <label>{{empDetails['employeeCode']}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span><b>Designation</b></span>  &nbsp;
+                                              <label>{{empDetails['empDesignationName']}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span><b>Office</b></span>  &nbsp;
+                                              <label>{{empDetails['empOfficeName']}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-card>
+
+                                <mat-card class="mt-3">
+                                    <div class="row">
+                                        <!-- <div class="col-md-3 col-3">
+                                            <mat-label class="font-12 d-block">Attach Document</mat-label>
+                                            <mat-form-field [ngClass]="(isSubmitted && !docId.value) ? 'example-full-width mat-form-field-invalid' : 'example-full-width'" class="w-100">
+                                                <input matInput type="file"
+                                                    id="docId" #docId multiple class="inputd"
+                                                    (change)="onFileSelected($event)">
+                                            </mat-form-field>
+                                            <span class="text-danger display_block mb-1 pb-1" *ngIf="(isSubmitted && !docId.value)">
+                                                Documnet is required
+                                            </span>
+                                        </div> -->
+                                        <div class="col-md-4 col-md-4">
+                                            <!-- <mat-label class="font-12 d-block mt-4"> Remarks</mat-label> -->
+                                            <mat-form-field class="example-full-width" class="w-100">
+                                                <textarea matInput formControlName="remarkRelive"
+                                                    placeholder="Enter Relieve Remarks"></textarea>
+                                            </mat-form-field>
+                                            <span class="text-danger display_block mb-1 pb-1" *ngIf="(relieveEmpFormControl.remarkRelive.touched && relieveEmpFormControl.remarkRelive.errors) || (isSubmitted && relieveEmpFormControl.remarkRelive.errors)">
+                                                Relieve Remark is required
+                                            </span>
+                                        </div>
+                                        <div class="col-md-6 col-md-6">
+                                        <mat-radio-group class="mt-4" aria-label="Select an option" formControlName="pendingIssue">
+                                            <mat-radio-button color="primary" class="ms-3" value="No" (click)="relieveWith('no')">Relieve with No Pending Issue
+                                            </mat-radio-button>
+                                            <mat-radio-button color="primary" class="ms-3" value="Yes" (click)="relieveWith('yes')">Relieve with Pending Issue
+                                            </mat-radio-button>                    
+                                        </mat-radio-group>
+                                        <div>
+                         
+                                        </div>
+</div>
+                                    </div>
+                                    <div class="row" *ngIf="pendingIssue">
+                                        <div class="col-md-4 col-md-4">
+                                            <!-- <mat-label class="font-12 d-block mt-4"> Remarks</mat-label> -->
+                                            <mat-form-field class="w-100" appearance="legacy">
+                                                <mat-label>Court Date :</mat-label>
+                                                <input matInput [matDatepicker]="fromDatepicker"  title="Date From" formControlName='deCourtdate'>
+                                                <mat-datepicker-toggle matSuffix [for]="fromDatepicker"></mat-datepicker-toggle>
+                                                <mat-datepicker #fromDatepicker ></mat-datepicker>
+                                                <mat-error  *ngIf="(relieveEmpFormControl.deCourtdate.touched && relieveEmpFormControl.deCourtdate.errors) || (isSubmitted && relieveEmpFormControl.deCourtdate.errors)">Please Select Date ! </mat-error>
+                                                <!-- <span class="text-danger display_block mb-1 pb-1" *ngIf="(relieveEmpFormControl.date.touched && relieveEmpFormControl.date.errors) || (isSubmitted && relieveEmpFormControl.date.errors)">
+                                                Relieve Remark is required
+                                            </span> -->
+                                              </mat-form-field>
+                                           
+                                        </div>
+                                        <div class="col-md-6 col-md-6">
+                                        <mat-radio-group class="mt-4" aria-label="Select an option" formControlName="deOrCourt">
+                                            <mat-radio-button color="primary" class="ms-3" value="D">DE
+                                            </mat-radio-button>
+                                            <mat-radio-button color="primary" class="ms-3" value="C">court Proceeding crimination
+                                            </mat-radio-button>                    
+                                        </mat-radio-group>
+                                    </div>
+</div>
+                                    <div class="row text-end">
+                                        <div class="col-lg-8"></div>
+                                        <div class="col-md-2 col-md-2 my-1">
+                                            <button class="btn btn-primary btn-cls" mat-raised-button mat-dialog-close color="primary" (click)="dialog.closeAll()" >Cancel</button>
+                                        </div>
+                                        <div class="col-md-2 col-md-2 my-1">
+                                            <button class="btn btn-primary btn-cls" mat-raised-button color="primary"  [disabled]="!options.valid"
+                                                (click)="submitEmployeeRetirement()">Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </mat-card>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,383 @@
+
+
+<div class="container-fluid  mb-5" >
+    <div class="row" style="overflow: auto;">
+      <div class="col-12">
+        <mat-card>
+          <div class="bootstrap-tab-design">
+            
+                <!-- First Pension -->
+                <!-- (selectedTabChange)="onTabChanged($event)" -->
+                <div class="first-pension-container" id="first-pension">
+                  <mat-tab-group animationDuration="0ms" color="primary" class="first-pension-tabs mt-4"
+                     animationDuration="500ms">
+                    <mat-tab label="Check Application Status">
+                      <div class="tab-container mt-4">
+                        <div class="first-pension-tabs-container">
+                          <div class="first-pension-tab-btns d-flex align-items-center">
+                           
+                          </div>
+                          <div class="tab-content">
+                            <div class="container-fluid p-2 pb-0 pt-3" style="background-color: #edf2fa;">
+                              <div class="tab-filter-option-container row">
+                                <div
+                                  class="col-12">
+                                  
+                                  <div class="row justify-content-center">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2 mt-2 ">
+                                        <h3>Find Pensioner</h3>
+                                    </div>                                    
+                                    
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 gx-1 mx-2 col-xl-offset-3">
+                                      <mat-form-field appearance="outline" class="w-100" >
+                                        <mat-label>Employee Code</mat-label>
+                                        <input matInput placeholder="Employee Code" [(ngModel)]="empCode" #input oninput="this.value = this.value.toUpperCase()"/>
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 gx-1 mx-2">
+                                        <button mat-raised-button color="primary" type="submit" class="big-btn-padding"
+                                        (click)="filterData()">
+                                        Find Status
+                                        </button>
+                                    </div>
+                              
+                                    
+                                  
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg-2 mt-0 ">
+                                        <h4 class="fs-6">Employee Name:</h4>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span class="fs-6">{{employeeData?.employeeName}}</span>
+                                    </div>
+                                    <div class="col-lg-2 mt-0 ">
+                                        <h4 class="fs-6">Department:</h4>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span class="fs-6">{{employeeData?.departmentName}}</span>
+                                    </div>
+                                    <div class="col-lg-2 mt-0">
+                                        <h4 class="fs-6">Office:</h4>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span class="fs-6">{{employeeData?.officeName}}</span>
+                                    </div>
+                                    <div class="col-lg-2 mt-0">
+                                        <h4 class="fs-6">Designation:</h4>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span class="fs-6">{{employeeData?.currentDesignationName}}</span>
+                                    </div>
+                                    <div class="col-lg-2 mt-0">
+                                        <h4 class="fs-6">DOR:</h4>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span class="fs-6">{{employeeData?.dor | date : 'dd/MM/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-lg-2 mt-0">
+                                        <h4 class="fs-6">Revision:</h4>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span class="fs-6">{{employeeData ?  employeeData?.isRevision == 'N' ? 'No' : 'Yes' : ''}}</span>
+                                    </div>
+                                    <div class="col-lg-2 mt-0">
+                                        <h4 class="fs-6">Revision No:</h4>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span class="fs-6">{{employeeData?.revisionFlag}}</span>
+                                    </div>
+                                </div>
+                                </div>
+                                
+                              </div>
+                            </div>
+  <hr>
+                           
+    <!-- <h3>Pension-ESS:</h3>     
+  <div class="mb-5" style="overflow: auto;">
+    <table mat-table [dataSource]="dataSource1" matSort class="w-100">
+        <ng-container matColumnDef="SSOID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>SSO ID</th>
+            <td mat-cell *matCellDef="let row"> {{row.SSOID}} </td>
+        </ng-container>
+        <ng-container matColumnDef="displayName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Initiator</th>
+            <td mat-cell *matCellDef="let row">{{row.displayName}}
+              
+            </td>
+        </ng-container>
+      
+        
+      
+        <ng-container matColumnDef="requesId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Reques Id</th>
+            <td mat-cell *matCellDef="let row">{{row.requestId}}
+              
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="actionTaken">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+            <td mat-cell *matCellDef="let row" > 
+                {{row.actionTaken=='ARV'?"Approved":''}}
+                {{row.actionTaken=='FWD'?"Forwarded":''}}
+                {{row.actionTaken=='REV'?"Revert":''}}
+                {{row.actionTaken=='REJ'?"Rejected":''}}
+                {{row.actionTaken=='CMP'?"Completed":''}}
+            </td>
+
+        </ng-container>
+      
+
+
+        <ng-container matColumnDef="actionTakenby">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Action Taken By</th>
+            <td mat-cell *matCellDef="let row">{{row.assigneeName}}
+               
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="LevelType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Level Type</th>
+            <td mat-cell *matCellDef="let row">{{row.levelType}}
+              
+            </td>
+        </ng-container>
+      
+       
+      
+        <ng-container matColumnDef="roleName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Role Name</th>
+            <td mat-cell *matCellDef="let row"> {{row.roleName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="modifyDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Modify Date</th>
+            <td mat-cell *matCellDef="let row"> {{row.modifiedDt}} </td>
+        </ng-container>
+        
+        
+        <ng-container matColumnDef="remarks">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
+            <td mat-cell *matCellDef="let row" > {{row.remarks}}
+              
+            </td>
+
+        </ng-container>
+      
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        
+         <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
+
+    <mat-paginator #ess [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    <hr>
+    <div class="row">
+        <div class="col-lg-2 mt-0 text-end">
+            <h4 class="fs-6">Current Level SSO :</h4>
+        </div>
+        <div class="col-lg-4">
+            <span class="fs-6">{{essData[0]?.currentSSO=="NA"?"Request Completed":essData[0]?.currentSSO}}</span>
+        </div>
+        <div class="col-lg-2 mt-0 text-end">
+            <h4 class="fs-6">Current Level Name :</h4>
+        </div>
+        <div class="col-lg-4">
+            <span class="fs-6">{{essData[0]?.currentName=="NA"?"Request Completed":essData[0]?.currentName}}</span>
+        </div>
+        <div class="col-lg-2 mt-0 text-end">
+            <h4 class="fs-6">Status :</h4>
+        </div>
+        <div class="col-lg-4">
+            <span class="fs-6">{{essData[0]?.status}}</span>
+        </div>
+        <div class="col-lg-2 mt-0 text-end">
+            <h4 class="fs-6">Pension Initate OfficeId :</h4>
+        </div>
+        <div class="col-lg-4">
+            <span class="fs-6">{{essData[0]?.initOfficeId}}</span>
+        </div>
+        <div class="col-lg-2 mt-0 text-end">
+            <h4 class="fs-6">Pension Initate Office :</h4>
+        </div>
+        <div class="col-lg-4">
+            <span class="fs-6">{{essData[0]?.initOffice}}</span>
+        </div>
+    </div>
+</div> -->
+
+
+
+<h3>E-Pension:</h3>     
+<div class="mb-5" style="overflow: auto;">
+    <table mat-table [dataSource]="dataSource" matSort class="w-100">
+        <ng-container matColumnDef="SSOID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>SSO ID</th>
+            <td mat-cell *matCellDef="let row"> {{row.SSOID}} </td>
+        </ng-container>
+        <ng-container matColumnDef="displayName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Initiator</th>
+            <td mat-cell *matCellDef="let row">{{row.displayName}}
+              
+            </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="requesId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Request Id</th>
+            <td mat-cell *matCellDef="let row">{{row.requestId}}
+              
+            </td>
+        </ng-container>
+       
+        <ng-container matColumnDef="actionTaken">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+            <td mat-cell *matCellDef="let row" >  
+                {{row.actionTaken=='ARV'?"Approved":''}}
+                {{row.actionTaken=='FWD'?"Forwarded":''}}
+                {{row.actionTaken=='REV'?"Revert":''}}
+                {{row.actionTaken=='REJ'?"Rejected":''}}
+                {{row.actionTaken=='CMP'?"Completed":''}}
+            </td>
+
+        </ng-container>
+      
+
+
+        <ng-container matColumnDef="actionTakenby">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Action Taken By</th>
+            <td mat-cell *matCellDef="let row">{{row.assigneeName}}
+               
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="LevelType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Level Type</th>
+            <td mat-cell *matCellDef="let row">{{row.levelType}}
+              
+            </td>
+        </ng-container>
+      
+       
+      
+        <ng-container matColumnDef="roleName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Role Name</th>
+            <td mat-cell *matCellDef="let row"> {{row.roleName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="modifyDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Modify Date</th>
+            <td mat-cell *matCellDef="let row"> {{row.modifiedDt}} </td>
+        </ng-container>
+        <ng-container matColumnDef="remarks">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
+            <td mat-cell *matCellDef="let row" > {{row.remarks}}
+              
+            </td>
+
+        </ng-container>
+      
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+     
+         <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
+
+  <mat-paginator #pension [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div> 
+<hr>
+<div class="row">
+    <div class="col-lg-2 mt-0 text-end">
+        <h4 class="fs-6">Current Level SSO :</h4>
+    </div>
+    <div class="col-lg-4">
+        <span class="fs-6">{{pensionData[0]?.currentSSO=="NA"?"Request Completed":pensionData[0]?.currentSSO}}</span>
+    </div>
+    <div class="col-lg-2 mt-0 text-end">
+        <h4 class="fs-6">Current Level Name :</h4>
+    </div>
+    <div class="col-lg-4">
+        <span class="fs-6">{{pensionData[0]?.currentName=="NA"?"Request Completed":pensionData[0]?.currentName}}</span>
+    </div>
+    <div class="col-lg-2 mt-0 text-end">
+        <h4 class="fs-6">Status :</h4>
+    </div>
+    <div class="col-lg-4">
+        <span class="fs-6">{{pensionData[0]?.status}}</span>
+    </div>
+    <div class="col-lg-6">
+        <span class="fs-6" style="text-decoration: underline;color: blue; margin-left: 55px;" (click)="View_Objection(pensionData[0]?.requestId)">View Objection</span>
+    </div>
+</div>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </mat-tab>
+                    <mat-tab label="Check Commutation Status">
+                        <div class="tab-container mt-4">
+                          <div class="first-pension-tabs-container">
+                            <div class="first-pension-tab-btns d-flex align-items-center">
+                             
+                            </div>
+                            <div class="tab-content">
+                              <div class="container-fluid p-2 pb-0 pt-3" style="background-color: #edf2fa;">
+                                <div class="tab-filter-option-container row">
+                                  <div
+                                    class="col-12">
+                                    
+                                    <div class="row justify-content-center">
+                                      <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2 mt-2 ">
+                                          <h3>Check Request Status </h3>
+                                      </div>                                    
+                                      
+                                      <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 gx-1 mx-2 col-xl-offset-3">
+                                        <mat-form-field appearance="outline" class="w-100" >
+                                          <mat-label>Employee code</mat-label>
+                                          <input matInput placeholder="Employee code" [(ngModel)]="ComEmpCode" #input />
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 gx-1 mx-2">
+                                          <button mat-raised-button color="primary" type="submit" class="big-btn-padding"
+                                          (click)="getPensionDtls()">
+                                          Find Status
+                                          </button>
+                                      </div>
+                                
+                                      
+                                    
+                                    </div>
+                                  
+                                  </div>
+                                  <h2>{{message}}</h2>
+                                </div>
+                              </div>
+    <hr>
+                             
+ 
+  
+ 
+  
+  
+                            </div>
+                          </div>
+                        </div>
+                      </mat-tab>
+                   
+  
+                   
+  
+                  </mat-tab-group>
+                </div>
+              
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>

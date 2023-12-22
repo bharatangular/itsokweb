@@ -1,0 +1,16 @@
+
+
+<div class="text-center">
+  <mat-icon class="font-48 color-green" *ngIf="isEsign">check_circle_outline</mat-icon>
+  <mat-icon class="font-48 color-red" *ngIf="!isEsign">cancel</mat-icon>
+  <h2 class="my-4">{{msg}}</h2>
+
+  <div class="col-lg-12 text-center" >
+      <button mat-raised-button color="primary" class="mx-2" (click)="esignRequest()" *ngIf="isPK">Pension Kit E-Sign</button>
+      <!-- <button mat-raised-button color="primary" class="mx-2" (click)="onSubmit_Final()" *ngIf="isPS">Forward</button> -->
+     
+      <button mat-raised-button  class="mx-2"(click)="getBaseData()" *ngIf="isEsign"  >Preview</button>
+      <button mat-raised-button class="mx-2" (click)="redirectToBack()" *ngIf="!isPK ">OK</button>
+  </div>
+
+</div>

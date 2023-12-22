@@ -1,0 +1,115 @@
+<div>
+    <div class="d-flex justify-content-between align-item-center">
+        <div class="mt-1">
+            <h2>Employee Pay-Manager Details</h2>
+        </div>
+    </div>
+
+<div class="popupDivStyle family-details-card-container mt-3">
+
+    <div class="family-card-header m-1  p-2 d-flex justify-content-end align-items-center">
+        <span class="relation-tag py-1 px-4 fw-bolder"><strong>{{paymagerDetails?.employeeId}}</strong></span>
+    </div>
+    <div class="family-card-body">
+        <div class="member-base-details d-flex align-items-center">
+            <div class="member-image">
+                <img src="http://ifmstest.rajasthan.gov.in/pension/assets/images/sonImg.jfif" alt="member-image">
+            </div>
+            <div class="name-birth-details ms-1 member-image-1">
+                <small class="member-name  pb-1">Name</small>
+                <h3 class="member-gender-birth-date f-12">{{paymagerDetails?.employeeName}}</h3>
+            </div>
+        </div>
+</div>
+
+<div class="row pb-0 p-5">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+        <mat-label class="fs-6 fw-bolder"> Date Of Birth</mat-label>
+        <mat-label>
+            <p class="pLabelInfo">{{paymagerDetails?.dob| date: "dd-MM-yyyy"}}</p>
+        </mat-label>
+    </div>
+    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+        <mat-label class="fs-6 fw-bolder">Date Of Joining </mat-label>
+        <mat-label>
+            <p class="pLabelInfo">{{paymagerDetails?.doj| date: "dd-MM-yyyy"}}</p>
+        </mat-label>
+    </div>
+
+    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+        <mat-label class="fs-6 fw-bolder"> Date Of Retirement </mat-label>
+        <mat-label>
+            <p class="pLabelInfo">{{paymagerDetails?.dor| date: "dd-MM-yyyy"}}</p>
+        </mat-label>
+    </div>
+
+    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+        <mat-label class="fs-6 fw-bolder">Service Category</mat-label>
+        <mat-label>
+            <p class="pLabelInfo">{{paymagerDetails?.serviceCatName}}</p>
+        </mat-label>
+    </div>
+    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+        <mat-label class="fs-6 fw-bolder">Sub Service Category</mat-label>
+        <mat-label>
+            <p class="pLabelInfo">{{paymagerDetails?.subServiceCatName}}</p>
+        </mat-label>
+    </div>
+
+
+    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+        <mat-label class="fs-6 fw-bolder">Basic Pay</mat-label>
+        <mat-label>
+            <p class="pLabelInfo">{{paymagerDetails?.basicPay}}</p>
+        </mat-label>
+    </div>
+    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+        <mat-label class="fs-6 fw-bolder">Special Pay</mat-label>
+        <mat-label>
+            <p class="pLabelInfo">{{paymagerDetails?.specialPay}}</p>
+        </mat-label>
+    </div>
+
+    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+        <mat-label class="fs-6 fw-bolder">NPA</mat-label>
+        <mat-label>
+            <p class="pLabelInfo">{{paymagerDetails?.npa}}</p>
+        </mat-label>
+    </div>
+
+</div>
+
+</div>
+
+
+    <div   class="row align-item-center mt-2">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="pLabelInfo">यदि ऊपर दिए गए डेटा में कोई त्रुटि नहीं हैं तो फॉर्म भरे |<mat-icon>arrow_forward</mat-icon></p>
+                </div>
+                <div class="col-lg-4 text-end">
+                    <button mat-button  class="btn btn-primary  ms-2" color="primary"  style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button
+                    mat-button (click)="closeDialog()">Continue</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+<hr>
+
+    <!-- <div *ngIf="!flgEss"  class="row align-item-center mt-2">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="pLabelInfo">{{mess}}</p>
+                </div>
+            
+            </div>
+            
+        </div>
+    </div> -->
+
+
+</div>
+

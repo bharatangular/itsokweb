@@ -1,0 +1,204 @@
+.nav-pills .nav-link:not(.nav-link.active) {
+    background-color: #F1F1F1;
+    color: #414141;
+  }
+  
+  .nav-pills .nav-link.active {
+    background-color: var(--primary);
+  }
+  
+  .pension-tab-btn {
+    font-size: 14px;
+  }
+  
+  .tabs-margin>* {
+    margin-right: 10px;
+  }
+  
+  .mat-radio-checked {
+    color: var(--primary);
+  }
+  
+  .tab-heading {
+    border-bottom: 1px solid #D8D8D8;
+  }
+  
+  /* Structure */
+  table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    // width: 15%;
+  }
+  
+  .tab-filter-option-field {
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+      color: var(--primary) !important;
+    }
+  }
+  
+  // .table-container {
+  //   height: calc(100vh - 656px) !important;
+  //   overflow: auto;
+  // }
+  
+  .table-col-padding {
+    padding: 0px 5px;
+  }
+  
+  .mat-header-cell {
+    border-bottom: 1px solid #5A9CFF;
+    font-size: 14px;
+    font-weight: 600;
+    color: #414141;
+    font-family: 'Poppins-m';
+    background-color: #EEF5FF;
+  }
+  
+  .name-with-icon p {
+    font-size: 14px;
+    font-family: 'poppins-m' !important;
+    color: #414141;
+  }
+  
+  .view-pension-kit-link a {
+    font-size: 12px;
+  }
+  
+  .first-pension-info-fill-icon {
+    color: var(--primary);
+    display: block;
+  }
+  
+  .first-pension-container{
+    ::ng-deep .mat-tab-label.mat-tab-label-active {
+      color: #414141;
+      opacity: 1;
+      background-color: #2A6DD90D;
+    }
+    ::ng-deep .mat-tab-label{
+      color: #414141;
+      opacity: 0.4;
+      height: 40px !important;
+    }
+  }
+  
+  .info-icon{
+    width: 18px;
+  }
+  
+  // Tab Style
+  .bootstrap-tab-design {
+    ::ng-deep .bootstrap-tab-group>.mat-tab-header>.mat-tab-label-container>.mat-tab-list>.mat-tab-labels>.mat-tab-label {
+      color: #414141;
+      opacity: 0.4;
+      height: 40px !important;
+      background-color: #F1F1F1;
+      margin-right: 10px;
+      border-radius: 5px;
+    }
+  
+    ::ng-deep .bootstrap-tab-group>.mat-tab-header>.mat-tab-label-container>.mat-tab-list>.mat-ink-bar {
+      display: none;
+    }
+  
+    ::ng-deep .bootstrap-tab-group>.mat-tab-header {
+      border: none;
+    }
+  
+    ::ng-deep .bootstrap-tab-group>.mat-tab-header>.mat-tab-label-container>.mat-tab-list>.mat-tab-labels>.mat-tab-label.mat-tab-label-active {
+      color: white;
+      opacity: 1;
+      background-color: var(--primary);
+  
+      .mat-tab-label-content {
+        font-weight: 500 !important;
+      }
+    }
+  }
+  
+  
+  // ToolTip Code
+  .info-icon
+  {
+    position: relative;
+  }
+    .info-icon:hover
+    {
+      .tooltipcontent-component
+      {
+        display: block;
+      }
+    }
+  
+  .tooltipcontent-component {
+   display: none;
+    background-color: #fff;
+      color: #000;
+      padding: 5px 0;
+      border-radius: 6px;
+      text-align: left;
+      max-width: 300px;
+      min-width: 200px;
+      min-height: 10px;
+      padding: 10px 12px;
+      z-index: 99999;
+      box-shadow: 0 0px 16px rgba(0, 0, 0, 0.09), 0 0px 28px rgba(0, 0, 0, 0.09);
+      border: 1px solid rgb(224, 224, 224);
+  
+    &.left {
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-color: transparent;
+        border-left: 0;
+      }
+      /* Stroke */
+      &:before {
+        top: 15px;
+        left: -12px;
+        /* If 1px darken stroke slightly */
+        border-right-color: rgb(224, 224, 224);
+        border-width: 12px;
+      }
+      /* Fill */
+      &:after {
+        top: 15px;
+        left: -11px;
+        border-right-color: #fff;
+        border-width: 12px;
+      }
+    }
+  }
+  
+  
+  .tab-filter-btn{
+    margin-bottom: 10px;
+  }
+  
+  
+  // Responsive Style
+  
+  // ---------------------------------------
+  // ----Responsive Style for Table----
+  // ---------------------------------------
+  @media screen and (min-width: 992px){
+    .tab-filter-btn{
+      text-align: right;
+      margin-bottom: 0px;
+    }
+  }
+  .make-red {
+    background-color: rgb(235, 194, 194)
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }

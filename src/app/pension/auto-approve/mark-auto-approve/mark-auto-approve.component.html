@@ -1,0 +1,292 @@
+
+<mat-tab-group  (selectedTabChange)="changeTab($event)" animationDuration="0ms" color="primary" class="first-pension-tabs mt-4 m-3 mb-0 bg-white"
+animationDuration="500ms">
+<mat-tab label="Stop Auto Process">
+<div class="full">
+    <mat-card class="p-2 pt-2 shadow-none">
+     <div class="table-container container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="tab-content" id="nav-tabContent">
+
+
+        <div class="content-wrapper box">
+            <div class="row">
+                <!-- aa -->
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-6">
+                <h3 class="mt-3">Stop Auto Approve</h3>
+              </div>
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="row justify-content-start py-2">
+
+                      <div class="col-lg-3 month-dropdown" >
+                          <mat-form-field class="w-100">
+                              <mat-label>Select Month</mat-label>
+                              <mat-select [(ngModel)]="currentMonth" (selectionChange)="upcomingPensioner()" >
+
+                              <mat-option *ngFor="let item of psnmonth" [value]="item.psnMonthNumber">{{item.psnMonth}}</mat-option>
+
+                              </mat-select>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-lg-3 month-dropdown" >
+                          <mat-form-field class="w-100">
+                              <mat-label>Select Year</mat-label>
+                              <mat-select [(ngModel)]="currentYear" (selectionChange)="upcomingPensioner()">
+
+                              <mat-option *ngFor="let item of psnYear" [value]="item.psnYear">{{item.psnYear}}</mat-option>
+
+                              </mat-select>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-lg-2 month-dropdown text-start" >
+                          <button  (click)="reset()" class="btn btn-primary    "> <span>RESET</span></button>
+                      </div>
+                      <div class="col-lg-4 text-end px-4 d-flex justify-content-end align-items-center">
+
+                      </div>
+
+                  </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <mat-form-field class="w-100 float-end">
+                      <mat-label><mat-icon>search</mat-icon>   Filter</mat-label>
+                      <input matInput (keyup)="applyFilter($event)"  placeholder="Search" #input >
+                    </mat-form-field>
+                  </div>
+                </div>
+
+              </div>
+          </div>
+
+
+
+            <div class="alert alert-danger" role="alert" *ngIf="showerror">
+                <strong>Error occurred :- </strong>{{error}}
+              </div>
+            <div class="mb-5" style="overflow: auto;">
+                <table mat-table [dataSource]="dataSource" matSort class="w-100">
+                    <!-- PPO No. -->
+                    <ng-container matColumnDef="employeeCode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Code</th>
+                        <td mat-cell *matCellDef="let row">{{row.employeeCode}}
+                            <!-- <a class="text-decoration-none" matTooltip="View Details" href="JavaScript:Void(0);">{{row.employeeCode}}</a> -->
+                        </td>
+                    </ng-container>
+                    <!-- Name -->
+                    <!-- <ng-container matColumnDef="employeeId">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Code</th>
+                        <td mat-cell *matCellDef="let row"> {{row.employeeCode}} </td>
+                    </ng-container> -->
+                    <!-- Account Number -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.employeeName}} </td>
+                    </ng-container>
+                    <!-- Basic -->
+                    <ng-container matColumnDef="designationName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
+                        <td mat-cell *matCellDef="let row"> {{row.empDesignationName}} </td>
+                    </ng-container>
+                    <!-- Red Pension -->
+                    <ng-container matColumnDef="dateOfJoining">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Joining Date</th>
+                        <td mat-cell *matCellDef="let row"> {{row.dateOfJoining | date:'dd-MMM-yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateOfRetirement">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Retirement Date</th>
+                        <td mat-cell *matCellDef="let row"> {{row.dateOfRetirement | date:'dd-MMM-yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Stop Auto Approve">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Stop Auto Approve</th>
+                        <td mat-cell *matCellDef="let row">
+                             <button mat-raised-button color="primary" class="btn btn-primary" (click)="openStopAutoApprove(row)"
+                            *ngIf="row.dateOfJoining!=null">Stop Auto Approve</button>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Action">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                        <td mat-cell *matCellDef="let row" >
+
+
+                            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item *ngIf="isShow"(click)="View_ESSPension(row.employeeCode,row.employeeId,row.psnType,row)" type="button">
+                                <mat-icon>visibility</mat-icon>
+                                <span>View Calculation</span>
+                                </button>
+
+                                <!-- <button mat-menu-item  type="button" (click)="View_Profile(row.employeeCode,row.employeeId,row.psnType)"
+                                *ngIf="row.dateOfJoining!=null">
+                                    <mat-icon>dns</mat-icon>
+                                    <span>Initiate e-Pension</span>
+                                </button> -->
+                                <button mat-menu-item  type="button" (click)="markDeEmployee(row)"
+                                *ngIf="row.dateOfJoining!=null">
+                                    <mat-icon>description</mat-icon>
+                                    <span>Mark DE</span>
+                                </button>
+
+                                <!-- <button mat-raised-button color="primary" class="btn btn-primary"  >View ESS Profile</button>
+                                &nbsp;&nbsp;&nbsp;
+                                <button mat-raised-button color="primary" class="btn btn-primary" >Initiate e-Pension</button>
+                                <button mat-raised-button color="primary" class="btn btn-primary" >Chnage Pension initiate Office</button> -->
+                            </mat-menu>
+                        </td>
+
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <!-- Row shown when there is no matching data. -->
+                     <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </mat-card>
+    </div>
+</mat-tab>
+<mat-tab  label="Release Auto Process">
+    <div class="full">
+        <mat-card class="p-0 pt-2 shadow-none">
+         <div class="table-container container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="tab-content" id="nav-tabContent">
+
+
+            <div class="content-wrapper box">
+                <div class="row">
+                    <!-- aa -->
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-6">
+                        <h3 class="mt-3">Release Auto Approve</h3>
+                    </div>
+                    <div class="col-6">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="row justify-content-start py-2">
+
+                            <div class="col-lg-3 month-dropdown" >
+                                <mat-form-field class="w-100">
+                                    <mat-label>Select Month</mat-label>
+                                    <mat-select [(ngModel)]="currentMonth" (selectionChange)="upcomingPensioner()" >
+
+                                    <mat-option *ngFor="let item of psnmonth" [value]="item.psnMonthNumber">{{item.psnMonth}}</mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-3 month-dropdown" >
+                                <mat-form-field class="w-100">
+                                    <mat-label>Select Year</mat-label>
+                                    <mat-select [(ngModel)]="currentYear" (selectionChange)="upcomingPensioner()">
+
+                                    <mat-option *ngFor="let item of psnYear" [value]="item.psnYear">{{item.psnYear}}</mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-2 month-dropdown text-start" >
+                                <button  (click)="reset()" class="btn btn-primary    "> <span>RESET</span></button>
+                            </div>
+                            <div class="col-lg-4 text-end px-4 d-flex justify-content-end align-items-center">
+
+                            </div>
+
+                        </div>
+                          <!-- <input matInput [matDatepicker]="picker" placeholder="Select a date" [(ngModel)]="selectedDate">  <mat-datepicker-toggle matSuffix (change)="applyMethod()" [for]="picker"></mat-datepicker-toggle>  <mat-datepicker #picker></mat-datepicker> -->
+                        </div>
+                        <div class="col-lg-6">
+                          <mat-form-field class="w-100 float-end">
+                            <mat-label><mat-icon>search</mat-icon>   Filter</mat-label>
+                            <input matInput (keyup)="applyFilter($event)"  placeholder="Search" #input >
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                    </div>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="showerror">
+                    <strong>Error occurred :- </strong>{{error}}
+                  </div>
+                <div class="mb-5" style="overflow: auto;">
+                    <table mat-table [dataSource]="dataSource" matSort class="w-100">
+                        <!-- PPO No. -->
+                        <ng-container matColumnDef="employeeCode">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Code</th>
+                            <td mat-cell *matCellDef="let row">{{row.employeeCode}}
+                                <!-- <a class="text-decoration-none" matTooltip="View Details" href="JavaScript:Void(0);">{{row.employeeCode}}</a> -->
+                            </td>
+                        </ng-container>
+                        <!-- Name -->
+                        <!-- <ng-container matColumnDef="employeeId">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Code</th>
+                            <td mat-cell *matCellDef="let row"> {{row.employeeCode}} </td>
+                        </ng-container> -->
+                        <!-- Account Number -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                            <td mat-cell *matCellDef="let row"> {{row.employeeName}} </td>
+                        </ng-container>
+                        <!-- Basic -->
+                        <ng-container matColumnDef="designationName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
+                            <td mat-cell *matCellDef="let row"> {{row.empDesignationName}} </td>
+                        </ng-container>
+                        <!-- Red Pension -->
+                        <ng-container matColumnDef="dateOfJoining">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Joining Date</th>
+                            <td mat-cell *matCellDef="let row"> {{row.dateOfJoining | date:'dd-MMM-yyyy'}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="dateOfRetirement">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Retirement Date</th>
+                            <td mat-cell *matCellDef="let row"> {{row.dateOfRetirement | date:'dd-MMM-yyyy'}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Release Auto Approve">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Release Auto Approve</th>
+                            <td mat-cell *matCellDef="let row">
+                                 <button mat-raised-button color="primary" class="btn btn-primary" (click)="openMarkAutoApprove(row)"
+                                *ngIf="row.dateOfJoining!=null">Release Auto Approve</button>
+                            </td>
+                        </ng-container>
+
+
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+
+                        <!-- Row shown when there is no matching data. -->
+                         <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                        </tr>
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+                </div>
+            </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </mat-card>
+        </div>
+    </mat-tab>
+</mat-tab-group>

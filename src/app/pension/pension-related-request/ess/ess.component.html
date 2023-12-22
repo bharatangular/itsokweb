@@ -1,0 +1,28 @@
+<!-- <div id="detailsContainer" class="container-fluid view_only">
+  <div class="content p-2">
+   
+    <div class="px-4 mb-4">
+      <app-personal-details *ngIf="config.processId === 1" [EmpDetails]="employee.employeePersonalDetail"
+      [userAction]="userAction"
+        (EmpData)="getData($event)" [config]="config"></app-personal-details>
+      <app-address *ngIf="config.processId === 5" [EmpAddress]="employee.employeeAddressDetails"
+      [userAction]="userAction"
+        (EmpData)="getData($event)" [config]="config"></app-address>
+      <app-bank-details *ngIf="config.processId === 3" [EmpBankDetails]="employee.employeeBankDetails"
+      [userAction]="userAction"
+        (EmpData)="getData($event)" [config]="config"></app-bank-details>
+      <app-family-details *ngIf="config.processId === 2 || config.processId === 7"
+      [userAction]="userAction"
+        [EmpFamily]="employee.employeeFamilyDetails" (EmpData)="getData($event)" [config]="config"></app-family-details>
+      <app-service-details [EmpDetails]="employee.employeeServiceDetails" *ngIf="config.processId === 4"
+      [userAction]="userAction"
+        (EmpData)="getData($event)" [config]="config"></app-service-details>
+      <app-pay-entitlement *ngIf="config.processId === 6" [EmpDetails]="employee.payEntitlementDetails"
+      [userAction]="userAction"
+        (EmpData)="getData($event)" [config]="config">
+      </app-pay-entitlement>
+    </div>
+  </div>
+</div> -->
+
+<app-registration></app-registration>

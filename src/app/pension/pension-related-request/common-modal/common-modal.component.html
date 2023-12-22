@@ -1,0 +1,206 @@
+<!-- Successful -->
+<div class="first-payment-modal" *ngIf="id=='success'">
+  <!-- <div class="text-end">
+      <img src="./assets/images/cancel.svg" alt="">
+  </div> -->
+  <div class="stop-reason-content text-center">
+     <!--  <div class="modal-iocn-image-box">
+          <img src="./assets/images/green-right-check-icon.svg" alt="icon">
+      </div> -->
+      <div class="modeal-text-container mt-2">
+          <!-- <p class="text-align-center m-0 bodytext-color success mt-3">Successful</p> -->
+          <h1 class="text-start m-0 bodytext-color success_subtext mt-3" *ngIf="action === 'INI'">
+              Are you sure want to generate request
+          </h1>
+          <p class="text-align-center m-0 bodytext-color success_subtext mt-3" *ngIf="action === 'FWD'">
+              Are you sure want to forward
+          </p>
+          <p class="text-align-center m-0 bodytext-color success_subtext mt-3" *ngIf="action === 'CMP'">
+              Are you sure want to approve
+          </p>
+          <p class="text-align-center m-0 bodytext-color success_subtext mt-3" *ngIf="action === 'REV'">
+              Are you sure want to revert
+          </p>
+          <p class="text-align-center m-0 bodytext-color success_subtext mt-3" *ngIf="action === 'CMPEMP'">
+            Are You Sure Want to Submit The Revise / Correction Request...
+        </p>
+          <!-- <p class="text-align-center m-0 bodytext-color success_subtext mt-3">
+              The changes are saved successfully and submitted for approval.
+          </p> -->
+          <mat-form-field class="w-100 mx-2 mt-3" appearance="outline" *ngIf="roleId==3 || roleId==4 ||roleId==5 ">
+              <input matInput  placeholder="Enter Remarks" [(ngModel)]="remark" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+
+          <!-- <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--no-label">
+              <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__trailing"></span>
+              </span>
+              <span class="mdc-text-field__resizer">
+                <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
+              </span>
+          </label> -->
+
+
+      </div>
+      <div class="mt-5">
+          <button mat-raised-button color="warn" class="px-5 me-2" (click)="submit('N')">No</button>
+          <button mat-raised-button color="primary" class="px-5" (click)="submit('Y')">Yes</button>
+      </div>
+  </div>
+</div>
+
+<!-- Request Submitted Already -->
+<div class="first-payment-modal" *ngIf="id=='reject'">
+  <div class="text-end" mat-dialog-close>
+      <img src="./assets/images/cancel.svg" alt="">
+  </div>
+  <div class="stop-reason-content text-center">
+      <div class="modal-iocn-image-box">
+          <img src="./assets/images/reject.svg" alt="icon">
+      </div>
+      <div class="modeal-text-container mt-2">
+          <p class="text-align-center m-0 bodytext-color reject mt-3">Request Submitted Already</p>
+          <p class="text-align-center m-0 bodytext-color success_subtext mt-4">Your request for a change has been
+              submitted already.</p>
+          <p class="text-align-center m-0 bodytext-color success_subtext">Your request ID is:</p>
+          <span class="text-align-center m-0 bodytext-color success_subtext">01246</span>
+      </div>
+      <div class="mt-4">
+          <button mat-raised-button color="primary" class="px-5" mat-dialog-close>Ok</button>
+      </div>
+  </div>
+</div>
+
+<!-- verify OTP -->
+<!-- <div class="first-payment-modal" *ngIf="id=='otp'">
+<div class="stop-reason-content text-center">
+    <div class="modeal-text-container text-align-center">
+        <p class="text-align-center m-0 bodytext-color success_subtext mt-2">
+            <b>Verify OTP</b>
+        </p>
+          <mat-form-field class="w-80 mx-2 mt-3" appearance="outline">
+            <input matInput  placeholder="Enter OTP"  [(ngModel)]="otp" (change)="otpChange()" >
+          </mat-form-field>
+         
+    </div>
+    <div class="mt-1">
+        <button mat-raised-button color="primary" class="px-5" (click)="checkOtp('Y')">Verify</button>
+    </div>
+</div>
+</div> -->
+<!-- enter office id -->
+
+<div class="first-payment-modal" *ngIf="id=='office'">
+<div class="stop-reason-content text-center">
+    <div class="modeal-text-container text-align-center">
+        <p class="text-align-center m-0 bodytext-color success_subtext mt-2">
+            <b>Select Pension Initiate Office</b>
+        </p>
+          <!-- <mat-form-field class="w-80 mx-2 mt-3" appearance="outline">
+            <input matInput  placeholder="Office Id"  [(ngModel)]="pofficeId" type="number" >
+          </mat-form-field> -->
+          <mat-form-field class="w-100">
+           
+            <mat-select placeholder="select Office"  [(ngModel)]="pofficeId">
+
+              <mat-option *ngFor="let obj of officeList" [value]="obj.vId">{{obj.vNameEnglish}} ({{obj.vId}})</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="mt-1">
+        <button mat-raised-button color="primary" class="px-5" (click)="changeOffice('Y')">Submit</button>
+    </div>
+    <div class="mt-1">
+      <button mat-raised-button color="primary" class="px-5" mat-dialog-close>Close</button>
+  </div>
+</div>
+</div>
+<div class="modal-sm verify-otp-modal" *ngIf="id=='otp'">
+<div class="" >
+  <div class="row align-items-center">
+    <div class="col-6">
+      <p class="heading-1 bodytext-color m-0">Verify OTP</p>
+    </div>
+    <div class="col-6">
+      <img class="float-end" src="./assets/images/cross.svg" alt="closeIcon" mat-dialog-close>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p class="mobile-text">Sent to <span>{{ maskedPhoneNo }}</span></p>
+    </div>
+  </div>
+  <div class="row">
+    <form [formGroup]="otpForm">
+
+      <div class="col">
+        <p class="mobile-text f-12 m-0">Enter your OTP<span class="mendetory-class">*</span></p>
+        <div class="input-otp-group">
+          <mat-form-field class="otp-width me-2" appearance="outline">
+            <input numberOnly matInput formControlName="otpInput1" #otpInput1 maxlength="1"
+              (keyup)="onOtpKeyUp($event, otpInput2, null, 1)">
+          </mat-form-field>
+          <mat-form-field class="otp-width me-2" appearance="outline">
+            <input numberOnly matInput formControlName="otpInput2" #otpInput2 maxlength="1"
+              (keyup)="onOtpKeyUp($event, otpInput3, otpInput1, 1)">
+          </mat-form-field>
+          <mat-form-field class="otp-width me-2" appearance="outline">
+            <input numberOnly matInput formControlName="otpInput3" #otpInput3 maxlength="1"
+              (keyup)="onOtpKeyUp($event, otpInput4, otpInput2, 1)">
+          </mat-form-field>
+          <mat-form-field class="otp-width me-2" appearance="outline">
+            <input numberOnly matInput formControlName="otpInput4" #otpInput4 maxlength="1"
+              (keyup)="onOtpKeyUp($event, otpInput5, otpInput3, 1)">
+          </mat-form-field>
+          <mat-form-field class="otp-width me-2" appearance="outline">
+            <input numberOnly matInput formControlName="otpInput5" #otpInput5 maxlength="1"
+              (keyup)="onOtpKeyUp($event, otpInput6, otpInput4, 1)">
+          </mat-form-field>
+          <mat-form-field class="otp-width me-2" appearance="outline">
+            <input numberOnly matInput formControlName="otpInput6" #otpInput6 maxlength="1"
+              (keyup)="onOtpKeyUp($event, null, otpInput5, 1)">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="blink  medium-font bodytext-color" *ngIf="resendClickCounter > 3">You have exceded the maximum
+            limit to resend OTP.</p>
+          <p class="medium-font bodytext-color" *ngIf="resendClickCounter <= 3">Resend OTP in <span>{{
+              remainingMinutes | number: '2.0' }}:{{
+              remainingSeconds | number: '2.0' }}</span></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <!-- <button class="proceed-otp" [disabled]="otpForm.invalid" mat-raised-button color="primary"
+            type="submit">Proceed</button> -->
+          <button class="proceed-otp" [disabled]="otpForm.invalid" mat-raised-button color="primary" type="button"
+          (click)="checkOtp('Y')">Proceed</button>
+          <button class="proceed-otp ms-2" mat-raised-button color="primary" type=""
+            *ngIf="showResendButton && resendClickCounter <= 3" (click)="resendOtp()">Resend OTP</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+<div class="first-payment-modal" *ngIf="id=='approve'">
+<div class="stop-reason-content text-center">
+    <div class="modal-iocn-image-box">
+        <mat-icon style="font-size: 70px;
+        text-align: center;
+        color: #2ab581;
+        width: 100%;">check_circle_outline</mat-icon>
+    </div>
+    <div class="modeal-text-container text-align-center">
+        <h1 class="text-align-center m-0 bodytext-color text-success  mt-3 mb-3">
+          Approved
+        </h1>
+          <p style="font-size: 18px;">Relieving request has been successfully forwarded with reference number <span style="color: rgb(23, 114, 250);">REL2345002435</span></p>
+    </div>
+
+</div>
+</div>

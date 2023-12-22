@@ -1,0 +1,20 @@
+.success {
+    color: #23966B;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.success_subtext {
+    font-size: 20px;
+}
+
+.reject {
+    color: #E54849;
+    font-size: 24px;
+    font-weight: 600;
+}
+.otp-width{    width: 40px;}
+::ng-deep .mat-select-panel {
+    width: auto;
+    max-width: 100%;
+}

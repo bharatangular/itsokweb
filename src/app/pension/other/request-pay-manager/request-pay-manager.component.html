@@ -1,0 +1,128 @@
+<div class="container-fluid  mb-5" >
+    <div class="row" style="overflow: auto;">
+      <div class="col-12">
+        <mat-card>
+          <div class="bootstrap-tab-design">
+            
+                <!-- First Pension -->
+                <!-- (selectedTabChange)="onTabChanged($event)" -->
+                <div class="first-pension-container" id="first-pension">
+                  
+                  
+                      <div class="tab-container mt-4">
+                        <div class="first-pension-tabs-container">
+                          <div class="first-pension-tab-btns d-flex align-items-center">
+                            <h2>Request Data from Pay Manager</h2>
+                          </div>
+                          <div class="tab-content">
+                            <div class="container-fluid" style="background-color:#edf2fa;">
+                              <div class="tab-filter-option-container row">
+                                <div
+                                  class="col-12">
+                                  
+                                  <div class="row justify-content-center pt-3">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2 mt-2">
+                                        <h3>Find Employee</h3>
+                                    </div>
+                                  
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 gx-1 mx-2">
+                                      <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>Employee Code</mat-label>
+                                        <input matInput placeholder="Employee Code" [(ngModel)]="empCode" #input oninput="this.value = this.value.toUpperCase()"/>
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2">
+                                        <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="getEmployeeData()"> Find Details </button>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                
+                              </div>
+                            </div>
+  <hr>
+                          
+                           
+                            
+                                <div class="row">
+                                  
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                        <div>
+                                          <span>Employee Name:</span><br>
+                                          <label>{{employeeData?.employeeName}}</label>
+                                        </div>
+                                      </div>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span>Designation:</span><br>
+                                              <label>{{employeeData?.currentDesignationName}}</label>
+                                            </div>
+                                          </div>
+                                         <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span>Office Name:</span><br>
+                                              <label>{{employeeData?.officeName}}</label>
+                                            </div>
+                                          </div>
+                                          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span>Service Category:</span><br>
+                                              <label>{{ServiceDetails?.serviceCatName }}</label>
+                                            </div>
+                                          </div>
+                                          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span>Service Sub Category:</span><br>
+                                              <label>{{ServiceDetails?.subServiceCatName }}</label>
+                                            </div>
+                                          </div>
+                                          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span>Date of Birth:</span><br>
+                                              <label>{{Personaldetail?.dateOfBirth | date}}</label>
+                                            </div>
+                                          </div>
+                                          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span>Date of Joining:</span><br>
+                                              <label>{{doj | date}}</label>
+                                            </div>
+                                          </div>
+                                          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span>Date of Retirement:</span><br>
+                                              <label>{{Personaldetail?.dor | date}}</label>
+                                            </div>
+                                          </div>
+                                          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span>Pension Type:</span><br>
+                                              <label>{{pType}}</label>
+                                            </div>
+                                          </div>
+                                  
+                                          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span>Basic Pay:</span><br>
+                                              <label>{{Pension_Commutation?.basicPay}}</label>
+                                            </div>
+                                          </div>
+                                         
+                                    </div>   
+                          </div>
+                        </div>
+                      </div>
+                   
+                   
+                
+  
+                   
+  
+                
+                </div>
+              
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>

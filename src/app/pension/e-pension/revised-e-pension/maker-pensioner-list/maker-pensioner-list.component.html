@@ -1,0 +1,126 @@
+
+<div class="full">
+    <mat-card class="mx-3 p-2 ">
+     <div class="table-container container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="tab-content" id="nav-tabContent">
+        <div class="content-wrapper box">
+            <div class="row">
+                <!-- aa -->
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-8 ">
+                    <h3 class="mt-3">Maker Pensioner List</h3>
+                </div>
+                <div class="col-4 ">
+                    <mat-form-field class="w-100 float-end">
+                        <mat-label><mat-icon>search</mat-icon>   Filter</mat-label>
+                        <input matInput (keyup)="applyFilter($event)"  placeholder="Search" #input >
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="showerror">
+                <strong>Error occurred :- </strong>{{error}}
+              </div>
+            <div class="mb-5" style="overflow: auto;">
+                <table mat-table [dataSource]="dataSource" matSort class="w-100">
+                    <!-- PPO No. -->
+                    <ng-container matColumnDef="Pensioner ID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Pensioner ID</th>
+                        <td mat-cell *matCellDef="let row">{{row.pensionerId}}
+                            
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="employeeCode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Code</th>
+                        <td mat-cell *matCellDef="let row">{{row.employeeCode}}
+                            
+                        </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.employeeName}} </td>
+                    </ng-container>
+                   
+                    <ng-container matColumnDef="designationName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
+                        <td mat-cell *matCellDef="let row"> {{row.empDesignationName}} </td>
+                    </ng-container>
+                   
+                    <!-- <ng-container matColumnDef="dateOfJoining">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Joining Date</th>
+                        <td mat-cell *matCellDef="let row"> {{row.dateOfJoining | date:'dd-MMM-yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateOfRetirement">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Retirement Date</th>
+                        <td mat-cell *matCellDef="let row"> {{row.dateOfRetirement | date:'dd-MMM-yyyy'}} </td>
+                    </ng-container>
+                     -->
+                    
+                    <ng-container matColumnDef="document">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Old Pension Kit</th>
+                        <td mat-cell *matCellDef="let row" > <mat-icon style="color: rgb(139, 185, 245);" (click)="common.Previewbydocid(row.pkDocId,'pension/revised/maker-pensioner-list');">remove_red_eye</mat-icon>
+                             </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Initiate Pension"> 
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fill Pension-ESS</th>
+                        <td mat-cell *matCellDef="let row"> 
+                             <button mat-raised-button color="primary" class="btn btn-primary" (click)="redirectToPensionESS(row)"
+                           >Fill Pension-ESS</button>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Action">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                        <td mat-cell *matCellDef="let row" > 
+                           
+    
+                            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item *ngIf="isShow"(click)="View_ESSPension(row)" type="button">
+                                <mat-icon>visibility</mat-icon>
+                                <span>View PSS Profile</span>
+                                </button>
+                                
+                                <!-- <button mat-menu-item  type="button" (click)="getDocId(row)"
+                                >
+                                    <mat-icon>remove_red_eye</mat-icon>
+                                    <span>Old Pension Kit</span>
+                                </button> -->
+                                <!-- <button mat-menu-item  type="button" (click)="changeInitiateOffice(row)"
+                                *ngIf="row.dateOfJoining!=null">
+                                    <mat-icon>description</mat-icon>
+                                    <span>Chnage Pension-init. Office</span>
+                                </button> -->
+                             
+                                <!-- <button mat-raised-button color="primary" class="btn btn-primary"  >View ESS Profile</button>
+                                &nbsp;&nbsp;&nbsp;
+                                <button mat-raised-button color="primary" class="btn btn-primary" >Initiate e-Pension</button>
+                                <button mat-raised-button color="primary" class="btn btn-primary" >Chnage Pension initiate Office</button> -->
+                            </mat-menu>
+                        </td>
+    
+                    </ng-container>
+                   
+    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+                    <!-- Row shown when there is no matching data. -->
+                     <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr>
+                </table>
+    
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </mat-card>
+    </div>

@@ -1,0 +1,67 @@
+<mat-card>
+  <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+    <mat-tab label="Loans and Advance">
+      <div class="tab-container mt-4">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 mt-3 datatable">
+              <table class="table mb-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Final Amount</th>
+                    <th scope="col">Interest Amount</th>
+                    <th scope="col">Interest Calculate</th>
+                    <th scope="col">Interest Deposited</th>
+                    <th scope="col">Last Bill Month</th>
+                    <th scope="col">Last Bill Year</th>
+                    <th scope="col">Account No</th>
+                    <th scope="col">Amount Deposited</th>
+                    <th scope="col">Amount Drawn</th>
+                    <th scope="col">Loan Id</th>
+                    <th scope="col">Pay Id</th>
+                    <th scope="col">Premium Amount</th>
+                    <th scope="col">Total Installment</th>
+                    <th scope="col">Installment Deposited</th>
+                    <!-- <th *ngIf="empInfo.aid==='58233'" scope="col">Action</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let field of loanAndAdvancesDetails">
+                    <td>{{field.fullnfinalAmount}}</td>
+                    <td>{{field.interestAmount}}</td>
+                    <td>{{field.interestAmountCalculated}}</td>
+                    <td>{{field.interestAmountDeposited}}</td>
+                    <td>{{field.lastBillMonth}}</td>
+                    <td>{{field.lastBillYear}}</td>
+                    <td>{{field.loanAccountNo}}</td>
+                    <td>{{field.loanAmountDeposited}}</td>
+                    <td>{{field.loanAmountDrawn}}</td>
+                    <td>{{field.loanId}}</td>
+                    <td>{{field.payId}}</td>
+                    <td>{{field.premiumAmount}}</td>
+                    <td>{{field.totalInstallment}}</td>
+                    <td>{{field.totalInstallmentDeposited}}</td>
+                    <!-- <td *ngIf="empInfo.aid==='58233'"><a href="JavaScript:Void(0);" (click)="loanAdvance(field,'Update Loans and Advance','Update Advance')"><mat-icon>edit_square</mat-icon></a></td> -->
+                  </tr>
+                </tbody>
+              </table>
+
+
+            </div>
+            <div class="d-flex justify-content-end mb-2 mt-4">
+              <button *ngIf="empInfo.aid==='58233'" class="btn btn-primary ms-2 mt-2 add-btn" color="primary"
+                mat-raised-button mat-button
+                (click)="loanAdvance('','Add Loans and Advance','+ Add Advance')">+ Add Advance</button>
+            </div>
+            <div class="d-flex justify-content-end mb-2">
+              <button mat-stroked-button matStepperPrevious
+                class="btn btn-outline-cancel me-2">Previous</button>
+              <button class="btn btn-primary ms-2" color="primary" mat-raised-button mat-button
+                matStepperNext (click)="nextStepC()">{{btnlabel}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

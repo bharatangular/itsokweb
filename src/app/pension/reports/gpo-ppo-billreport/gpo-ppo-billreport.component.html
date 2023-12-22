@@ -1,0 +1,163 @@
+<div class="container-fluid full">
+
+    <div class="row">
+        <div class="col-lg-12 p-3 pt-0">
+    <div class="row">
+    
+    <div class="col-lg-12">
+    
+    <!-- <app-filters (dataParmsFilter)="reviceParamsfilter($event)" (filterDash)="firstPensionReport()"></app-filters> -->
+    </div>
+    </div>
+    </div></div>
+
+
+    <div class="row">
+    <div class="row-12">
+      <div class="row">
+                
+        <div class="col-12 col-md-8 col-lg-12">
+            <div class="tab-content" id="nav-tabContent">
+        <!-- breadcrumb -->
+    <section>
+            <div class="content-wrapper">
+                <nav aria-label="breadcrumb">               
+                </nav>
+            </div>
+    </section>
+    
+    <form [formGroup]="myGroup" (ngSubmit)="onSearch('SUBMIT')">
+        <mat-card>
+         
+             <div class="row">
+
+                <div class="col-lg-3">
+                    <mat-label>From :</mat-label>
+                    <mat-form-field class="w-100">
+                        <input matInput [matDatepicker]="fromDate" #com                       
+                          formControlName="fromDate" name="Order_Date" autocomplete="off" 
+                          placeholder="From Date" (ngModelChange)="getDate($event,'FROM')">
+                        <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+                        <mat-datepicker #fromDate></mat-datepicker>
+                    </mat-form-field>
+
+                    <!-- <div *ngIf="myGroup.controls.fromDate.invalid && myGroup.controls.fromDate.touched">
+                        From Date Is Required
+                      </div> -->
+                   
+                  </div>
+                  <div class="col-lg-3">
+                    <mat-label>To:</mat-label>
+                    <mat-form-field class="w-100" >
+                        <input matInput [matDatepicker]="toDate" #com                       
+                          formControlName="toDate" name="Order_Date" autocomplete="off" 
+                          placeholder="To Date" (ngModelChange)="getDate($event,'TO')">
+                        <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+                        <mat-datepicker #toDate></mat-datepicker>
+                    </mat-form-field>
+                    <!-- <div *ngIf="myGroup.controls.toDate.invalid && myGroup.controls.toDate.touched">
+                        To Date Is Required
+                      </div> -->
+                 </div>
+
+                 <div class="col-lg-3">
+                    <mat-radio-group formControlName="ppoGpo" #group class="my-4" (change)="onRadioChange($event)">
+                        <mat-radio-button class="example-margin" [value]="3" color="primary" class="ms-3">GPO </mat-radio-button>
+                        <mat-radio-button class="example-margin" [value]="4" color="primary" class="ms-3">CPO</mat-radio-button>                          
+                    </mat-radio-group>
+                    <!-- <div *ngIf="myGroup.controls.ppoGpo.invalid && myGroup.controls.ppoGpo.touched">
+                        CPO or GPO Is Required
+                      </div> -->
+                   </div>
+
+                   <div class="col-lg-3">
+                    <button mat-raised-button color="primary" class="mt-4 mx-2" type="submit">Search</button>
+
+                   </div>
+        
+             </div>
+              
+         </mat-card>
+<br>
+         <mat-card>
+            <div class="content-wrapper"  style="margin-bottom: 30px;">
+                <div class="content-wrapper mb-2">
+                    <div class="row justify-content-end mt-3">
+                        <div class="col-lg-8 month-dropdown" >
+                            <h2 class="mb-0 py-2">Reports Of Bill Push to Pay Manager (GPO-CPO)</h2>
+                        </div>
+                        <div class="col-lg-4 text-end px-4 d-flex justify-content-end align-items-center">
+                            <button  class="btn btn_custome_r d-inline me-2 align-items-center justify-content-center mb-1 px-2"> 
+                                <img src="assets/images/excel.svg">
+                            </button>
+                            <button class="btn btn_custome_g d-inline align-items-center justify-content-center mb-1 px-2"> 
+                                <img src="assets/images/pdf.png">
+                            </button>
+                        </div>
+                    </div>         
+                </div>
+
+                <div class="mat-elevation-z8" style="overflow: auto;">
+                    <table mat-table [dataSource]="dataSource" matSort class="w-100 mt-4" id="zone_user_wise_summary">
+                        
+                        <ng-container matColumnDef="employeeCode">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Code</th>
+                            <td mat-cell *matCellDef="let row"> <a >{{row.employeeCode}} </a> </td>
+                        </ng-container>
+
+                        
+                        <ng-container matColumnDef="pensionerId">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Pensioner ID</th>
+                            <td mat-cell *matCellDef="let row"> <a >{{row.pensionerId}} </a></td>
+                        </ng-container>
+                        <ng-container matColumnDef="empName" >
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+                            <td mat-cell *matCellDef="let row" style="text-align:left">{{row.empName}}                         
+                            </td>
+                           </ng-container> 
+
+                           
+                        <ng-container matColumnDef="payManager">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Pay Manager</th>
+                            <td mat-cell *matCellDef="let row"> <a >{{row.payManager}} </a> </td>
+                        </ng-container>
+
+                     
+                        <ng-container matColumnDef="billType">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Bill Type</th>
+                            <td mat-cell *matCellDef="let row"><a >{{row.billType}}</a>  </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="grossAmt" >
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Gross Amount</th>
+                            <td mat-cell *matCellDef="let row"> <a >{{row.grossAmt}}</a> </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="netAmt" >
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Net Amount</th>
+                            <td mat-cell *matCellDef="let row" style="text-align:left">{{row.netAmt}}                         
+                            </td>
+                        </ng-container> 
+
+                       
+     
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell text-center" colspan="8">No Record found. </td>
+                        </tr>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>    
+                    </table>
+             
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+             
+                </div>
+             </div>
+         </mat-card>
+
+    </form>
+ 
+          </div>
+        </div>
+    </div>
+</div>
+</div>

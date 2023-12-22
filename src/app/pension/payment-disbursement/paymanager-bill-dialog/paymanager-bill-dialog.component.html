@@ -1,0 +1,192 @@
+<div class="container " >
+    <mat-card>
+    <div class="row">
+  
+      <h2 class="my-3 mb-5">Bill Details</h2>
+  
+     <!-- <div class="text-end col 2">
+        <button mat-raised-button color="primary" (click)="makerequestINI()" >Refresh Data</button>
+      </div> -->
+  
+      <div class="row">
+       
+      
+      
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Pensioner Uid: </mat-label>
+          <!-- <strong>{{billDetails?billDetails.pensionerUid:"N/A"}}</strong> -->
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Employee Name: </mat-label>
+          <!-- <strong>{{billDetails?billDetails.name:"N/A"}}</strong> -->
+        </div>
+  
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Address: </mat-label>
+          <!-- <strong>{{billDetails?.address}}</strong> -->
+  
+        </div>
+        <hr class="my-3">
+  
+  
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Mobile No: </mat-label>
+          <!-- <strong>{{billDetails?.mobileNo}}</strong> -->
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Pensioner No: </mat-label>
+          <!-- <strong>{{billDetails?.pensionerNo}}</strong> -->
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Bank Account No: </mat-label>
+          <!-- <strong>{{billDetails?.bankActNo}}</strong> -->
+        </div>
+        <hr class="my-3">
+  
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>IFSC: </mat-label>
+          <!-- <strong>{{billDetails?.ifscCode}}</strong> -->
+        </div>
+  
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Gross Amount: </mat-label>
+          <!-- <strong>{{billDetails?.grossAmt}} %</strong> -->
+        </div>
+  
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Net Amount: </mat-label>
+          <!-- <strong>{{billDetails?billDetails.netAmt:" "}}</strong> -->
+        </div>
+        <hr class="my-3">
+  
+  
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Pension Type :</mat-label>
+          <!-- <strong>{{billDetails?billDetails.pensionType:" "}}</strong> -->
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Office Id: </mat-label>
+          <!-- <strong>{{billDetails?.officeid}}</strong> -->
+        </div>
+  
+  
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Recovery Amount: </mat-label>
+          <!-- <strong>{{billDetails?.recoveryAmt}}</strong> -->
+  
+        </div>
+        <hr class="my-3">
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                  <mat-label>Designation : </mat-label>
+                  <!-- <strong>{{billDetails?.designation}}</strong>               -->
+              </div> 
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+          <mat-label>Employee ID: </mat-label>
+        
+          <!-- <strong>{{billDetails?billDetails.employeeID:""}}</strong> -->
+        </div>
+  
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+          <mat-label>Nominee Name: </mat-label>
+          <!-- <strong>{{billDetails?.nomineeName}}</strong> -->
+        </div>
+       
+        <hr class="my-3">
+        <div class="row">
+  
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+              <mat-label>dod:</mat-label>
+              <!-- <strong>{{billDetails?.dod  }}</strong> -->
+              
+           
+          </div>
+  
+  
+          
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+              <mat-label>PAN: </mat-label>
+              <!-- <strong>{{billDetails?.panNo}}</strong> -->
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+              <mat-label>Budget Head:</mat-label>
+              <!-- <strong>{{billDetails?.budgetHead}}</strong> -->
+              
+          </div>
+          <hr class="my-3">
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+            <div>
+              <mat-label> Object Head: </mat-label>
+              <!-- <strong>{{billDetails?.objectHead}}</strong> -->
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+            <div>
+              <mat-label>BFC Type </mat-label>
+              <!-- <strong>{{billDetails?.bfcType}}</strong> -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+  
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+              <mat-label>Head Type:</mat-label>
+              <!-- <strong>{{billDetails?.headType}}</strong> -->
+          </div>
+  
+        </div>
+        <hr class="my-3">
+        <h4>Deductions:</h4> 
+        <div class="row" *ngFor="let item of billDetails.deduction">
+  
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+              <mat-label>Budget Head:</mat-label>
+              <!-- <strong>{{item?.dedbudgetHead}}</strong> -->
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+            <mat-label>Object Head:</mat-label>
+            <!-- <strong>{{item?.dedobjectHead}}</strong> -->
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+            <mat-label>Object Head:</mat-label>
+            <!-- <strong>{{item?.dedobjectHead}}</strong> -->
+        </div>
+        <hr class="my-3">
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+            <mat-label>BFC Type:</mat-label>
+            <!-- <strong>{{item?.dedbfcType}}</strong> -->
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+          <mat-label>Head Type:</mat-label>
+          <!-- <strong>{{item?.dedheadType}}</strong> -->
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+          <mat-label>Account No:</mat-label>
+          <!-- <strong>{{item?.pdAcNo}}</strong> -->
+      </div>
+      <hr class="my-3">
+      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+          <mat-label>Amount:</mat-label>
+          <!-- <strong>{{item?.dedAmt}}</strong> -->
+      </div>
+     
+        </div>
+      </div>
+  
+  
+      <div class="my-3 text-end">
+          <button mat-raised-button color="primary" >Send Bill</button>
+      </div>
+      <!-- <div class="my-3">
+          <button mat-raised-button color="primary" (click)="getBaseData(1)" >FR Preview</button>
+      </div>
+      <div class="my-3">
+          <button mat-raised-button color="primary" (click)="getBaseData(2)" >Pension Set Preview</button>
+      </div> -->
+     
+     
+     
+    </div>
+</mat-card>
+  </div>
+  

@@ -1,0 +1,464 @@
+<div class="emp_personal_dt">
+  <mat-tab-group animationDuration="0ms" class="mb-2">
+    <mat-tab label="Pay Entitlement Details" class="text-black"></mat-tab>
+  </mat-tab-group>
+  <button type="button" class="float-end btn_mdf" *ngIf="config.registrationType === 0"
+  mat-raised-button color="primary" (click)="modify()">Modify</button>
+  <form [formGroup]="payEntitlement" >
+    <mat-expansion-panel *ngIf="this.config.registrationType == 3" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Previous Employee Details
+          </mat-panel-title>
+          <hr>
+        </mat-expansion-panel-header>
+        <div class=" border-top">
+          <div class="row mt-2">
+            <div class="col-md-6 col-lg-4 md-4 mt-3">
+              <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                <mat-label>Previous Service Category</mat-label>
+                <input matInput maxlength="400" disabled placeholder="dummy data">
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 col-lg-4 md-4 mt-3">
+              <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                <mat-label>Previous Service Sub-Category</mat-label>
+                <input matInput maxlength="400" disabled placeholder="dummy data">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-lg-4 md-4 mt-3 ">
+              <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                <mat-label>Previous Designation</mat-label>
+                <input matInput maxlength="400" disabled placeholder="dummy data">
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 col-lg-4 md-4 mt-3">
+              <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                <mat-label>Length Of Service</mat-label>
+                <input matInput maxlength="400" disabled placeholder="dummy data">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    <div class="row mb-5">
+      <!-- <div class="col-md-6 col-lg-4 md-4 mt-3" >
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>Service Category</mat-label>
+          <mat-select formControlName="serviceCategory" (selectionChange)="getSubServiceCategory()"  [disabled]="true" >
+            <mat-option [value]="item.srvcCatId"
+              *ngFor="let item of getServiceCategoryList">{{item.srvcCatNameEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>Sub Service Category/Cadre </mat-label>
+          <mat-select formControlName="subServiceCategory" [disabled]="true">
+            <mat-option [value]="item.serviceSubCatId"
+              *ngFor="let item of getSubServiceCategoryList">{{item.subServiceCatNameEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+      <!-- <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label> Designation</mat-label>
+          <mat-select formControlName="designation" placeholder="--Select--" [disabled]="isPayManager">
+            <mat-option *ngFor="let mst of designationlist" [value]="mst.desgId">{{mst.desgDescEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label> Pay Commission</mat-label>
+          <mat-select formControlName="payCommission" (selectionChange)="changePayCommision()" placeholder="--Select--" [disabled]="isPayManager">
+            <mat-option *ngFor="let mst of payCommissionlist" [value]="mst.payCommisionId">
+              {{mst.payCommNameEn}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label> Date of Entry in Existing Pay Band & Grade Pay</mat-label>
+          <input matInput [matDatepicker]="picker2" readonly="" readonly=""
+            formControlName="dateOfEntryInExistingPayBandGradepay" [max]="today" [readonly]="isPayManager">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label> Pay Scale</mat-label>
+          <mat-select matNativeControl formControlName="payScale" (selectionChange)="gradePay()" [disabled]="isPayManager">
+            <mat-option *ngFor="let mst of payScalelist" [value]="mst.payScaleId">
+              {{mst.payScaleName}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label> Date of present Pay Scale</mat-label>
+          <input matInput [matDatepicker]="picker3" readonly formControlName="dateOfPresentPayScale">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="payEntitlement.value.payCommission == 6">
+        <mat-form-field class="w-100">
+          <mat-label> Grade Pay</mat-label>
+          <mat-select matNativeControl formControlName="gradePay" placeholder="--Select--">
+            <mat-option *ngFor="let mst of gradePaylist" [value]="mst.payScaleId">
+              {{mst.incrementGradePay}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label> Basic Pay</mat-label>
+          <mat-select matNativeControl (selectionChange)="getProcessCalBasic()" formControlName="basicPay" [disabled]="isPayManager"
+            placeholder="--Select--">
+            <mat-option *ngFor="let mst of basicPaylist" [value]="mst.basicPayId">
+              {{mst.basicPay}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>Special Pay</mat-label>
+          <input formControlName="specialPay" value="specialPay" matInput [readonly]="isPayManager">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>NPA</mat-label>
+          <input formControlName="NPA" value="NPA" matInput  [readonly]="isPayManager">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label> Dearness Allowance</mat-label>
+          <mat-select formControlName="dearnessAllowance" (selectionChange)="getProcessCalDa()" [disabled]="isPayManager">
+            <mat-option *ngFor="let mst of daRate" [value]="mst.daRateId">
+              {{mst.daRate}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label> Monthly Pension Treasury</mat-label>
+          <mat-select formControlName="monthlyPensionTreasury">
+            <mat-option *ngFor="let obj of treasurylist" [value]="obj.treasCode">{{obj.treasNameEn}} ({{obj.treasCode}})</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+      </div>
+
+     <div  >
+      
+     
+      <span  >Your Present Mapped Office for Forwarding the Pension Initiate case is under:(If change in office, please select "Other" office for mapping...)</span><br>
+      <div class="row">
+        <div class="col-lg-4">
+          <span>Office Name:</span><br><strong>{{officeData?.officeName}}</strong><br>
+        </div>
+        <div class="col-lg-4">
+          <span>Office Code:  </span> <br><strong>{{pensionInitOffice}}</strong><br>
+        </div>
+       
+        <div class="col-lg-4">
+          <span>HO Name:  </span> <br><strong>{{officeData?.officeHoName}}</strong>
+        </div>
+      </div>
+      
+      
+      
+   
+   
+   
+      <div class="row">
+      <div class="col-md-6 col-lg-6 md-6 mt-3" >
+       
+          <mat-radio-group class="">
+            <mat-radio-button class="me-3 my-2" [value]="'1'" (change)="selectOption($event)" [checked]="isOffice">Employee Office</mat-radio-button>
+            <mat-radio-button [value]="'2'" (change)="selectOption($event)" [checked]="!isOffice">Other</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+
+      <div class="col-md-6 col-lg-6 md-6 mt-3" *ngIf="!isOffice">
+       
+        <mat-radio-group class="">
+          <mat-radio-button class="me-3 my-2" [value]="'1'" (change)="selectOption2($event)" [checked]="isList">You know office ID</mat-radio-button>
+          <mat-radio-button [value]="'2'" (change)="selectOption2($event)" [checked]="!isList">Do'nt Know</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+
+
+
+   
+      <div class="row">
+        <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="isKnow && isList">
+          <mat-form-field class="w-100" appearance="outline" >
+            <mat-label>Enter Ofiice Code</mat-label>
+            <input matInput type="number" [(ngModel)]="oOfficeId" [ngModelOptions]="{standalone: true}" placeholder="Ofiice Code">
+          </mat-form-field>
+          <fieldset class="mt-2"> *Office where service books are available</fieldset>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="isKnow && isList">
+          <button    mat-raised-button color="primary" type="button"  (click)="checkOfficeId(1)">
+            Check
+          </button>
+          
+        </div>
+      </div>
+      <div class="row" *ngIf="isKnow && !isList">
+    
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3" >
+        
+        <mat-form-field class="w-100">
+          <mat-label> Department List</mat-label>
+         
+          <mat-select placeholder="select Department"  [(ngModel)]="pdeptId" [ngModelOptions]="{standalone: true}" (selectionChange)="getOfficeList()">
+            <mat-form-field class="w-100" appearance="legacy">
+              <input matInput id="myInput" placeholder="Enter For Search" class="input-control" #box
+                  style="width:30%;"  [formControl]="searchdepartment"    />
+              <mat-icon matSuffix style="position: absolute;right:1%;margin-top: -22px;">search</mat-icon>
+          </mat-form-field>
+            <mat-option *ngFor="let obj of $searchdepartment | async"[value]="obj.vId" >{{obj.vNameEnglish}} ({{obj.vId}})</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3" >
+      <mat-form-field class="w-100">
+        <mat-label> Office List</mat-label>
+        
+        <mat-select placeholder="select Office"  [(ngModel)]="pofficeId" [ngModelOptions]="{standalone: true}" (selectionChange)="checkOfficeId(2)">
+          <mat-form-field class="w-100" appearance="legacy">
+            <input matInput id="myInput" placeholder="Enter For Search" class="input-control" #box
+                style="width:30%;"  [formControl]="serchOffice"    />
+            <mat-icon matSuffix style="position: absolute;right:1%;margin-top: -22px;">search</mat-icon>
+        </mat-form-field>
+          <mat-option *ngFor="let obj of $serchOffice | async"[value]="obj.vId">{{obj.vNameEnglish}} ({{obj.vId}})</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+    </div>
+      <!-- <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+        <mat-form-field class="w-100" appearance="outline">
+           <mat-form-field class="w-100" appearance="legacy">
+               <input matInput id="myInput" placeholder="Enter For Search" class="input-control" #box
+                   style="width:30%;"   [(ngModel)]="searchOffice" [ngModelOptions]="{standalone: true}"  />
+               <mat-icon matSuffix style="position: absolute;right:1%;margin-top: -22px;">search</mat-icon>
+           </mat-form-field>
+
+           <div class="example-1 scrollbar-ripe-malinka">
+                         <mat-selection-list #shoes  formControlName="monthlyPensionTreasury">
+                            <mat-list-option *ngFor="let obj of treasurylist | async"[value]="searchOffice"
+                            [selected]="monthlyPensionTreasury.value && monthlyPensionTreasury.value?.indexOf(obj)>=0">
+                            <span>{{ obj.treasCode }}</span>
+                           </mat-list-option>
+
+                   </mat-selection-list>
+
+                    <mat-select formControlName="monthlyPensionTreasury">
+                    <mat-option *ngFor="let obj of treasurylist | async" [value]="searchOffice" 
+                    [value]="obj.treasCode">{{obj.treasNameEn}} ({{obj.treasCode}})</mat-option>
+                  </mat-select> 
+
+               </div>
+        </mat-form-field>
+   </div> -->
+
+        </div>
+       
+      </div>
+     
+      <!-- <div *ngIf="false" >
+      <hr> -->
+      <!-- <span>Next Assign</span>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <div class="w-100">
+          <mat-radio-group class="">
+            <mat-radio-button class="me-3 my-2" [value]="'1'" (change)="selectOption($event)" [checked]="isOffice">Your Office</mat-radio-button>
+            <mat-radio-button [value]="'2'" (change)="selectOption($event)" [checked]="!isOffice">Other</mat-radio-button>
+        </mat-radio-group>
+
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="isOffice">
+        <mat-form-field class="w-100">
+          <mat-label> Office</mat-label>
+          <input matInput formControlName="officeId" readonly="true">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="!isOffice">
+        <mat-form-field class="w-100">
+          <mat-label> Select Office</mat-label>
+            <input matInput name="office" #office>
+        </mat-form-field>
+        <button (click)="fetchBank(office.value)">Fetch</button>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="!isOffice">
+        <mat-form-field class="w-100">
+          <mat-label> Select Office</mat-label> -->
+          <!-- <mat-select formControlName="officeId">
+            <mat-option *ngFor="let obj of treasurylist" [value]="obj.treasCode">{{obj.treasNameEn}} ({{obj.treasCode}})</mat-option>
+          </mat-select> -->
+          <!-- <input matInput formControlName="officeId" readonly="true">
+        </mat-form-field>
+      </div>
+      <hr>
+      <span>Instructions:Please select next assign officer </span>
+    </div> -->
+      <!-- <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="false">
+        <div class="d-block mt-2"></div>
+        <mat-label>Govt Quarter</mat-label>
+        <mat-radio-group #group class="flex-wrap" formControlName="govtQuarter" (change)="onItemChange($event)">
+          <mat-radio-button class="example-margin" [value]="1" color="primary" class="ms-2">Yes</mat-radio-button>
+          <mat-radio-button class="example-margin" [value]="0" color="primary" class="ms-2">No</mat-radio-button>
+        </mat-radio-group>
+      </div> -->
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="false">
+        <mat-form-field class="w-100">
+          <mat-label> House Rent Allowance Rate</mat-label>
+          <mat-select matNativeControl formControlName="houseRentAllowanceRate" (selectionChange)="getProcessCalHra()"
+            placeholder="--Select--">
+            <mat-option *ngFor="let mst of hralist" [value]="mst.cityClassId">
+              {{mst.rate}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- <hr *ngIf="false">
+    <div class="row mt-4" *ngIf="false">
+      <div class="col-md-6">
+        <h3 class="mt-2 mb-2">Salary Allowance</h3>
+        <div class="col-md-12 col-lg-6 md-6  mt-4">
+          <mat-form-field class="w-100">
+            <mat-label> Basic Pay</mat-label>
+            <input matInput maxlength="20" type=number formControlName="calBasicPay">
+          </mat-form-field>
+        </div>
+        <div class="col-md-12 col-lg-6 md-6 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label> Dearness Allowance</mat-label>
+            <input matInput maxlength="20" type=number formControlName="calDearnessAllowance">
+          </mat-form-field>
+        </div>
+        <div class="col-md-12 col-lg-6 md-6 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label> House Rent Allowance Rate</mat-label>
+            <input matInput maxlength="20" type=number formControlName="calHouseRentAllowanceRate">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-12 col-lg-6 md-6 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label> City Compensatory Allowance</mat-label>
+            <input matInput maxlength="20" type=number formControlName="cityCompensatoryAllowance">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <h3 class="mt-2 mb-2">Salary Deduction</h3>
+        <div class="col-md-12 col-lg-6 md-6 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label> GPF</mat-label>
+            <input matInput maxlength="20" type=number formControlName="gpf">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-12 col-lg-6 md-6 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label> SI</mat-label>
+            <input matInput type=number maxlength="20" formControlName="si">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-12 col-lg-6 md-6 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label> Income TAX</mat-label>
+            <input matInput type=number maxlength="20" formControlName="incomeTax">
+          </mat-form-field>
+        </div>
+      </div>
+    </div> -->
+    <hr>
+    <div class="row mt-3"  *ngIf="false">
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-label> Gross Salary </mat-label>
+        <p>{{getGrossSalary()}}</p>
+       <!--  <mat-form-field class="w-100">
+          <mat-label> Gross Salary {{getGrossSalary()}}</mat-label>
+          <input matInput type=number maxlength="20" formControlName="grossSalary">
+        </mat-form-field> -->
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-label>Net Deduction</mat-label>
+        <p>{{getDeduction()}}</p>
+      <!--   <mat-form-field class="w-100">
+          <mat-label> Net Deduction {{getDeduction()}}</mat-label>
+          <input matInput maxlength="20" type=number formControlName="netDeduction">
+        </mat-form-field> -->
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-label> Net Salary </mat-label>
+        <p>{{netsalary}}</p><!--
+        <mat-form-field class="w-100">
+          <mat-label> Net Salary {{netsalary}}</mat-label>
+          <input matInput maxlength="20" type=number formControlName="netSalary">
+        </mat-form-field> -->
+      </div>
+    </div>
+    <span style="color:brown"  *ngIf="! isSaveEnable">*Your request is saved in 'Draft' So please click 'My Request' for process the application.</span>
+    <span style="color:brown"  *ngIf="userAction.length === 0 && isSaveEnable">*Please click 'Preview' button for Submit application.</span><br>
+    <!-- <button type="submit" mat-raised-button color="primary">Save as Draft</button> -->
+    <button  mat-raised-button color="primary" class="mt-5 mx-3" *ngIf="userAction.length === 0 && isSaveEnable" (click)="preview()">Preview</button>
+    <button *ngIf="userAction.length === 0 && isSaveEnable && isSubmit" mat-raised-button color="primary" class="mt-5" (click)="onsubmit()">Submit</button>
+    <!-- <button *ngIf="userAction.length === 0 && isSaveEnable " mat-raised-button color="primary" class="mt-5" (click)="onsubmit()">Submit</button> -->
+    <!-- <button type="submit" *ngIf="userAction.length !== 0 && isSaveEnable " mat-raised-button color="primary" class="mt-5">Submit</button> -->
+    <ng-container *ngIf="userAction.length > 0 && isEssModify ">
+      <!-- <button type="submit" *ngFor="let item of userAction" mat-raised-button color="primary" (click)="action = item.action" class="mt-5 me-2">
+        {{item.actionLabel}}
+      </button> -->
+      <button type="submit"  (click)="action = 'FWD'" mat-raised-button color="primary" class="mt-5 me-2" *ngIf="roleid=='1' || roleid=='2'">
+        FORWARD
+      </button>
+      <button type="submit"  (click)="action = 'CMP'" mat-raised-button color="primary" class="mt-5 me-2"  *ngIf="roleid=='3'">
+        APPROVED
+      </button>
+      <button type="submit"  (click)="action = 'REV'" mat-raised-button color="primary" class="mt-5 me-2">
+       REVERT
+      </button>
+    </ng-container>
+  <!-- sweet  alert -->
+
+
+
+
+  </form>
+</div>

@@ -1,0 +1,1494 @@
+<!-- (selectedTabChange)="changeTab($event)" -->
+<mat-tab-group animationDuration="0ms" color="primary" class="first-pension-tabs mt-1 p-2 m-3 py-4 mb-0 bg-white"
+  animationDuration="500ms">
+  <div class="mx-2">
+    <form [formGroup]="rvnlDetailsForm">
+      <mat-card>
+        <mat-card-content>
+          <div class="container-fluid" id="content" #content>
+            <div class="row bg-white">
+              <div class="col-12">
+                <mat-tab label="Monthly Pension Details">
+                  <div class="tab-container mt-4">
+                    <div class="container-fluid">
+                      <div class="row">
+
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Pension Amount:</mat-label>
+                              <input matInput type="text" formControlName="familyPensionAmount"
+                                placeholder="Family Pension Amount" [min]="0">
+                            </mat-form-field>
+                          </div>
+                        </div>
+                        <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Pension Id:</mat-label>
+                              <input matInput type="text" formControlName="pensionerDetailId"
+                                placeholder="Family Pension Id" [min]="0">
+                            </mat-form-field>
+                          </div>
+                        </div> -->
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>PPO Amount :</mat-label>
+                              <input matInput type="text" formControlName="ppoAmt" placeholder="PPO Amount :" [min]="0">
+                              <!-- [value]="monthlyPensionDetails?.ppoAmt" -->
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label> PPO Date : </mat-label>
+                              <input matInput type="text" formControlName="ppoDate" placeholder="PPO Date :" [min]="0">
+                            </mat-form-field>
+
+                          </div>
+                        </div>
+
+
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Tax Deducation Amount :</mat-label>
+                              <input matInput type="text" formControlName="taxDeductionAmount"
+                                placeholder="Tax Deducation Amount :" [min]="0">
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>PPO Number : </mat-label>
+                              <input matInput type="text" formControlName="ppoNo" placeholder="PPO Number :" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Pension Initiated Date : </mat-label>
+                              <input matInput type="text" formControlName="startDatePension"
+                                placeholder="Pension Initiated Date :" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Reduced Family Pension : </mat-label>
+                              <input matInput type="text" formControlName="reducedFamilyPension"
+                                placeholder="Reduced Family Pension :" [min]="0">
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Recovery Head : </mat-label>
+                              <input matInput type="text" placeholder="Recovery Head :" formControlName="recoveryHead"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span> Recovery Head : </span>
+                          <label>{{monthlyPensionDetails?.recoveryHead}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Recovery Amount : </mat-label>
+                              <input matInput type="text" formControlName="recoveryAmount"
+                                placeholder="Recovery Amount :" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span> Recovery Amount : </span>
+                          <label>{{monthlyPensionDetails?.recoveryAmount}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Additional Family Pension Amount : </mat-label>
+                              <input matInput type="text" formControlName="additionalFamilypensionAmount"
+                                placeholder="Additional Family Pension Amount : " [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span> Additional Family Pension Amount : </span>
+                          <label>{{monthlyPensionDetails?.additionalFamilypensionAmount}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Deduction Amount : </mat-label>
+                              <input matInput type="text" formControlName="deductionAmount"
+                                placeholder="Deduction Amount : " [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                          <!-- <div>
+                          <span> Deduction Amount : </span>
+                          <label>{{monthlyPensionDetails?.deductionAmount}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>PPO Type : </mat-label>
+                              <input matInput type="text" formControlName="ppoType" placeholder="PPO Type : " [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span> PPO Type : </span>
+                          <label>{{monthlyPensionDetails?.ppoType}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Additional Pension Amount : </mat-label>
+                              <input matInput type="text" formControlName="additionalPensionAmount"
+                                placeholder="Additional Pension Amount : " [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span> Additional Pension Amount : </span>
+                          <label>{{monthlyPensionDetails?.additionalPensionAmount}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Net Monthly Pension Amount : </mat-label>
+                              <input matInput type="text" formControlName="netMonthlyPensionAmount"
+                                placeholder="Net Monthly Pension Amount : " [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span> Net Monthly Pension Amount : </span>
+                          <label>{{monthlyPensionDetails?.netMonthlyPensionAmount}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>dr Amount : </mat-label>
+                              <input matInput type="text" formControlName="drAmount" placeholder="dr Amount : "
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                          <!-- <div>
+                          <span> dr Amount : </span>
+                          <label>{{monthlyPensionDetails?.drAmount}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Tax Deduction Head : </mat-label>
+                              <input matInput type="text" formControlName="taxDeductionHead"
+                                placeholder="Tax Deduction Head : " [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                          <!-- <div>
+                          <span> Tax Deduction Head : </span>
+                          <label>{{monthlyPensionDetails?.taxDeductionHead}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>dr Rate : </mat-label>
+                              <input matInput type="text" formControlName="drRate" placeholder="dr Rate : " [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                          <!-- <div>
+                          <span> dr Rate : </span>
+                          <label>{{monthlyPensionDetails?.drRate}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Deduction Head : </mat-label>
+                              <input matInput type="text" formControlName="deductionHead"
+                                placeholder="Deduction Head : " [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span> Deduction Head : </span>
+                          <label>{{monthlyPensionDetails?.deductionHead}}</label>
+                        </div> -->
+                        </div>
+
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                          *ngIf="ServiceDetails.optForCommutation=='Yes' ">
+                          <span>Commutation Precentage</span>
+                          <div class="border border-radius-5 p-2 rounded">
+
+                            <input matInput type="number" formControlName="commuationPercentage"
+                              placeholder="Commutation Precentage" min="0"
+                              [(ngModel)]="ServiceDetails.commuationPercentage" (blur)="numberValidation()">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-end mb-2">
+
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+
+
+                <mat-tab label="Personal Details">
+                  <div class="tab-container mt-2">
+                    <div class="container-fluid">
+
+                      <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3"
+                          *ngIf="userDetails.roleid=='4' || userDetails.roleid=='5' || userDetails.roleid=='6'">
+                          <div>
+                            <span>LR Number : </span>
+                            <label>{{Personaldetail?Personaldetail.lrNo:"N/A"}}</label>
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Janadhaar Number : </mat-label>
+                              <input matInput type="text" placeholder="Janadhaar Number : " formControlName="janadhaar"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                          <!-- <div>
+                          <span>Janadhaar Number : </span>
+                          <label>{{Personaldetail?Personaldetail.janadharId:"N/A"}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Employee Name : </mat-label>
+                              <input matInput type="text" placeholder="Employee Name : " formControlName="employeeName"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Employee Name : </span>
+                          <label>{{Personaldetail?Personaldetail.employeeName:"N/A"}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Employee ID : </mat-label>
+                              <input matInput type="text" placeholder="Employee ID : " formControlName="employeeId"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Employee ID : </span>
+                          <label>{{Personaldetail?Personaldetail.employeeId:"N/A"}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>SSO ID : </mat-label>
+                              <input matInput type="text" placeholder="SSO ID : " formControlName="ssoId" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>SSO ID : </span>
+                          <label>{{Personaldetail?Personaldetail.ssoId:"N/A"}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Pensioner ID : </mat-label>
+                              <input matInput type="text" placeholder="Pensioner ID : " formControlName="pensionId"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Pensioner ID : </span>
+                          <label>{{Personaldetail?Personaldetail.pensionId:"N/A"}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Gender : </mat-label>
+                              <input matInput type="text" placeholder="Gender : " formControlName="gender" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Gender : </span>
+                          <label>{{Personaldetail?Personaldetail.gender:"N/A"}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Date of Birth : </mat-label>
+                              <input matInput type="text" placeholder="Date of Birth : " formControlName="dateOfBirth"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                          <!-- <div>
+                          <span>Date of Birth : </span>
+                          <label>{{Personaldetail?Personaldetail.dateOfBirth:"N/A"}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Height : </mat-label>
+                              <input matInput type="text" placeholder="height : " formControlName="height" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Height : </span>
+                          <label>{{Personaldetail?Personaldetail.height:"N/A"}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Identification Mark : </mat-label>
+                              <input matInput type="text" placeholder="Identification Mark : "
+                                formControlName="identificationMarks" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Identification Mark : </span>
+                          <label>{{Personaldetail?Personaldetail.identificationMarks:"N/A"}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Father's Name : </mat-label>
+                              <input matInput type="text" placeholder="Father's Name : " formControlName="fatherName"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Father's Name : </span>
+                          <label>{{Personaldetail?Personaldetail.fatherName:""}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Mother's Name : </mat-label>
+                              <input matInput type="text" placeholder="Mother's Name : " formControlName="motherName"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Mother's Name : </span>
+                          <label>{{Personaldetail?Personaldetail?.motherName:""}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Martial Status : </mat-label>
+                              <input matInput type="text" placeholder="Martial Status : "
+                                formControlName="maritalStatus" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Martial Status : </span>
+                          <label>{{Personaldetail?Personaldetail?.maritalStatus:""}}
+                          </label>
+                        </div> -->
+                        </div>
+
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Spouse name : </mat-label>
+                              <input matInput type="text" placeholder="Spouse name : " formControlName="spouseName"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Spouse name : </span>
+                          <label>{{Personaldetail?Personaldetail.spouseName:""}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3"
+                          *ngIf="userDetails.roleid!=='1'">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Disabled : </mat-label>
+                              <input matInput type="text" placeholder="Disabled : " formControlName="disable" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Disabled : </span>
+                          <label>{{(Personaldetail?.disable=='0' ||Personaldetail?.disable=='N') ?'No':'Yes'}}
+                          </label>
+                        </div> -->
+                        </div>
+                        <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="userDetails.roleid==='1'">
+                        <div>
+                          <span>Disabled : </span>
+                          <label>{{(Personaldetail?.disable=='0' ||Personaldetail?.disable=='N')?'No':'Yes'}}
+                            <div *ngFor="let file of document_id">
+                              <a *ngIf="file.id==24 && Personaldetail?.disable=='1'" matTooltip="Download"
+                                href="JavaScript:Void(0);"
+                                (click)="get_Detail_Document('Disability_Certificate',24)">download certificate</a>
+                            </div>
+                            <div
+                              *ngIf="userDetails.roleid==='1' && (Personaldetail?.disable=='Y' || Personaldetail?.disable=='1')">
+                              <div class="uploaddoc" *ngIf="!Disabledfile">
+                             <input type="file" id="fileDropRef" class="inputd" #Dfile (change)="onChangeDisabled(Dfile)" />
+
+                                <input type="file" id="fileDropRef" accept=".pdf" class="inputd"
+                                  (change)="onChangeDisabled($event)">
+                                <label for="fileDropRef">
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);">
+                                    Upload certificate</a>
+                                </label>
+                              </div>
+                              <div *ngIf="Disabledfile" class="uploaddoc">
+                                <span style="color:#3281CC;">{{Disabledfile}}</span>
+                                <a href="JavaScript:Void(0);" (click)="removeDisabled()">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path
+                                      d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                    <path fill-rule="evenodd"
+                                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
+                          </label>
+                        </div>
+                      </div> -->
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Type of Disability : </mat-label>
+                              <input matInput type="text" placeholder="Type of Disability : "
+                                formControlName="disabilityCatName" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Type of Disability : </span>
+                          <label>{{Personaldetail?Personaldetail.disabilityCatName:""}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Percentage of Disability : </mat-label>
+                              <input matInput type="text" placeholder="Percentage of Disability : "
+                                formControlName="disabilityPercent" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                          <!-- <div>
+                          <span>Percentage of Disability : </span>
+                          <label>{{Personaldetail?Personaldetail?.disabilityPercent:""}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Blood Group : </mat-label>
+                              <input matInput type="text" placeholder="Blood Group : " formControlName="bloodGrpName"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Blood Group : </span>
+                          <label>{{Personaldetail?Personaldetail?.bloodGrpName:""}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Email Id : </mat-label>
+                              <input matInput type="text" placeholder="Email Id : " formControlName="emailId" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Email Id : </span>
+                          <label>{{Personaldetail?Personaldetail.emailId:""}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Mobile No : </mat-label>
+                              <input matInput type="text" placeholder="Mobile No : " formControlName="mobileNo"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Mobile No : </span>
+                          <label>{{Personaldetail?Personaldetail?.mobileNo:""}}</label>
+                        </div> -->
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Nationality : </mat-label>
+                              <input matInput type="text" placeholder="Nationality : " formControlName="nationality"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Nationality : </span>
+                          <label>{{Personaldetail?Personaldetail.nationality:""}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Religion : </mat-label>
+                              <input matInput type="text" placeholder="Religion : " formControlName="religion"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Religion : </span>
+                          <label>{{Personaldetail?.religion}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Pan Number : </mat-label>
+                              <input matInput type="text" placeholder="Pan Number : " formControlName="panNo" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Pan Number : </span>
+                          <label>{{Personaldetail?.panNo}}</label>
+                        </div> -->
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Adhaar Number : </mat-label>
+                              <input matInput type="text" placeholder="Adhaar Number : " formControlName="aadharNo"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Adhaar Number : </span>
+                          <label>{{Personaldetail?.aadharNo}}</label>
+                        </div> -->
+                        </div>
+
+                      </div>
+
+
+                    </div>
+                  </div>
+                </mat-tab>
+
+
+                <mat-tab label="Service Details">
+                  <div class="tab-container container-fluid mt-4">
+                    <div class="row">
+
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Category of Pension : </mat-label>
+                            <input matInput type="text" placeholder="Category of Pension : " value="Superannuation"
+                              [min]="0" disabled>
+                          </mat-form-field>
+                        </div>
+                        <!-- <div>
+                        <span>Category of Pension : </span>
+                        <label>Superannuation</label>
+                      </div> -->
+                      </div>
+
+
+
+
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Current Department : </mat-label>
+                            <input matInput type="text" placeholder="Current Department : " formControlName="deptName"
+                              [min]="0">
+                          </mat-form-field>
+                        </div>
+                        <!-- <div>
+                        <span>Current Department : </span>
+                        <label>{{Personaldetail?.deptName}}</label>
+                      </div> -->
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Current Designation : </mat-label>
+                            <input matInput type="text" placeholder="Current Designation : "
+                              formControlName="desigination" [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Appointment Order Date : </mat-label>
+                            <input matInput type="text" placeholder="Appointment Order Date : "
+                              formControlName="appointmentOrderDate" [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Order Issuing Authority/Office : </mat-label>
+                            <input matInput type="text" placeholder="Order Issuing Authority/Office : "
+                              formControlName="orderIssueAuthorityOffice" [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Number Of Qualifying Service : </mat-label>
+                            <input matInput type="text" placeholder="Number Of Qualifying Service : "
+                              formControlName="noOfQualifyingService" [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Appointment Authority : </mat-label>
+                            <input matInput type="text" placeholder="Appointment Authority : "
+                              formControlName="appointingAuthority" [min]="0">
+                          </mat-form-field>
+                        </div>
+                        <!-- <div>
+                        <span>Appointment Authority : </span>
+                        <label>{{ServiceDetails?.appointingAuthority}}</label>
+                      </div> -->
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>DeType : </mat-label>
+                            <input matInput type="text" placeholder="DeType : " formControlName="deType" [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>De : </mat-label>
+                            <input matInput type="text" placeholder="De : " formControlName="isDe" [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>De Status : </mat-label>
+                            <input matInput type="text" placeholder="De Status : " formControlName="deStatus" [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Date of Joining Regular Service : </mat-label>
+                            <input matInput type="text" placeholder="Date of Joining Regular Service : "
+                              formControlName="fromDate" [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Date of Joining Current Designation : </mat-label>
+                            <input matInput type="text" placeholder="Date of Joining Current Designation : "
+                              formControlName="DOPD" [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Joining Date : </mat-label>
+                            <input matInput type="text" placeholder="Joining Date : " formControlName="dateOfJoining"
+                              [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Date of Retirement : </mat-label>
+                            <input matInput type="text" placeholder="Date of Retirement : " formControlName="dor"
+                              [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>GPF No. : </mat-label>
+                            <input matInput type="text" placeholder="GPF No. : " formControlName="gpfNo" [min]="0">
+                          </mat-form-field>
+                        </div>
+
+
+                      </div>
+
+                      <input matInput type="text" formControlName="serviceDetailId" [min]="0" hidden>
+
+
+                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <mat-form-field class="w-100 bg_light_gray">
+                            <mat-label>Commutation Pecentage : </mat-label>
+                            <input matInput type="text" placeholder="Commutation Pecentage : "
+                              formControlName="percentageOfCommutation" [min]="0">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+
+
+                    </div>
+                    <div class="d-flex justify-content-end">
+
+
+                    </div>
+                  </div>
+                </mat-tab>
+
+                <mat-tab label="Address Details">
+                  <div class="tab-container mt-4">
+                    <div class="container-fluid ">
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mt-3 allRadious">
+                          <mat-card class="p-0 lh-lg my-2">
+                            <mat-card-content class="p-3">
+                              <div class="address-card">
+                                <mat-icon>person_pin_circle</mat-icon>
+                              </div>
+                              <span>Current Address : </span>
+                              <p style="max-width: 100%;">
+                                <input matInput type="text" formControlName="postalAddress" [min]="0" hidden>
+                                {{this.Personaldetail?this.Personaldetail.postalAddress:'Na'}}
+                              </p>
+                            </mat-card-content>
+                          </mat-card>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mt-3 allRadious">
+                          <mat-card class="p-0 lh-lg my-2">
+                            <mat-card-content class="p-3">
+                              <div class="address-card">
+                                <span class="material-symbols-outlined">
+                                  <!-- <mat-icon>{{iconPA}}</mat-icon> -->
+                                  <mat-icon>account_box</mat-icon>
+                                </span>
+                              </div>
+                              <span> Address After Retirment : </span>
+                              <p style="max-width: 100%;">
+                                <input matInput type="text" formControlName="addressAfterRetirment" [min]="0" hidden>
+                                {{this.Personaldetail?this.Personaldetail.addressAfterRetirment:'Na'}}
+
+                              </p>
+                            </mat-card-content>
+                          </mat-card>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mt-3 allRadious"
+                          *ngFor="let field of officeArray">
+                          <mat-card class="p-0 lh-lg my-2">
+                            <mat-card-content class="p-3">
+                              <div class="address-card">
+                                <!-- <mat-icon>{{iconOA}}</mat-icon> -->
+                                <mat-icon>apartment</mat-icon>
+                              </div>
+                              <span>Office Address : </span>
+                              <p style="max-width: 100%;">
+                                {{field.officeNameEn+','+field.officeId}}</p>
+                            </mat-card-content>
+                          </mat-card>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+
+                    </div>
+                  </div>
+                </mat-tab>
+
+
+                <mat-tab label="Family Details">
+                  <div class="tab-container mt-2">
+                    <div class="container-fluid">
+
+
+
+
+                     <div class="row my-3 mb-2" formArrayName="familyMembers" *ngFor="let item of familyMembersFormArray.controls; let i = index">
+
+
+                        <!-- <div  formArrayName="familyMembersArray"
+                        *ngFor="let item of rvnlDetailsForm.controls['familyMembers'].controls; let i = index;"> -->
+
+
+                      <div    [formGroupName]="i" class="form-row"  class="row my-3 mb-2">
+
+
+
+                        <div class="mt-4 border-3 border-bottom">
+                          <span class="fs-6 p-2 heading_design text-primary">Family Member {{i+1}}</span>
+                        </div>
+
+                        <input matInput type="text" placeholder="Family Member Name :"
+                        formControlName="familymemberDetailId" hidden>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Name : </mat-label>
+
+                              <input matInput type="text" placeholder="Family Member Name :"
+                                formControlName="familymemberName" >
+
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Mother Name : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Mother Name  : "
+                                formControlName="familymemberMotherName" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Nationality : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Nationality : "
+                                formControlName="familymemberNationality" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Gender : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Gender : "
+                                formControlName="familymemberGender" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Martial Status : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Martial Status : "
+                                formControlName="familymemberMaritalStatus" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Percentage of Disability : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Percentage of Disability : "
+                                formControlName="familymemberPercentageOfDisability" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Job Type : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Job Type : "
+                                formControlName="familymembereMployedUnEmployed" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Bank Details : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Bank Details : "
+                                formControlName="familymemberBankDetails" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Type Of Disability : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Type Of Disability : "
+                                formControlName="familymemberTypeOfDisability" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Identification Mark : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Identification Mark : "
+                                formControlName="familymemberIdentificationMark" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Aadhaar Number : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Aadhaar Number : "
+                                formControlName="familymemberAadhaarNo" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Blood Group : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Blood Group : "
+                                formControlName="familymemberBloodGroup" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Date Of Birth : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Date Of Birth : "
+                                formControlName="familymemberDob" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Family Member Janadhaar Number : </mat-label>
+                              <input matInput type="text" placeholder="Family Member Janadhaar Number : "
+                                formControlName="familymemberJanaadharNo" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label> Disabled : </mat-label>
+                              <input matInput type="text" placeholder=" Disabled : "
+                                formControlName="familymemberIsDisabled" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label> Relationship with Family Member : </mat-label>
+                              <input matInput type="text" placeholder=" Relationship with Family Member : "
+                                formControlName="familymemberRelationship" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+
+                      </div>
+                    </div>
+
+
+                    </div>
+                  </div>
+                </mat-tab>
+
+
+
+
+
+
+
+
+                <mat-tab label="Comutation Details">
+                  <div class="tab-container mt-2">
+                    <div class="container-fluid">
+
+                      <div class="row my-3 mb-2">
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Comutation Deduction Amount : </mat-label>
+                              <input matInput type="text" placeholder="Comutation Deduction Amount : "
+                                formControlName="comutationDeductionAmount" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span> Comutation Deduction Amount : </span>
+                          <label>{{comutationDetails?comutationDetails.comutationDeductionAmount:"N/A"}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Comutation Head : </mat-label>
+                              <input matInput type="text" placeholder="Comutation Head : "
+                                formControlName="comutationHead" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Comutation Head : </span>
+                          <label>{{comutationDetails?comutationDetails.comutationHead:"N/A"}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Comutation Authority Number : </mat-label>
+                              <input matInput type="text" placeholder="Comutation Authority Number : "
+                                formControlName="comutationAuthorityNo" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span> Comutation Authority Number : </span>
+                          <label>{{comutationDetails?comutationDetails.comutationAuthorityNo:"N/A"}}</label>
+                        </div> -->
+                        </div>
+
+                        <input matInput type="text" placeholder="Comutation Authority Number : "
+                          formControlName="comutationDetailId" [min]="0" hidden>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Comutation Amount : </mat-label>
+                              <input matInput type="text" placeholder="Comutation Amount : "
+                                formControlName="comutationAmount" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Comutation Amount : </span>
+                          <label>{{comutationDetails?comutationDetails.comutationAmount:"N/A"}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Comutation Start Date : </mat-label>
+                              <input matInput type="text" placeholder="Comutation Start Date : "
+                                formControlName="comutationStartDate" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Comutation Start Date : </span>
+                          <label>{{comutationDetails?comutationDetails.comutationStartDate:"N/A"}}</label>
+                        </div> -->
+                        </div>
+
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Last Date Of Comutation Deduction : </mat-label>
+                              <input matInput type="text" placeholder="Last Date Of Comutation Deduction : "
+                                formControlName="lastDatecomutationDeduction" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Last Date Of Comutation Deduction : </span>
+                          <label>{{comutationDetails?comutationDetails.lastDatecomutationDeduction:"N/A"}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Comutation Authority Generation Date : </mat-label>
+                              <input matInput type="text" placeholder="Comutation Authority Generation Date : "
+                                formControlName="comutationAuthorityGenerationDate" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Comutation Authority Generation Date : </span>
+                          <label>{{comutationDetails?comutationDetails.comutationAuthorityGenerationDate:"N/A"}}</label>
+                        </div> -->
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </mat-tab>
+
+
+
+
+
+                <mat-tab label="Gratuity Details">
+                  <div class="tab-container mt-2">
+                    <div class="container-fluid">
+
+                      <div class="row my-3 mb-2">
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Grautity Authority Number : </mat-label>
+                              <input matInput type="text" placeholder="Grautity Authority Number : "
+                                formControlName="grautityAuthorityNo" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Grautity Amount : </mat-label>
+                              <input matInput type="text" placeholder="Grautity Amount : "
+                                formControlName="grautityAmount" [min]="0">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div>
+                          <span>Grautity Amount : </span>
+                          <label>{{gratuatyDetails?gratuatyDetails.grautityAmount:"N/A"}}</label>
+                        </div> -->
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Gratuity Authority Number Generated Date : </mat-label>
+                              <input matInput type="text" placeholder="Gratuity Authority Number Generated Date : "
+                                formControlName="grautityAuthorityNoGenDate" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <input matInput type="text" formControlName="grautityDetailId" [min]="0" hidden>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Grautity Head : </mat-label>
+                              <input matInput type="text" placeholder="Grautity Head : " formControlName="grautityHead"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </mat-tab>
+
+
+
+
+
+                <mat-tab label="Lic Details">
+                  <div class="tab-container mt-2">
+                    <div class="container-fluid">
+
+                      <div class="row my-3 mb-2" formArrayName="licDetails" *ngFor="let licdtls of licDetailsFormArray.controls; let i=index;">
+                        <div    [formGroupName]="i" class="form-row"  class="row my-3 mb-2">
+                          <div class="mt-4 border-3 border-bottom">
+                            <span class="fs-6 p-2 heading_design text-primary">Lic Details {{i+1}}</span>
+                          </div>
+
+                          <input matInput type="text" placeholder="Is Lic Details Submitted : " formControlName="licDetailId"
+                          [min]="0" hidden>
+
+                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                            <div>
+                              <mat-form-field class="w-100 bg_light_gray">
+                                <mat-label>Is Lic Details Submitted : </mat-label>
+                                <input matInput type="text" placeholder="Is Lic Details Submitted : " formControlName="lsSubmitted"
+                                   [min]="0">
+                              </mat-form-field>
+                            </div>
+                            <!-- <div>
+                            <span> Is Lic Details Submitted : </span>
+                            <label>{{licdtls?.lsSubmitted== 'Y'?'Yes':'No'}}</label>
+
+                          </div> -->
+                          </div>
+
+                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                            <div>
+                              <mat-form-field class="w-100 bg_light_gray">
+                                <mat-label>Submitted Date : </mat-label>
+                                <input matInput type="text" placeholder="Submitted Date : " formControlName="lcSubmittedDate"
+                                   [min]="0">
+                              </mat-form-field>
+                            </div>
+                            <!-- <div>
+                            <span>Submitted Date : </span>
+                            <label>{{licdtls?licdtls.lcSubmittedDate:"N/A"}}</label>
+                          </div> -->
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+
+                </mat-tab>
+
+
+
+
+
+                <mat-tab label="Bank/Treasury Details">
+                  <div class="tab-container mt-2">
+                    <div class="container-fluid">
+
+                      <div class="row my-3 mb-2">
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Account Type : </mat-label>
+                              <input matInput type="text" placeholder="Account Type : " formControlName="accountType"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <input matInput type="text" formControlName="bankId" [min]="0" hidden>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Account Number : </mat-label>
+                              <input matInput type="text" placeholder="Account Number : "
+                                formControlName="bankAccountNo" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Bank Name : </mat-label>
+                              <input matInput type="text" placeholder="Bank Name : " formControlName="bankName"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>IFSC Code : </mat-label>
+                              <input matInput type="text" placeholder="IFSC Code : " formControlName="ifscCode"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+
+
+
+
+
+
+                <mat-tab label="Pay Entitlement">
+                  <div class="tab-container mt-2">
+                    <div class="container-fluid">
+
+                      <div class="row my-3 mb-2">
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label>Pay Level Scale : </mat-label>
+                              <input matInput type="text" placeholder="Pay Level Scale : "
+                                formControlName="payLevelPayScale" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <input matInput type="text" placeholder="Pay Level Scale : " formControlName="payId" [min]="0"
+                          hidden>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label> Grade Pay : </mat-label>
+                              <input matInput type="text" placeholder=" Grade Pay : " formControlName="gradePay"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label> Pay Commission : </mat-label>
+                              <input matInput type="text" placeholder=" Pay Commission : "
+                                formControlName="payCommission" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label> Special Pay : </mat-label>
+                              <input matInput type="text" placeholder=" Special Pay : " formControlName="specialPay"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label> Basic Pay : </mat-label>
+                              <input matInput type="text" placeholder=" Basic Pay : " formControlName="BasisPay"
+                                [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <mat-form-field class="w-100 bg_light_gray">
+                              <mat-label> Dearness Allowance : </mat-label>
+                              <input matInput type="text" placeholder=" Dearness Allowance : "
+                                formControlName="dearnessAllowance" [min]="0">
+                            </mat-form-field>
+                          </div>
+
+                        </div>
+
+
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-12 col-xl-12 col-xxl-12 mt-3 ">
+                          <button type="submit" style="float: right;"
+                            class="btn btn-sm btn-success add-items custome_btn " (click)="updateDetails()">Update
+                            Details</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </mat-tab>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+</mat-tab-group>

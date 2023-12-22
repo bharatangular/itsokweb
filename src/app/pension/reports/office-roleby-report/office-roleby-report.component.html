@@ -1,0 +1,146 @@
+<div >
+    <mat-card class="mx-3 p-2 ">
+     <div class="table-container container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="tab-content" id="nav-tabContent">
+        <div class="content-wrapper box">
+            <div class="row">
+                
+            </div>
+            <div class="row justify-content-end">
+              
+                <div class="col-lg-4 text-end">
+                    <mat-form-field class="mx-3">
+                        <mat-label><mat-icon>search</mat-icon></mat-label>
+                        <input matInput (keyup)="applyFilter($event)"  placeholder="Search" #input >
+                        <!-- <input type="button" value="Download PDF" class="btn btn-success" (click)="upcomingPensioner()">-->
+                    </mat-form-field>
+
+                    <button  (click)="exportToPdf()" class="btn btn-danger d-inline me-2 align-items-center justify-content-center mb-1 px-4"> <span>
+                        PDF
+                    </span></button>
+                    <button  (click)="exportToExcel()" class="btn btn-primary d-inline align-items-center justify-content-center mb-1 px-4"> <span>EXCEL </span></button>
+                </div>
+                <div class="row justify-content-start py-2">
+
+                    <!-- <div class="col-lg-3 month-dropdown" >
+                        <mat-form-field class="w-100">
+                            <mat-label>Select Month</mat-label>
+                            <mat-select [(ngModel)]="reportmonth">
+                            
+                            <mat-option *ngFor="let item of psnmonth" [value]="item.psnMonthNumber">{{item.psnMonth}}</mat-option>
+                            
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-3 month-dropdown" >
+                        <mat-form-field class="w-100">
+                            <mat-label>Select Year</mat-label>
+                            <mat-select [(ngModel)]="reportYear">
+                            
+                            <mat-option *ngFor="let item of psnYear" [value]="item.psnYear">{{item.psnYear}}</mat-option>
+                            
+                            </mat-select>
+                        </mat-form-field>
+                    </div> -->
+
+                   
+
+                </div>
+               
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="showerror">
+                <strong>Error occurred :- </strong>{{error}}
+              </div>
+            <div class="mb-5" style="overflow: auto;" id="content" #content >
+                <div class="col-lg-12 " style="text-align: center;">
+                    <h2 class="mt-2">Reports</h2>
+                </div>
+                <table mat-table [dataSource]="dataSource" matSort class="w-100  mt-4">
+                    
+                    <!-- <ng-container matColumnDef="DEPT_ID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Dept Id</th>
+                        <td mat-cell *matCellDef="let row">{{row.DEPT_ID}}
+                            
+                        </td>
+                    </ng-container> -->
+              
+                    <ng-container matColumnDef="DEPT_NAME">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>DEPT Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.DEPT_NAME}} </td>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="OFFICE_ID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Office Id</th>
+                        <td mat-cell *matCellDef="let row"> {{row.OFFICE_ID}} </td>
+                    </ng-container> -->
+           
+                    <ng-container matColumnDef="OFFICE_NAME">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Office Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.OFFICE_NAME}} </td>
+                    </ng-container>
+                   
+                    <ng-container matColumnDef="PROCESS_NAME" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Process Name</th>
+                        <td mat-cell *matCellDef="let row" > {{row.PROCESS_NAME}} </td>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="PSN_ZONE_OFC_ID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Zonal Office-Id</th>
+                        <td mat-cell *matCellDef="let row"> {{row.PSN_ZONE_OFC_ID}} </td>
+                    </ng-container> -->
+                    <ng-container matColumnDef="PSN_ZONE_OFC_NAME">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Zonal Office Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.PSN_ZONE_OFC_NAME}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="MAKER">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Maker</th>
+                        <td mat-cell *matCellDef="let row"> {{row.MAKER!=null?row.MAKER:"0"}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="CHECKER">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Checker</th>
+                        <td mat-cell *matCellDef="let row"> {{row.CHECKER!=null?row.CHECKER:"0"}} </td>
+                    </ng-container>
+                   
+                    <ng-container matColumnDef="APPROVER" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Approver</th>
+                        <td mat-cell *matCellDef="let row" > {{row.APPROVER!=null?row.APPROVER:"0"}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="AUDITOR">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Auditor</th>
+                        <td mat-cell *matCellDef="let row"> {{row.AUDITOR!=null?row.AUDITOR:"0"}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="AAO">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>AAO</th>
+                        <td mat-cell *matCellDef="let row"> {{row.AAO!=null?row.AAO:"0"}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="ZONALAPPROVER">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Zonal Approver</th>
+                        <td mat-cell *matCellDef="let row"> {{row.ZONALAPPROVER!=null?row.ZONALAPPROVER:"0"}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="ADAPPROVER">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>AD Approver</th>
+                        <td mat-cell *matCellDef="let row"> {{row.ADAPPROVER!=null?row.ADAPPROVER:"0"}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="TOTAL_RQST">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+                        <td mat-cell *matCellDef="let row"> {{row.TOTAL_RQST!=null?row.TOTAL_RQST:"0"}} </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+                    <!-- Row shown when there is no matching data. -->
+                     <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr>
+                </table>
+    
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </mat-card>
+    </div>

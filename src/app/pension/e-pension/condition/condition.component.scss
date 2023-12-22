@@ -1,0 +1,37 @@
+.tab-container {
+  height: calc(100vh - 687px) !important;
+}
+
+label {
+  display: block;
+  padding-bottom: 10px;
+}
+
+div span {
+  display: block;
+  padding-bottom: 1px;
+  font-weight: 600;
+}
+
+div label a {
+  text-decoration: none;
+  color: #3584cf;
+  display: block;
+  font-size: 12px;
+  cursor: pointer;
+}
+::ng-deep .mat-checkbox-layout .mat-checkbox-label {
+  line-height: 24px;
+  margin-top: 5px;
+}
+
+::ng-deep .mat-checkbox-layout {
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: inherit;
+  align-items: baseline;
+  vertical-align: middle;
+  display: inline-flex;
+  white-space: nowrap;
+  margin-bottom: -39px;
+}

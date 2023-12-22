@@ -1,0 +1,196 @@
+<section class="w3l-top-header">
+	<div class="container-fluid">
+		<div class="row d-flex align-items-center">
+			<div class="top-headers col-8 col-md-3 p-0">
+				<ul class="p-0">
+					<li> <a href="#">Help Desk &nbsp; <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;
+							01412924501</a> </li>
+				</ul>
+			</div>
+			<div class="top-headers col-4 col-md-9 p-0 top-headers-2">
+                <div class="float-end">
+				<ul>
+					<li class="d-none d-md-block" ><a href="#">Skip To Content </a></li>					
+					<li style="width: 40px;">
+						<div class="dropdown"> <span>EN</span>
+							<div class="dropdown-content p-1">
+								<p class="border-bottom m-0"><a class="text-black">Hindi</a>
+								</p>
+								<p class="m-0"><a class="text-black">English</a></p>
+							</div>
+						</div>
+					</li>
+					<li style="width: 40px;">
+						<div class="dropdown">
+							<span><i class="fa-solid fa-wheelchair"></i></span>
+							<div class="dropdown-content">
+								<div class="access-type">
+									<p class="border-bottom m-0"><a href="javascript:;" class="changer text-black" title="Decrease Text" id="text_resize_decrease"><sup>-</sup>A</a></p>
+									<p class="border-bottom m-0"><a href="javascript:;" class="changer text-black" id="text_resize_reset" title="Reset Text">A</a></p>
+									<p class="border-bottom m-0"><a href="javascript:;" class="changer text-black" id="text_resize_increase" title="Increase Text"><sup>+</sup>A</a></p>
+									<div id="text_resize_clear"></div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="d-none d-lg-block" >
+						<a href="#twitter"><i class="fa-brands fa-twitter"></i></a>
+					</li>
+					<li class="d-none d-lg-block" >
+						<a href="#facebook"><i class="fa-brands fa-facebook-f"></i></a>
+					</li>
+					<li class="d-none d-lg-block" >
+						<a href="#youtube"><i class="fa-brands fa-youtube"></i></a>
+					</li>
+					<li class="d-none d-lg-block" >
+						<a href="#instagram"><i class="fa-brands fa-instagram"></i></a>
+					</li>
+					<li class="d-none d-lg-block" >
+						<!-- search button -->
+						<div class="search-right">
+							<form action="#search" method="GET" class="search-box position-relative">
+								<div class="input-search">
+									<input type="search" placeholder="Enter Keyword" name="search" required="required"
+										autofocus="" class="search-popup" />
+								</div>
+								<button type="submit" class="btn search-btn"></button>
+							</form>
+						</div>
+						<!-- //search button -->
+					</li>
+					<!-- @author animesh - @change Description - title changed to logout from login  -->
+					<li class="d-none d-md-block" ><a class="btn btn-outline-secondary" role="button" title="Logout">Logout</a></li>
+					<li class="d-none d-md-block" ><a href="#">Back to SSO</a></li>
+				</ul>
+            </div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="hero header" id="myHeader">
+	<div class="container-fluid">
+		
+
+			<!-- ======= Header ======= -->
+<div >
+	
+		<div class="row" id="navigation">
+			<div class="d-flex align-items-center">
+				<div  class="col-1 col-md-1 col-sm-1 col-lg-0 col-xl-0 d-block d-lg-none">
+					<button (click)="openMenu()"  mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+						<mat-icon [ngStyle]="{'color':'white'}">menu</mat-icon>
+					  </button>
+				</div>
+				<app-sidemenu [ngStyle]="{'background-color':'white'}"  class="d-block d-lg-none"></app-sidemenu>
+				
+				
+			<div class="col-6 col-md-4 p-2">
+				<div class="logo">
+					<!-- <h1 class="text-white">
+						<span class="logo-sz"><img src="PensionApplication/assets/images/logo.png" alt="" class="img-fluid"
+								style="margin:0px 10px 10px;height: 70px;"></span>
+						<span class="d-flex">Department of Finance</span>
+						<span>
+							<p>Integrated Financial Managment System</p>
+						</span>
+					</h1> -->
+
+				</div>
+				
+				
+				
+				<img src="/PensionApplication/assets/images/logo.svg" alt="" class="img-fluid">
+			</div>
+			<div class="col-md-4 p-0 d-none d-md-block">
+				<div class="flag text-center">
+					<img class="img-fluid" src="/PensionApplication/assets/images/flag.svg">
+				</div>
+		</div>
+			<div class="col-3 col-sm-3 col-md-3 col-lg-4 col-xl-4 p-0">
+                <!-- <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container-fluid">
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Manual</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">FAQ</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Helpdesk</a>
+                          </li>
+                        </ul>
+                        
+                      </div>
+                    </div>
+                  </nav> -->
+				<div id="mySidenav" class="sidenav d-block d-md-none"> <a class="closebtn" onclick="closeNav()">&times;</a>
+                    <div class="account-info d-flex px-3">
+                        <div><img src="/PensionApplication/assets/images/avatar.svg"></div>
+                        <div class="account-details ps-3">
+                            <h3 class="m-0">Tushar Taneja</h3>
+                            <small>Admin Deptartment</small><br>
+                            <small>Indra Gandhi Nahar Department</small>
+                            <a class="btn btn-outline-white mt-2" role="button" title="Logout">Logout</a>
+                        </div>
+                    </div>
+                    <div class="p-3 sidenav-link">
+                       
+                            <li><a class="nav-link scrollto active" href="home.html">Home</a></li>
+                            <li><a class="nav-link scrollto" href="manual.html">Manual</a></li>
+                            <li><a class="nav-link scrollto" href="faq.html"> FAQ</a></li>
+                            <li><a class="nav-link scrollto" href="helpdesk.html"> Helpdesk </a></li>
+                          
+                    </div>
+                    <small class="date_time w-100 ps-4 pb-2 primary-bg">9/21/2022  |  12:13:29 PM</small>
+				</div>
+				<nav id="navbar" class="navbar float-end">
+					<ul>
+                        <li><a class="nav-link scrollto active" href="home.html">Home</a></li>
+						<li><a class="nav-link scrollto" href="manual.html">Manual</a></li>
+						<li><a class="nav-link scrollto" href="faq.html"> FAQ</a></li>
+						<li><a class="nav-link scrollto" href="helpdesk.html"> Helpdesk </a></li>
+					</ul>
+				</nav> <span class="button-croce float-end" style="font-size:30px;cursor:pointer"
+					onclick="openNav()"><mat-icon>more_vert</mat-icon></span>
+			</div>
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+<!-- End Header -->
+			<!-- <app-user-info-header [officeName]="officeName" [role]="currentRole" [userName]="loggedInUserName">
+			</app-user-info-header> -->
+		
+	</div>
+</div>
+
+<!-- sidebar  menu -->
+
+<script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "285px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
+  <script>
+    function openMenu() {
+      
+    }
+
+    function closeMenu() {
+      document.getElementById("Sidenav").style.width = "0";
+    }
+  </script>
+
+  <!-- end sidbar menu -->
+<!-- New Header Design-->
+ 

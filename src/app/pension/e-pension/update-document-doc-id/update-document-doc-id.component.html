@@ -1,0 +1,301 @@
+
+
+<div class="container-fluid  mb-5" >
+    <div class="row" style="overflow: auto;">
+      <div class="col-12">
+        <mat-card>
+          <div class="bootstrap-tab-design">
+            
+                <!-- First Pension -->
+                <!-- (selectedTabChange)="onTabChanged($event)" -->
+                <div class="first-pension-container" id="first-pension">
+                  <mat-tab-group animationDuration="0ms" color="primary" class="first-pension-tabs mt-4"
+                     animationDuration="500ms">
+                    <mat-tab label="Direct E-sign">
+                      <div class="tab-container mt-4">
+                        <div class="first-pension-tabs-container">
+                          <div class="first-pension-tab-btns d-flex align-items-center">
+                           
+                          </div>
+                          <div class="tab-content">
+                            <div class="container-fluid" style="background-color:#edf2fa;">
+                              <div class="tab-filter-option-container row">
+                                <div
+                                  class="col-12">
+                                  
+                                  <div class="row justify-content-center pt-3">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2 mt-2">
+                                        <h3>Find Pensioner</h3>
+                                    </div>
+                                  
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 gx-1 mx-2">
+                                      <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>Employee Code</mat-label>
+                                        <input matInput placeholder="Employee Code" [(ngModel)]="empCode" #input oninput="this.value = this.value.toUpperCase()"/>
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2">
+                                        <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="fetchData()"> Find Details </button>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                
+                              </div>
+                            </div>
+  <hr>
+                          
+                           
+                            
+                                <div class="">
+                                    <mat-label>Employee Name:</mat-label><br>
+                                    <mat-label>{{pensionData?.empName}}</mat-label>
+                                    <h3>Preview</h3>
+                                    <div class="row">
+                                       
+                                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                                <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.Preview(frData)">
+                                                Final Report
+                                              </button>
+                                              </div>
+                                              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                                <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.Preview(PKData)">
+                                                    Pension Kit
+                                                  </button>
+                                              </div>
+                                              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                                <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.Preview(PKData)">
+                                                    Pension Kit Summary
+                                                  </button>
+                                              </div>
+                                     
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                       
+                                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                            <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.directEsign(this.frData,36)">
+                                            E-sign Final Report
+                                          </button>
+                                          </div>
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                            <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.directEsign(this.PKData,34)">
+                                                E-sign Pension Kit
+                                              </button>
+                                          </div>
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                            <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.directEsign(this.PKSData,261)">
+                                                E-sign Pension Kit Summary
+                                              </button>
+                                          </div>
+                                 
+                                </div>
+                                <hr>
+                                    <div class="my-3 text-end">
+                                        <button mat-raised-button color="primary" type="submit" class="big-btn-padding"
+                                        (click)="allEsign()">
+                                        E-Sign All
+                                      </button>
+                                    </div>
+                                    </div>   
+                          </div>
+                        </div>
+                      </div>
+                    </mat-tab>
+                    <mat-tab label="List Direct E-sign">
+                      <div class="tab-container mt-4">
+                        <div class="first-pension-tabs-container">
+                          <div class="first-pension-tab-btns d-flex align-items-center">
+                           
+                          </div>
+                          <div class="tab-content">
+                            <div class="container-fluid" style="background-color:#edf2fa;">
+                              <div class="tab-filter-option-container row">
+                                <div
+                                  class="col-12">
+                                  
+                                  <div class="row justify-content-center pt-3">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2 mt-2">
+                                        <h3>Find Pensioner</h3>
+                                    </div>
+                                  
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 gx-1 mx-2">
+                                      <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>[Employee Code1,Employee Code2...]</mat-label>
+                                        <input matInput placeholder="[Employee Code1,Employee Code2...]" [(ngModel)]="empCodeList" #input oninput="this.value = this.value.toUpperCase()"/>
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2">
+                                        <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="autoprocess()"> Find Details </button>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                
+                              </div>
+                            </div>
+  <hr>
+                          
+                           
+                            
+                                <div class="">
+                                    <mat-label>Employee Name:</mat-label><br>
+                                    <mat-label>{{pensionData?.empName}}</mat-label>
+                                    <mat-label>List Number:</mat-label><br>
+                                    <mat-label>{{count+1}}</mat-label>
+                                    <h3>Preview</h3>
+                                    <div class="row">
+                                       
+                                            <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                                <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.Preview(frData)">
+                                                Final Report
+                                              </button>
+                                              </div>
+                                              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                                <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.Preview(PKData)">
+                                                    Pension Kit
+                                                  </button>
+                                              </div>
+                                              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                                <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.Preview(PKData)">
+                                                    Pension Kit Summary
+                                                  </button>
+                                              </div> -->
+                                     
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                       
+                                        <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                            <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.directEsign(this.frData,36)">
+                                            E-sign Final Report
+                                          </button>
+                                          </div>
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                            <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.directEsign(this.PKData,34)">
+                                                E-sign Pension Kit
+                                              </button>
+                                          </div>
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                            <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.directEsign(this.PKSData,261)">
+                                                E-sign Pension Kit Summary
+                                              </button>
+                                          </div> -->
+                                 
+                                </div>
+                                <hr>
+                                    <!-- <div class="my-3 text-end">
+                                        <button mat-raised-button color="primary" type="submit" class="big-btn-padding"
+                                        (click)="allEsign()">
+                                        E-Sign All
+                                      </button>
+                                    </div> -->
+                                    </div>   
+                          </div>
+                        </div>
+                      </div>
+                    </mat-tab>
+                   <mat-tab label="List upload Pension-Set">
+                      <div class="tab-container mt-4">
+                        <div class="first-pension-tabs-container">
+                          <div class="first-pension-tab-btns d-flex align-items-center">
+                           
+                          </div>
+                          <div class="tab-content">
+                            <div class="container-fluid" style="background-color:#edf2fa;">
+                              <div class="tab-filter-option-container row">
+                                <div
+                                  class="col-12">
+                                  
+                                  <div class="row justify-content-center pt-3">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2 mt-2">
+                                        <h3>Find Pensioner</h3>
+                                    </div>
+                                  
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 gx-1 mx-2">
+                                      <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>[Employee Code1,Employee Code2...]</mat-label>
+                                        <input matInput placeholder="[Employee Code1,Employee Code2...]" [(ngModel)]="pensionsetList" #input oninput="this.value = this.value.toUpperCase()"/>
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2">
+                                        <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="autoprocesspensionSet()"> Auto Generate </button>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                
+                              </div>
+                            </div>
+  <hr>
+                          
+                           
+                            
+                                <div class="">
+                                    <mat-label>Employee Name:</mat-label><br>
+                                    <mat-label>{{pensionData?.empName}}</mat-label>
+                                    <mat-label>List Number:</mat-label><br>
+                                    <mat-label>{{count+1}}</mat-label>
+                                    <h3>Preview</h3>
+                                    <div class="row">
+                                       
+                                            <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                                <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.Preview(frData)">
+                                                Final Report
+                                              </button>
+                                              </div>
+                                              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                                <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.Preview(PKData)">
+                                                    Pension Kit
+                                                  </button>
+                                              </div>
+                                              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                                <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.Preview(PKData)">
+                                                    Pension Kit Summary
+                                                  </button>
+                                              </div> -->
+                                     
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                       
+                                        <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                            <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.directEsign(this.frData,36)">
+                                            E-sign Final Report
+                                          </button>
+                                          </div>
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                            <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.directEsign(this.PKData,34)">
+                                                E-sign Pension Kit
+                                              </button>
+                                          </div>
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                            <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="common.directEsign(this.PKSData,261)">
+                                                E-sign Pension Kit Summary
+                                              </button>
+                                          </div> -->
+                                 
+                                </div>
+                                <hr>
+                                    <!-- <div class="my-3 text-end">
+                                        <button mat-raised-button color="primary" type="submit" class="big-btn-padding"
+                                        (click)="allEsign()">
+                                        E-Sign All
+                                      </button>
+                                    </div> -->
+                                    </div>   
+                          </div>
+                        </div>
+                      </div>
+                    </mat-tab>
+  
+                   
+  
+                  </mat-tab-group>
+                </div>
+              
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,193 @@
+
+<div class="container-fluid IsEss" [ngClass]="{'view_only': config.registrationType === 2, 'IsEss': config.registrationType === 2}">
+  <div class="row">
+    <div class="col-12">
+      <div class="registration-card">
+        <div class="heading-2 bodytext-color d-flex align-items-center mt-1 px-4 py-4 wbg stepper-title">
+          <ng-container *ngIf="config.registrationType !== 2">
+            Pensioner Registration
+          </ng-container>
+          <ng-container *ngIf="config.registrationType === 2">
+            Revise / Correction Request
+          </ng-container>
+          <mat-icon class="primary ms-2">info</mat-icon>
+        <!-- <div>
+          <button type="button" class="btn btn-primary  ms-2 float-end">Final  Submit</button>
+        </div> -->
+        </div>
+       <!--  (selectionChange)="onStepChange(stepper)" IsLinear -->
+        <mat-stepper labelPosition="bottom" #stepper1 [linear]="" class="mb-4" style="background-color: #edf0f2;" >
+          <mat-step label="Personal Details" [stepControl]="firstFormGroup">
+            <div class="stepper_content p-4" [formGroup]="firstFormGroup">
+              <app-personal-details [EmpDetails]="employee.employeePersonalDetail" (EmpData)="getData($event)" (persoData)="saveOffline($event)"
+                (JanaadhaarUser)="getJanaadharuser($event)" (dateOfBirth)="getDob($event)" [picData]="picData"
+                [config]="config" [userAction]="actionList" [personal]="personal"></app-personal-details>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-primary  ms-2" mat-raised-button color="primary"
+                 (click)="savedata1(1)" *ngIf="isEssModify">Next</button>
+            </div>
+          </mat-step>
+
+
+          <!--   [dob]="dob" -->
+          <mat-step label="Employee Service" [stepControl]="secondFormGroup">
+            <div class="stepper_content p-4" [formGroup]="secondFormGroup">
+              <app-service-details [EmpDetails]="employee.employeeServiceDetails" (ServiceUser)="getServiceuser($event)"
+                (dateOfBirth)="getDob($event)" (EmpData)="getData($event)" [dateOfBirth]="dateOfBirth"
+                [config]="config" [userAction]="actionList"   [personal]="service"></app-service-details>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-outline-cancel ms-2" mat-stroked-button
+                matStepperPrevious>Previous</button>
+              <button type="button" class="btn btn-primary  ms-2" mat-raised-button color="primary"
+                 (click)="savedata1(2)" *ngIf="isEssModify">Next</button>
+            </div>
+          </mat-step>
+
+          <!-- <mat-step label="Address" [stepControl]="thirdFormGroup">
+            <div class="stepper_content p-4" [formGroup]="thirdFormGroup">
+              <app-address [EmpAddress]="employee.employeeAddressDetails" (EmpData)="getData($event)"
+                [config]="config"
+                [userAction]="actionList"
+                [personal]="address"
+                [mobileNo]="mobileNo"
+                [isOtpVerified]="isOtpVerified"
+              
+                ></app-address>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-outline-cancel ms-2" mat-stroked-button
+                matStepperPrevious>Previous</button>
+              <button type="button" class="btn btn-primary  ms-2" mat-raised-button color="primary"
+                 (click)="savedata1(3)" *ngIf="isEssModify">Next</button>
+            </div>
+          </mat-step> -->
+
+          <mat-step label="Family Details And Nomination" [stepControl]="forthFormGroup">
+            <div class="stepper_content p-4" [formGroup]="forthFormGroup">
+              <app-family-details [EmpFamily]="employee.employeeFamilyDetails" [JanUserList]="janUserList"
+                (EmpData)="getData($event)" [config]="config"
+                [userAction]="actionList"
+                [personal]="family"
+                ></app-family-details>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-outline-cancel ms-2" mat-stroked-button
+                matStepperPrevious>Previous</button>
+              <button type="button" class="btn btn-primary  ms-2" mat-raised-button color="primary"
+                 (click)="savedata1(4)" *ngIf="isEssModify">Next</button>
+            </div>
+          </mat-step>
+
+          <mat-step label="Bank Details" [stepControl]="fifthFormGroup">
+            <div class="stepper_content p-4">
+              <app-bank-details [EmpBankDetails]="employee.employeeBankDetails" (EmpData)="getData($event)"
+                [config]="config"
+                [userAction]="actionList"
+                [personal]="bank"
+                [mobileNo]="mobileNo"
+                [isOtpVerified]="isOtpVerified"
+                ></app-bank-details>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-outline-cancel ms-2" mat-stroked-button
+                matStepperPrevious>Previous</button>
+              <button type="button" class="btn btn-primary  ms-2" mat-raised-button color="primary"
+                 (click)="savedata1(5)" *ngIf="isEssModify">Next</button>
+            </div>
+          </mat-step>
+          <mat-step label="Commutation" [stepControl]="eightFormGroup" >
+            <div class="stepper_content p-4">
+              <app-commutation  (EmpData)="getData($event)"
+                [config]="isEssModify"
+                [userAction1]="actionList"
+                [personal]="Commutation"
+                [isCommutaion]="isCommutaion"
+               [serviceCat]="employee.employeeServiceDetails?.serviceCategory"
+               [empCode]="employee.employeePersonalDetail?.employeeCode?employee.employeePersonalDetail?.employeeCode:employee.employeePersonalDetail?.employeeId"
+               [mobileNo]="mobileNo"
+               [isMakerModified]="isMakerModified"
+               [isOtpVerified]="isOtpVerified"
+                ></app-commutation >
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-outline-cancel ms-2" mat-stroked-button
+                matStepperPrevious>Previous</button>
+              <button type="button" class="btn btn-primary  ms-2" mat-raised-button color="primary"
+                 (click)="savedata1(8)" *ngIf="isEssModify">Next</button>
+            </div>
+          </mat-step>
+          <mat-step label="Pay Entitlement">
+            <div class="stepper_content p-4">
+              <app-pay-entitlement [EmpDetails]="employee.payEntitlementDetails" (EmpData)="getData($event)"
+                [serviceUserList]="serviceUserList" [config]="config" [personal]="payint"
+                [isEssModify]="isEssModify" [userAction]="actionList "
+                [office]="office"
+                [currentDepartment]="currentDepartment"
+                [officeData]="officeData"
+                >
+              </app-pay-entitlement>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-outline-cancel d-inline mx-2" mat-stroked-button matStepperPrevious>Previous</button>
+              <!-- <button mat-raised-button color="primary" (click)="markHoWithSso()" class="btn d-inline ">Preview</button> -->
+          </div>
+            <!-- <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-outline-cancel ms-2" mat-stroked-button
+                matStepperPrevious>Previous</button> -->
+              <!-- <button type="button" class="btn btn-primary  ms-2" mat-raised-button color="primary"
+                (click)="onStepChange(stepper)">Next</button> -->
+            <!-- </div> -->
+          </mat-step>
+
+          <ng-template matStepperIcon="edit">
+            <mat-icon>check</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="chat">
+            <mat-icon>forum</mat-icon>
+          </ng-template>
+          <!-- <ng-template matStepperIcon="number">
+            <mat-icon>forum</mat-icon>
+          </ng-template> -->
+        </mat-stepper>
+
+        <div class="progress-abs col-12" *ngIf="config.registrationType !== 2">
+          <mat-card>
+            <span class="heading-2">Complete the steps</span>
+
+            <div class="mt-3">
+              <app-progress [progress1]="progress1"></app-progress>
+            </div>
+            <div class="d-flex justify-content-start mt-2">
+              <h3 class="prograss-bar-text m-0">{{progress1}}% Complete</h3>
+
+            </div>
+            <div class="d-flex justify-content-end mt-1">
+              <button class="d-flex align-items-centent px-3 py-2 prograss-bar-btn">
+                <mat-icon>arrow_right_alt</mat-icon>
+              </button>
+            </div>
+          </mat-card>
+        </div>
+        <!-- <div class="progress-abs col-12">
+                    <mat-card>
+                        <span class="heading-2">Complete the steps</span>
+                        <div class="progress mt-4">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                        <div class="d-flex justify-content-start mt-3">
+                            <h3 class="prograss-bar-text m-0">30% Complete</h3>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="d-flex align-items-centent px-3 py-2 prograss-bar-btn">
+                                <mat-icon>arrow_right_alt</mat-icon>
+                            </button>
+                        </div>
+                    </mat-card>
+                </div> -->
+      </div>
+    </div>
+  </div>
+</div>

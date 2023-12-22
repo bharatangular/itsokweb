@@ -1,0 +1,3098 @@
+<div class="container-fluid" style="background-color: #edf0f2;">
+  <div class="row">
+    <div class="col-12">
+      <div class="registration-card">
+        <div class="heading-2 bodytext-color d-flex align-items-center mt-1 px-4 py-2 wbg stepper-title">
+          E-Pension
+          <mat-icon class="primary ms-2" matTooltip="Please use next Fill form carefully.">info</mat-icon>
+        </div>
+
+
+        <mat-stepper labelPosition="bottom" style="background-color: #edf0f2;" color="accent" #stepper
+          (selectionChange)="onStepChange(stepper)">
+          <mat-step label="Profile">
+            <mat-card>
+              <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+                <mat-tab label="Personal Details">
+                  <div class="tab-container mt-4">
+                    <div class="container-fluid">
+                      <div class="row">
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div class="avatar-upload">
+                            <span>Joint Photograph</span>
+                            <div class="avatar-edit">
+                              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput1
+                                (change)="uploadFile($event,2)" />
+                            </div>
+                            <div class="avatar-preview">
+                              <div id="imagePreview" [style.backgroundImage]="'url('+ jointImageUrl +')'"> <i
+                                  class="fa fa-edit"></i>
+                              </div>
+                            </div>
+                            <button class="editbutton" (click)="fileInput1.click()" *ngIf="userDetails.roleid=='1'">
+                              <mat-icon>edit</mat-icon>
+                            </button>
+                          </div>
+                          <div>
+                            <mat-spinner [diameter]="30" *ngIf="isLoadingJPic"></mat-spinner>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div class="avatar-upload">
+                            <span>Employee Photograph</span>
+                            <div class="avatar-edit">
+                              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
+                                (change)="uploadFile($event,1)" />
+                            </div>
+                            <div class="avatar-preview">
+                              <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'"> <i
+                                  class="fa fa-edit"></i>
+                              </div>
+                              <img [src]="picData" style=" width: auto;  height: 100%;" />
+                            </div>
+                            <button class="editbutton" (click)="fileInput.click()" *ngIf="userDetails.roleid=='1'">
+                              <mat-icon>edit</mat-icon>
+                            </button>
+                          </div>
+                          <div>
+                            <mat-spinner [diameter]="30" *ngIf="isLoadingSPic"></mat-spinner>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                          *ngIf="userDetails.roleid=='4' || userDetails.roleid=='5' || userDetails.roleid=='6'">
+                          <div>
+                            <span>LR Number</span>
+                            <label>{{Personaldetail?Personaldetail.lrNo:"N/A"}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Janadhaar Number</span>
+                            <label>{{Personaldetail?Personaldetail.janadharId:"N/A"}}</label>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Employee Name</span>
+                            <label>{{Personaldetail?Personaldetail.nameEn:"N/A"}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Employee ID</span>
+                            <label>{{Personaldetail?Personaldetail.employeeCode:"N/A"}}</label>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>SSO ID </span>
+                            <label>{{Personaldetail?Personaldetail.ssoId:"N/A"}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Gender</span>
+                            <label>{{Personaldetail?Personaldetail.genderName:"N/A"}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Date of Birth</span>
+                            <label>{{Personaldetail?Personaldetail.dateOfBirth:"N/A"}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Height</span>
+                            <label>{{Personaldetail?Personaldetail.height:"N/A"}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Identification Mark</span>
+                            <label>{{Personaldetail?Personaldetail.identificationMarks:"N/A"}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Father's Name</span>
+                            <label>{{Personaldetail?Personaldetail.fatherName:""}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Mother's Name</span>
+                            <label>{{Personaldetail?Personaldetail?.motherName:""}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                          *ngIf="userDetails.roleid!=='1'">
+                          <div>
+                            <span>Martial Status</span>
+                            <label>{{Personaldetail?Personaldetail?.maritalStatus:""}}
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                          *ngIf="userDetails.roleid=='1'">
+                          <div>
+                            <span>Martial Status</span>
+                            <label>{{Personaldetail?Personaldetail?.maritalStatus:""}}
+                              <!-- <div *ngFor="let file of document_id">
+                                <a *ngIf="file.id==23" matTooltip="Download" href="JavaScript:Void(0);"
+                                  (click)="get_Detail_Document('Marriage_certificate',23)">download certificate</a>
+                              </div> -->
+
+                              <div *ngIf="userDetails.roleid==='1'">
+                                <!-- <a  matTooltip="Download" href="JavaScript:Void(0);"
+                                (click)="get_Detail_Document('Marriage_certificate',23)">download certificate</a> -->
+
+
+                                <div class="uploaddoc" *ngIf="!MartialStatus && !isMdown && userDetails.roleid=='1'">
+                                  <input type="file" id="fileDropRef" accept=".pdf" class="inputd"
+                                    (change)="Uploaddocument1($event,1)">
+                                  <label for="fileDropRef">
+
+
+                                    <a matTooltip="View Details" href="JavaScript:Void(0);">
+                                      Upload certificate</a>
+                                  </label>
+                                  <div>
+                                    <mat-spinner [diameter]="30" *ngIf="isLoading1"></mat-spinner>
+                                  </div>
+                                </div>
+                                <div class="uploaddoc" *ngIf="!MartialStatus && isMdown && userDetails.roleid=='1'">
+
+                                  <label for="fileDropRef">
+                                    <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                      (click)="previewFiles2('Marriage Certificate')">Download certificate</a>
+                                  </label>
+                                  <mat-icon *ngIf="!MartialStatus && isMdown"
+                                    (click)="removeUploadDoc2('Marriage Certificate')">delete</mat-icon>
+                                </div>
+                                <div class="uploaddoc" *ngIf="!MartialStatus && userDetails.roleid!='1'">
+
+                                  <label for="fileDropRef">
+                                    <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                      (click)="previewFiles2('Marriage Certificate')">Download certificate</a>
+                                  </label>
+                                  <!-- <mat-icon *ngIf="!MartialStatus && isMdown" (click)="removeUploadDoc2('Marriage Certificate')">delete</mat-icon> -->
+                                </div>
+                              </div>
+
+                              <!-- <a matTooltip="View Marriage Certificate" href="JavaScript:Void(0);">View Marriage
+                                                      Certificate</a> -->
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Spouse name</span>
+                            <label>{{Personaldetail?Personaldetail.spouseName:""}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                          *ngIf="userDetails.roleid!=='1'">
+                          <div>
+                            <span>Disabled</span>
+                            <label>{{(Personaldetail?.disable=='0' ||Personaldetail?.disable=='N') ?'No':'Yes'}}
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                          *ngIf="userDetails.roleid==='1'">
+                          <div>
+                            <span>Disabled</span>
+                            <label>{{(Personaldetail?.disable=='0' ||Personaldetail?.disable=='N')?'No':'Yes'}}
+                              <!-- <div *ngFor="let file of document_id">
+                                <a *ngIf="file.id==24 && Personaldetail?.disable=='1'" matTooltip="Download"
+                                  href="JavaScript:Void(0);"
+                                  (click)="get_Detail_Document('Disability_Certificate',24)">download certificate</a>
+                              </div> -->
+                              <!-- <div
+                                *ngIf="userDetails.roleid==='1' && (Personaldetail?.disable=='Y' || Personaldetail?.disable=='1')">
+                                <div class="uploaddoc" *ngIf="!Disabledfile">
+                                  
+
+                                  <input type="file" id="fileDropRef" accept=".pdf" class="inputd"
+                                    (change)="onChangeDisabled($event)">
+                                  <label for="fileDropRef">
+                                    <a matTooltip="View Details" href="JavaScript:Void(0);">
+                                      Upload certificate</a>
+                                  </label>
+                                </div>
+                                <div *ngIf="Disabledfile" class="uploaddoc">
+                                  <span style="color:#3281CC;">{{Disabledfile}}</span>
+                                  <a href="JavaScript:Void(0);" (click)="removeDisabled()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                                      class="bi bi-trash" viewBox="0 0 16 16">
+                                      <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                      <path fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                    </svg>
+                                  </a>
+                                </div>
+                              </div> -->
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Category of Disability</span>
+                            <label>{{Personaldetail?Personaldetail.disabilityCatName:""}}</label>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Percentage of Disability</span>
+                            <label>{{Personaldetail?Personaldetail?.disabilityPercent:""}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Blood Group</span>
+                            <label>{{Personaldetail?Personaldetail?.bloodGrpName:""}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Email Id</span>
+                            <label>{{Personaldetail?Personaldetail.emailId:""}}</label>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+
+                          <div>
+                            <span>Mobile No</span>
+                            <label>{{Personaldetail?Personaldetail?.mobileNo:""}}</label>
+                          </div>
+
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Nationality</span>
+                            <label>{{Personaldetail?Personaldetail.nationality:""}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Religion</span>
+                            <label>{{Personaldetail?.religionNameEn}}</label>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Pan Number</span>
+                            <label>{{Personaldetail?.pan}}</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                          <div>
+                            <span>Adhaar Number</span>
+                            <label>{{Personaldetail?.aadharRefNo}}</label>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="d-flex justify-content-end">
+                        <button mat-raised-button tabindex="-1" type="button" color="primary"
+                          class="btn btn-primary  ms-2" (click)='moveToSelectedTab("Service Details")'>Next</button>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab label="Service Details">
+
+                  <div class="tab-container container-fluid mt-4">
+                    <div class="row">
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Service Category </span>
+                          <label>{{ServiceDetails?.serviceCatName}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Category of Pension </span>
+                          <label>{{pType}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Office Name </span>
+                          <label>{{ServiceDetails?.officeNameEn}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Gazetted</span>
+                          <label>{{ServiceDetails?.gajetted}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Admin Department</span>
+                          <label>{{ServiceDetails?.parentDepartmentName}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Current Department</span>
+                          <label>{{Personaldetail?.deptName}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Current Designation</span>
+                          <label>{{Personaldetail?.desgDescName}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Current Office Address</span>
+                          <div *ngFor="let field of officeArray">
+                            <label> {{field.officeNameEn+','+field.officeId}}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Appointment Order No </span>
+                          <label>{{Personaldetail?.appointOrdNum}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Appointment Order Date </span>
+                          <label>{{Personaldetail?.appointmentOrderDate}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Order Issuing Authority/Office </span>
+                          <label>{{Personaldetail?.authorityOffice}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Appointment Authority </span>
+                          <label>{{Personaldetail?.appointAuthority}}</label>
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <!-- New changes -->
+                          <span>Date of Joining Regular Service </span>
+                          <label>{{DOJRS}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <!-- New changes -->
+                          <span>Date of Joining Current Designation</span>
+                          <label>{{DOPD}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <!-- New changes -->
+                          <span>Date of Joining Present DDO</span>
+                          <label>{{DOJPD}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <!-- New changes -->
+                          <span>Joining Date</span>
+                          <label>{{DOJ}}</label>
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Date of Retirement</span>
+                          <label>{{dateTrans(Personaldetail?.dor)}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="userDetails.roleid!=='1'">
+                        <div>
+                          <span>Retirement Order, Sanction</span>
+                          <label></label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="userDetails.roleid==='1'">
+                        <div>
+                          <span>Retirement Order, Sanction</span>
+                          <label>
+                            <!-- <div *ngFor="let file of document_id">
+                              <a *ngIf="file.id==15" matTooltip="Download" href="JavaScript:Void(0);"
+                                (click)="get_Detail_Document('Retirement_Certificate',15)">download certificate</a>
+                            </div> -->
+                            <div *ngIf="userDetails.roleid==='1'">
+                              <div class="uploaddoc" *ngIf="!Retirementfile && !isRe">
+                                <!-- <input type="file" id="fileDropRef" class="inputd" #Rfile (change)="onRetirement(Rfile)" /> -->
+                                <input type="file" id="fileDropRef" accept=".pdf" class="inputd"
+                                  (change)="Uploaddocument1($event,2)">
+                                <label for="fileDropRef">
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);">
+                                    Upload certificate</a>
+                                </label>
+                                <div>
+                                  <mat-spinner [diameter]="30" *ngIf="isLoading1"></mat-spinner>
+                                </div>
+                              </div>
+                              <div class="uploaddoc" *ngIf="isRe">
+
+                                <label for="fileDropRef">
+
+
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                    (click)="previewFiles2('Retirement Order Sanction')">
+                                    Download certificate</a>
+                                </label>
+                                <mat-icon (click)="removeUploadDoc2('Retirement Order Sanction')">delete</mat-icon>
+                              </div>
+
+
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>PRAN No.</span>
+                          <label>{{Personaldetail?.pranNumber}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>GPF No.</span>
+                          <label>{{Personaldetail?.gpfNo}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>State Insurance Number</span>
+                          <label>{{Personaldetail?.sipfNo}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>I.A.S CPNF Number</span>
+                          <label>{{Personaldetail?.cpfNo}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <!-- New Changes -->
+                          <span>PPO Number</span>
+                          <label>{{Personaldetail?.ppoNo=='null'?'':Personaldetail?.ppoNo}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Foreign Services</span>
+                          <label>{{Personaldetail?.foreignService}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Foreign Empolyer</span>
+                          <label>{{Personaldetail?.foreignEmpolyer}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Foreign Services From-To Date</span>
+                          <label>{{Personaldetail?.from_Date}} - {{Personaldetail?.to_Date}}</label>
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="userDetails.roleid!='1'">
+                        <div>
+
+                          <span>Opt for Commutation</span>
+                          <label>{{ServiceDetails?.optForCommutation}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="userDetails.roleid=='1'">
+                        <span>Opt for Commutation</span>
+                        <div appearance="outline" class="border border-radius-5 p-2 rounded" *ngIf="!isCrimnalCase">
+                          <mat-select panelClass="myPanelClass" [(ngModel)]="ServiceDetails.optForCommutation"
+                            (selectionChange)="value()"
+                            [disabled]="(deTypeStatus==1  && (this.deTypeName=='16CC' || this.deTypeName=='Criminal Case')) && userDetails.roleid == '1'">
+                            <mat-option value="Yes">Yes</mat-option>
+                            <mat-option value="No">No</mat-option>
+                          </mat-select>
+
+
+                        </div>
+                        <div *ngIf="isCrimnalCase">
+
+
+                          <label>{{ServiceDetails?.optForCommutation}}</label>
+                        </div>
+                      </div>
+
+
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="ServiceDetails.optForCommutation=='Yes' && userDetails.roleid=='1'">
+                        <span>Commutation Precentage</span>
+                        <div class="border border-radius-5 p-2 rounded">
+                          <!-- New changes -->
+
+                          <!-- <label>{{ServiceDetails?.commuationPercentage}}</label> -->
+                          <input matInput type="number" placeholder="Commutation Precentage" min="0"
+                            [(ngModel)]="ServiceDetails.commuationPercentage" (blur)="numberValidation()">
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="ServiceDetails.optForCommutation=='Yes' && userDetails.roleid!='1'">
+                        <span>Commutation Precentage</span>
+                        <label>{{ServiceDetails?.commuationPercentage}}</label>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="ServiceDetails.optForCommutation=='No'">
+                        <div>
+                          <!-- New changes -->
+                          <span>Commutation Precentage</span>
+                          <label>{{ServiceDetails?.commuationPercentage}}</label>
+
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <!-- New changes -->
+                          <span>Income Tax Regime</span>
+                          <label>{{ServiceDetails?.incomeTaxRegime}}</label>
+                        </div>
+                      </div>
+                      <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                           New Changes
+                          <span>Are you A Ex-Service Man ?</span>
+                           <label>{{Personaldetail?.exService}}</label> 
+                          <label>No</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                           New Changes 
+                          <span>Are You Getting Pension From The Previous Military
+                            Service?</span>
+                          <label>No</label>
+                           <label>{{Personaldetail?.previousAsignee}}</label> 
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                           New Changes 
+                          <span>Are You Getting Civil Service Pension?</span>
+                           <label>{{Personaldetail?.previousAsignee}}</label> 
+                          <label>No</label>
+                        </div>
+                      </div>-->
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button mat-stroked-button tabindex="-1" type="button" class="btn btn-outline-cancel me-2"
+                        (click)='moveToSelectedTab("Personal Details")'>Previous</button>
+                      <button mat-raised-button tabindex="-1" type="button" color="primary"
+                        class="btn btn-primary  ms-2" (click)='moveToSelectedTab("Address Details")'>Next</button>
+
+                    </div>
+                  </div>
+
+                </mat-tab>
+                <mat-tab label="Address Details">
+                  <div class="tab-container mt-4">
+                    <div class="container-fluid ">
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mt-3 allRadious"
+                          *ngFor="let field of residenceArray">
+                          <mat-card class="p-0 lh-lg">
+                            <mat-card-content class="p-3">
+                              <div class="address-card">
+                                <!-- <mat-icon>{{iconCA}}</mat-icon> -->
+                                <mat-icon>person_pin_circle</mat-icon>
+                              </div>
+                              <span>Current Address</span>
+                              <p style="max-width: 100%;">
+                                {{field?.villageName!=null?'Village:'+field.villageName+',':""}}
+                                {{field?.gramPanchayat!='0'?'Gram Panchayat:'+field.gramPanchayat+',':""}}
+                                {{field?.wardNameEn!='0'?'Ward Name:'+field.wardNameEn+',':""}}
+                                {{field?.muncipalBlockNameEn!=null?'Muncipal:'+field.muncipalBlockNameEn+',':""}}
+                                {{field?.houseAddress!=null?'House Address:'+field.houseAddress+',':""}}
+                                {{field?.districtNameEn!=null?'District:'+field.districtNameEn+',':""}}
+                                {{field?.stateNameEn!=null?'State:'+field.stateNameEn+',':""}}
+                                {{field?.pinCode!=null?'Pin Code:'+field.pinCode:""}}
+                                {{field?.assemblyNameEn!=null?'Assembly:'+field.assemblyNameEn:""}}
+                                <!-- {{field.houseAddress+','+field.districtNameEn+','+field.stateNameEn+','+field.pinCode}} -->
+                              </p>
+                            </mat-card-content>
+                          </mat-card>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mt-3 allRadious"
+                          *ngFor="let field of DepartmentAddress">
+                          <mat-card class="p-0 lh-lg">
+                            <mat-card-content class="p-3">
+                              <div class="address-card">
+                                <span class="material-symbols-outlined">
+                                  <!-- <mat-icon>{{iconPA}}</mat-icon> -->
+                                  <mat-icon>account_box</mat-icon>
+                                </span>
+                              </div>
+                              <span>Permanent Address</span>
+                              <p style="max-width: 100%;">
+                                {{field?.villageName!=null?'Village:'+field.villageName+',':""}}
+                                {{field?.gramPanchayat!='0'?'Gram Panchayat:'+field.gramPanchayat+',':""}}
+                                {{field?.wardNameEn!='0'?'Ward Name:'+field.wardNameEn+',':""}}
+                                {{field?.muncipalBlockNameEn!=null?'Muncipal:'+field.muncipalBlockNameEn+',':""}}
+                                {{field?.houseAddress!=null?'House Address:'+field.houseAddress+',':""}}
+                                {{field?.districtNameEn!=null?'District:'+field.districtNameEn+',':""}}
+                                {{field?.stateNameEn!=null?'State:'+field.stateNameEn+',':""}}
+                                {{field?.pinCode!=null?'Pin Code:'+field.pinCode:""}}
+                                {{field?.assemblyNameEn!=null?'Assembly:'+field.assemblyNameEn:""}}
+                                <!-- {{field.houseAddress+','+field.districtNameEn+','+field.stateNameEn+','+field.pinCode}} -->
+                              </p>
+                            </mat-card-content>
+                          </mat-card>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mt-3 allRadious"
+                          *ngFor="let field of officeArray">
+                          <mat-card class="p-0 lh-lg">
+                            <mat-card-content class="p-3">
+                              <div class="address-card">
+                                <!-- <mat-icon>{{iconOA}}</mat-icon> -->
+                                <mat-icon>apartment</mat-icon>
+                              </div>
+                              <span>Office Address</span>
+                              <p style="max-width: 100%;">
+                                {{field.officeNameEn+','+field.officeId}}</p>
+                            </mat-card-content>
+                          </mat-card>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                      <button mat-stroked-button tabindex="-1" type="button" class="btn btn-outline-cancel me-2"
+                        (click)='moveToSelectedTab("Service Details")'>Previous</button>
+                      <button class="btn btn-primary ms-2" color="primary" mat-raised-button mat-button matStepperNext
+                        (click)="nextStepc(1)">Next</button>
+                    </div>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+
+            </mat-card>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>Family Details and Nomination</ng-template>
+            <mat-card>
+              <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+                <mat-tab label="Family Details">
+                  <div class="tab-container mt-4">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 allRadious mt-4"
+                          *ngFor="let field of familyDetails">
+                          <div class="family-details-card-container">
+                            <div class="family-card-header m-1 p-2 d-flex justify-content-between align-items-center">
+                              <div class="member-base-details d-flex justify-content-start align-items-center">
+                                <div class="member-image">
+                                  <img src="./assets/images/sonImg.jfif" alt="member-image">
+                                </div>
+                                <div class="member-name heading-2 ms-2 mt-2">{{field.nameEn}}</div>
+                              </div>
+                              <div class="name-birth-details ms-1">
+                                <span class="relation-tag py-1 px-2">{{field.relationshipTypeEn}}</span>
+                              </div>
+                            </div>
+                            <div class="family-card-body">
+                              <div class="d-flex justify-content-between align-items-center mt-4 mx-3">
+                                <div class="pan-number-box me-5 fw-bold">
+                                  <p class="subtitle-2">{{field.genderEn}}</p>
+                                </div>
+                                <div class="aadhar-number-box fw-bold">
+                                  <p class="subtitle-2">{{field.dob}}</p>
+                                </div>
+                                <div class="aadhar-number-box ms-4 fw-bold">
+                                  <p class="subtitle-2">{{field.maritalStatusName}}</p>
+                                </div>
+                              </div>
+                              <div
+                                class="pan-aadhar-number-container d-flex justify-content-start align-items-center  mx-3">
+                                <!-- <div class="pan-number-box me-5">
+                                  <p class="m-0 f-12">PAN Number</p>
+                                  <p class="subtitle-2">DXEPK2840E</p>
+                                </div> -->
+                                <div class="aadhar-number-box ms-5">
+                                  <p class="m-0 f-12">Aadhaar Number</p>
+                                  <p class="subtitle-2">{{field.aadharRefernceId}}</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+
+                              <div class="action-textd-d-flex mt-3 justify-content-end align-item-center me-2">
+                                <a href="javascript:void(0)"
+                                  class="subtitle-2 view-details-btn d-flex justify-content-end align-item-center"
+                                  (click)="openDialog(field)">
+                                  <p class="m-0">View All Details </p>
+                                  <span>
+                                    <mat-icon>arrow_right_alt</mat-icon>
+                                  </span>
+                                </a>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="d-flex justify-content-end mt-3">
+                        <button mat-stroked-button matStepperPrevious
+                          class="btn btn-outline-cancel me-2">Previous</button>
+
+                        <button mat-raised-button tabindex="-1" type="button" color="primary"
+                          class="btn btn-primary  ms-2" *ngIf="!isCrimnalCase"
+                          (click)='moveToSelectedTab("Nomination")'>Next</button>
+                        <button class="btn btn-primary ms-2" color="primary" mat-raised-button mat-button
+                          *ngIf="isCrimnalCase" matStepperNext>Next</button>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab label="Nomination" *ngIf="!isCrimnalCase">
+                  <div class="tab-container mt-4">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <strong>Arrears (Form A&5)</strong>
+                        <div class="col-lg-12 mt-3 datatable">
+                          <table class="table text-nowrap">
+
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col">NAME</th>
+                                <!-- <th scope="col">GENDER</th> -->
+                                <th scope="col">RELATION</th>
+                                <th scope="col">MAIN NOMINEE SHARE</th>
+                                <th scope="col">ALTERNATE NOMINEE SHARE</th>
+                              </tr>
+                            </thead>
+                            <tbody *ngFor="let member of arrear_Arr">
+                              <tr>
+                                <td>{{member.name}}</td>
+                                <!-- <td>{{member.gender}}</td> -->
+                                <td>{{member.relationshipName}}</td>
+                                <td>{{member.mainPercentageShare?member.mainPercentageShare:'0'}} %</td>
+                                <td>{{member.alternatePercentageShare?member.alternatePercentageShare:'0'}} %</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <strong>Commutation (Form A&5)</strong>
+                        <div class="col-lg-12 mt-3 datatable">
+                          <table class="table text-nowrap">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col">NAME</th>
+                                <!-- <th scope="col">GENDER</th> -->
+                                <th scope="col">RELATION</th>
+                                <th scope="col">MAIN NOMINEE SHARE</th>
+                                <th scope="col">ALTERNATE NOMINEE SHARE</th>
+                              </tr>
+                            </thead>
+                            <tbody *ngFor="let member of commutation_Arr">
+                              <tr>
+                                <td>{{member.name}}</td>
+                                <!-- <td>{{member.gender}}</td> -->
+                                <td>{{member.relationshipName}}</td>
+                                <td>{{member.mainPercentageShare?member.mainPercentageShare:"0"}} %</td>
+                                <td>{{member.alternatePercentageShare?member.alternatePercentageShare:"0"}} %</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <strong>Gratuity (Form 1 or 2)</strong>
+                        <div class="col-lg-12 mt-3 datatable">
+                          <table class="table text-nowrap">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col">NAME</th>
+                                <!-- <th scope="col">GENDER</th> -->
+                                <th scope="col">RELATION</th>
+                                <th scope="col">MAIN NOMINEE SHARE</th>
+                                <th scope="col">ALTERNATE NOMINEE SHARE</th>
+                              </tr>
+                            </thead>
+                            <tbody *ngFor="let member of gratuity_Arr">
+                              <tr>
+                                <td>{{member.name}}</td>
+                                <!-- <td>{{member.gender}}</td> -->
+                                <td>{{member.relationshipName}}</td>
+                                <td>{{member.mainPercentageShare?member.mainPercentageShare:"0"}} %</td>
+                                <td>{{member.alternatePercentageShare?member.alternatePercentageShare:"0"}} %</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button class="btn btn-outline-cancel ms-2" mat-stroked-button
+                        (click)='moveToSelectedTab("Family Details")'>Previous</button>
+                      <button class="btn btn-primary ms-2" color="primary" mat-raised-button mat-button
+                        matStepperNext>Next</button>
+                    </div>
+                  </div>
+
+                </mat-tab>
+              </mat-tab-group>
+            </mat-card>
+          </mat-step>
+
+
+
+          <mat-step label="Service Records">
+            <mat-card>
+              <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+                <mat-tab label="Service Records">
+                  <div class="tab-container container-fluid mt-4" style="margin: 0; padding: 0; overflow: hidden;">
+                    <div class="mt-3 datatable">
+                      <table class="table" style="margin: 0; padding: 0; overflow: hidden;">
+                        <thead class="thead-light">
+                          <tr>
+                            <!-- <th scope="col">Service Category </th>
+                                                    <th scope="col">Service Sub Category</th> -->
+                            <th scope="col">Service Length</th>
+                            <!-- <th scope="col">Qualifying Service From Previous Organisation</th> -->
+                            <th scope="col">Non-Qualifying Service</th>
+                            <th scope="col">Other Qualifying Service</th>
+                            <th scope="col">Net Qualifying Service</th>
+                            <th scope="col">DE Status</th>
+                            <th scope="col" *ngIf="destatus">Type of DE</th>
+                            <!-- <th scope="col" *ngIf="destatus">De Start Date</th>
+                            <th scope="col" *ngIf="destatus">De Completion Date</th> -->
+                            <!-- <th scope="col" *ngIf="userDetails.roleid==='1'" > DE Certificate</th> -->
+                            <th scope="col" *ngIf="userDetails.roleid==='1'">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <!-- <td>{{obj.serviceCategoryNameEn}}</td>
+                                                    <td>{{obj.subServiceCategoryNameEn}}</td> -->
+                          <td>{{Pension_Commutation?Pension_Commutation.totalCurrentService:""}}</td>
+                          <!-- <td>{{serviceRecordDatanew?serviceRecordDatanew.qualifyingServiceOtherOrganisationDate:""}}</td> -->
+                          <td>{{Pension_Commutation?Pension_Commutation.totalNonQualifyingService:""}}</td>
+                          <td>{{Pension_Commutation?Pension_Commutation.totalQualifyingServicePrvOrg:""}}</td>
+                          <td>{{Pension_Commutation?Pension_Commutation.totalQualifyingService:""}}</td>
+                          <td>{{destatus?'Yes':serviceRecordDatanew?.deStatus=='0'?'No':""}}</td>
+                          <td *ngIf="destatus">{{serviceRecordDatanew?serviceRecordDatanew.deTypeName:""}}</td>
+                          <!-- <td *ngIf="destatus" >{{serviceRecordDatanew?serviceRecordDatanew.deStartDate:""}}</td>
+                            <td *ngIf="destatus">{{serviceRecordDatanew?serviceRecordDatanew.deEndDate:""}}</td> -->
+
+                          <!-- <td >
+                              <div *ngIf="userDetails.roleid==='1'">
+                                
+
+
+                                <div class="uploaddoc" *ngIf="!MartialStatus && !isDe">
+                                  <input type="file" id="fileDropRef" accept=".pdf" class="inputd"
+                                    (change)="Uploaddocument1($event,3)">
+                                  <label for="fileDropRef">
+
+
+                                    <a matTooltip="View Details" href="JavaScript:Void(0);">
+                                      Upload certificate</a>
+                                  </label>
+                                  <div >
+                                    <mat-spinner [diameter]="30" *ngIf="isLoading1"></mat-spinner>
+                                </div>
+                                </div>
+                                <div class="uploaddoc" *ngIf="isDe || userDetails.roleid!='1'">
+
+                                  <label for="fileDropRef">
+
+
+                                    <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                      (click)="previewFiles2('No DE Certificate')">
+                                      Download certificate</a>
+                                  </label>
+                                  <mat-icon (click)="removeUploadDoc2('No DE Certificate')">delete</mat-icon>
+                                </div>
+
+                              </div>
+                            </td> -->
+                          <td *ngIf="userDetails.roleid==='1'"><a href="JavaScript:Void(0);"
+                              (click)="addServiceRecord(serviceRecordDatanew,'Update Service Records')">
+                              <mat-icon>edit_square</mat-icon>
+                            </a>
+                          </td>
+
+                        </tbody>
+                      </table>
+                      <span style="color: brown;">*Please select DE status 'YES/NO' (for that click 'Edit'
+                        button)</span>
+                      <!-- <div class="d-flex justify-content-end mb-2">
+                        <button *ngIf="userDetails.roleid==='1'" class="btn btn-primary ms-2" color="primary" mat-raised-button
+                          mat-button (click)="addServiceRecord('0','Add Service Records')">+ Add
+                          Service Records</button>
+                      </div> -->
+
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button mat-stroked-button matStepperPrevious
+                        class="btn btn-outline-cancel me-2">Previous</button>
+                      <button class="btn btn-primary ms-2" color="primary" mat-raised-button mat-button matStepperNext
+                        (click)="nextStepc(3)">Next</button>
+                    </div>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+            </mat-card>
+          </mat-step>
+          <mat-step label="Loans and Advances">
+            <mat-card>
+              <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+                <mat-tab label="Loans and Advances">
+                  <div class="tab-container mt-4" style="margin: 0; padding: 0; overflow: hidden;">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-lg-12 mt-3 datatable">
+                          <table class="table" style="margin: 0; padding: 0; overflow: hidden; border: 0;">
+                            <thead>
+                              <tr>
+                                <th>Kind of Demand</th>
+                                <th>Treasury</th>
+                                <th>Sanction Number</th>
+                                <th>Sanction Date</th>
+                                <th>Amount Sanction</th>
+                                <th>Amount recovered</th>
+                                <!-- <th colspan="2">Balance</th> -->
+                                <th>Principle</th>
+                                <th>Net Principle</th>
+                                <th>Interest</th>
+                                <th>Net due Pay</th>
+                                <!-- <th>No dues certificate</th> -->
+                                <th *ngIf="userDetails.roleid=='1'">Remove</th>
+                              </tr>
+                              <!-- <tr>
+
+                              </tr> -->
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let field of advancedLoan;let i=index">
+                                <td>{{field.loanTypeName}}</td>
+                                <td>{{field.treasuryName}}</td>
+                                <td>{{field.sanctionNumber}}</td>
+                                <td>{{field.sanctionDate}}</td>
+                                <td>{{field.sanctionAmount}}</td>
+                                <td>{{field.recoveredAmount}}</td>
+                                <td>{{field.principleAmount}}</td>
+                                <td>{{field.netPrinciple}}</td>
+                                <td>{{field.interest}}</td>
+                                <td>{{field.netDueAmount}}</td>
+                                <!-- <td>{{field.documentName}}</td> -->
+                                <td> <a href="JavaScript:Void(0);" (click)="removeFile1(i,field)"
+                                    *ngIf="userDetails.roleid=='1'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                                      class="bi bi-trash" viewBox="0 0 16 16">
+                                      <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                      <path fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                    </svg>
+                                  </a></td>
+                                <!-- <td *ngIf="userDetails.roleid==='1'"><a href="JavaScript:Void(0);" (click)="loanAdvance(field,'Update Loans and Advance','Update Advance')"><mat-icon>edit_square</mat-icon></a></td> -->
+                              </tr>
+                            </tbody>
+                          </table>
+
+                          <div class="d-flex justify-content-end mb-2 add-btn">
+                            <button *ngIf="userDetails.roleid==='1'" class="btn btn-primary ms-2" color="primary"
+                              mat-raised-button mat-button
+                              (click)="loanAdvance('','Add Loans and Advance','+ Add Advance')">+ Add Advance</button>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-end mb-2">
+                          <button mat-stroked-button matStepperPrevious
+                            class="btn btn-outline-cancel me-2">Previous</button>
+                          <button class="btn btn-primary ms-2" color="primary" mat-raised-button mat-button
+                            matStepperNext (click)="nextStepc(4);caculationPension()"
+                            *ngIf="userDetails.roleid=='1'">Next</button>
+                          <button class="btn btn-primary ms-2" color="primary" mat-raised-button mat-button
+                            matStepperNext (click)="nextStepc(4)" *ngIf="userDetails.roleid!='1'">Next</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+            </mat-card>
+          </mat-step>
+          <mat-step label="Calculations">
+            <mat-card>
+              <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+                <mat-tab label="Pay Details">
+                  <div class="tab-container mt-4">
+                    <div class="row container-fluid">
+                      <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                        <div>
+                                          <span>Half Year Pension</span>
+                                          <label>{{Calculations_Pay_Details?.halfYearPension}}</label>
+                                        </div>
+                                      </div> -->
+                      <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                        <div>
+                                          <span>Half Year Gratuity</span>
+                                          <label>{{Calculations_Pay_Details?.halfYearGratuity}}</label>
+                                        </div>
+                                      </div> -->
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Budget Head</span>
+                          <label>
+                            <!-- Pensions and Other Retirement Benefits  -->
+                            <span *ngIf="userDetails.roleid=='1'">{{getBudHead("General")}}</span>
+                            <span
+                              *ngIf="userDetails.roleid!='1'">{{Calculations_Pay_Details?Calculations_Pay_Details.mainBudgetHead:""}}</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <!-- New Changes -->
+                          <span>Pension Type/Rule</span>
+                          <!-- <label>Superannuation
+                            <label>(Rule-30,RCS Pension Rules,1996)</label>
+                          </label> -->
+                          <label >{{pType}}</label>
+                          
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Basic Pay</span>
+                          <label>{{Pension_Commutation?.basicPay}}</label>
+                        </div>
+                      </div>
+                      <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Pay Matrix</span>
+                          <label>{{Calculations_Pay_Details?.payMatrix}}</label>
+                        </div>
+                      </div> -->
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="Calculations_Pay_Details && Calculations_Pay_Details.payCommissionNameEn=='Seventh'">
+                        <div>
+                          <span>Pay Level in the Pay Matrix </span>
+                          <label>{{Calculations_Pay_Details?.payLevel}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="Calculations_Pay_Details && Calculations_Pay_Details.payCommissionNameEn!='Seventh'">
+                        <div>
+                          <span>Running Pay Band</span>
+                          <label>{{Calculations_Pay_Details?.payLevel}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="Calculations_Pay_Details && Calculations_Pay_Details.payCommissionNameEn!='Seventh'">
+                        <div>
+                          <span>Grade pay</span>
+                          <label>{{Calculations_Pay_Details?.payLevel}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="userDetails.roleid=='1' && npa>0">
+
+                        <span>NPA/NCA</span>
+                        <mat-icon class="mx-2" style="color: #0373f3; vertical-align: middle;" (click)="openNPADialog()"
+                          (mouseover)="over('Click for Last 36 months NPA')" (mouseout)="out1()" *ngIf="npa>0">info
+                        </mat-icon><span
+                          style="color: #0373f3; vertical-align: middle; font-size: 10px;">{{hoverMsg}}</span>
+                        <div class="border border-radius-5 p-2 rounded">
+
+                          <input matInput type="number" placeholder="NPA" min="0" [(ngModel)]="npa"
+                            (blur)="NPAnumberValidation()" [readonly]='npay'
+                            (blur)="commutationDateCalculation5(Pension_Commutation?.commutationEffectiveDate)">
+                        </div>
+
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="userDetails.roleid=='1' && npa<=0">
+
+                        <span>NPA/NCA</span>
+                        <label>{{npa}}</label>
+
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                        *ngIf="userDetails.roleid!='1'">
+                        <div>
+                          <span class="d-inline">NPA/NCA</span>
+
+                          <label>{{Pension_Commutation?.npa}}</label>
+
+                        </div>
+                      </div>
+                      <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"  *ngIf="userDetails.roleid=='1'">
+                        <div>
+                          <span>Special Pay</span>
+                          <div class="border border-radius-5 p-2 rounded">
+                           
+                            <input matInput type="number" placeholder="Special Pay" min="0"
+                              
+                              [(ngModel)]="specialPay" (blur)="spaynumberValidation()" [readonly]='spay'>
+                        </div>
+                      </div>
+                      </div> -->
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span class="d-inline">Special Pay</span>
+                          <mat-icon class="mx-2" style="color: #0373f3; vertical-align: middle;"
+                            (click)="openSpePayDialog()" (mouseover)="over2('Click for Last 10 months Special Pay')"
+                            (mouseout)="out2()" *ngIf="Pension_Commutation?.specialpay>0">info</mat-icon><span
+                            style="color: #0373f3; vertical-align: middle; font-size: 10px;">{{hoverMsgS}}</span>
+                          <label>{{Pension_Commutation?.specialpay}}</label>
+                        </div>
+                      </div>
+                      <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                        <div>
+                                          <span>Service Gratuity</span>
+                                          <label>{{Calculations_Pay_Details?.serviceGratuity}}</label>
+                                        </div>
+                                      </div> -->
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>Pay Commision</span>
+                          <label>{{Calculations_Pay_Details?.payCommissionNameEn}}</label>
+                        </div>
+                      </div>
+                      <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <span>CCA</span>
+                          <label>{{Calculations_Pay_Details?.cca}}</label>
+                        </div>
+                      </div> -->
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <!-- New Changes -->
+                          <span>DA Amount</span>
+                          <label>{{Pension_Commutation?.daAmount}}</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                          <!-- New Changes -->
+                          <span>Others Special Pay Allowance</span>
+                          <label>{{Calculations_Pay_Details?.otherspecialpayallow?Calculations_Pay_Details?.otherspecialpayallow:"0"}}</label>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-12 mb-4" *ngIf="userDetails.roleid=='1'">
+                          <div class="row">
+                            <h2>Tentative Last Pay Certificate:</h2>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-3"
+                              *ngIf="userDetails.roleid=='1'">
+                              <mat-form-field class="w-100">
+                                <mat-label>Tentative Pay Scale</mat-label>
+                                <mat-select matNativeControl [(ngModel)]="tenPayLevel"
+                                  [ngModelOptions]="{standalone: true}" (selectionChange)="getBasicPay()">
+                                  <mat-option *ngFor="let mst of payScalelist" [value]="mst.payScaleId">
+                                    {{mst.payScaleName}}
+                                  </mat-option>
+                                </mat-select>
+
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-3"
+                              *ngIf="userDetails.roleid=='1'">
+                              <mat-form-field class="w-100">
+                                <mat-label>Tentative Basic Pay</mat-label>
+                                <mat-select matNativeControl [(ngModel)]="tenBasicPay"
+                                  [ngModelOptions]="{standalone: true}">
+                                  <mat-option *ngFor="let mst of basicPaylist" [value]="mst.basicPay">
+                                    {{mst.basicPay}}
+                                  </mat-option>
+                                </mat-select>
+
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-3"
+                              *ngIf="userDetails.roleid=='1'">
+                              <mat-form-field class="w-100">
+                                <mat-label>Reason</mat-label>
+                                <mat-select matNativeControl [(ngModel)]="tBasicPayReason"
+                                  [ngModelOptions]="{standalone: true}">
+                                  <mat-option value="Due to ACP">Due to ACP</mat-option>
+                                  <mat-option value="Due to Promotion">Due to Promotion</mat-option>
+                                  <mat-option value="Due to Increment">Due to Increment</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-3"
+                              *ngIf="userDetails.roleid=='1'">
+                              <button class="btn btn-primary btn-cls" mat-raised-button color="primary"
+                                (click)="ChangeTenBasicPay()">Calculate
+                              </button>
+                            </div>
+                            <div *ngIf="userDetails.roleid==='1'">
+
+
+
+                              <div class="uploaddoc" *ngIf="!isTLPC && userDetails.roleid=='1'">
+                                <input type="file" id="fileDropRef" accept=".pdf" class="inputd"
+                                  (change)="Uploaddocument1($event,5)">
+                                <label for="fileDropRef">
+
+
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);">
+                                    Upload Tentative LPC certificate</a>
+                                </label>
+                                <div>
+                                  <mat-spinner [diameter]="30" *ngIf="isLoading1"></mat-spinner>
+                                </div>
+                              </div>
+                              <div class="uploaddoc" *ngIf=" isTLPC && userDetails.roleid=='1'">
+
+                                <label for="fileDropRef">
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                    (click)="previewFiles2('Tentative LPC Certificate')">Download certificate</a>
+                                </label>
+                                <mat-icon *ngIf="isTLPC" (click)="removeUploadDoc2('Tentative LPC Certificate')">delete
+                                </mat-icon>
+                              </div>
+                              <div class="uploaddoc" *ngIf="isTLPC && userDetails.roleid!='1'">
+
+                                <label for="fileDropRef">
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                    (click)="previewFiles2('Tentative LPC Certificate')">Download certificate</a>
+                                </label>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12 mb-4" *ngIf="userDetails.roleid!='1'">
+                          <div class="row">
+                            <h2>Tentative Last Pay Certificate:</h2>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-3">
+
+                              <div>
+                                <span>Tentative Pay Scale</span>
+                                <label>{{ServiceDetails?.tenPayLevelName?ServiceDetails?.tenPayLevelName:"N/A"}}</label>
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+
+                              <div>
+                                <span>Tentative Basic Pay</span>
+                                <label>{{ServiceDetails?.tenBasicPay?ServiceDetails?.tenBasicPay:"N/A"}}</label>
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+
+                              <div>
+                                <span>Reason</span>
+                                <label>{{ServiceDetails?.tBasicPayReason?ServiceDetails?.tBasicPayReason:"N/A"}}</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="row">
+
+
+
+                            <h2>Rajasthan Voluntary Rural Education Services:</h2>
+
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2"  *ngIf="userDetails?.roleid=='1' ">
+                              <mat-form-field class="w-100">
+                                <mat-label>Are you belongs to RVRES </mat-label>
+                                <mat-select matNativeControl [(ngModel)]="ServiceDetails.addedServices"
+                                  [ngModelOptions]="{standalone: true}" [disabled]="isEdit">
+                                  <mat-option value="Yes">Yes</mat-option>
+                                  <mat-option value="No">No</mat-option>
+                                </mat-select>
+
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2"
+                            
+                            *ngIf="userDetails?.roleid!='1' ">
+                            <div>
+                              
+                              <span>Are you belongs to RVRES</span>
+                              <label>{{ServiceDetails?ServiceDetails?.addedServices:"N/A"}}</label>
+                            </div>
+                          </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2"
+                              *ngIf="userDetails?.roleid==='1' && ServiceDetails.addedServices=='Yes' ">
+                              <mat-form-field class="w-100">
+                                <mat-label> Joining Date</mat-label>
+                                <input matInput [matDatepicker]="OrderDate33" #com
+                                  (dateChange)="AddedServicesDateChange(com.value)" [(ngModel)]="addedJoiningDate"
+                                  (focus)="OrderDate33.open()" name="Order_Date" autocomplete="off"
+                                  placeholder="Joining Date" [max]="maxDate2" [disabled]="isEdit">
+                                <mat-datepicker-toggle matSuffix [for]="OrderDate33"></mat-datepicker-toggle>
+                                <mat-datepicker #OrderDate33></mat-datepicker>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2"
+                            
+                            *ngIf="userDetails?.roleid!='1' && ServiceDetails.addedServices=='Yes' ">
+                            <div>
+                              <!-- New Changes -->
+                              <span>Joining Date</span>
+                              <label>{{ServiceDetails?ServiceDetails?.addedJoiningDate:"N/A"}}</label>
+                            </div>
+                          </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2" *ngIf="userDetails?.roleid==='1' && ServiceDetails.addedServices=='Yes'"> 
+                              <mat-form-field class="w-100">
+                                <mat-label>Have You Get Gratuity From Previous Service</mat-label>
+                                <mat-select matNativeControl [(ngModel)]="ServiceDetails.addedServicesGratuity"
+                                  [ngModelOptions]="{standalone: true}" [disabled]="isEdit">
+                                  <mat-option value="Yes">Yes</mat-option>
+                                  <mat-option value="No">No</mat-option>
+                                </mat-select>
+
+                              </mat-form-field>
+                            </div>
+                                 <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4"
+                            *ngIf="userDetails?.roleid!='1'&& ServiceDetails.addedServices=='Yes'">
+                           
+                            <span>Have You Get Gratuity From Previous Service</span>
+                            <label>{{ServiceDetails?ServiceDetails?.addedServicesGratuity:"No"}}</label>
+                          </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2"
+                              *ngIf="userDetails?.roleid==='1' && ServiceDetails.addedServicesGratuity=='Yes'">
+                              <mat-form-field class="w-100">
+                                <mat-label>Gratuity Amount</mat-label>
+                                <input matInput  numberOnly [(ngModel)]="ServiceDetails.addedServicesGratuityAmount"
+                                [ngModelOptions]="{standalone: true}" >
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2"
+                            *ngIf="userDetails?.roleid!='1' && ServiceDetails.addedServicesGratuity=='Yes'">
+                           
+                            <span>Gratuity Amount</span>
+                            <label>{{ServiceDetails?ServiceDetails?.addedServicesGratuityAmount:"0"}}</label>
+                          </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2"
+                            *ngIf="userDetails.roleid=='1'">
+                            <button class="btn btn-primary btn-cls" mat-raised-button color="primary"
+                              (click)="AddedServicesDateChange2()">Calculate
+                            </button>
+                          </div>
+                            <div *ngIf="userDetails.roleid==='1'">
+                              <div class="uploaddoc" *ngIf="!isAddCer && userDetails.roleid=='1' && ServiceDetails.addedServicesGratuity=='Yes'">
+                                <input type="file" id="fileDropRef" accept=".pdf" class="inputd"
+                                  (change)="Uploaddocument1($event,6)">
+                                <label for="fileDropRef">
+
+
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);">
+                                    Upload Added Gratuity Certificate</a>
+                                </label>
+                                <div>
+                                  <mat-spinner [diameter]="30" *ngIf="isLoading1"></mat-spinner>
+                                </div>
+                              </div>
+                              <div class="uploaddoc" *ngIf=" isAddCer && userDetails.roleid=='1'">
+
+                                <label for="fileDropRef">
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                    (click)="previewFiles2('Added Gratuity Certificate')">Download certificate</a>
+                                </label>
+                                <mat-icon *ngIf="isAddCer" (click)="removeUploadDoc2('Added Gratuity Certificate')">delete
+                                </mat-icon>
+                              </div>
+                              <div class="uploaddoc" *ngIf="isAddCer && userDetails.roleid!='1'">
+
+                                <label for="fileDropRef">
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                    (click)="previewFiles2('Added Gratuity Certificate')">Download certificate</a>
+                                </label>
+
+                              </div>
+                            </div>
+                         
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <div>
+                         
+                          <span>Tentative Basic Pay</span>
+                          <label>{{Calculations_Pay_Details?Calculations_Pay_Details?.otherspecialpayallow:"N/A"}}</label>
+                        </div>
+                      </div> -->
+
+                      <div class="d-flex justify-content-end">
+                        <button mat-stroked-button matStepperPrevious
+                          class="btn btn-outline-cancel me-2">Previous</button>
+                        <button mat-raised-button tabindex="-1" type="button" color="primary"
+                          class="btn btn-primary  ms-2"
+                          (click)='moveToSelectedTab("Types of Additional Allowance,Recovery and Deductions Details")'>Next</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab label="Types of Additional Allowance,Recovery and Deductions Details">
+                  <div class="tab-container container-fluid mt-4">
+                    <form [formGroup]="registrationForm">
+                      <div class="row">
+                        <div *ngIf="userDetails?.roleid!=='1'">
+                          <div *ngFor="let data of Calculations_ARD_Details?.addDynamicElement " class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                              <div>
+                                <span>Recovery Type</span>
+                                <label>{{data?.recoveryType}}</label>
+                              </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                              <div>
+                                <span>Recovery Amount</span>
+                                <label>{{data?.recoveryAmount}}</label>
+                              </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                              <div>
+                                <span>Recovery Head</span>
+                                <label>{{data?.recoveryHead}}</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div *ngFor="let data of Calculations_ARD_Details?.addDeduction " class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+
+                              <div>
+                                <span>Deduction Type</span>
+                                <label>{{getDedctionTypeName(data?.deductionType)}}</label>
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                              <div>
+                                <span>Deduction Amount</span>
+                                <label>{{data?.deductionAmount}}</label>
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                              <div>
+                                <span>Deduction Head</span>
+                                <label>{{data?.deductionHead}}</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            *ngIf="this.ServiceDetails?.serviceCatId == 13 || this.ServiceDetails?.serviceCatId == 7">
+                            <div *ngFor="let data of Calculations_ARD_Details?.addAllowanceType " class="row">
+                              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                <div>
+                                  <span>Allowance Type</span>
+                                  <label>{{getAllowanceTypeName(data?.allowanceType)}}</label>
+                                </div>
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                <div>
+                                  <span>Allowance Amount</span>
+                                  <label>{{data?.allowanceAmount}}</label>
+                                </div>
+
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                <div>
+                                  <span>Allowance Head</span>
+                                  <label>{{data?.allowanceHead}}</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div *ngFor="let data of Calculations_ARD_Details?.addWithHeld " class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                              <div>
+                                <span>With Held Type</span>
+                                <label>{{getwithheldTypeName(data?.withHeldType)}}</label>
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                              <div>
+                                <span>With Held Amount</span>
+                                <label>{{data?.withHeldAmount}}</label>
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                              <div>
+                                <span>With Held Reason</span>
+                                <label>{{data?.withHeldReason}}</label>
+                              </div>
+                            </div>
+
+
+                          </div>
+                        </div>
+
+
+                        <div *ngIf="userDetails?.roleid==='1'">
+                          <div class="group-gap" formArrayName="addDynamicElement">
+                            <div class="row">
+
+                              <form [formGroup]="recoveryFormNew">
+                                <div class="row">
+                                  <div class="col-lg-11">
+                                    <div class="row">
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>Recovery Type</mat-label>
+                                          <input matInput placeholder="Recovery Type" formControlName="recoveryType">
+
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>Recovery Amount</mat-label>
+                                          <input matInput type="number" placeholder="Recovery Amount"
+                                            formControlName="recoveryAmount">
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>Recovery Head</mat-label>
+                                          <input matInput placeholder="Recovery Head"
+                                            (keypress)="omit_special_char($event)" (blur)="checkHeadLength($event)"
+                                            formControlName="recoveryHead">
+                                        </mat-form-field>
+                                        <span style="color:#afadad">(Ex.Head:2230-01-102-02-01)</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-1">
+                                    <div class="mt-2">
+                                      <button type="submit" class="btn btn-sm btn-success add-items custome_btn"
+                                        (click)="addRecovery()">Add</button>
+                                    </div>
+                                  </div>
+
+
+
+                                </div>
+
+                              </form>
+
+
+                              <div class="">
+                                <ng-container *ngFor="let item of addDynamicElement.controls; let i = index">
+                                  <div class="" [formGroupName]="i">
+                                    <div class="row">
+                                      <div class="col-lg-11">
+                                        <div class="row">
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>Recovery Type</mat-label>
+                                              <input matInput placeholder="Recovery Type"
+                                                formControlName="recoveryType">
+                                              <!-- <mat-select disableOptionCentering panelClass="myPanelClass" formControlName="recoveryType">
+                                <mat-option *ngFor="let item of Recovery" [value]="item.allDeductionOrAllowanceId">{{item.allDeductionOrAllowanceName}}</mat-option>
+                              </mat-select> -->
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>Recovery Amount</mat-label>
+                                              <input matInput type="number" placeholder="Recovery Amount"
+                                                formControlName="recoveryAmount">
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>Recovery Head</mat-label>
+                                              <input matInput placeholder="Recovery Head"
+                                                formControlName="recoveryHead">
+                                            </mat-form-field>
+                                            <span style="color:#afadad">(Ex.Head:2230-01-102-02-01)</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-1">
+                                        <mat-icon color="warn" class="m-2" (click)="onRemoveSpecialRequest(i)">delete
+                                        </mat-icon>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </ng-container>
+                              </div>
+                              <div class="col-1 mt-2">
+                                <!-- <button type="button" class="btn btn-sm btn-success add-items custome_btn" (click)="addItems('button')">Add More Items</button> -->
+                              </div>
+                            </div>
+                            <hr>
+                          </div>
+                          <div class="group-gap" formArrayName="addDeduction">
+                            <div class="row">
+                              <form [formGroup]="DeductionFormNew">
+                                <div class="row">
+                                  <div class="col-lg-11">
+                                    <div class="row">
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>Deduction Type</mat-label>
+                                          <mat-select disableOptionCentering panelClass="myPanelClass"
+                                            formControlName="deductionType"
+                                            (selectionChange)="onChangeDeduction($event.value)">
+                                            <mat-option *ngFor="let item of deduction"
+                                              [value]="item.allDeductionOrAllowanceId">
+                                              {{item.allDeductionOrAllowanceName}}</mat-option>
+                                          </mat-select>
+
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-lg-4" *ngIf="false">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>Deduction Name</mat-label>
+                                          <input matInput placeholder="Deduction Name"
+                                            (keypress)="omit_special_char($event)" (blur)="checkHeadLength($event)"
+                                            formControlName="deductionName">
+
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>Deduction Amount</mat-label>
+                                          <input matInput type="number" placeholder="Deduction Amount"
+                                            formControlName="deductionAmount">
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>Deduction Head</mat-label>
+                                          <input matInput placeholder="Deduction Head" formControlName="deductionHead">
+                                        </mat-form-field>
+                                        <span style="color:#afadad">(Ex.Head:2230-01-102-02-01)</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-1">
+                                    <div class="mt-2">
+                                      <button type="submit" class="btn btn-sm btn-success add-items custome_btn"
+                                        (click)="addDed()">Add</button>
+                                    </div>
+                                  </div>
+
+
+
+                                </div>
+
+                              </form>
+                              <div class="">
+                                <ng-container *ngFor="let item of addDeduction.controls; let i = index">
+                                  <div class="" [formGroupName]="i">
+                                    <div class="row">
+                                      <div class="col-lg-11">
+                                        <div class="row">
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>Deduction Type</mat-label>
+                                              <mat-select disableOptionCentering panelClass="myPanelClass"
+                                                formControlName="deductionType">
+                                                <mat-option *ngFor="let item of deduction"
+                                                  [value]="item.allDeductionOrAllowanceId">
+                                                  {{item.allDeductionOrAllowanceName}}</mat-option>
+                                              </mat-select>
+
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col-lg-4" *ngIf="false">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>Deduction Name</mat-label>
+                                              <input matInput placeholder="Deduction Name"
+                                                formControlName="deductionName">
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>Deduction Amount</mat-label>
+                                              <input matInput type="number" placeholder="Deduction Amount"
+                                                formControlName="deductionAmount">
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>Deduction Head</mat-label>
+                                              <input matInput placeholder="Deduction Head"
+                                                formControlName="deductionHead">
+                                            </mat-form-field>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-1">
+                                        <mat-icon *ngIf="isRemoveDe[i]" class="m-2" color="warn"
+                                          (click)="onRemoveDeduction(i)">delete</mat-icon>
+                                      </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                                  </div>
+                                </ng-container>
+                              </div>
+                              <!-- <div class="col-1 mt-2">
+                <button type="button" class="btn btn-sm btn-success custome_btn" (click)="DeductionItems()">Add More Items</button>
+              </div> -->
+                            </div>
+                            <hr>
+                          </div>
+
+                          <div class="group-gap" formArrayName="addAllowanceType"
+                            *ngIf="this.ServiceDetails?.serviceCatId == 13 || this.ServiceDetails?.serviceCatId == 7">
+                            <div class="row">
+                              <form [formGroup]="AllowanceFormNew">
+                                <div class="row">
+                                  <div class="col-lg-11">
+                                    <div class="row">
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>Allowance Type</mat-label>
+                                          <mat-select disableOptionCentering panelClass="myPanelClass"
+                                            formControlName="allowanceType"
+                                            (selectionChange)="onChangeDeductionAllow($event.value)">
+                                            <mat-option *ngFor="let item of Allowance"
+                                              [value]="item.allDeductionOrAllowanceId">
+                                              {{item.allDeductionOrAllowanceName}}</mat-option>
+                                          </mat-select>
+
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-lg-4" *ngIf="false">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>Allowance Name</mat-label>
+                                          <input matInput placeholder="Allowance Name"
+                                            (keypress)="omit_special_char($event)" (blur)="checkHeadLength($event)"
+                                            formControlName="allowanceName">
+
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>Allowance Amount</mat-label>
+                                          <input matInput type="number" placeholder="Allowance Amount"
+                                            formControlName="allowanceAmount">
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>Allowance Head</mat-label>
+                                          <input matInput placeholder="Allowance Head" formControlName="allowanceHead">
+                                        </mat-form-field>
+                                        <span style="color:#afadad">(Ex.Head:2230-01-102-02-01)</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-1">
+                                    <div class="mt-2">
+                                      <button type="submit" class="btn btn-sm btn-success add-items custome_btn"
+                                        (click)="addAll()">Add</button>
+                                    </div>
+                                  </div>
+
+
+
+                                </div>
+
+                              </form>
+                              <div class="">
+                                <ng-container *ngFor="let item of addAllowanceType.controls; let i = index">
+                                  <div class="" [formGroupName]="i">
+                                    <div class="row">
+                                      <div class="col-lg-11">
+                                        <div class="row">
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>Allowance Type</mat-label>
+                                              <mat-select disableOptionCentering panelClass="myPanelClass"
+                                                formControlName="allowanceType">
+                                                <mat-option *ngFor="let item of Allowance"
+                                                  [value]="item.allDeductionOrAllowanceId">
+                                                  {{item.allDeductionOrAllowanceName}}</mat-option>
+                                              </mat-select>
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col-lg-4" *ngIf="false">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>Allowance Name</mat-label>
+                                              <input matInput placeholder="Allowance Name"
+                                                formControlName="allowanceName">
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>Allowance Amount</mat-label>
+                                              <input matInput type="number" placeholder="Allowance Amount"
+                                                formControlName="allowanceAmount">
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>Allowance Head</mat-label>
+                                              <input matInput placeholder="Allowance Head"
+                                                formControlName="allowanceHead">
+                                            </mat-form-field>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-1">
+                                        <mat-icon color="warn" class="m-2" (click)="onRemoveAllowance(i)">delete
+                                        </mat-icon>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </ng-container>
+                              </div>
+
+                            </div>
+                            <hr>
+                          </div>
+
+                          <div class="group-gap" formArrayName="addWithHeld">
+                            <div class="row">
+                              <form [formGroup]="WithHeldFormNew">
+                                <div class="row">
+                                  <div class="col-lg-11">
+                                    <div class="row">
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>With Held Type</mat-label>
+                                          <mat-select disableOptionCentering panelClass="myPanelClass"
+                                            formControlName="withHeldType"
+                                            (selectionChange)="onChangeDeductionWithHeld($event.value)">
+                                            <mat-option *ngFor="let item of WithHeldReasons"
+                                              [value]="item.withHeldReasonId">{{item.withHeldReasonDesc}}</mat-option>
+                                          </mat-select>
+
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-lg-4" *ngIf="false">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>With Held Name</mat-label>
+                                          <input matInput placeholder="With Held Name" formControlName="withHeldName">
+
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>With Held Amount</mat-label>
+                                          <input matInput type="number" placeholder="With Held Amount"
+                                            formControlName="withHeldAmount">
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <mat-form-field class="w-100">
+                                          <mat-label>With Held Reason</mat-label>
+                                          <input matInput placeholder="With Held Reason"
+                                            formControlName="withHeldReason">
+                                        </mat-form-field>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-1">
+                                    <div class="mt-2">
+                                      <button type="submit" class="btn btn-sm btn-success add-items custome_btn"
+                                        (click)="addWithheld()">Add</button>
+                                    </div>
+                                  </div>
+
+
+
+                                </div>
+
+                              </form>
+                              <div class="">
+                                <ng-container *ngFor="let item of addWithHeld.controls; let i = index">
+                                  <div class="" [formGroupName]="i">
+                                    <div class="row">
+                                      <div class="col-lg-11">
+                                        <div class="row">
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>With Held Type</mat-label>
+                                              <mat-select disableOptionCentering panelClass="myPanelClass"
+                                                formControlName="withHeldType"
+                                                (selectionChange)="onChangeDeductionWithHeld($event.value)">
+                                                <mat-option *ngFor="let item of WithHeldReasons"
+                                                  [value]="item.withHeldReasonId">{{item.withHeldReasonDesc}}
+                                                </mat-option>
+                                              </mat-select>
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col-lg-4" *ngIf="false">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>With Held Name</mat-label>
+                                              <input matInput placeholder="With Held Name"
+                                                formControlName="withHeldName">
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>With Held Amount</mat-label>
+                                              <input matInput placeholder="With Held Amount"
+                                                formControlName="withHeldAmount">
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col-lg-4">
+                                            <mat-form-field class="w-100">
+                                              <mat-label>With Held Reason</mat-label>
+                                              <input matInput placeholder="With Held Reason"
+                                                formControlName="withHeldReason">
+                                            </mat-form-field>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-1">
+                                        <mat-icon color="warn" class="m-2" (click)="onRemoveWithHeld(i)">delete
+                                        </mat-icon>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </ng-container>
+                              </div>
+                              <div class="col-1 mt-3">
+
+                              </div>
+                            </div>
+                          </div>
+
+
+
+
+                        </div>
+                      </div>
+
+                    </form>
+                    <div class="d-flex justify-content-end">
+                      <button class="btn btn-outline-cancel ms-2" mat-stroked-button
+                        (click)='moveToSelectedTab("Pay Details");onSubmitAllowance();'>Previous</button>
+
+                      <button *ngIf="isCommutation && userDetails?.roleid=='1'" mat-raised-button tabindex="-1"
+                        type="button" color="primary" class="btn btn-primary  ms-2"
+                        (click)='moveToSelectedTab("Commutation Details");onSubmitAllowance();caculationPension()'>Next</button>
+
+                      <button *ngIf="!isCommutation && userDetails?.roleid=='1'" mat-raised-button tabindex="-1"
+                        type="button" color="primary" class="btn btn-primary  ms-2"
+                        (click)='moveToSelectedTab("Pension Details");onSubmitAllowance();caculationPension()'>Next</button>
+
+                      <button *ngIf="isCommutation && userDetails?.roleid!='1'" mat-raised-button tabindex="-1"
+                        type="button" color="primary" class="btn btn-primary  ms-2"
+                        (click)='moveToSelectedTab("Commutation Details");onSubmitAllowance();'>Next</button>
+
+                      <button *ngIf="!isCommutation && userDetails?.roleid!='1'" mat-raised-button tabindex="-1"
+                        type="button" color="primary" class="btn btn-primary  ms-2"
+                        (click)='moveToSelectedTab("Pension Details");onSubmitAllowance();'>Next</button>
+                    </div>
+                    <!-- aa -->
+                  </div>
+                </mat-tab>
+                <mat-tab label="Commutation Details" *ngIf="isCommutation">
+                  <div class="tab-container mt-4">
+                    <div class="container-fluid">
+                      <form [formGroup]="commutationDetails">
+                        <div class="row">
+
+                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3"
+                            *ngIf="userDetails?.roleid!='1' ">
+                            <div>
+                              <span>Commutation Effective Date</span>
+                              <label>{{Pension_Commutation?.commutationEffectiveDate | date: 'dd-MMM-YYYY' }}</label>
+                            </div>
+                          </div>
+
+                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3"
+                            *ngIf="userDetails?.roleid==='1' ">
+                            <mat-form-field class="w-100">
+                              <mat-label> Commutation Effective Date</mat-label>
+                              <input matInput [matDatepicker]="OrderDate" #com
+                                (dateChange)="commutationDateCalculation4(com.value)" (focus)="OrderDate.open()"
+                                formControlName="effectiveDate" name="Order_Date" autocomplete="off" [min]="maxDate2"
+                                placeholder="Commutation Effective Date">
+                              <mat-datepicker-toggle matSuffix [for]="OrderDate"></mat-datepicker-toggle>
+                              <mat-datepicker #OrderDate></mat-datepicker>
+                            </mat-form-field>
+                          </div>
+
+
+
+
+                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                            <div>
+                              <span>Budget Head for Commutation</span>
+                              <label *ngIf="userDetails?.roleid=='1'">{{getBudHead('Commutation')}}</label>
+                              <label
+                                *ngIf="userDetails?.roleid!='1'">{{Calculations_Commutation_Details?.budgetHead}}</label>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                            <div>
+                              <span>Commutation Amount</span>
+                              <label>{{Pension_Commutation?.commutationAmount}}</label>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                            <div>
+                              <span>Commutation Factor</span>
+                              <label>{{Pension_Commutation?.commutedFactor}}</label>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                            <div>
+                              <span> Commutation Percentage</span>
+                              <label>{{Pension_Commutation?.commutationValue}}</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                          <button class="btn btn-outline-cancel ms-2" mat-stroked-button
+                            (click)='moveToSelectedTab("Types of Additional Allowance,Recovery and Deductions Details")'>Previous</button>
+                          <button mat-raised-button tabindex="-1" type="button" color="primary"
+                            class="btn btn-primary  ms-2"
+                            (click)='moveToSelectedTab("Pension Details");onSubmitAllowance()'>Next</button>
+
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
+                </mat-tab>
+                <mat-tab label="Pension Details">
+                  <div class="tab-container">
+                    <div class="container-fluid mt-4">
+                      <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 ">
+                          <div>
+                            <span>{{isCrimnalCase?"Provision ":""}} Pension Amount</span>
+                            <label>{{Pension_Commutation?.pensionAmount}}</label>
+                          </div>
+                        </div>
+
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                          <span> Commuted Pension</span>
+                          <label>{{Pension_Commutation?.cpoDeduction}}</label>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                          <span>{{isCrimnalCase?"Net Provision ":"Reduced"}} Pension Amount</span>
+                          <label>{{Pension_Commutation?.netpensionAmount}}</label>
+                        </div>
+                        <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3"
+                          *ngIf="!isCrimnalCase && (userDetails.roleid=='1' || userDetails.roleid=='2' || userDetails.roleid=='3')">
+                          <div>
+                            <span>Family Pension</span>
+                            <label>{{Pension_Commutation?.familyPension}}</label>
+                          </div>
+                        </div>
+
+                        <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3" *ngIf="!isCrimnalCase">
+                          <div>
+                            <span>Enhance Pension</span>
+                            <label>{{Pension_Commutation?.enhancedPension}}</label>
+                          </div>
+                        </div>
+
+                        <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                          <div>
+                            <span>DR Rate</span>
+                            <label>{{Pension_Commutation?.daRate}} %</label>
+                          </div>
+                        </div>
+
+                        <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3" *ngIf="!isCrimnalCase">
+                          <div>
+                            <span>Enhance Date</span>
+                            <label>{{Pension_Commutation?Pension_Commutation.enhancedPensionDate:" "}}</label>
+                          </div>
+                        </div>
+                        <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3" *ngIf="!isCrimnalCase">
+                          <div>
+                            <span>Pension Commencement Date</span>
+                            <label>{{Pension_Commutation?Pension_Commutation.pensionStartDate:" "}}</label>
+                          </div>
+                        </div>
+                        <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                          <div>
+                            <span>{{isCrimnalCase?"Provision ":""}}DCRG (Gratuity)</span>
+                            <label>{{Pension_Commutation?.retirGratuity}}</label>
+                          </div>
+                        </div>
+
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                          <span>{{isCrimnalCase?"Payable Provision ":"Payable"}} DCRG</span>
+                          <label>{{Pension_Commutation?.netPay}}</label>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3" *ngIf="!isCrimnalCase">
+                          <span> Service Gratuity</span>
+                          <label>{{Pension_Commutation?.serviceGratuity}}</label>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                          <span>Budget Head For Gratuity</span>
+                          <label *ngIf="userDetails?.roleid=='1'">{{getBudHead("Gratuity")}}</label>
+                          <label
+                            *ngIf="userDetails?.roleid!='1'">{{Calculations_Pay_Details?Calculations_Pay_Details.gratuityBudgetHead:""}}
+                          </label>
+                        </div>
+
+                        <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                          <div>
+                            <span>Applicable Emolument</span>
+                            <label>{{Pension_Commutation?.lastEmolument}}</label>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="d-flex justify-content-end" *ngIf="isCommutation">
+                      <button class="btn btn-outline-cancel ms-2" mat-stroked-button
+                        (click)='moveToSelectedTab("Commutation Details")'>Previous</button>
+                      <button class="btn btn-primary  ms-2" color="primary" mat-raised-button mat-button matStepperNext
+                        (click)="nextStepc(10)">Next</button>
+                    </div>
+                    <div class="d-flex justify-content-end" *ngIf="!isCommutation">
+                      <button class="btn btn-outline-cancel ms-2" mat-stroked-button
+                        (click)='moveToSelectedTab("Types of Additional Allowance,Recovery and Deductions Details")'>Previous</button>
+                      <button class="btn btn-primary  ms-2" color="primary" mat-raised-button mat-button matStepperNext
+                        (click)="nextStepc(10)">Next</button>
+                    </div>
+                  </div>
+                </mat-tab>
+
+              </mat-tab-group>
+            </mat-card>
+          </mat-step>
+          <mat-step label="Bank/Treasury Details">
+            <mat-card>
+
+              <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+                <mat-tab label="Bank/Treasury Details">
+                  <div class="tab-container mt-4">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-lg-12 mt-3">
+                          <form>
+                            <div class="row">
+                              <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                  <div>
+                                    <span>Treasury Name</span>
+                                    <label *ngIf="userDetails?.roleid=='1'">{{treasuryName?treasuryName:"N/A"}}</label>
+                                    <label
+                                      *ngIf="userDetails?.roleid!='1'">{{Banklist?Banklist.treasuryName:""}}</label>
+                                    <label></label>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                  <div>
+                                    <span>Monthly Pension Treasury</span>
+                                    <mat-select panelClass="myPanelClass" [ngModelOptions]="{standalone: true}"
+                                      [(ngModel)]="Pension_Commutation.monthlyPensionTreasury" #value22
+                                      placeholder="Select Treasury"
+                                      (selectionChange)="MonthlyPensionTreasury(value22.value)">
+                                      <mat-option *ngFor="let obj of treasurylist" [value]="obj.treasCode">
+                                        {{obj.treasNameEn}} ({{obj.treasCode}})</mat-option>
+                                    </mat-select>
+                                  </div>
+                                </div>
+                                <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"  *ngIf="userDetails.roleid=='2' || userDetails.roleid=='5'">
+                                  <div>
+                                    <span>Monthly Pension Treasury</span>
+                                    <label >{{getTreaName(Pension_Commutation?.monthlyPensionTreasury)+"("+Pension_Commutation?.monthlyPensionTreasury+")"}}</label>
+                                  
+                                  </div>
+                                </div> -->
+
+                              </div>
+                              <div class="row">
+
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                  <div>
+                                    <span>Bank Name</span>
+                                    <label>{{Banklist?.bankName}}</label>
+                                    <!-- <label>Punjab National Bank</label> -->
+                                  </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                  <div>
+                                    <span>Branch Name</span>
+                                    <label>{{Banklist?.branchName}}</label>
+                                    <!-- <label>Vaishali Nagar, Ajmer</label> -->
+                                  </div>
+                                </div>
+                                <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                  <div>
+                                    <span>Account Holder Name </span>
+                                    <label>{{Banklist.holderName}}</label>
+                                  </div>
+                                </div> -->
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                                  *ngIf="userDetails?.roleid!='1'">
+                                  <div>
+                                    <span>Account Number</span>
+                                    <label>{{Banklist?.accountNumber}}
+                                    </label>
+
+                                  </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+                                  *ngIf="userDetails?.roleid=='1'">
+                                  <div>
+                                    <span>Account Number</span>
+                                    <label>{{Banklist?.accountNumber}}
+
+                                      <div *ngIf="userDetails?.roleid==='1'  ">
+                                        <div class="uploaddoc" *ngIf="!Chequefile && !ischq">
+
+                                          <input type="file" id="fileDropRef" accept=".pdf" class="inputd"
+                                            (change)="Uploaddocument1($event,4)">
+                                          <label for="fileDropRef">
+                                            <a matTooltip="View Details" href="JavaScript:Void(0);">
+                                              Upload Canceled Cheque</a>
+                                          </label>
+                                          <div>
+                                            <mat-spinner [diameter]="30" *ngIf="isLoading1"></mat-spinner>
+                                          </div>
+                                        </div>
+                                        <div class="uploaddoc" *ngIf="ischq">
+                                          <label for="fileDropRef">
+                                            <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                              (click)="previewFiles2('Bank Passbook First Page/Cancelled Cheque')">
+                                              Download certificate</a>
+                                          </label>
+
+                                          <mat-icon *ngIf="userDetails?.roleid==1 && ischq"
+                                            (click)="removeUploadDoc2('Bank Passbook First Page/Cancelled Cheque')">
+                                            delete</mat-icon>
+
+                                        </div>
+
+                                      </div>
+                                    </label>
+
+                                  </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                  <div>
+                                    <span>IFSC Code</span>
+                                    <label>{{Banklist?.ifscCode}}</label>
+                                    <!-- <label>PUNB0077110</label> -->
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </form>
+
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-end mb-2">
+                        <button mat-stroked-button matStepperPrevious
+                          class="btn btn-outline-cancel me-2">Previous</button>
+                        <button class="btn btn-primary ms-2" color="primary" mat-raised-button mat-button matStepperNext
+                          (click)="nextStepc(6)">Next</button>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+            </mat-card>
+          </mat-step>
+
+          <mat-step label="Documents">
+            <mat-card>
+              <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+                <mat-tab label="Documents">
+                  <div class="tab-container mt-4" *ngIf="userDetails?.roleid!='1'">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-4" *ngFor="let file of docList; let i = index">
+                          <div class="ms-3"> {{ file.docName!="No DE Certificate"? file?.docName:"DE Certificate"}}
+                          </div>
+                          <div class="">
+                            <div class="single-file">
+                              <div class="info">
+                                <div class="d-flex justify-content-between align-item-center mb-1">
+                                  <div class="d-flex justify-content-start align-item-center">
+
+                                    <div class="file-icon" style="width: 25px;">
+                                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 58 58"
+                                        style="enable-background:new 0 0 58 58;" xml:space="preserve">
+                                        <polygon style="fill:#fff;stroke:#2a6dd9"
+                                          points="51.5,14 37.5,0 6.5,0 6.5,58 51.5,58 " />
+                                        <g>
+                                          <path style="fill:#2a6dd9;"
+                                            d="M16.5,23h25c0.552,0,1-0.447,1-1s-0.448-1-1-1h-25c-0.552,0-1,0.447-1,1S15.948,23,16.5,23z" />
+                                          <path style="fill:#2a6dd9;"
+                                            d="M16.5,15h10c0.552,0,1-0.447,1-1s-0.448-1-1-1h-10c-0.552,0-1,0.447-1,1S15.948,15,16.5,15z" />
+                                          <path style="fill:#2a6dd9;"
+                                            d="M41.5,29h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,29,41.5,29z" />
+                                          <path style="fill:#2a6dd9;"
+                                            d="M41.5,37h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,37,41.5,37z" />
+                                          <path style="fill:#2a6dd9;"
+                                            d="M41.5,45h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,45,41.5,45z" />
+                                        </g>
+                                        <polygon style="fill:#2a6dd9;" points="37.5,0 37.5,14 51.5,14 " />
+                                      </svg>
+                                    </div>
+                                    <h4 class="name file-name">
+                                      {{ file.docName!="No DE Certificate"? file?.docName:"DE Certificate"}}
+                                    </h4>
+                                  </div>
+                                  <div>
+                                    <p class="size d-flex file-name">
+                                      <!-- {{ formatBytes(280000,file.docName) }} -->
+                                    </p>
+                                  </div>
+                                </div>
+                                <app-progress [progress]="file?.progress"></app-progress>
+                                <a class="d-flex justify-content-end pre-btn" *ngIf="removeDoc[i]"
+                                  (click)="previewFiles(file)">Preview</a>
+                                <a class="d-flex justify-content-end pre-btn"
+                                  *ngIf="removeDoc[i] && userDetails?.roleid=='2' && file.docName=='Accounts Personnel Certificate'"
+                                  (click)="removeAPC(i)">Remove and Change</a>
+                              </div>
+
+                            </div>
+
+                          </div>
+
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4"
+                          *ngIf="userDetails.roleid=='4' || userDetails.roleid=='5' || userDetails.roleid=='6' || userDetails.roleid=='7'">
+                          <div class="ms-3">Final Report</div>
+                          <div class="">
+                            <div class="single-file">
+                              <div class="info">
+                                <div class="d-flex justify-content-between align-item-center mb-1">
+                                  <div class="d-flex justify-content-start align-item-center">
+
+                                    <div class="file-icon" style="width: 25px;">
+                                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 58 58"
+                                        style="enable-background:new 0 0 58 58;" xml:space="preserve">
+                                        <polygon style="fill:#fff;stroke:#2a6dd9"
+                                          points="51.5,14 37.5,0 6.5,0 6.5,58 51.5,58 " />
+                                        <g>
+                                          <path style="fill:#2a6dd9;"
+                                            d="M16.5,23h25c0.552,0,1-0.447,1-1s-0.448-1-1-1h-25c-0.552,0-1,0.447-1,1S15.948,23,16.5,23z" />
+                                          <path style="fill:#2a6dd9;"
+                                            d="M16.5,15h10c0.552,0,1-0.447,1-1s-0.448-1-1-1h-10c-0.552,0-1,0.447-1,1S15.948,15,16.5,15z" />
+                                          <path style="fill:#2a6dd9;"
+                                            d="M41.5,29h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,29,41.5,29z" />
+                                          <path style="fill:#2a6dd9;"
+                                            d="M41.5,37h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,37,41.5,37z" />
+                                          <path style="fill:#2a6dd9;"
+                                            d="M41.5,45h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,45,41.5,45z" />
+                                        </g>
+                                        <polygon style="fill:#2a6dd9;" points="37.5,0 37.5,14 51.5,14 " />
+                                      </svg>
+                                    </div>
+                                    <h4 class="name file-name">
+                                      Final Report
+                                    </h4>
+                                  </div>
+                                  <div>
+                                    <p class="size d-flex file-name">
+                                      <!-- {{ formatBytes(280000,file.docName) }} -->
+                                    </p>
+                                  </div>
+                                </div>
+                                <app-progress [progress]="file?.progress"></app-progress>
+                                <a class="d-flex justify-content-end pre-btn" (click)="previewFilesFR()">Preview</a>
+
+                              </div>
+
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+
+                      <div class="row" *ngIf="userDetails.roleid=='2' && !isAccCert">
+                        <div class="col-lg-4">
+                          <h5 style="margin-top: 18px;">Accounts Personnel Certificate <span class="material-icons"
+                              style="color: red;font-size: 16px; display: inline;">*</span> </h5>
+
+
+                          <div class="uploadfile" *ngIf="!IsAcc">
+                            <input type="file" id="fileDropRef" #fileDropRef class="inputd" multiple
+                              (change)="checkar_doc($event)" required />
+                            <label for="fileDropRef">
+                              <button mat-stroked-button color="primary" class="Browserbtn">Browse</button> .pdf
+                              extension
+                            </label>
+                            <div>
+                              <mat-spinner [diameter]="30" *ngIf="isLoading2"></mat-spinner>
+                            </div>
+                            <div class="text-danger" *ngIf="file == undefined && !this.wrongType">
+                              <span>Please add document</span>
+                            </div>
+                            <div class="text-danger" *ngIf="wrongType">
+                              <span>Please add only pdf document</span>
+                            </div>
+                          </div>
+
+                          <button mat-raised-button class="fs-6" type="button"> <a
+                              class="text-decoration-none text-dark" href="assets/AccountantCertificate.docx"
+                              download="AccountantCertificate">
+                              <mat-icon class="align-middle">cloud_download</mat-icon> Template
+                            </a> </button>
+                        </div>
+
+                        <div class="col-lg-6 mt-5" style="margin-top:3.5rem!important">
+
+                          <button mat-raised class="fs-6 mx-2 border-0 p-1 px-3" *ngIf="IsAcc"
+                            (click)="previewFiles2('Accounts Personnel Certificate')"><a
+                              class="text-decoration-none">Preview</a></button>
+                          <a mat-raised class="fs-6" style="vertical-align: bottom;" *ngIf="IsAcc"
+                            (click)="removeUploadDoc2('Accounts Personnel Certificate')">
+                            <mat-icon>delete</mat-icon>
+                          </a>
+
+                        </div>
+
+
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button mat-stroked-button matStepperPrevious
+                        class="btn btn-outline-cancel me-2">Previous</button>
+                      <button class="btn btn-primary btn-cls" mat-raised-button *ngIf="userDetails.roleid=='2'"
+                        color="primary" (click)="nextUpload($event,stepper)">Next</button>
+                      <button class="btn btn-primary btn-cls" mat-raised-button matStepperNext
+                        *ngIf="userDetails.roleid !=='2'" color="primary">Next</button>
+                      <!-- <button mat-button  (click)="stepper.reset()" class="btn btn-primary  ms-2">Reset</button>  (click)="open(addAllowance)"  -->
+                    </div>
+                  </div>
+
+                  <div class="tab-container mt-4" *ngIf="userDetails?.roleid==='1'">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="row">
+
+                          <div class="col-12 col-sm-12 col-md-4 col-lg-6 col-xl-6 col-xxl-6"
+                            *ngIf="userDetails?.roleid==='1'">
+
+                            <div *ngIf="userDetails.roleid==='1'">
+
+
+
+                              <div *ngFor="let file of CPF_files; let i = index">
+                                <div class="ms-3">Government Accomodation (Form 27,27A)</div>
+                                <div class="">
+                                  <div class="single-file">
+                                    <div class="info">
+                                      <div class="d-flex justify-content-between align-item-center mb-1">
+                                        <div class="d-flex justify-content-start align-item-center">
+
+                                          <div class="file-icon" style="width: 25px;">
+                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                              viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;"
+                                              xml:space="preserve">
+                                              <polygon style="fill:#fff;stroke:#2a6dd9"
+                                                points="51.5,14 37.5,0 6.5,0 6.5,58 51.5,58 " />
+                                              <g>
+                                                <path style="fill:#2a6dd9;"
+                                                  d="M16.5,23h25c0.552,0,1-0.447,1-1s-0.448-1-1-1h-25c-0.552,0-1,0.447-1,1S15.948,23,16.5,23z" />
+                                                <path style="fill:#2a6dd9;"
+                                                  d="M16.5,15h10c0.552,0,1-0.447,1-1s-0.448-1-1-1h-10c-0.552,0-1,0.447-1,1S15.948,15,16.5,15z" />
+                                                <path style="fill:#2a6dd9;"
+                                                  d="M41.5,29h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,29,41.5,29z" />
+                                                <path style="fill:#2a6dd9;"
+                                                  d="M41.5,37h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,37,41.5,37z" />
+                                                <path style="fill:#2a6dd9;"
+                                                  d="M41.5,45h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,45,41.5,45z" />
+                                              </g>
+                                              <polygon style="fill:#2a6dd9;" points="37.5,0 37.5,14 51.5,14 " />
+                                            </svg>
+                                          </div>
+                                          <h4 class="name file-name">
+                                            {{ file?.name }}
+                                          </h4>
+                                        </div>
+                                        <div>
+                                          <p class="size d-flex file-name">
+                                            {{ formatBytes(280000,file.name) }}
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <app-progress [progress]="progress" [id]="0"></app-progress>
+                                      <a href="#" class="d-flex justify-content-end pre-btn"
+                                        (click)="get_Detail_Document('Retirement_Certificate',22)">Preview</a>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+
+
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="row ">
+                          <div class="col-12 col-sm-12 col-md-4 col-lg-6 col-xl- col-xxl-6 mt-5"
+                            *ngFor="let item of docList;let i=index">
+                            <div class="row">
+                              <div class="col-lg-9">
+                                <h5
+                                  style="margin-top: 18px; font-size: medium; font-weight: 600; display: inline; margin-left: 10px;">
+                                  {{item.docName}}</h5>
+                              </div>
+
+                              <div class="col-lg-3 d-inline-flex">
+                                <div class="uploadfile text-start" style="margin-top: -20px;"
+                                  *ngIf="!removeDoc[i] && userDetails.roleid=='1'">
+                                  <input type="file" id="fileDropRef" class="inputd" multiple
+                                    (change)="CPF_On($event,item,i)" accept=".pdf" />
+                                  <div class="d-flex">
+                                    <label for="fileDropRef d-inline mt-3" style="display: inline;">
+
+                                      <button mat-stroked-button color="primary"
+                                        [disabled]="item.docName =='Disability Certificate' && (Personaldetail?.disable=='0' ||Personaldetail?.disable=='N')"
+                                        class="Browserbtn">Browse</button>
+                                    </label>
+                                    <div class="mt-3 mx-3">
+                                      <mat-spinner [diameter]="30" *ngIf="isLoading3[i]"></mat-spinner>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="" style="margin-top: -20px;">
+                                  <button mat-button class="fs-6" color="primary" (click)="previewFiles(item)"
+                                    *ngIf="removeDoc[i] && userDetails?.roleid=='1'">Preview</button>
+                                </div>
+
+                                <mat-icon style="margin-top: -15px;" *ngIf="removeDoc[i] && userDetails?.roleid=='1'"
+                                  (click)="removeUploadDoc(item.docName,i)">delete</mat-icon>
+                              </div>
+                            </div>
+
+                          </div>
+
+                          <div class="col-12 col-sm-12 col-md-4 col-lg-6 col-xl- col-xxl-6"
+                            *ngIf="userDetails?.roleid=='2'">
+                            <h5 style="margin-top: 18px;">Accounts Personnel Certificate</h5>
+                            <!-- <span class="material-icons" style="color: red;font-size: 8px;">star</span> -->
+
+                            <div class="uploadfile">
+                              <input type="file" id="fileDropRef" class="inputd" multiple
+                                (change)="checkar_doc($event)" />
+                              <label for="fileDropRef">
+                                <button mat-stroked-button color="primary" class="Browserbtn">Browse</button>
+                              </label>
+                            </div>
+                            <div>
+                              <button (click)="previewFiles2('Accounts Personnel Certificate')">Preview</button>
+                            </div>
+                            <div>
+                              <button class="btn btn-secondary" mat-raised-button color="secondary" type="button"><a
+                                  href="assets/AccountantCertificate.docx" download="AccountantCertificate">Download
+                                  Template</a></button>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-sm-12 col-md-4 col-lg-6 col-xl-6 col-xxl-6"
+                            *ngIf="userDetails?.roleid==='1'">
+
+
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-4 col-lg-6 col-xl-6 col-xxl-6"
+                            *ngIf="userDetails?.roleid==='1'">
+
+                          </div>
+
+                        </div>
+                        <div class="d-flex justify-content-end">
+                          <button mat-stroked-button matStepperPrevious
+                            class="btn btn-outline-cancel me-2">Previous</button>
+                          <button class="btn btn-primary btn-cls" mat-raised-button matStepperNext
+                            color="primary">Next</button>
+
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+
+
+
+            </mat-card>
+          </mat-step>
+
+
+          <mat-step label="Condition" *ngIf="userDetails?.roleid=='1'">
+            <mat-card>
+              <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+                <mat-tab label="Conditions to be emposed">
+                  <div class="tab-container mt-4">
+                    <div class="container-fluid">
+                      <form [formGroup]="conditionForm">
+                        <div class="row mt-4">
+                          <section class="example-section">
+                            <p class="remove_space">
+                              <mat-checkbox formControlName="condition_1" color="primary" (change)="conditionCheck1()">
+                                It is certified that : {{!isCrimnalCase ? 'No':"" }} Departmental Enquiry under rule 16
+                                of C.C.A Rules or criminal case is pending or contemplated against the employee on dated
+                                <mat-form-field>
+                                  <input matInput [matDatepicker]="picker" autocomplete="off"
+                                    formControlName="condition_1_Date">
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                (date of submission of pension case) as per appointing authority order No
+                                <mat-form-field>
+                                  <input matInput autocomplete="off" formControlName="condition_1_Amount">
+                                </mat-form-field>
+                                date
+                                <mat-form-field>
+                                  <input matInput [matDatepicker]="picker10" formControlName="condition_1_Date1">
+                                  <mat-datepicker-toggle matSuffix [for]="picker10"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker10></mat-datepicker>
+                                </mat-form-field>
+                                .Copy of retirement orders issued from the Appointing Authority are attached with
+                                e-pension set
+                              </mat-checkbox>
+                            </p>
+                            <p class="remove_space">
+                              <mat-checkbox formControlName="condition_2" color="primary" (change)="conditionCheck1()">
+                                Qualifying service has been
+                                computed in the e-pension set is in accordance to service verification recorded in the
+                                service book</mat-checkbox>
+                            </p>
+                            <p class="remove_space">
+                              <mat-checkbox formControlName="condition_3" color="primary" (change)="conditionCheck1()">
+                                <p *ngIf="!isgovHouseAlloted ">Certificate of non occupation of Government accommodation
+                                  has been obtained from the Government Employee and it is certify that he/she is not in
+                                  occupation of any Government accommodation and/or have not taken any articles like
+                                  furniture etc. from P.W.D. Stores on rent</p>
+                                <p class="remove_space" *ngIf="isgovHouseAlloted && advancedLoan?.length==0">No dues
+                                  Certificate of occupation of Government accommodation has been obtained from the
+                                  concerned authority</p>
+                                <p class="remove_space" *ngIf="isgovHouseAlloted && advancedLoan.length>0">Government
+                                  servant has taken Government accommodation and/or any articles like furniture etc.
+                                  from P.W.D, a certificate has been obtained from the Director Estate Department and
+                                  accordingly recovery/ deduction have been proposed in e-pension set</p>
+                              </mat-checkbox>
+                            </p>
+                            <p class="remove_space">
+                              <mat-checkbox formControlName="condition_4" color="primary" (change)="conditionCheck1()">A
+                                certificate has been
+                                obtained from the senior accounts personnel in the Office that all the fixations made
+                                from time to time are correct and the pay being drawn is also correct, the same is
+                                attached with the e-pension set</mat-checkbox>
+                            </p>
+                            <p class="remove_space">
+                              <mat-checkbox formControlName="condition_5" color="primary" (change)="conditionCheck1()">
+                                Extraordinary Leave is taken
+                                on Medical Certificate, or for Higher Studies or due to Civil Commotion/natural
+                                calamities, orders of the competent authority counting the leave period for pension are
+                                recorded in the Service Book and the same have been included in the qualifying service.
+                                Extra ordinary leave is taken other than medical certificate or interruptions of service
+                                have been included as non qualifying service in e-pension set</mat-checkbox>
+                            </p>
+                            <p class="remove_space">
+                              <mat-checkbox formControlName="condition_6" color="primary" (change)="conditionCheck1()">
+                                Entry to the effect that
+                                employer's share of CPF balance has been deposited in the Government Account and
+                                Transfer Entry passed by the State Insurance/Provident Fund Department, has been
+                                recorded in the Service Book.</mat-checkbox>
+                            </p>
+                            <p class="remove_space">
+                              <mat-checkbox formControlName="condition_7" color="primary" (change)="conditionCheck1()">
+                                The dues of the Government
+                                recoverable from the Government servant have been shown in tentative L.P.C and recovery/
+                                deduction has been proposed in e-pension set</mat-checkbox>
+                            </p>
+                            <p class="remove_space">
+                              <mat-checkbox formControlName="condition_8" color="primary" (change)="conditionCheck1()">
+                                It is certified that
+                                {{advancedLoan.length>0?"":"no"}} HBA/MCA was sanctioned to him/her during entire
+                                services</mat-checkbox>
+                            </p>
+                            <p class="remove_space">
+                              <mat-checkbox formControlName="condition_9" color="primary" (change)="conditionCheck()">
+                                Verify that all conditions and all fields fill properly. </mat-checkbox>
+                            </p>
+
+                          </section>
+                          <hr *ngIf="makerObj">
+                          <table class="table" style="margin: 0; padding: 0; overflow: hidden; border: 0;"
+                            *ngIf="makerObj">
+                            <thead>
+                              <tr>
+                                <th>Objection By</th>
+                                <th>Objection</th>
+                                <th>Objection Date</th>
+                                <th>Remark</th>
+
+                              </tr>
+                              <!-- <tr>
+                      
+                              </tr> -->
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let field of ObjectionArray;let i=index">
+                                <td *ngIf="!field.rejected" class="pt-4">{{field.roleName}}</td>
+                                <td *ngIf="!field.rejected" class="pt-4">{{field.Objection}}</td>
+                                <td *ngIf="!field.rejected" class="pt-4">{{field.CreatedAt}}</td>
+                                <td *ngIf="!field.rejected">
+
+                                  <mat-form-field class="w-75" style="margin-top: -15px;">
+                                    <input matInput placeholder="Remark" #remark1 [value]="field.remark"
+                                      (blur)="addObjRemark(i,remark1.value)" />
+                                  </mat-form-field>
+                                  <mat-icon color="primary" matTooltip="Update Objection status">info</mat-icon>
+                                </td>
+
+
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                          <button mat-stroked-button matStepperPrevious
+                            class="btn btn-outline-cancel me-2">Previous</button>
+                          <button class="btn btn-primary btn-cls" mat-raised-button color="primary"
+                            (click)="makerProcessSubmit(addAllowance, stepper)">Process
+                          </button>
+
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+
+                </mat-tab>
+              </mat-tab-group>
+
+            </mat-card>
+
+          </mat-step>
+
+          <mat-step label="Summary" *ngIf="userDetails?.roleid!=='1'">
+            <mat-card>
+              <div class="container-fluid">
+                <div *ngFor="let item of conditionList">
+                  <p class="remove_space">
+                    <mat-icon style="color:green;float: left; margin-right: 5px;">check_box</mat-icon>
+                    <p color="primary">{{item.condition_string}}</p>
+                </div>
+                <form [formGroup]="Summary">
+                  <div class="row">
+
+                    <hr>
+                    <mat-label style="font-size: 20px;"><b>Objection:</b></mat-label>
+                    <form [formGroup]="Objectionform">
+
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <mat-form-field class="w-100">
+                            <mat-label> Objection</mat-label>
+                            <mat-select matNativeControl formControlName="ObjectionText" placeholder="--Select--">
+                              <mat-option *ngFor="let mst of ObjectionList" [value]="mst.psnObjection">
+                                {{mst.psnObjection}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-4" *ngIf="Objectionform.value.ObjectionText=='Other '">
+                          <mat-form-field class="w-100">
+                            <mat-label>Objection Text</mat-label>
+                            <input matInput placeholder="Objection Text" formControlName="ObjectionTextOther">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="mt-2">
+                            <button type="submit" class="btn btn-sm btn-success add-items custome_btn"
+                              (click)="addObj()">Add</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <table class="table" style="margin: 0; padding: 0; overflow: hidden; border: 0;">
+                        <thead>
+                          <tr>
+                            <th>Objection By</th>
+                            <th>Objection</th>
+                            <th>Objection Date</th>
+                            <th>Remark</th>
+                            <th *ngIf="userDetails.roleid=='6'">Remove</th>
+                          </tr>
+                          <!-- <tr>
+                    
+                            </tr> -->
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let field of ObjectionArray;let i=index">
+                            <td *ngIf="!field.rejected" class="pt-4">{{field.roleName}}</td>
+                            <td *ngIf="!field.rejected" class="pt-4">{{field.Objection}}</td>
+                            <td *ngIf="!field.rejected" class="pt-4">{{field.CreatedAt}}</td>
+                            <td *ngIf="!field.rejected">
+
+                              <mat-form-field class="w-75" style="margin-top: -15px;">
+                                <input matInput placeholder="Remark" #remark1 [value]="field.remark"
+                                  (blur)="addObjRemark(i,remark1.value)" />
+                              </mat-form-field>
+                              <mat-icon color="primary" matTooltip="Update Objection status">info</mat-icon>
+                            </td>
+                            <td *ngIf="!field.rejected"> <a href="JavaScript:Void(0);" (click)="removeobj(i,field)"
+                                *ngIf="userDetails.roleid=='6'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                                  class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path
+                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                  <path fill-rule="evenodd"
+                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                </svg>
+                              </a></td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+
+
+                    </form>
+                  </div>
+                  <div class="row mt-4">
+                    <section class="example-section">
+                      <p>
+                        <mat-checkbox formControlName="is_agree" color="primary" #is_agree>I agree </mat-checkbox>
+                      </p>
+
+                    </section>
+
+                  </div>
+                </form>
+
+                <div class="d-flex justify-content-end">
+                  <button *ngIf="userDetails?.roleid==='3'" class="btn btn-outline-cancel me-2" mat-stroked-button
+                    color="primary" type="button" (click)="pensionSetPreview()">
+                    <div class="row">
+                      <div class="col-lg-9">Pension Set Preview</div>
+                      <div class="col-lg-3 text-center">
+                        <mat-spinner class="text-white" [diameter]="30" *ngIf="isLoadingSet"></mat-spinner>
+                      </div>
+                    </div>
+
+
+                  </button>
+                  <button mat-stroked-button matStepperPrevious class="btn btn-outline-cancel me-2">Previous</button>
+                  <button *ngIf="userDetails?.roleid!=='1'" class="btn btn-primary btn-cls" mat-raised-button
+                    color="primary" (click)="finalSubmit(addAllowance, stepper)">Next
+                  </button>
+
+
+                </div>
+              </div>
+            </mat-card>
+          </mat-step>
+
+          <!-- Icon overrides. -->
+          <ng-template matStepperIcon="edit">
+            <mat-icon>check</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="chat">
+            <mat-icon>forum</mat-icon>
+          </ng-template>
+        </mat-stepper>
+
+
+        <!-- prograss bar -->
+        <div class="progress-abs col-12">
+          <mat-card>
+            <span class="heading-2">Complete the steps</span>
+
+            <div class="mt-3">
+              <app-progress [progress1]="progress1" [id]="1"></app-progress>
+            </div>
+            <div class="d-flex justify-content-start mt-2">
+              <h3 class="prograss-bar-text m-0">{{Complete}}%</h3>
+
+            </div>
+            <div class="d-flex justify-content-end mt-1">
+              <button class="d-flex align-items-centent px-3 py-1 prograss-bar-btn">
+                <mat-icon>arrow_right_alt</mat-icon>
+              </button>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="modal-content">
+    <ng-template #addAllowance let-c="close" let-d="dismiss">
+      <div class="modal-body">
+        <form [formGroup]="Request_Confirmation">
+          <div class="row">
+            <div class="align-item-center mb-4">
+
+              <h2>Request Confirmation</h2>
+            </div>
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Remarks</mat-label>
+              <textarea matInput placeholder="Type your comments here" rows="6" formControlName="Remarks"></textarea>
+            </mat-form-field>
+
+            <div>
+              <section class="example-section">
+                <mat-chip-list class="example-chip">
+                  <mat-chip class="example-box" *ngFor="let suggested_Remark of Remark_Details let i=index"
+                    (click)="selectRemark(suggested_Remark)">
+                    {{suggested_Remark.remarks}}
+                  </mat-chip>
+                </mat-chip-list>
+              </section>
+
+            </div>
+          </div>
+          <div class="modal-footer " style="overflow-y: auto;">
+            <div class="d-flex justify-content-end">
+              <button mat-stroked-button class="btn btn-outline-cancel ms-2" (click)="d(); "
+                type="button">Cancel</button>
+              <!-- <button *ngIf="userDetails?.roleid=='3'" class="btn btn-danger btn-cls ms-2" mat-raised-button
+                color="danger" type="button" (click)="onSubmit_Final('REJHO',addAllowance)">REVERT to ESS </button>     -->
+              <button *ngIf="userDetails?.roleid=='2' || userDetails?.roleid=='3' || userDetails?.roleid=='5'"
+                class="btn btn-danger btn-cls ms-2" mat-raised-button color="danger" type="button"
+                (click)="onSubmit_Final('REV',addAllowance)">REVERT </button>
+              <button *ngIf="userDetails?.roleid==='2' || userDetails?.roleid==='4' || userDetails?.roleid==='5' "
+                class="btn btn-primary btn-cls ms-2" mat-raised-button color="primary" type="button"
+                (click)="onSubmit_Final('FWD',addAllowance)">Forward</button>
+
+
+              <button *ngIf="userDetails?.roleid=='6' && !isApprove   " class="btn btn-danger btn-cls ms-2"
+                mat-raised-button color="danger" type="button" (click)="onSubmit_Final('REV',addAllowance)">REVERT
+              </button>
+
+              <button *ngIf="userDetails?.roleid==='6' && nextAd  " class="btn btn-primary btn-cls ms-2"
+                mat-raised-button color="primary" type="button"
+                (click)="onSubmit_Final('FWD',addAllowance)">Forward</button>
+
+              <!-- <button *ngIf="userDetails?.roleid=='6' && isApprove && !nextAd" class="btn btn-outline-cancel me-2" mat-stroked-button
+                  color="primary" type="button" (click)="FrpreviewNew()">
+                <div class="row">
+                    <div class="col-lg-9">FR Preview</div>
+                    <div class="col-lg-3 text-center">
+                      <mat-spinner class="text-white" [diameter]="30" *ngIf="isLoadingFR" ></mat-spinner>
+                    </div>
+                  </div>
+                </button> -->
+              <button *ngIf="userDetails?.roleid=='6' && isApprove && !nextAd " class="btn btn-outline-cancel me-2"
+                mat-stroked-button color="primary" type="button" (click)="pdfpreviewPK()">
+                <div class="row">
+                  <div class="col-lg-9">Pension-Kit Preview</div>
+                  <div class="col-lg-3 text-center">
+                    <mat-spinner class="text-white" [diameter]="30" *ngIf="isLoadingPK"></mat-spinner>
+                  </div>
+                </div>
+              </button>
+              <button *ngIf="userDetails?.roleid=='6' && isApprove && !nextAd " class="btn btn-primary btn-cls ms-2"
+                mat-raised-button color="primary" type="button" (click)="frEsign()">Pension Kit E-Sign </button>
+
+              <!-- <button *ngIf="userDetails?.roleid=='6' && isApprove && !nextAd " class="btn btn-primary btn-cls ms-2" mat-raised-button
+                color="primary" type="button" (click)="multiesign()">Multi-DOCUMENT E-Sign <mat-icon color="primary">info</mat-icon></button> -->
+
+              <button *ngIf="userDetails?.roleid=='6' && !isApprove  && !nextAd" class="btn btn-danger btn-cls ms-2"
+                mat-raised-button color="danger" type="button" (click)="onSubmit_Final('REVHO',addAllowance)">REVERT TO
+                HO </button>
+              <button *ngIf="userDetails?.roleid==='6' && !isApprove && !nextAd" class="btn btn-primary btn-cls ms-2"
+                mat-raised-button color="primary" type="button"
+                (click)="onSubmit_Final('ARV',addAllowance)">APPROVE</button>
+
+
+
+              <button *ngIf="userDetails?.roleid==='3'" class="btn btn-primary btn-cls ms-2" mat-raised-button
+                color="primary" type="button" (click)="esignHoApprover()">Pension Set E-Sign</button>
+
+
+
+
+              <button *ngIf="userDetails?.roleid=='7' && !isApprove " class="btn btn-danger btn-cls ms-2"
+                mat-raised-button color="danger" type="button" (click)="onSubmit_Final('REV',addAllowance)">REVERT
+              </button>
+              <!-- <button *ngIf="userDetails?.roleid=='7' && !isApprove " class="btn btn-danger btn-cls ms-2" mat-raised-button
+                color="danger" type="button" (click)="onSubmit_Final('REVHO',addAllowance)">REVERT TO HO </button> -->
+              <button *ngIf="userDetails?.roleid==='7' && !isApprove " class="btn btn-primary btn-cls ms-2"
+                mat-raised-button color="primary" type="button"
+                (click)="onSubmit_Final('ARVAD',addAllowance)">APPROVE</button>
+              <!-- <button *ngIf="userDetails?.roleid=='7' && isApprove " class="btn btn-primary btn-cls ms-2" mat-raised-button
+                color="primary" type="button" (click)="FrpreviewNew()">FR Preview </button>
+                <button *ngIf="userDetails?.roleid=='7' && isApprove  " class="btn btn-primary btn-cls ms-2" mat-raised-button
+                color="primary" type="button" (click)="pdfpreviewPK()">Pension-Kit Preview </button>
+                <button *ngIf="userDetails?.roleid=='7' && isApprove " class="btn btn-primary btn-cls ms-2" mat-raised-button
+                color="primary" type="button" (click)="frEsign()">FR E-Sign </button> -->
+
+              <button *ngIf="userDetails?.roleid==='1'" class="btn btn-primary btn-cls ms-2" mat-raised-button
+                color="primary" type="button" (click)="onSubmit_Final_Maker('CRE')">Forward</button>
+
+            </div>
+            <!-- <div *ngIf="errorList.length>0" class="outline">
+             
+              <mat-chip class="error-chip my-1" *ngFor="let item of errorList ">
+             {{item}}<br>
+            </mat-chip>
+            </div> -->
+          </div>
+        </form>
+      </div>
+    </ng-template>
+  </div>
+</div>

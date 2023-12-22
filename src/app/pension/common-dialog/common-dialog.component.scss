@@ -1,0 +1,160 @@
+
+
+.mList{
+  position: relative;
+  margin: 0;
+  padding-bottom: 1em;
+  padding-left: 20px;
+}
+
+.mList::before{
+  position: absolute;
+  content: "";
+  background-color: #E2E2E2;
+  bottom: 0;
+  top: 0;
+  left: 6px;
+  width: 3px;
+}
+
+.mList::after{
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #189D2D;
+  left: 0;
+}
+
+
+.space{
+  display: flex;
+  gap: 20px;
+  }
+
+
+  ::ng-deep .mat-dialog-container {
+      display: block;
+      padding: 24px;
+      border-radius: 12px !important;
+      box-sizing: border-box;
+      overflow: auto;
+      outline: 0;
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      max-height: inherit;
+  }
+
+
+
+  ::ng-deep .btn-close {
+      box-sizing: content-box;
+      width: 0.5em !important;
+      height: 0.5em !important;
+      padding: 0.25em 0.25em;
+      color: #000000 !important;
+      border: 0;
+      border-radius: 0.375rem;
+      opacity: 1.5 !important;
+
+  }
+
+  .cnfrmDialogStyl {
+      /* display: flex; */
+      padding: 24px;
+      border-radius: 24px !important;
+      overflow: auto;
+      /* width: 28vw; */
+      /* height: 25vh; */
+      /* justify-content: center; */
+      align-items: center;
+      width: 633.21px;
+
+  }
+  .btnStyle{
+      margin-top: 61px;
+      text-align: center;
+
+  }
+
+
+  .circle{
+      border: 5px solid green;
+      height: 84px;
+      width: 84px;
+      border-radius: 50px;
+      margin: 0px 0 0 247px;
+  }
+
+  @media only screen and (max-width: 600px) {
+      .circle{
+          border: 5px solid green;
+          height: 84px;
+          width: 84px;
+          border-radius: 50px;
+          margin: 0 0 0  44px;
+      }
+      }
+
+
+  mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
+      font-size: 43px;
+  color: green;
+  font-weight: 700;
+  top: 11px;
+  display: inline-table;
+  position: relative;
+  margin-top: 3px;
+}
+button.btn.btn-primary.btn-lg {
+  height: 50px;
+  width: 196px;
+  background-color: #001582 !important;
+  border-radius: 7px;
+}
+button.mat-focus-indicator.btn.btn-outline-cancel.mr-5.mat-button.mat-stroked-button.mat-button-base {
+  margin-right: 11px !important;
+}
+
+.add{
+  margin-top: 5px;
+  padding: 0;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.green {
+  color: white !important;
+  background-color: #001582 !important;
+ }
+ .add-gap{
+margin-top: -1rem !important;
+text-decoration: none !important;
+ }
+ .add-gap:hover{
+
+text-decoration: underline !important;
+ }
+
+.vieob{
+     overflow: auto;
+ min-height: 400px;
+ max-height: 400px;
+}
+.upload-lable-text{
+  background-color: #2A6DD90F;
+  border: 1px dashed #006FE1;
+}
+
+.file-browse{
+    color: var(--primary);
+    text-decoration: underline;
+}
+.my-4 {
+  margin-top: 2.5rem!important;
+  margin-bottom: 1.5rem!important;
+}

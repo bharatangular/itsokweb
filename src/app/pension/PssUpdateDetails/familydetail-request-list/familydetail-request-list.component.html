@@ -1,0 +1,38 @@
+<mat-card class="m-3 mt-0 me-0 p-3 pt-1 mb-4">
+
+      <legend class="my-2"> Family's Update Details</legend>
+   
+    <div style="overflow-x: auto;">
+      <table class="table table-striped table-hover border">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">SSO Id</th>
+            <th scope="col">Employee Code</th>
+            <th scope="col">Pensioner Id</th>
+            <th scope="col">Employee Id</th>           
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of EmployeeFamilyDetails?.familyDetails; let i = index">
+       
+            <th scope="row">{{i + 1}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.ssoId}}</td>
+            <td>{{user.employeeCode}}</td>  
+            <td>{{user.pensionerId}}</td>
+            <td>{{user.employeeId}}</td> 
+            <td>        
+             
+              <button class="btn btn-primary btn-cls" mat-raised-button color="primary" (click)="getfamilydtlpsnId(user)" >View Details</button> 
+                          
+            </td>  
+          </tr>
+  
+        </tbody>
+      </table>
+    </div> 
+   
+</mat-card>

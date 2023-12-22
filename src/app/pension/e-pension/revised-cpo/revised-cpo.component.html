@@ -1,0 +1,220 @@
+
+
+<div class="container-fluid  mb-5" >
+    <div class="row" style="overflow: auto;">
+      <div class="col-12">
+        <mat-card>
+          <div class="bootstrap-tab-design">
+            
+                <!-- First Pension -->
+                <!-- (selectedTabChange)="onTabChanged($event)" -->
+                <div class="first-pension-container" id="first-pension">
+                  <mat-tab-group animationDuration="0ms" color="primary" class="first-pension-tabs mt-4"
+                     animationDuration="500ms">
+                    <mat-tab label="Revise CPO">
+                      <div class="tab-container mt-4">
+                        <div class="first-pension-tabs-container">
+                          <div class="first-pension-tab-btns d-flex align-items-center">
+                           
+                          </div>
+                          <div class="tab-content">
+                            <div class="container-fluid" style="background-color:#edf2fa;">
+                              <div class="tab-filter-option-container row">
+                                <div
+                                  class="col-12">
+                                  
+                                  <div class="row justify-content-center pt-3">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2 mt-2">
+                                        <h3>Find Pensioner</h3>
+                                    </div>
+                                  
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 gx-1 mx-2">
+                                      <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>Employee Code</mat-label>
+                                        <input matInput placeholder="Employee Code" [(ngModel)]="empCode" #input />
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2">
+                                        <button mat-raised-button color="primary" type="submit" class="big-btn-padding" (click)="fetchData()"> Find Details </button>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                
+                              </div>
+                            </div>
+  <hr>
+                            <div class="" >
+                            <h3>Pensioner Details:</h3>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                    <mat-label>Employee Name: </mat-label>
+                                    <strong>{{Personaldetail?Personaldetail.nameEn:"N/A"}}</strong>
+                                  </div>
+                                  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                    <mat-label>Employee Code: </mat-label>
+                                    <strong>{{Personaldetail?Personaldetail.employeeCode:"N/A"}}</strong>
+                                  </div>
+                            </div>
+                            </div>
+                            <hr>
+                            <div class="">
+                                <h3>Old Pension Details:</h3>
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                        <mat-label>Pension Amount: </mat-label>
+                                        <strong>{{oldPensionDateails?.psnAmt}}</strong>
+                                     </div>
+                                     
+                                      <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                        <mat-label>Reduced Pension Amount: </mat-label>
+                                        <strong>{{oldPensionDateails?.netpensionAmount}}</strong>
+                                      </div> -->
+                                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                        <mat-label>Family Pension: </mat-label>
+                                        <strong>{{oldPensionDateails?.familyPsnAmt}}</strong>
+                                      </div>
+                                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                        <mat-label>Enhance Pension: </mat-label>
+                                        <strong>{{oldPensionDateails?.enhancePsnAmt}}</strong>
+                                      </div>
+                                
+                                      <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                        <mat-label>DR Rate: </mat-label>
+                                        <strong>{{oldPensionDateails?.daRate}} %</strong>
+                                      </div> -->
+                                
+                                      <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                        <mat-label>Enhance Date: </mat-label>
+                                        <strong>{{oldPensionDateails?Pension_Commutation.enhancedPensionDate:" "}}</strong>
+                                      </div> -->
+                                      <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                        <mat-label>Pension Commencement Date :</mat-label>
+                                        <strong>{{oldPensionDateails?Pension_Commutation.pensionStartDate:" "}}</strong>
+                                      </div> -->
+                                      <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                        <mat-label>DCRG (Gratuity): </mat-label>
+                                        <strong>{{oldPensionDateails?.retirGratuity}}</strong>
+                                      </div> -->
+                                
+                                
+                                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                        <mat-label>Payable DCRG: </mat-label>
+                                        <strong>{{oldPensionDateails?.totDcrgAmt}}</strong>
+                                
+                                      </div>
+                                </div>
+                                </div>   
+                                <hr>
+                            <div class="">
+                                <h3>CPO Details:</h3>
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                        <mat-label class="d-md-block">CPO Date: </mat-label>
+                                        <mat-form-field appearance="outline" class="w-100">
+                                            <strong>
+                                                <input matInput [matDatepicker]="OrderDate" #com  (dateChange)="dateChange(com.value)" (focus)="OrderDate.open()" name="Order_Date"  [(ngModel)]="comDate" [min]="maxDate" placeholder="Commutation Date" >
+                                                <mat-datepicker-toggle matSuffix [for]="OrderDate"></mat-datepicker-toggle>
+                                                <mat-datepicker #OrderDate></mat-datepicker>
+                                            </strong>
+                                        </mat-form-field>
+<!-- 
+                                        <mat-form-field appearance="outline" class="w-100"> 
+                                            <mat-label>Choose a date</mat-label>
+                                            <input matInput [matDatepicker]="picker">
+                                            <mat-hint>MM/DD/YYYY</mat-hint>
+                                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                        </mat-form-field>                                           -->
+                                          
+                                      </div>
+                                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                        <mat-label>CPO Percentage: </mat-label>
+                                        <mat-form-field appearance="outline">
+                                        <input matInput type="number" placeholder="Commutation Precentage" min="0"                            
+                                        [(ngModel)]="ServiceDetails.commuationPercentage" (blur)="numberValidation()">
+                                    </mat-form-field>
+                                      </div>
+                                      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                        <button mat-raised-button color="primary" type="submit" class="big-btn-padding"
+                                      (click)="commutationDateCalculation()">
+                                      Calculate Pension
+                                    </button>
+                                      </div>
+                                </div>
+                                </div>   
+                                <hr>
+                                <div class="">
+                                    <h3>New Pension Details:</h3>
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                            <mat-label>Pension Amount: </mat-label>
+                                            <strong>{{Pension_Commutation?.pensionAmount}}</strong>
+                                         </div>
+                                         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                            <mat-label>Commuted Pension: </mat-label>
+                                            <strong>{{Pension_Commutation?.cpoDeduction}}</strong>
+                                          </div>
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                            <mat-label>Reduced Pension Amount: </mat-label>
+                                            <strong>{{Pension_Commutation?.netpensionAmount}}</strong>
+                                          </div>
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                            <mat-label>Family Pension: </mat-label>
+                                            <strong>{{Pension_Commutation?.familyPension}}</strong>
+                                          </div>
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                            <mat-label>Enhance Pension: </mat-label>
+                                            <strong>{{Pension_Commutation?.enhancedPension}}</strong>
+                                          </div>
+                                    
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                            <mat-label>DR Rate: </mat-label>
+                                            <strong>{{Pension_Commutation?.daRate}} %</strong>
+                                          </div>
+                                    
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                            <mat-label>Enhance Date: </mat-label>
+                                            <strong>{{Pension_Commutation?Pension_Commutation.enhancedPensionDate:" "}}</strong>
+                                          </div>
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                            <mat-label>Pension Commencement Date :</mat-label>
+                                            <strong>{{Pension_Commutation?Pension_Commutation.pensionStartDate:" "}}</strong>
+                                          </div>
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                            <mat-label>DCRG (Gratuity): </mat-label>
+                                            <strong>{{Pension_Commutation?.retirGratuity}}</strong>
+                                          </div>
+                                    
+                                    
+                                          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                                            <mat-label>Payable DCRG: </mat-label>
+                                            <strong>{{Pension_Commutation?.netPay}}</strong>
+                                    
+                                          </div>
+                                    </div>
+                                    <hr>
+                                    <div class="my-3 text-end">
+                                    <button mat-raised-button color="primary" type="submit" class="big-btn-padding"
+                                      (click)="submit()">
+                                      Submit
+                                    </button>
+                                    </div>
+                                    </div>   
+                          </div>
+                        </div>
+                      </div>
+                    </mat-tab>
+  
+                   
+  
+                   
+  
+                  </mat-tab-group>
+                </div>
+              
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>

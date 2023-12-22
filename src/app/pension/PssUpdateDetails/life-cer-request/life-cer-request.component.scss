@@ -1,0 +1,74 @@
+.nav-pills .nav-link:not(.nav-link.active){
+    background-color: #F1F1F1;
+    color: #414141;
+}
+
+.nav-pills .nav-link.active{
+    background-color: var(--primary);
+}
+
+.tabs-margin > *{
+    margin-right: 10px;
+}
+
+.mat-radio-checked{
+    color: var(--primary);
+}
+
+.tab-heading{
+    border-bottom: 1px solid #D8D8D8;
+}
+
+/* Structure */
+table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    // width: 15%;
+  }
+
+  .tab-filter-option-field > *{
+    margin-right: 10px;
+  }
+
+  .tab-filter-option-field{
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick{
+        color: var(--primary) !important;
+    }
+  }
+
+  .table-container{
+    //height: calc(100vh - 695px) !important;
+    overflow: auto;
+  }
+
+  .mat-header-cell{
+    border-bottom: 1px solid #5A9CFF;
+    font-size: 14px;
+    font-weight: 500;
+    color: #414141;
+    font-family: 'Poppins-m';
+    background-color: #EEF5FF;
+}
+
+.name-with-icon p{
+    font-size: 14px;
+    font-family: 'poppins-m';
+    color: #414141;
+}
+
+.view-pension-kit-link a{
+    font-size: 12px;
+}
+
+
+
+
+
+  //input outline color
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color:#5A9CFF !important;
+    // opacity: 1!important;
+}

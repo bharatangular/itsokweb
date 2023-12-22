@@ -1,0 +1,82 @@
+<div class="emp_personal_dt">
+  <mat-tab-group animationDuration="0ms" class="mb-4">
+    <mat-tab label="Bank Details" class="text-black"></mat-tab>
+  </mat-tab-group>
+  <button type="button" class="float-end btn_mdf" *ngIf="config.registrationType === 0" mat-raised-button
+    color="primary" (click)="modify()">Modify</button>
+  <form [formGroup]="bankDetails" (ngSubmit)="onsubmit()">
+    <div class="row">
+      <div class="col-md-6 col-lg-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label> Bank Name</mat-label>
+          <mat-select matNativeControl formControlName="bankName" placeholder="--Select--"
+            (selectionChange)="getBankBranch()" [disabled]="isPayManger">
+            <mat-option *ngFor="let mst of banklist" [value]=mst.bankId>
+              {{mst.bankNameEn}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mt-3 bg_light_color">
+        <mat-form-field class="w-100">
+          <mat-label> Branch Name</mat-label>
+          <mat-select matNativeControl formControlName="branchName" (selectionChange)="getBranchIFSC($event.value)" [disabled]="isPayManger">
+            <mat-option *ngFor="let mst of bankBranchlist" [value]=mst.bankBranchId>
+              {{mst.branchNameEn}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mt-3 bg_light_color">
+        <mat-form-field class="w-100">
+          <mat-label> IFSC Code</mat-label>
+          <input matInput #input formControlName="ifscCode" [readonly]="isPayManger">
+          <button type="button" mat-icon-button matSuffix>
+            <!-- <mat-icon (click)="ifsccode()">search</mat-icon> -->
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 mt-3 bg_light_color">
+        <mat-form-field class="w-100">
+          <mat-label> Bank Account No.</mat-label>
+          <input matInput  numberOnly formControlName="bankAccountNumber" (blur)="checkAccountNo()" [readonly]="isPayManger">
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-md-6 col-lg-4 md-4">
+                 <mat-label> Number</mat-label>
+                <form class="example-form">
+                    <mat-form-field class="w-100" >
+                      <input type="text"placeholder="Pick one"aria-label="Number"matInput [formControl]="myControl"[matAutocomplete]="auto">
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                          {{option}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </form>
+            </div> -->
+
+    </div>
+    <span style="color:brown">*If you have any issue in Bank Details,Please update on Pay-Manager.</span>
+    <!-- <div *ngIf="isSaveEnable">
+      <button type="submit"  mat-raised-button color="primary" class="mt-5">
+        {{config.registrationType === 2 ? 'Verify & Save' : 'Save as Draft'}}
+      </button>
+    </div> -->
+    <!-- <div *ngIf="isSaveEnable">
+      <button type="submit" *ngIf="userAction.length !== 0" mat-raised-button color="primary" class="mt-5">
+        {{config.registrationType === 2 ? 'Verify & Save' : 'Save as Draft'}}
+      </button>
+    </div> -->
+
+
+  <!--   <ng-container *ngIf="userAction.length > 0">
+      <button type="submit" *ngFor="let item of userAction" mat-raised-button color="primary" (click)="action = item.action" class="mt-5 me-2">
+        {{item.actionLabel}}
+      </button>
+    </ng-container> -->
+
+  </form>
+</div>

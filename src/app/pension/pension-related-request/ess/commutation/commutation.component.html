@@ -1,0 +1,193 @@
+<div class="container-fluid mt-2 ">
+
+    <div class="card p-4">
+
+        <h3 class="employee details">Employee Details</h3>
+
+        <div class="commutationdetails_dt">
+            <div class="row">
+
+                <div class="col-md-6 col-lg-3 md-4 mt-3">
+                    <mat-label>Name</mat-label>
+                    <p>{{ employeeyInfo.empName}}</p>
+                </div>
+
+                <div class="col-md-6 col-lg-3 md-4 mt-3">
+                    <mat-label>Date Of Retirement</mat-label>
+                    <p>{{ employeeyInfo.dateOfRetirement | date}}</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <form [formGroup]="getCommutationForm" (submit)="onSave()">
+            <div class="mt-2">
+                <div class="row">
+                    <h3 class="search-commutation">Commutation</h3>
+                    <div class="col-md-6 col-lg-3 md-4 mt-3">
+                        <div class="d-block mt-2"></div>
+                        <mat-label>Commutation Required</mat-label>
+                        <mat-radio-group formControlName="empCommutationFlag" (change)="changeCommutation()">
+                            <mat-radio-button class="example-margin ms-3" value="Y" color="primary">Yes
+                            </mat-radio-button>
+                            <mat-radio-button class="example-margin" value="N" color="primary"
+                                class="ms-3">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-md-6 col-lg-3 md-4 mt-3">
+                        <mat-form-field class="w-100">
+                            <mat-label>Date</mat-label>
+                            <input matInput formControlName="empCommutationDate" [min]="employeeyInfo.dateOfRetirement" [matDatepicker]="picker2" />
+                            <mat-datepicker-toggle matSuffix [for]="picker2">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker2 class="mat-piker">
+                            </mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+
+                     <div class="col-md-6 col-lg-3 md-4 mt-3">
+                        <mat-form-field class="w-100">
+                            <mat-label>Commutation Percentage</mat-label>
+                            <input matInput id="empCommutationPercentage" formControlName="empCommutationPercentage"
+                                maxlength="5" matInput>
+                            <mat-hint *ngIf="getCommutationForm.controls['empCommutationPercentage'].errors"
+                                class="text-danger">
+                                Percentage of Commutation should be max 50
+                            </mat-hint>
+                        </mat-form-field>
+
+
+                    </div> 
+                </div>
+            </div>
+
+            <hr>
+            <div class="mt-3" *ngIf="false">
+
+                <h3 class="current-pay-details ms-2  mt-2">Current Pay Details (INR)</h3>
+                <table mat-table [dataSource]="dataSource" matSort class="w-100">
+                    <ng-container matColumnDef="basic">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable">Basic</th>
+                        <td mat-cell *matCellDef="let row" class="dataText">{{row.basic}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="DA_h">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable">DA
+                        </th>
+                        <td mat-cell *matCellDef="let row" class="dataText"> {{row.empDA}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="HRA_h">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable">HRA
+                        </th>
+                        <td mat-cell *matCellDef="let row" class="dataText"> {{row.empHRAAmt}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Spcl_Pay">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable">Special Pay
+                        </th>
+                        <td mat-cell *matCellDef="let row" class="dataText"> {{row.empSpclPay}} </td>
+                    </ng-container>
+
+
+
+                    <ng-container matColumnDef="npa">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable">NPA
+                        </th>
+                        <td mat-cell *matCellDef="let row" class="dataText"> {{row.empNPA}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="cca">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable">CCA
+                        </th>
+                        <td mat-cell *matCellDef="let row" class="dataText"> {{row.empCCA}} </td>
+                    </ng-container>
+
+
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data matching the filter</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="user_con">
+                <div class="row">
+                    
+                    <div class="col-lg-12" *ngIf="userType === '1'">             
+                        <mat-icon style="color:green;float: left; margin-right: 5px;">check_box</mat-icon>         
+                        <p style="text-align: justify;">This is Certified that : I <b>{{user.displayName}}</b> (the undersigned) agree and undertake to refund or make good any amount to which I am not entitled or any amount which may be credited to my account in access of the amount to which I am or would be entitled. </p>
+                        <mat-icon style="color:green;float: left; margin-right: 5px;">check_box</mat-icon>        
+                        <p style="text-align: justify;"> I further hereby undertake and agree to bind myself and my heirs, successor, executers, legal representatives and administrators to indemnify the Government of Rajasthan through Pension and Pensioners Welfare Department/any other authorities authorized by Govt. of Rajasthan from and against any financial /monetary loss suffered or incurred by the Government of Rajasthan in so crediting my pension to my account under the rules and to forthwith pay the same to the Government of Rajasthan.</p>
+                         <mat-icon style="color:green;float: left; margin-right: 5px;">check_box</mat-icon>         
+                         <p style="text-align: justify;"> I also irrevocably authorize the Pension and Pensioners Welfare Department/any other authorities authorized by Govt. of Rajasthan to recover the due amount under prevailing law by giving direction to my account holder bank(s) to debit to my said account or any other account/deposits belonging to me in the possession of the banks situated in India.</p>
+                         <mat-icon style="color:green;float: left; margin-right: 5px;">check_box</mat-icon>         
+                        <p style="text-align: justify;"> I Shall be responsible for each and every information submitted in this application form. If any information found to be false i will be fully responsible for all legal action. </p>
+                         <mat-icon style="color:green;float: left; margin-right: 5px;">check_box</mat-icon>         
+                        <p style="text-align: justify;">  The undersigned agree and undertake also to refund any over payment of salary and other emoluments /personnel claims for which I am/was not entitled. I also agree to refund/repay any amount of penalties imposed by the authority of Government of Rajasthan, any court, audit objections by AG and / or any department of Government Of Rajasthan and any amount so decided by the Government under rules / law / notification etc.</p>
+                         <mat-icon style="color:green;float: left; margin-right: 5px;">check_box</mat-icon>         
+                         <p style="text-align: justify;">  I, the undersigned agree to produce/upload life certificate (under rule 134 of RCS pension rules,1996) or verification of continuous existence through any of the authorized modes available to the pensioner to submit it digitally for continuation of payment of pensionary benefits whenever it becomes due. Failing which my payment of pensionary benefits shall not be released by pension payment officer/authority.</p>
+                            
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row py-4">
+                <div class="col-12">
+                    <button type="onSave" *ngIf="userAction.length === 0" color="primary"
+                        mat-raised-button >Save</button>
+                    <ng-container *ngIf="userAction.length > 0">
+                        <button type="submit" *ngFor="let item of userAction" mat-raised-button color="primary"
+                            (click)="action = item.action;" class="mt-5 me-2">
+                            {{item.actionLabel}}
+                        </button>
+                    </ng-container>
+                </div>
+                <div class="col-12">
+                   
+                  
+                </div>
+            </div>
+        </form>
+        <!-- <div class="row py-4">
+            <div class="col-12">
+                   
+                <ng-container >
+                    <button   mat-raised-button color="primary"
+                        (click)="verifyMobileNo()" class="mt-5 me-2">
+                        Verify & Save
+                    </button>
+                </ng-container>
+            </div>
+        </div> -->
+      
+        <!-- </form>
+
+            <div class="container-fluid mt-2">
+
+                <div class="card">
+                    <div class="row">
+                        <h3 class="current-pay-details">Current Pay Details</h3>
+
+        <table class="">
+            <thead>
+              <tr>
+                <th>Employee Id</th>
+                <th>HRA</th>
+                <th>DA</th>
+                <th>HRA Ammount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of CommutationArray">
+                <td>{{item.employeeId}}</td>
+                <td>{{item.empHRA}}</td>
+                <td>{{item.empDA}}</td>
+                <td>{{item.empHRAAmt}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </form> -->
+    </div>
+</div>

@@ -1,0 +1,49 @@
+
+<div class="container-fluid mb-5">
+    <mat-card> 
+      
+      <div class="row mx-1" style="background: #edf2fa;">
+  
+        <div class="col-lg-4 pt-2 offset-3">        
+            <!-- <mat-label>Input code</mat-label> -->
+            <mat-form-field class="example-full-width w-100">
+              <input matInput placeholder="Ref No" [(ngModel)]="empCode"  [ngModelOptions]="{standalone: true}" type="number">
+            </mat-form-field>
+          
+        </div>
+        
+        <div class="col-lg-2 text-start pt-3 ">
+          <button mat-raised-button color="primary" (click)="getJson()">Find JSON</button>
+        </div>
+        
+      </div>
+      <div class="row mx-1" style="background: #edf2fa;">
+  
+        <div class="col-lg-4 p-2 offset-3" >        
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="billType"  [ngModelOptions]="{standalone: true}" style="margin-left: 15%">
+                <mat-radio-button value="3" class="p-3" >GPO</mat-radio-button>
+                <mat-radio-button value="4" class="p-3">PPO</mat-radio-button>
+              </mat-radio-group>
+          
+        </div>
+       
+        
+      </div>
+  
+      <div class="row">
+  
+       
+        <textarea [(ngModel)]="data"  matInput cdkTextareaAutosize id="myTextArea"
+        cdkAutosizeMinRows="10" style="outline: 1px solid blue;margin-left: 1px;" (change)="updateJson()"></textarea>
+        <!-- <json-editor [options]="editorOptions" [data]="initialData" (change)="showJson($event)"></json-editor> -->
+  <hr>
+  
+  <div class="col-lg-12 text-end pt-3 ">
+    <button mat-raised-button color="primary" (click)="Submit()" >Send to Pay-Manager and Update</button>
+  </div>
+  
+      </div>
+  </mat-card>
+  </div>
+  
+  

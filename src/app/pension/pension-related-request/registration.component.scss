@@ -1,0 +1,117 @@
+
+::ng-deep .mat-horizontal-content-container {
+    background: #fff;
+    margin-bottom: 56px;
+}
+// ::ng-deep .mat-horizontal-stepper-header{
+//   pointer-events: none !important;
+// }
+.wbg {
+    background-color: #fff;
+}
+
+.stepper-title {
+    width: 75%;
+    border-radius: 0.675rem 0.675rem 0rem 0rem;
+    box-shadow: 0rem -0.375rem 1rem #74799326 !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-outline{
+    background: #d8d8d8;
+    border-radius: 5px;
+}
+.mat-card {
+    border-radius: 0.625rem;
+    box-shadow: 0rem 0.188rem 1.250rem #74799326 !important;
+}
+
+.stepper-info-icon {
+    width: 1.25rem;
+}
+
+.wbg {
+    background-color: #fff;
+}
+
+.stepper-title {
+    width: 75%;
+    border-radius: 0.675rem 0.675rem 0rem 0rem;
+    box-shadow: 0rem 0.85rem 1rem #74799326 !important;
+}
+
+
+// prograss bar
+.progress {
+    background-color: #edfaf5;
+    border-radius: var(--bs-progress-border-radius);
+    border: 1px solid #cee1df;
+}
+
+.prograss-bar-btn {
+    background-color: #52bb9c;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    margin-top: 13px;
+}
+
+.prograss-bar-text {
+    color: #52bb9c;
+}
+
+.prograss-rel {
+    position: relative;
+}
+
+.progress-abs {
+    position: absolute;
+    top: 7px;
+    right: 15px;
+    width: 23%;
+}
+
+.progress-bar {
+    background-image: var(--megentagradient);
+    border-radius: 5rem;
+    width: 55%
+}
+
+/// new sterper
+.d-flex.justify-content-end.ng-star-inserted {
+    position: relative;
+    // margin-top: -37px;
+    margin-right: 16px;
+    top: -20px;
+}
+
+
+::ng-deep .view_only {
+  .mat-form-field-disabled {
+    .mat-select-arrow, .mat-icon, .asterisk,
+  .mat-datepicker-toggle-default-icon,
+  .mat-form-field-underline {
+    display: none;
+  }
+    .mat-input-element, .mat-select-value {
+      color: black;
+    }
+  }
+
+  .mat-select-outline {
+    appearance: outline !important;
+  }
+
+}
+
+::ng-deep{
+  .IsEss {
+    .stepper-title, .mat-horizontal-stepper-header-container {
+      width: 100%;
+    }
+  }
+}
+
+
+
+
+

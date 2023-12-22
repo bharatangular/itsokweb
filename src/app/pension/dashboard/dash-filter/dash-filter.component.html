@@ -1,0 +1,101 @@
+<div class="card pb-0">
+    <div class="card-header p-0 border-bottom-0 bg-transparent d-flex justify-content-between">
+      <h3 class="font-18">Dashboard Filters</h3>
+    </div>
+
+    <div class="row p-3 py-1">
+      <div class="col-lg-2">
+        <mat-label>Year</mat-label>
+        <mat-form-field appearance="outline" class="w-100">                            
+          <mat-select [(ngModel)]="pensionYear" name="year" (ngModelChange)="getMonthFromYear($event)">
+            <mat-option [value]="'0'"  selected="true">ALL</mat-option>
+            
+            <mat-option *ngFor="let psnYear of psnYearList " [value]="psnYear.psnYear">
+                {{psnYear.psnYear}}
+              </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-2">
+        <mat-label>Month</mat-label>
+        <mat-form-field appearance="outline" class="w-100">                            
+          <mat-select [(ngModel)]="pensionMonth" name="month"  >
+            <mat-option [value]="'0'"  selected="true">ALL</mat-option>
+            
+            <mat-option *ngFor="let psnMonth of psnMonthList" [value]="psnMonth.psnMonthNumber" >
+                {{psnMonth.psnMonth}}
+              </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-2">
+        <mat-label>Zone</mat-label>
+        <mat-form-field appearance="outline" class="w-100">                    
+          <mat-select  name="Zone" [(ngModel)]="zoneselection" (ngModelChange)="getOfficeDetailsByDeptId()" >
+            <mat-option [value]="0"  selected="true">ALL</mat-option>
+            
+            <mat-option *ngFor="let zone of zoneList " [value]="zone.officeId">
+              {{zone.psnZoneName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-2">
+        <mat-label class="fs-7">Department</mat-label>
+        <mat-form-field class="w-100 " appearance="outline"  >    
+                        
+          <input type="text"
+          
+                 matInput
+                 placeholder="Select Department "
+                 [formControl]="myControl"
+                 aria-label="Department"
+                 [matAutocomplete]="auto"
+                 forceSelection="v_dept_name"
+                 >
+                
+          <mat-autocomplete   [panelWidth]="'auto'"
+          autoActiveFirstOption  (optionSelected)="getOfficeDetailsByDeptId()" #auto="matAutocomplete"  [displayWith]="displayFn">
+           
+            <mat-option *ngFor="let data of filteredOptions | async " [value]="data">
+              {{data?.v_dept_name}} ({{data?.v_DEPT_ID}})
+            </mat-option>
+      
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-2">
+        <mat-label>Office</mat-label>
+        <mat-form-field class="example-full-width w-100" appearance="outline" >                    
+          <input type="text"
+          placeholder="Select Office "
+                 matInput
+                 [formControl]="offcmyControl"
+                 aria-label="Office"
+                 [matAutocomplete]="auto1"
+                 forceSelection="v_ofc_name"
+                 >
+          <mat-autocomplete  [panelWidth]="'auto'" autoActiveFirstOption  #auto1="matAutocomplete"  [displayWith]="displayofFn">
+           
+            <!-- <mat-option *ngFor="let data of $filterdOfficelist | async " [value]="data">
+              {{data?.v_ofc_name}} ({{data?.v_OFC_ID}})
+            </mat-option> -->
+            <mat-option *ngFor="let data of $filterdOfficelist | async " [value]="data">
+              {{data?.officName}} ({{data?.offcId}})
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    
+      <div class="col-lg-2 text-end mt-1">
+        <button mat-raised-button color="primary" class="mt-4 mx-2" (click)="onSubmitFilter()">Apply</button>
+        
+        <button mat-raised-button color="primary" class="mt-4" (click)="onSubmitReset()">Reset</button>
+      </div>
+    </div>
+
+
+
+    
+
+  </div>

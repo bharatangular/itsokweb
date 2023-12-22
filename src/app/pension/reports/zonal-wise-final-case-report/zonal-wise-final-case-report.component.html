@@ -1,0 +1,197 @@
+
+<div class="container-fluid full">
+
+     
+    <div class="row">
+        <div class="col-lg-12 p-3 pt-0">
+    <div class="row">
+    
+    <div class="col-lg-12">
+    
+    <app-filters (dataParmsFilter)="reviceParamsfilter($event)" (filterDash)="reset($event)"></app-filters>
+    </div>
+    </div>
+    </div></div>
+
+
+
+    <div class="row">
+    <div class="row-12">
+      <div class="row">
+                
+        <div class="col-12 col-md-8 col-lg-12">
+            <div class="tab-content" id="nav-tabContent">
+        <!-- breadcrumb -->
+    <section>
+            <div class="content-wrapper">
+                <nav aria-label="breadcrumb">               
+                </nav>
+            </div>
+    </section>
+    
+    <mat-card>
+
+
+            <div class="content-wrapper"  style="margin-bottom: 30px;">
+      
+
+            <div class="content-wrapper mb-2">
+                <div class="row justify-content-end mt-3">
+                    <div class="col-lg-4 month-dropdown" >
+                        <h2 class="mb-0 py-2">Zone wise Final Cases </h2>
+                    </div>
+                    <div class="col-lg-6 text-end">
+                        <mat-form-field class="">
+                            <mat-label><mat-icon>search</mat-icon></mat-label>
+                            <input matInput (keyup)="applyFilter($event)"  placeholder="Search" #input >
+                       
+                        </mat-form-field>
+            
+                      
+            
+                    </div>
+                    <div class="col-lg-2 text-end px-4 d-flex justify-content-end align-items-center">
+                        <button (click)="exportToPdf('zonal_Wise_FinalCase_Report','Zone wise final cases')" class="btn btn_custome_r d-inline me-2 align-items-center justify-content-center mb-1 px-2"> 
+                            <img src="assets/images/pdf.png">
+                        </button>
+                        <button (click)="exportToExcel('Zone wise final cases')"  class="btn btn_custome_g d-inline align-items-center justify-content-center mb-1 px-2"> 
+                           
+                            <img src="assets/images/excel.svg">
+                        </button>
+                    </div>
+                </div>         
+            </div>
+            
+
+            <div class="content-wrapper">
+
+           
+            
+                
+            <div class="mat-elevation-z8" style="overflow: auto;">
+                <table mat-table [dataSource]="dataSource" matSort class="w-100" id="zonal_Wise_FinalCase_Report">
+                    
+                    
+                    <ng-container matColumnDef="sNo">
+                        <th class="w-8" mat-header-cell *matHeaderCellDef >S.No.</th>
+                        <td class="w-8" mat-cell *matCellDef="let data"> {{data?.sNo}}</td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef >Name</th>
+                        <td mat-cell *matCellDef="let data">
+                            {{data?.name ? data?.name : '-'}}
+                        </td>
+                    </ng-container>
+                      
+                    <ng-container matColumnDef="ofcId">
+                        <th mat-header-cell *matHeaderCellDef >Office ID</th>
+                        <td mat-cell *matCellDef="let data">
+                           {{data?.ofcId ? data.ofcId : '-'}}
+                        </td>
+                    </ng-container>
+                   
+
+                    <ng-container matColumnDef="designation">
+                        <th mat-header-cell *matHeaderCellDef >Designation</th>
+                        <td mat-cell *matCellDef="let data">
+                           {{data?.designation ? data.designation : '-'}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="department">
+                        <th mat-header-cell *matHeaderCellDef >Department</th>
+                        <td mat-cell *matCellDef="let data" >{{data?.department ? data.department: '-'}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="pensionerId">
+                        <th mat-header-cell *matHeaderCellDef >Pensioner Id</th>
+                        <td mat-cell  *matCellDef="let data"  > {{data?.pensionerId ? data?.pensionerId : '-'}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateOfRetirement">
+                        <th mat-header-cell *matHeaderCellDef >DOR</th>
+                        <td mat-cell  *matCellDef="let data"  > {{data?.dateOfRetirement ? data?.dateOfRetirement : '-'}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="ofcName">
+                        <th mat-header-cell *matHeaderCellDef>Office Name (Office ID)</th>
+                        <td  mat-cell *matCellDef="let row"> {{row.ofcName ? row.ofcName : '-'}} ({{row.ofcId ? row.ofcId : '-'}}) </td>
+                    </ng-container>
+                    <ng-container matColumnDef="treasCode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Treasury Code</th>
+                        <td mat-cell *matCellDef="let row"> {{row.treasCode}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="zoneName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Zone Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.zoneName}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="ppoNo">
+                        <th mat-header-cell *matHeaderCellDef >PPO No</th>
+                        <td mat-cell  *matCellDef="let data"  >
+                            {{data?.ppoNo ? data?.ppoNo : '-'}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="ppoAmt">
+                        <th mat-header-cell *matHeaderCellDef >PPO Amount</th>
+                        <td mat-cell *matCellDef="let data" >{{data?.ppoAmt ? data?.ppoAmt : '-'}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="gpoNo">
+                        <th mat-header-cell *matHeaderCellDef >GPO No</th>
+                        <td mat-cell  *matCellDef="let data"  > {{data?.gpoNo ? data?.gpoNo : '-'}}</td>
+                        <!-- <td mat-cell *matCellDef="let row"> 
+                            <tr *ngFor="let eachGPONo of row.gpoNo">
+                                {{eachGPONo}} 
+                            </tr>
+                            </td> -->
+                    </ng-container>
+                    <ng-container matColumnDef="gpoAmt">
+                        <th mat-header-cell *matHeaderCellDef >GPO Amount</th>
+                        <td mat-cell  *matCellDef="let data"  >
+                            {{data?.gpoAmt ? data?.gpoAmt : '-'}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="cpoNo">
+                        <th mat-header-cell *matHeaderCellDef >CPO No</th>
+                        <td mat-cell  *matCellDef="let data"  >
+                            <!-- <tr *ngFor="let eachCPONo of data.cpoNo">
+                                {{eachCPONo}} 
+                            </tr> -->
+                            {{data?.cpoNo ? data?.cpoNo : '-'}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="cpoAmt">
+                        <th mat-header-cell *matHeaderCellDef >CPO Amount</th>
+                        <td mat-cell  *matCellDef="let data"  >
+                            {{data?.cpoAmt ? data?.cpoAmt : '-'}}
+                        </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="receivedDate">
+                        <th mat-header-cell *matHeaderCellDef >Approved Date</th>
+                        <td mat-cell  *matCellDef="let data"  >
+                            {{data?.receivedDate ? data?.receivedDate : '-'}}
+                        </td>
+                    </ng-container>
+                  
+                   
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell text-center" colspan="14">No Record Found. </td>
+                    </tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[25, 50,75,100]" aria-label="Select page of users"></mat-paginator>
+            </div>
+        </div>
+        </div>
+    </mat-card>
+                
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+    </div>

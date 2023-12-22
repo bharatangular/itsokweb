@@ -1,0 +1,157 @@
+<mat-card>
+  <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+    <mat-tab label="Family Details">
+      <div class="tab-container mt-4">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 allRadious"
+              *ngFor="let field of familyDetails">
+              <div class="family-details-card-container">
+                <div class="family-card-header m-1 p-2 d-flex justify-content-between align-items-center">
+                  <div class="member-base-details d-flex justify-content-start align-items-center">
+                    <div class="member-image">
+                      <img src="./assets/images/sonImg.jfif" alt="member-image">
+                    </div>
+                    <div class="member-name heading-2 ms-2 mt-2">{{field.nameEn}}</div>
+                  </div>
+                  <div class="name-birth-details ms-1">
+                    <span class="relation-tag py-1 px-2">{{field.relationshipTypeEn}}</span>
+                  </div>
+                </div>
+                <div class="family-card-body">
+                  <div class="d-flex justify-content-between align-items-center mt-4 mx-3">
+                    <div class="pan-number-box me-5 fw-bold">
+                      <p class="subtitle-2">Female</p>
+                    </div>
+                    <div class="aadhar-number-box fw-bold">
+                      <p class="subtitle-2">12/12/2001</p>
+                    </div>
+                    <div class="aadhar-number-box ms-4 fw-bold">
+                      <p class="subtitle-2">marride</p>
+                    </div>
+                  </div>
+                  <div class="pan-aadhar-number-container d-flex justify-content-start align-items-center  mx-3">
+                    <div class="pan-number-box me-5">
+                      <p class="m-0 f-12">PAN Number</p>
+                      <p class="subtitle-2">DXEPK2840E</p>
+                    </div>
+                    <div class="aadhar-number-box ms-5">
+                      <p class="m-0 f-12">Aadhaar Number</p>
+                      <p class="subtitle-2">6103 8507 5811</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="action-text mt-3 d-flex justify-content-end align-items-center me-2">
+                      <a href="javascript:void(0)"
+                        class="subtitle-2 view-details-btn d-flex justify-content-start align-items-center"
+                        (click)="openDialog(field)">
+                        <span>View All Details </span>
+                        <span><mat-icon>arrow_right_alt</mat-icon></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="d-flex justify-content-end">
+            <button mat-raised-button tabindex="-1" type="button" color="primary" class="btn btn-primary mt-2 ms-2"
+              (click)='moveToSelectedTab("Nomination")'>Next</button>
+
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Nomination">
+      <div class="tab-container mt-4">
+        <div class="container-fluid">
+          <div class="row">
+            <strong>Arrears (Form A&5)</strong>
+            <div class="col-lg-12 mt-3 datatable">
+              <table class="table text-nowrap">
+
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">NAME</th>
+                    <!-- <th scope="col">GENDER</th> -->
+                    <th scope="col">RELATION</th>
+                    <th scope="col">MAIN NOMINEE SHARE</th>
+                    <th scope="col">ALTERNATE NOMINEE SHARE</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let member of arrearArray">
+                  <tr>
+                    <td>{{member.name}}</td>
+                    <!-- <td>{{member.gender}}</td> -->
+                    <td>{{member.relationshipName}}</td>
+                    <td>{{member.mainPercentageShare}} %</td>
+                    <td>{{member.alternatePercentageShare}} %</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <strong>Commutation (Form A&5)</strong>
+            <div class="col-lg-12 mt-3 datatable">
+              <table class="table text-nowrap">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">NAME</th>
+                    <!-- <th scope="col">GENDER</th> -->
+                    <th scope="col">RELATION</th>
+                    <th scope="col">MAIN NOMINEE SHARE</th>
+                    <th scope="col">ALTERNATE NOMINEE SHARE</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let member of commutationArray">
+                  <tr>
+                    <td>{{member.name}}</td>
+                    <!-- <td>{{member.gender}}</td> -->
+                    <td>{{member.relationshipId}}</td>
+                    <td>{{member.mainPercentageShare}} %</td>
+                    <td>{{member.alternatePercentageShare}} %</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <strong>Gratuity (Form 1 or 2)</strong>
+            <div class="col-lg-12 mt-3 datatable">
+              <table class="table text-nowrap">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">NAME</th>
+                    <!-- <th scope="col">GENDER</th> -->
+                    <th scope="col">RELATION</th>
+                    <th scope="col">MAIN NOMINEE SHARE</th>
+                    <th scope="col">ALTERNATE NOMINEE SHARE</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let member of gratuityArray">
+                  <tr>
+                    <td>{{member.name}}</td>
+                    <!-- <td>{{member.gender}}</td> -->
+                    <td>{{member.relationshipId}}</td>
+                    <td>{{member.mainPercentageShare}} %</td>
+                    <td>{{member.alternatePercentageShare}} %</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button mat-stroked-button matStepperPrevious class="btn btn-outline-cancel me-2">Previous</button>
+          <button class="btn btn-primary ms-2" color="primary" mat-raised-button mat-button
+            matStepperNext>{{btnLabel}}</button>
+        </div>
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

@@ -1,0 +1,34 @@
+.upload-lable-text{
+    background-color: #2A6DD90F;
+    border: 1px dashed #006FE1;
+  }
+  
+  .file-browse{
+      color: var(--primary);
+      text-decoration: underline;
+  }
+  .my-4 {
+    margin-top: 2.5rem!important;
+    margin-bottom: 1.5rem!important;
+}
+.success {
+  color: #23966B;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.success_subtext {
+  font-size: 20px;
+}
+
+.reject {
+  color: #E54849;
+  font-size: 24px;
+  font-weight: 600;
+}
+.otp-width{    width: 40px;}
+::ng-deep .mat-select-panel {
+  width: auto;
+  max-width: 100%;
+}
+.avatar-preview img{ width: 125px; height: 125px; border-radius: 50%; background-size: cover;}

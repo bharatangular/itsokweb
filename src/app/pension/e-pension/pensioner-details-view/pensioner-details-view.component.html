@@ -1,0 +1,906 @@
+
+
+<div>
+<mat-card class="m-3 mt-0" >
+  <div class="col-lg-12 text-end">
+    <button  (click)="exportToPdf(content)" class="btn btn-danger d-inline me-2 align-items-center justify-content-center mb-1"> <mat-icon>picture_as_pdf</mat-icon></button>
+  </div>
+  <div id="content" #content>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="mt-2 border-3 border-bottom">
+          <span class="fs-5 p-2 heading_design">Personal Details</span>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div class="avatar-upload">
+            <span>Joint Photograph</span>
+            <!-- <div class="avatar-edit">
+              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+            </div> -->
+            <div class="avatar-preview">
+              <div id="imagePreview" [style.backgroundImage]="'url('+ jointImageUrl +')'" *ngIf="picData==''"> <i
+                  class="fa fa-edit"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div class="avatar-upload">
+            <span>Employee Photograph</span>
+
+            <div class="avatar-preview">
+              <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'"> <i class="fa fa-edit"></i>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Janadhaar Number</span>
+            <label>{{empDetails?.personalDetails?.janadharId}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Employee Code</span>
+            <label>{{empDetails?.personalDetails?.employeeCode}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>SSO ID </span>
+            <label>{{empDetails?.personalDetails?.ssoId}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Adhaar Ref. Number</span>
+            <label>{{empDetails?.personalDetails?.aadharRefNo}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Pan Number</span>
+            <label>{{empDetails?.personalDetails?.pan}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Payee ID </span>
+            <label>{{empDetails?.personalDetails?.payeeId}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Employee Name</span>
+            <label>{{empDetails?.personalDetails?.nameEn}}</label>
+          </div>
+        </div>
+      
+      
+       
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Gender</span>
+            <label>{{empDetails?.personalDetails?.genderName}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Date of Birth</span>
+            <label>{{empDetails?.personalDetails?.dateOfBirth}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Height in (cm)</span>
+            <label>{{empDetails?.personalDetails?.height}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Identification Mark</span>
+            <label>{{empDetails?.personalDetails?.identificationMarks}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Father's Name</span>
+            <label>{{empDetails?.personalDetails?.fatherName}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Mother's Name</span>
+            <label>{{empDetails?.personalDetails?.motherName}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Martial Status</span>
+            <label>{{empDetails?.personalDetails?.maritalStatus}}
+            </label>
+          </div>
+        </div>
+      
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Spouse name</span>
+            <label>{{empDetails?.personalDetails?.spouseName}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Disabled</span>
+            <label>{{empDetails?.personalDetails?.disable}}
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Disabled</span>
+            <label>{{empDetails?.personalDetails?.disable}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Type of Disability</span>
+            <label>{{empDetails?.personalDetails?.disabilityId}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Percentage of Disability</span>
+            <label>{{empDetails?.personalDetails?.disabilityPercent}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Blood Group</span>
+            <label>{{empDetails?.personalDetails?.bloodGrpName}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Email Id</span>
+            <label>{{empDetails?.personalDetails?.emailId}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+
+          <div>
+            <span>Mobile No</span>
+            <label>{{empDetails?.personalDetails?.mobileNo}}</label>
+          </div>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Nationality</span>
+            <label>{{empDetails?.personalDetails?.nationality}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Religion</span>
+            <label>{{empDetails?.personalDetails?.religionNameEn}}</label>
+          </div>
+        </div>
+       
+      
+      </div>
+    </div>
+    <div class="container-fluid">
+
+        <div class="row">
+          <div class="mt-2 border-3 border-bottom">
+            <span class="fs-5 p-2 heading_design"> Service Details</span>
+          </div>
+        </div>
+
+        <div class="row">
+          
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Date Of Joining</span>
+              <label>{{empDetails?.calculationsPensionDetails?.dateOfJoin}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Date of Retirement</span>
+              <label>{{empDetails?.calculationsPensionDetails?.dateOfRetirment}}</label>
+            </div>
+          </div>
+         
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Category of Empolyee </span>
+              <label>{{empDetails?.serviceDetails?.categoryOfEmployee}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Category of Pension </span>
+              <label>{{empDetails?.calculationsPayDetails?.pensionType}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Office Name </span>
+              <label>{{empDetails?.serviceDetails?.officeNameEn}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Gazetted</span>
+              <label>{{empDetails?.serviceDetails?.gajetted}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Admin Department</span>
+              <label>{{empDetails?.personalDetails?.adminDeptName}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Current Department</span>
+              <label>{{empDetails?.serviceDetails?.currentDepartmentName}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Current Designation</span>
+              <label>{{empDetails?.serviceDetails?.currentDesignation}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Current Office Address</span>
+              <label>{{empDetails?.serviceDetails?.currentOfficeAddress}}</label>
+            </div>
+          </div>
+      
+       
+       
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              
+              <span>Date of Joining Present DDO</span>
+              <label>{{empDetails?.serviceDetails?.dateTypes[0]?.dateValue}}</label>
+            </div>
+          </div>
+      
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Retirement Order, Sanction</span>
+              <label>{{empDetails?.personalDetail?.disable}}
+
+              </label>
+            </div>
+          </div>
+         
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>PRAN No.</span>
+              <label>{{empDetails?.personalDetails?.pranNumber}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>GPF No.</span>
+              <label>{{empDetails?.personalDetails?.gpfNo}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>State Insurance Number</span>
+              <label>{{empDetails?.personalDetails?.sipfNo}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>I.A.S CPNF Number</span>
+              <label>{{empDetails?.personalDetails?.cpfNo}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              
+              <span>PPAN Number</span>
+              <label>{{empDetails?.personalDetails?.ppoNo=='null'?'':empDetails?.personalDetails?.ppoNo}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Foreign Services</span>
+              <label>{{empDetails?.personalDetails?.foreignService}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Foreign Empolyer</span>
+              <label>{{empDetails?.personalDetails?.foreignEmpolyer}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Foreign Services From-To Date</span>
+              <label>{{empDetails?.personalDetails?.from_Date}} - {{empDetails?.personalDetails?.to_Date}}</label>
+            </div>
+          </div>
+
+      
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Income Tax Regime</span>
+              <label>{{empDetails?.serviceDetails?.incomeTaxRegime}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New Changes -->
+              <span>Are you A Ex-Service Man ?</span>
+              <label>{{empDetails?.serviceDetails?.incomeTaxRegime}}</label>
+              <!-- <label>No</label> -->
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New Changes -->
+              <span>Are You Getting Pension From The Previous Military
+                Service?</span>
+              <label>No</label>
+
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New Changes -->
+              <span>Are You Getting Civil Service Pension?</span>
+
+              <label>No</label>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="row">
+          <div class="mt-2 border-3 border-bottom">
+            <span class="fs-5 p-2 heading_design"> Other Details</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Appointment Order No </span>
+              <label>{{empDetails?.personalDetails?.appointOrdNum}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Apppointment Order Date </span>
+              <label>{{empDetails?.personalDetails?.appointmentOrderDate}}</label>
+            </div>
+          </div>
+            
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Order Issuing Authority/Office </span>
+              <label>{{empDetails?.personalDetails?.authorityOffice}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Apppointment Authority </span>
+              <label>{{empDetails?.personalDetails?.appointAuthority}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Budget Head For Pension Disbursement</span>
+              <label>{{empDetails?.calculationsPayDetails?.mainBudgetHead}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Budget Head For Pension Gratuity</span>
+              <label>{{empDetails?.calculationsPayDetails?.gratuityBudgetHead}}</label>
+            </div>
+          </div>
+       
+        </div>
+
+        <!-- deduction deatils -->
+         
+        <div class="row">
+          <div class="mt-2 border-3 border-bottom">
+            <span class="fs-5 p-2 heading_design"> Deduction Details</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Deduction Type</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.addDeduction[1]?.deductionType}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Deduction Amount</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.addDeduction[1]?.deductionAmount}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Deduction Head</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.addDeduction[1]?.deductionHead}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Allowance Type</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.addAllowanceType[2]?.allowanceType}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Allowance Amount</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.addAllowanceType[2]?.allowanceAmount}}</label>
+            </div>
+
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Allowance Head</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.addAllowanceType[2]?.allowanceHead}}</label>
+            </div>
+          </div>
+        
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>With Held Name</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.addWithHeld[3]?.withHeldName}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>With Held Reason</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.addWithHeld[3]?.withHeldReason}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>With Held Amount</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.addWithHeld[3]?.withHeldAmount}}</label>
+            </div>
+          </div>
+
+
+
+       
+        </div>
+        <div class="row">
+          <div class="mt-2 border-3 border-bottom">
+            <span class="fs-5 p-2 heading_design">Calculation Pension Service Details </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Total Service Length</span>
+              <label>{{empDetails?.serviceRecords?.totalServiceLength}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Total Qualifying Service Previous Org</span>
+              <label>{{empDetails?.calculationsPensionDetails?.totalQualifyingServicePrvOrg}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Total Non - Qualifying service</span>
+              <label>{{empDetails?.calculationsPensionDetails?.totalNonQualifyingService}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Total Qualifying Service </span>
+              <label>{{empDetails?.calculationsPensionDetails?.totalQualifyingService}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Basic Pay</span>
+              <label>{{empDetails?.calculationsPensionDetails?.basicPay}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>DA Rate</span>
+              <label>{{empDetails?.calculationsPensionDetails?.daRate}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>DA Amount</span>
+              <label>{{empDetails?.calculationsPensionDetails?.daAmount}}</label>
+            </div>
+          </div>
+          <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>DA Amount</span>
+              <label>{{empDetails?.calculationsPayDetails?.da}}</label>
+            </div>
+          </div> -->
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>CCA</span>
+              <label>{{empDetails?.calculationsPayDetails?.cca}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>HRA</span>
+              <label>{{empDetails?.calculationsPayDetails?.hra}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Special Pay</span>
+              <label>{{empDetails?.calculationsPayDetails?.specialPay}}</label>
+            </div>
+          </div>
+          
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Pension Amount</span>
+              <label>{{empDetails?.calculationsPensionDetails?.pensionAmount}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>CPO Deduction</span>
+              <label>{{empDetails?.calculationsPensionDetails?.cpoDeduction}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Reduce Pension Amount</span>
+              <label>{{empDetails?.calculationsPensionDetails?.netpensionAmount}}</label>
+            </div>
+          </div>
+         
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Enhanced Pension</span>
+              <label>{{empDetails?.calculationsPensionDetails?.enhancedPension}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Enhanced Pension Date</span>
+              <label>{{empDetails?.calculationsPensionDetails?.enhancedPensionDate}}</label>
+            </div>
+
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Family Pension</span>
+              <label>{{empDetails?.calculationsPensionDetails?.familyPension}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Pay Matrix</span>
+              <label></label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Pay Level</span>
+              <label>{{empDetails?.calculationsPayDetails?.payLevel}}</label>
+            </div>
+          </div>
+         
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>NPA/NCA</span>
+              <label>{{empDetails?.calculationsPayDetails?.npaOrNca}}</label>
+            </div>
+          </div>
+        
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Pay Commision</span>
+              <label>{{empDetails?.personalDetails?.payCommisionName}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+    
+              <span>Opt for Commutation</span>
+              <label>{{empDetails?.serviceDetails?.optForCommutation}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Commutation Precentage</span>
+              <label>{{empDetails?.serviceDetails?.commuationPercentage}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Commutation Factor</span>
+              <label>{{empDetails?.calculationsPensionDetails?.commutedFactor}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Commutation Amount</span>
+              <label>{{empDetails?.calculationsPensionDetails?.commutationAmount}}</label>
+            </div>
+          </div>
+        
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Commutation Effective Date</span>
+              <label>{{empDetails?.calculationsPensionDetails?.commutationEffectiveDate}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Commutation Restore Date</span>
+              <label>{{empDetails?.calculationsPensionDetails?.commutationRestoreDate}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Recovery Amount</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.addDynamicElement[0]?.recoveryAmount}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Recovery Head</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.addDynamicElement[0]?.recoveryHead}}</label>
+            </div>
+          </div>
+          <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Date of Retirement</span>
+              <label>{{empDetails?.calculationsAdditionalAllowanceRecovery?.payLevel}}</label>
+            </div>
+
+          </div> -->
+      
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Last Emolument</span>
+              <label>{{empDetails?.calculationsPensionDetails?.lastEmolument}}</label>
+            </div>
+          </div>
+
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Retire Gratuity</span>
+              <label>{{empDetails?.calculationsPensionDetails?.retirGratuity}}</label>
+            </div>
+
+          </div>
+        
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Ret. Gratuity Net Pay</span>
+              <label>{{empDetails?.calculationsPensionDetails?.netPay}}</label>
+            </div>
+          </div>
+       
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Eighty Year Additonal Amount</span>
+              <label>{{empDetails?.calculationsPensionDetails?.eightyYearAdditonalAmount}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Eighty Five Year Additonal Amount</span>
+              <label>{{empDetails?.calculationsPensionDetails?.eightyFiveYearAdditonalAmount}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Ninty Year Additonal Amount</span>
+              <label>{{empDetails?.calculationsPensionDetails?.nintyYearAdditonalAmount}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Ninty Five Year Additonal Amount</span>
+              <label>{{empDetails?.calculationsPensionDetails?.nintyFiveYearAdditonalAmount}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Hundred Year Additonal Amount</span>
+              <label>{{empDetails?.calculationsPensionDetails?.hundredYearAdditonalAmount}}</label>
+            </div>
+          </div>
+
+<!-- 
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Six Monthly Period</span>
+              <label>{{empDetails?.calculationsPensionDetails?.SixMonthlyPeriod}}</label>
+            </div>
+          </div>
+           -->
+          <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Recovery Amount</span>
+              <label>{{empDetails?.calculationsPensionDetails?.recoveryAmount}}</label>
+            </div>
+          </div> -->
+         
+         
+
+        </div>      
+
+        <div class="row">
+          <div class="mt-2 border-3 border-bottom">
+            <span class="fs-5 p-2 heading_design heading_design heading_design">Bank Treasury Detail</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Bank Account Number</span>
+              <label>{{empDetails?.bankTreasuryDetails?.accountNumber}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Bank Branch Id</span>
+              <label>{{empDetails?.bankTreasuryDetails?.bankBranchId}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Bank Name</span>
+              <label>{{empDetails?.bankTreasuryDetails?.bankName}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Branch Name</span>
+              <label>{{empDetails?.bankTreasuryDetails?.branchName}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Employee Code</span>
+              <label>{{empDetails?.bankTreasuryDetails?.employeeCode}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Ifsc Code</span>
+              <label>{{empDetails?.bankTreasuryDetails?.ifscCode}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New Changes -->
+              <span>Treasury Code</span>
+              <label>{{empDetails?.bankTreasuryDetails?.treasuryCode}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Treasury Name</span>
+              <label>{{empDetails?.bankTreasuryDetails?.treasuryName}}</label>
+            </div>
+          </div>
+
+        
+        </div>
+
+        
+        <div class="row" *ngIf="empDetails?.loansAdvance.Length > 0" >
+          <div class="mt-2 border-3 border-bottom">
+            <span class="fs-5 p-2 heading_design heading_design heading_design">Loan & Advance Details</span>
+          </div>
+        </div>
+
+        <div class="row"  *ngFor="let loandata of empDetails?.loansAdvance"> 
+   
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Loan Type Name</span>
+              <label >{{loandata?.loanTypeName}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Sanction Number</span>
+              <label>{{loandata?.sanctionNumber}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Principle Amount</span>
+              <label>{{loandata?.principleAmount}} </label>
+            </div>
+          </div>
+          
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>sanction Amount</span>
+              <label>{{loandata?.sanctionAmount}}</label>
+            </div>
+          </div>
+
+<!-- 
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              
+              <span>Recovery Amount</span>
+              <label>{{loandata?.recoveredAmount}} </label>
+            </div>
+          </div> -->
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Interest</span>
+              <label>{{loandata?.interest}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Net Dues Amount</span>
+              <label>{{loandata?.netDueAmount}} </label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Sanction Date</span>
+              <label>{{loandata?.sanctionDate}} </label>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>    
+
+</mat-card>
+</div>

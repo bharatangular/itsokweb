@@ -1,0 +1,215 @@
+// .rowItem{
+//     display: flex;   
+//     column-gap: 20px;
+//    }
+
+   /* .grid-container {
+   display: grid;
+   grid-template-columns: auto auto auto;
+   background-color: #2196F3;
+   padding: 10px;
+ }
+ .grid-item {
+   background-color: rgba(255, 255, 255, 0.8);
+   border: 1px solid rgba(0, 0, 0, 0.8);
+   padding: 20px;
+   font-size: 30px;
+   text-align: center;
+ } */
+//  hr.solid {
+//   border-top: 3px solid #bbb;
+// }
+
+// .example-h2 {
+//   margin: 10px;
+// }
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+.example-form-field {
+    margin-right: 20px;
+  }
+  .mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+  }
+  // input[type=text] {
+  //   width: 100%;
+  //   padding: 12px 20px;
+  //   margin: 8px 0;
+  //   box-sizing: border-box;
+  // }
+  .matDatePicker mat-datepicker-toggle{
+    right: 0%;
+    position: absolute;
+    top: 25%;
+    transform: translate(-0%, -50%);
+}
+// .matDatePicker .mat-form-field-infix{
+//     padding: 0.2em 0;
+// }
+// .matDatePicker mat-date-range-input{
+//     height: 10px;
+// }
+
+.matDateOnly .mat-datepicker-toggle,
+.matDateWithTime .mat-datepicker-toggle{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+
+
+.matDateOnly input.mat-input-element,
+.matDateWithTime mat-date-range-input.mat-date-range-input{
+  padding-top: 10px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body {
+  background: #F0F2F4;
+  font-family: 'Poppins', sans-serif;
+}
+
+.card {
+  /* UI Properties */
+  background: #ffffff;
+  box-shadow: 0px 5px 20px #6170881A;
+  border-radius: 10px;
+  opacity: 1;
+  padding: 20px;
+  border: none;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: 22px;
+  margin-top: 27px;
+  color: #414141;
+  margin-bottom: 33px;
+}
+
+.name {
+  border-radius: 5px;
+  background: linear-gradient(90deg, #5a9cff 0%, #1952af 100%);
+  font-weight: 600;
+  font-size: 18px;
+  text-align: left;
+  text-align: center;
+  color: #fff;
+  padding: 6px;
+}
+
+.user {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  margin-right:0px;
+  margin-top: 10px;
+}
+
+.userimg {
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+  box-shadow: 0px 3px 6px #bde2d7;
+  outline: 2px solid #52bb9c;
+}
+
+.verified {
+  position: relative;
+  top: -9px;
+  margin: 0 auto;
+  display: block;
+}
+
+.userdetails {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 22px;
+  text-align: left;
+  color: #586a86;
+  margin-top:12px;
+  width: 80%;
+
+}
+
+.userdetails label {
+  display: block;
+  font-weight:400;
+}
+
+.userdetails span {
+  font-weight:500;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: left;
+  color: #414141;
+}
+
+.auto_sec_outer{position: relative; padding-top: 10px;}
+.pin_icon{ position: absolute; right:0px; top:0px;}
+.auto_sec{ background:#f8f8f8;  padding:25px 15px 5px 15px;}
+.auto_sec img{vertical-align: text-top;}
+.auto_sec h5{ display: inline-table; margin-left: 12px; font-weight: 500 !important; font-size: 14px !important;}
+
+.p_details{ font-size: 12px;    border-radius: 10px; background: #f5f8fc; padding: 5px; margin-top:5px !important;}
+.p_details .userdetails{ width:100% !important; padding: 10px; margin-top:0;}
+.custom_select select.mat-input-element{padding-top:0em;}
+
+.my_request{ background-color: #F2F7FF; border:1px solid #BED0EF; border-radius: 5px;}
+.card {
+  /* UI Properties */
+  background: #ffffff;
+  box-shadow: 0px 5px 20px #6170881A;
+  border-radius: 10px;
+  opacity: 1;
+  padding: 20px;
+  border: none;
+  margin-bottom: 15px;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+.numberInput::-webkit-outer-spin-button,
+.numberInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.numberInput{
+margin: 0px;
+}
+
+.numberInput::placeholder {
+  color: red;
+  opacity: 1; /* Firefox */
+}
+table {
+  width: 100%;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}

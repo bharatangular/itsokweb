@@ -1,0 +1,279 @@
+<div class="container-fluid mt-2 ">
+    <div class="card p-4">
+    <mat-tab-group animationDuration="0ms" class="mb-2">
+      <mat-tab label="Family Details And Nomination" class="text-black"></mat-tab>
+    </mat-tab-group>
+    <button type="button" class="float-end btn_mdf" *ngIf="config.registrationType === 0"
+      mat-raised-button color="primary" (click)="modify()">Modify</button>
+    <legend class="my-2"> Family's Details</legend>
+    <div class="row" style="overflow-x: auto;">
+      <table class="table table-striped table-hover border">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Relationship</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Janadhaar Id</th>
+            <th scope="col">Janadhaar Member Id</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of EmployeeFamilyDetails.familyDetails; let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{user.name}}</td>
+            <td>{{getRelationName(user.relationship)}}</td>
+            <td>{{user.dob | date}}</td>
+            <td>{{user.janAadharId}}</td>
+            <td>{{user.memberId}}</td>
+            <td>{{getGenderName(user.gender)}}</td>
+            <td>
+              <button mat-icon-button color="primary" (click)="edit(i)">
+                <mat-icon>edit</mat-icon></button>
+              <button mat-icon-button color="warn" (click)="remove(i)">
+                <mat-icon>delete</mat-icon></button>
+            </td>
+  
+          </tr>
+  
+        </tbody>
+      </table>
+    </div>
+  
+    <form *ngIf="!config.isView" [formGroup]="familyDetails" (submit)="saveFamily()">
+      <div class="row mt-2">
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Janadhaar Id</mat-label>
+            <input matInput formControlName="janAadharId" numberOnly (ngModelChange)="getJanaadhaar($event)"
+              [maxlength]="10">
+            <mat-hint
+              *ngIf="familyDetails.controls['janAadharId'].errors && familyDetails.controls['janAadharId']?.touched"
+              class="text-danger">
+              Enter 10 digit Janadhar Number.
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Member Id</mat-label>
+            <mat-select formControlName="memberId" (selectionChange)="changeMember()">
+              <mat-option *ngFor="let item of janaadhaarList" [value]="item.jan_mid" [disabled]="item.age <=18">
+                {{item.fnameEng}} | {{item.jan_mid}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" alphabetOnly matInput maxlength="100" minlength="2">
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Relationship</mat-label>
+            <mat-select formControlName="relationship" placeholder="--Select--">
+              <mat-option [value]="item.relationId" *ngFor="let item of getRelationList">{{item.rNameEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Date Of Birth</mat-label>
+            <input matInput readonly="" formControlName="dob" [matDatepicker]="picker7" />
+            <mat-datepicker-toggle matSuffix [for]="picker7">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker7 class="mat-piker"></mat-datepicker>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender" placeholder="--Select--">
+              <mat-option [value]="item.genId" *ngFor="let item of getGenderList">{{item.genNameEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Martial Status</mat-label>
+            <mat-select formControlName="maritalStatus" placeholder="--Select--">
+              <mat-option [value]="item.mStatusId"
+                *ngFor="let item of getMaritalStatusList">{{item.mStatusName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+  
+        <!-- <div class="col-md-6 col-lg-4 md-4 mt-3">
+                  <mat-form-field class="w-100">
+                      <mat-label>JanAadhar Id</mat-label>
+                      <input matInput formControlName="nameEn">
+                  </mat-form-field>
+              </div> -->
+  
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <div class="d-block mt-2"></div>
+          <mat-label class="mt-5">Physically Disabled</mat-label>
+          <mat-radio-group formControlName="physicallyDisabled" #group>
+            <mat-radio-button class="example-margin" [value]='true' color="primary" class="ms-3">Yes
+            </mat-radio-button>
+            <mat-radio-button class="example-margin" [value]='false' color="primary" class="ms-3">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+  
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Percentage Of Disability</mat-label>
+            <input matInput formControlName="percentageOfDisability">
+            <mat-hint *ngIf="familyDetails.controls['percentageOfDisability'].errors" class="text-danger">
+              Percentage of Disability should be min 40 and max 100
+            </mat-hint>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <div class="d-block mt-2"></div>
+          <mat-label class="mt-5">Dependent</mat-label>
+          <mat-radio-group formControlName="dependent" #group>
+            <mat-radio-button class="example-margin" [value]="true" color="primary" class="ms-3">Yes
+            </mat-radio-button>
+            <mat-radio-button class="example-margin" [value]="false" color="primary" class="ms-3">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+  
+  
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <div class="d-block mt-2"></div>
+          <mat-label class="mt-5">Employeed</mat-label>
+          <mat-radio-group #group class="flex-wrap" formControlName="employed" (change)="onItemChanges($event)">
+            <mat-radio-button class="example-margin" [value]="true" color="primary" class="ms-3">Yes
+            </mat-radio-button>
+            <mat-radio-button class="example-margin" [value]="false" color="primary" class="ms-3">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+  
+  
+        <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="familyDetails.value.employed == true">
+          <div class="d-block mt-2"></div>
+          <mat-label class="mt-5">Is Rajasthan Government Employee</mat-label>
+          <mat-radio-group #group class="flex-wrap" formControlName="govEmployee">
+            <mat-radio-button class="example-margin" [value]="true" color="primary" class="ms-3">Yes
+            </mat-radio-button>
+            <mat-radio-button class="example-margin" [value]="false" color="primary" class="ms-3">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100" *ngIf="familyDetails.value.govEmployee == true">
+            <mat-label>EmployeeId</mat-label>
+            <input matInput formControlName="employeeId">
+          </mat-form-field>
+        </div>
+  
+        <!-- <div class="col-12"> -->
+        <div class="float-right mt-3 mb-3">
+          <button type="submit" mat-raised-button color="primary">Add</button>
+        </div>
+      </div>
+    </form>
+  
+  
+  
+    <legend class="mb-3"> Nominee Details</legend>
+  
+  
+    <div class="Row" style="overflow-x: auto;">
+      <table class="table table-striped table-hover border">
+        <thead>
+          <tr>
+            <th scope="col">Schemes</th>
+            <th scope="col">Name Of Nominee</th>
+            <th scope="col">Relation</th>
+            <th scope="col">Share %</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of EmployeeFamilyDetails.nomineeDetails; let i = index">
+            <td>{{getScheme(item.schemes)}}</td>
+            <td>{{item.nameOfNominee}}</td>
+            <td>{{getRelationName(item.relation)}}</td>
+            <td>{{item.share}}</td>
+            <td>
+              <button mat-icon-button type="button" color="primary" (click)="edit1(i)">
+                <mat-icon>edit</mat-icon></button>
+              <button type="button" mat-icon-button color="warn" (click)="remove1(i)">
+                <mat-icon>delete</mat-icon></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+    </div>
+  
+    <form *ngIf="!config.isView" [formGroup]="frmNominee" (submit)="saveNominee()">
+      <div class="row mt-2">
+        <div class="col-md-6 col-lg-3 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Schemes</mat-label>
+            <mat-select formControlName="schemes" placeholder="--Select--">
+              <mat-option [value]="item.schNomId"
+                *ngFor="let item of getSchemeTypeList">{{item.schNomNameEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-3 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Name Of Nominee</mat-label>
+            <mat-select formControlName="nameOfNominee" placeholder="--Select--">
+              <mat-option *ngFor="let item of EmployeeFamilyDetails.familyDetails"
+                [value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-3 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Relation</mat-label>
+            <mat-select formControlName="relation" placeholder="--Select--">
+              <mat-option [value]="item.relationId" *ngFor="let item of getRelationList">{{item.rNameEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-3 md-4 mt-3">
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field class="w-100">
+                <mat-label>Share %</mat-label>
+                <input matInput formControlName="share" maxlength="3">
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="mt-2" mat-raised-button color="primary">Add</button>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </form>
+  
+  
+    <!-- alter Nominee Detail-->
+  
+  
+    
+  
+    <div class="col-12" *ngIf="isSaveEnable">
+      <!-- <button *ngIf="isSaveEnable" (click)="saveDraft()" type="submit" mat-raised-button color="primary" class="mt-5">
+        {{config.registrationType === 0 ? 'Save' : 'Save as Draft'}}
+      </button> -->
+    </div>
+  </div>
+</div>

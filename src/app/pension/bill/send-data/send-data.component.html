@@ -1,0 +1,81 @@
+<div class="container-fluid mb-5 col-lg-6 offset-3">
+    <mat-card> 
+      
+      <div class="row mx-1" style="background: #edf2fa;">
+        
+        <div class="col-lg-7 pt-2">        
+          <h3 class="mt-3">Send PPO data to IFPMS</h3>
+            <!-- <mat-label>Input code</mat-label> -->
+            <mat-form-field class="w-100">
+                <mat-label> PPO Date for IFPMS</mat-label>
+                <input matInput [matDatepicker]="OrderDate" #com
+                  (dateChange)="dateChange(com.value)" (focus)="OrderDate.open()"
+                   name="Order_Date" autocomplete="off"
+                  placeholder="PPO Date for IFMPS">
+                <mat-datepicker-toggle matSuffix [for]="OrderDate"></mat-datepicker-toggle>
+                <mat-datepicker #OrderDate></mat-datepicker>
+              </mat-form-field>
+            <!-- <mat-form-field class="example-full-width w-100">
+              <input matInput placeholder="Employee Code" [(ngModel)]="cpoDetail"  [ngModelOptions]="{standalone: true}" oninput="this.value = this.value.toUpperCase()">
+            </mat-form-field> -->
+          
+        </div>
+        <div class="col-lg-5 text-start pt-3 mt-5">
+          <button mat-raised-button color="primary" (click)="sendDataIFMPS()">Send PPO data to IFPMS</button>
+        </div>
+        <hr>
+        <div class="row text-start my-3">
+            <div class="col-lg-7 mt-2">
+              <h3>Send CPO/GPO data IFPMS</h3>
+            </div>
+            <div class="col-lg-5">
+              <button mat-raised-button color="primary" (click)="sendDataCPOGPO()">Send CPO/GPO data IFPMS</button>
+            </div>
+        </div>
+
+          <hr>
+          
+          <div class="row">
+            <div class="col-lg-7 text-start pt-3">
+              <h3>Pay Manager </h3>
+                <mat-form-field class="w-100">
+            <mat-label> Select One</mat-label>
+            <mat-select panelClass="myPanelClass" [(ngModel)]="value"       >
+            <mat-option value="4">CPO</mat-option>
+            <mat-option value="3">GPO</mat-option>
+            </mat-select>
+        </mat-form-field>
+          </div>
+          <div class="col-lg-5 text-start pt-4 mt-4">
+            <button mat-raised-button color="primary" (click)="sendDataPayeeManager()">Send Data to pay Manager</button>
+      </div>
+        </div>
+        <hr>
+        <div class="col-lg-7 pt-2">        
+          <h3 class="mt-3">Generate Bill</h3>
+            <!-- <mat-label>Input code</mat-label> -->
+            <mat-form-field class="w-100">
+                <mat-label> Bill Date for Generate Bill</mat-label>
+                <input matInput [matDatepicker]="OrderDate1" #com1
+                  (dateChange)="dateChange(com1.value)" (focus)="OrderDate1.open()"
+                   name="Order_Date" autocomplete="off"
+                  placeholder="PPO Date for IFMPS">
+                <mat-datepicker-toggle matSuffix [for]="OrderDate1"></mat-datepicker-toggle>
+                <mat-datepicker #OrderDate1></mat-datepicker>
+              </mat-form-field>
+            <!-- <mat-form-field class="example-full-width w-100">
+              <input matInput placeholder="Employee Code" [(ngModel)]="cpoDetail"  [ngModelOptions]="{standalone: true}" oninput="this.value = this.value.toUpperCase()">
+            </mat-form-field> -->
+          
+        </div>
+        <div class="col-lg-5 text-start pt-3 mt-5">
+          <button mat-raised-button color="primary" (click)="generateBill()">Generate Bill</button>
+        </div>
+      </div>
+  
+  
+    
+  </mat-card>
+  </div>
+  
+  

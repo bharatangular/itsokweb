@@ -1,0 +1,607 @@
+<mat-card>
+  <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+    <mat-tab label="Personal Details">
+      <div class="tab-container mt-4">
+        <div class="container-fluid">
+          <div class="row">
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div class="avatar-upload">
+                <span>Joint Photograph</span>
+               
+                <div class="avatar-preview">
+                  <div id="imagePreview" [style.backgroundImage]="'url('+ jointImageUrl +')'"> <i
+                      class="fa fa-edit"></i>
+                  </div>
+                </div>
+                <!-- <button class="editbutton" (click)="fileInput.click()"><mat-icon>edit</mat-icon></button> -->
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div class="avatar-upload">
+                <span>Employee Photograph</span>
+              
+                <div class="avatar-preview">
+                  <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'"> <i
+                      class="fa fa-edit"></i>
+                  </div>
+                </div>
+                <!-- <button class="editbutton" (click)="fileInput.click()"><mat-icon>edit</mat-icon></button> -->
+              </div>
+            </div>
+            <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                    <div class="avatar-upload">
+                                      <span>Employee Signature</span>
+                                      <div class="avatar-edit">
+                                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
+                                          (change)="uploadFile($event)" />
+                                      </div>
+
+                                      <div class="avatar-preview">
+                                        <div id="imagePreview" [style.backgroundImage]="'url('+ signimageUrl +')'"> <i
+                                            class="fa fa-edit"></i>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                  </div> -->
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Janadhaar Number</span>
+                <label>{{personalDetail?.janadharId}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Employee Name</span>
+                <label>{{personalDetail?.nameEn}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Employee ID</span>
+                <label>{{personalDetail?.employeeCode}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Payee ID </span>
+                <label>{{personalDetail?.payeeId}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>SSO ID </span>
+                <label>{{personalDetail?.payeeId}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Gender</span>
+                <label>{{personalDetail?.genderName}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Date of Birth</span>
+                <label>{{personalDetail?.dateOfBirth}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Height</span>
+                <label>{{personalDetail?.height}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Identification Mark</span>
+                <label>{{personalDetail?.identificationMarks}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Father's Name</span>
+                <label>{{personalDetail?.fatherName}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Mother's Name</span>
+                <label>{{personalDetail?.motherName}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+              *ngIf="empInfo.roleId==='49'">
+              <div>
+                <span>Martial Status</span>
+                <label>{{personalDetail?.maritalStatus}}
+                </label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+              *ngIf="empInfo.roleId!=='49'">
+              <div>
+                <span>Martial Status</span>
+                <label>{{personalDetail?.maritalStatus}}
+                  <div *ngFor="let file of documentId">
+                    <a *ngIf="file.id==23" matTooltip="Download" href="JavaScript:Void(0);"
+                      (click)="getDetailDocument('Marriage_certificate',23)">Download Certificate</a>
+                  </div>
+
+                  <div *ngIf="empInfo.aid=='58233'">
+                    <div class="uploaddoc" *ngIf="!martialStatus">
+                      <!-- <input type="file" id="fileDropRef" class="inputd" #Mfile (change)="Martial_Status(Mfile)" /> -->
+                      <input type="file" id="fileDropRef" accept=".pdf" class="inputd"
+                        (change)="UploadMartialStatus($event)">
+                      <label for="fileDropRef">
+                        <a matTooltip="View Details" href="JavaScript:Void(0);" >
+                          Upload certificate</a>
+                      </label>
+                    </div>
+                    <div *ngIf="martialStatus" class="uploaddoc">
+                      <span style="color:#3281CC;">{{martialStatus}}</span>
+                      <a href="JavaScript:Void(0);" (click)="removeMartialStatus()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                          class="bi bi-trash" viewBox="0 0 16 16">
+                          <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                          <path fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- <a matTooltip="View Marriage Certificate" href="JavaScript:Void(0);">View Marriage
+                                          Certificate</a> -->
+                </label>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Spouse name</span>
+                <label>{{personalDetail?.spouseName}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+              *ngIf="empInfo.roleId==='49'">
+              <div>
+                <span>Disabled</span>
+                <label>{{personalDetail?.disable}}
+                </label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+              *ngIf="empInfo.roleId!=='49'">
+              <div>
+                <span>Disabled</span>
+                <label>{{personalDetail?.disable==0?'N/A':personalDetail?.disable}}
+                  <div *ngFor="let file of documentId">
+                    <a *ngIf="file.id==24" matTooltip="Download" href="JavaScript:Void(0);"
+                      (click)="getDetailDocument('Disability_Certificate',24)">Download Certificate</a>
+                  </div>
+                  <div *ngIf="empInfo.aid==='58233' && personalDetail?.disable!=='0'">
+                    <div class="uploaddoc" *ngIf="!disabledFile">
+                      <!-- <input type="file" id="fileDropRef" class="inputd" #Dfile (change)="onChangeDisabled(Dfile)" /> -->
+                      <input type="file" id="fileDropRef" accept=".pdf" class="inputd"
+                        (change)="onChangeDisabled($event)">
+                      <label for="fileDropRef">
+                        <a matTooltip="View Details" href="JavaScript:Void(0);" >
+                          Upload certificate</a>
+                      </label>
+                    </div>
+                    <div *ngIf="disabledFile" class="uploaddoc">
+                      <span style="color:#3281CC;">{{disabledFile}}</span>
+                      <a href="JavaScript:Void(0);" (click)="removeDisabled()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                          class="bi bi-trash" viewBox="0 0 16 16">
+                          <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                          <path fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Type of Disability</span>
+                <label>{{personalDetail?.disabilityId}}</label>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Percentage of Disability</span>
+                <label>{{personalDetail?.disabilityPercent}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Blood Group</span>
+                <label>{{personalDetail?.bloodGrpName}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Email Id</span>
+                <label>{{personalDetail?.emailId}}</label>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+
+              <div>
+                <span>Mobile No</span>
+                <label>{{personalDetail?.mobileNo}}</label>
+              </div>
+
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Nationality</span>
+                <label>{{personalDetail?.nationality}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Religion</span>
+                <label>{{personalDetail?.religionCode}}</label>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Pan Number</span>
+                <label>{{personalDetail?.pan}}</label>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div>
+                <span>Adhaar Number</span>
+                <label>{{personalDetail?.aadharRefNo}}</label>
+              </div>
+            </div>
+
+          </div>
+          <div class="d-flex justify-content-end">
+            <button mat-raised-button tabindex="-1" type="button" color="primary" class="btn btn-primary  ms-2" (click)='moveToSelectedTab("Service Details")'>Next</button>
+
+          </div>
+
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Service Details">
+
+      <div class="tab-container container-fluid mt-4">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Category of Empolyee </span>
+              <label>{{serviceDetails?.categoryOfEmployee}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Category of Pension </span>
+              <label>Superannuation</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Office Name </span>
+              <label>{{serviceDetails?.officeNameEn}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Gazetted</span>
+              <label>{{serviceDetails?.gajetted}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Admin Department</span>
+              <label>{{serviceDetails?.parentDepartmentName}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Current Department</span>
+              <label>{{personalDetail?.deptName}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Current Designation</span>
+              <label>{{personalDetail?.desgDescName}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Current Office Address</span>
+              <label>{{personalDetail?.officeAdress}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Appointment Order No </span>
+              <label>{{personalDetail?.appointOrdNum}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Apppointment Order Date </span>
+              <label>{{serviceDetails?.dateValue}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Order Issuing Authority/Office </span>
+              <label>DTA</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Apppointment Authority </span>
+              <label>DTA</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Date of Joining Regular Service </span>
+              <label>{{serviceDetails?.DOJRS}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Date of Joining Current Designation</span>
+              <label>{{serviceDetails?.DOPD}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Date of Joining Present DDO</span>
+              <label>{{serviceDetails?.DOJPD}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Joining Date</span>
+              <label>{{serviceDetails?.DOJ}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Date of Retirement</span>
+              <label>{{personalDetail?.dor}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+            *ngIf="empInfo.roleId==='49'">
+            <div>
+              <span>Retirement Order, Sanction</span>
+              <label>{{personalDetail?.disable}}
+
+              </label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3"
+            *ngIf="empInfo.roleId!=='49'">
+            <div>
+              <span>Retirement Order, Sanction</span>
+              <label>{{personalDetail?.disable}}
+                <div *ngFor="let file of documentId">
+                  <a *ngIf="file.id==15" matTooltip="Download" href="JavaScript:Void(0);"
+                    (click)="getDetailDocument('Retirement_Certificate',15)">Download Certificate</a>
+                </div>
+                <div *ngIf="empInfo.aid==='58233'">
+                  <div class="uploaddoc" *ngIf="!retirementFile">
+                    <!-- <input type="file" id="fileDropRef" class="inputd" #Rfile (change)="onRetirement(Rfile)" /> -->
+                    <input type="file" id="fileDropRef" accept=".pdf" class="inputd"
+                      (change)="onRetirement($event)">
+                    <label for="fileDropRef">
+                      <a matTooltip="View Details" href="JavaScript:Void(0);" >
+                        Upload certificate</a>
+                    </label>
+                  </div>
+                  <div *ngIf="retirementFile" class="uploaddoc">
+                    <span style="color:#3281CC;">{{retirementFile}}</span>
+                    <a href="JavaScript:Void(0);" (click)="removeRetirement()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                        class="bi bi-trash" viewBox="0 0 16 16">
+                        <path
+                          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                        <path fill-rule="evenodd"
+                          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                      </svg>
+                    </a>
+
+                  </div>
+
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>PRAN No.</span>
+              <label>{{personalDetail?.pranNumber}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>GPF No.</span>
+              <label>{{personalDetail?.gpfNo}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>State Insurance Number</span>
+              <label>{{personalDetail?.sipfNo}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>I.A.S CPNF Number</span>
+              <label>{{personalDetail?.cpfNo}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New Changes -->
+              <span>PPAN Number</span>
+              <label>{{personalDetail?.ppoNo=='null'?'':personalDetail?.ppoNo}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Foreign Services</span>
+              <label>{{personalDetail?.foreignService}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Foreign Empolyer</span>
+              <label>{{personalDetail?.foreignEmpolyer}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Foreign Services From-To Date</span>
+              <label>{{personalDetail?.from_Date}} - {{personalDetail?.to_Date}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Opt for Commutation</span>
+              <label>{{serviceDetails?.optForCommutation}}</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Commutation Precentage</span>
+              <label>{{serviceDetails?.commuationPercentage}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New changes -->
+              <span>Income Tax Regime</span>
+              <label>{{serviceDetails?.incomeTaxRegime}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New Changes -->
+              <span>Are you A Ex-Service Man ?</span>
+              <!-- <label>{{Personaldetail?.exService}}</label> -->
+              <label>No</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New Changes -->
+              <span>Are You Getting Pension From The Previous Military
+                Service?</span>
+              <label>No</label>
+              <!-- <label>{{Personaldetail?.previousAsignee}}</label> -->
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New Changes -->
+              <span>Are You Getting Civil Service Pension?</span>
+              <!-- <label>{{Personaldetail?.previousAsignee}}</label> -->
+              <label>No</label>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button mat-stroked-button tabindex="-1" type="button"
+          class="btn btn-outline-cancel me-2"  (click)='moveToSelectedTab("Personal Details")'>Previous</button>
+          <button mat-raised-button tabindex="-1" type="button" color="primary" class="btn btn-primary  ms-2" (click)='moveToSelectedTab("Address Details")'>Next</button>
+
+        </div>
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Address Details">
+      <div class="tab-container mt-4">
+        <div class="container-fluid ">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mt-3 allRadious"
+              *ngFor="let field of residenceArray">
+              <mat-card class="p-0 lh-lg">
+                <mat-card-content class="p-3">
+                  <div class="address-card">
+                    <mat-icon>{{iconCA}}</mat-icon>
+                  </div>
+                  <span>Current Address</span>
+                  <p style="max-width: 100%;">{{field.houseAddress+','+field.homeTown
+                    +','+field.districtNameEn+','+field.stateNameEn+','+field.pinCode+','+field.officeNameEn}}
+                  </p>
+                </mat-card-content>
+              </mat-card>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mt-3 allRadious"
+              *ngFor="let field of departmentAddress">
+              <mat-card class="p-0 lh-lg">
+                <mat-card-content class="p-3">
+                  <div class="address-card">
+                    <span class="material-symbols-outlined">
+                      <mat-icon>{{iconPA}}</mat-icon>
+                    </span>
+                  </div>
+                  <span>Permanent Address</span>
+                  <p style="max-width: 100%;">{{field.houseAddress+','+field.homeTown
+                    +','+field.districtNameEn+','+field.stateNameEn+','+field.pinCode+','+field.officeNameEn}}
+                  </p>
+                </mat-card-content>
+              </mat-card>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mt-3 allRadious"
+              *ngFor="let field of officeArray">
+              <mat-card class="p-0 lh-lg">
+                <mat-card-content class="p-3">
+                  <div class="address-card">
+                    <mat-icon>{{iconOA}}</mat-icon>
+                  </div>
+                  <span>Office Address</span>
+                  <p style="max-width: 100%;">
+                    {{field.officeNameEn+','+field.officeId+','+field.officeNameEn}}</p>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button mat-stroked-button tabindex="-1" type="button"
+            class="btn btn-outline-cancel me-2"  (click)='moveToSelectedTab("Service Details")'>Previous</button>
+          <button class="btn btn-primary ms-2" color="primary" mat-raised-button mat-button matStepperNext
+            (click)="nextStepC()">{{btnLabel}}</button>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+</mat-card>

@@ -1,0 +1,142 @@
+<div class="container-fluid full">
+    <div class="row"  *ngIf="empinfo.ssoId == 'IFMS.TEST' || empinfo.ssoId == 'IFMSPENSION.TEST'">
+        <div class="col-lg-12 p-3 pt-0">
+            <div class="card pb-0">
+                <!-- <div class="mt-2">
+                </div> -->
+                <div class="col-lg-12">
+                    <h3 class="bg_light_blue p-3">Filters</h3>
+                </div>
+                <div class="row p-3 py-1 mt-3">
+                    <div class="col-md-6 col-lg-4 md-4 mt-3">
+                        <mat-form-field class="w-100 "> 
+                            <mat-label> Department List</mat-label>    
+
+                            <input type="text"
+                                   matInput
+                                   placeholder="Select Department "
+                                   [formControl]="deptControl"
+                                   aria-label="Department"
+                                   [matAutocomplete]="auto"
+                                   forceSelection="vNameEnglish"
+                                   >
+                            <mat-autocomplete   [panelWidth]="'auto'"
+                            autoActiveFirstOption  (optionSelected)="getOfficeDetailsByDeptId()" #auto="matAutocomplete"  [displayWith]="displayFn">
+                              <mat-option *ngFor="let data of filteredDept | async " [value]="data">
+                                {{data?.vNameEnglish}} ({{data?.vId}})
+                              </mat-option>
+                            </mat-autocomplete>
+                            <button mat-button *ngIf="deptControl?.value?.vId" matSuffix mat-icon-button (click)="resetDept()">
+                                <mat-icon class="clear-icon">cancel</mat-icon>
+                              </button>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-lg-4 md-4 mt-3">
+                        <mat-form-field class="example-full-width w-100">        
+                            <mat-label> Office List</mat-label>
+                            <input type="text"
+                            placeholder="Select Office "
+                                   matInput
+                                   [formControl]="officeControl"
+                                   aria-label="Office"
+                                   [matAutocomplete]="auto1"
+                                   forceSelection="vNameEnglish"
+                                   >
+                            <mat-autocomplete  [panelWidth]="'auto'" autoActiveFirstOption (optionSelected)="selectOffice()"  #auto1="matAutocomplete"  [displayWith]="displayofFn">
+                              <mat-option *ngFor="let data of filterdOfficelist | async " [value]="data">
+                                {{data?.vNameEnglish}} ({{data?.vId}})
+                              </mat-option>
+                            </mat-autocomplete>
+                            <button mat-button *ngIf="officeControl?.value?.vId" matSuffix mat-icon-button (click)="resetOffice()">
+                                <mat-icon class="clear-icon">cancel</mat-icon>
+                              </button>
+                          </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-12">
+            <div class="row">
+                <div class="col-12 col-md-8 col-lg-12">
+                    <div class="tab-content" id="nav-tabContent">
+                        <!-- breadcrumb -->
+                        <section>
+                            <div class="content-wrapper">
+                                <nav aria-label="breadcrumb">
+                                </nav>
+                            </div>
+                        </section>
+                        <mat-card>
+                            <div class="content-wrapper" style="margin-bottom: 30px;">
+                                <div class="content-wrapper mb-2">
+                                    <div class="row justify-content-end mt-3">
+                                        <div class="col-lg-8 month-dropdown">
+                                            <h2 class="mb-0 py-2">Mark Leave</h2>
+                                        </div>
+                                        <div class="col-lg-4 text-end">
+                                            <mat-form-field class="w-100">
+                                                <mat-label><mat-icon>search</mat-icon></mat-label>
+                                                <input matInput (keyup)="applyFilter($event)" placeholder="Search"
+                                                    #input>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mat-elevation-z8 custome_table" style="overflow: auto;">
+                                    <table mat-table [dataSource]="dataSource" matSort class="w-100">
+
+                                        <ng-container matColumnDef={{column}}
+                                            *ngFor="let column of displayedColumns && objectKeys(displayedColumns)">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{displayedColumns &&
+                                                displayedColumns[column]}} </th>
+                                            <td mat-cell *matCellDef="let element; let i = index;">
+                                                <ng-container *ngIf="column == 'srNo'">
+                                                    {{ i + 1 }}
+                                                </ng-container>
+                                                <!-- All Data -->
+                                                <ng-container *ngIf="(column !== 'srNo' && column !== 'markLeave' && column !== 'EditStatus')">
+                                                    {{element[column]}}
+                                                </ng-container>
+                                                <!-- Roles -->
+                                                <ng-container *ngIf="(column == 'markLeave')">
+                                                        <button *ngIf="element.isActive== 'Y'" mat-stroked-button color="primary" class="big-btn-padding" (click)="openDialog(element, 'Action')">Mark Leave</button>
+                                                </ng-container>
+                                                <ng-container *ngIf="(column == 'Status')">
+                                                        <span [ngClass]="element.isActive== 'Y' ?  'text-success' : 'text-danger'" mat-stroked-button color="primary" class="big-btn-padding">{{element.isActive== 'Y' ? 'Active' : 'Inactive'}}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="(column == 'EditStatus')">
+                                                    <button class="editbutton" (click)="openDialog(element, 'Status')">
+                                                        <mat-icon>edit</mat-icon>
+                                                    </button>
+                                                </ng-container>
+                                            </td>
+                                            <!-- Sr No -->
+                                        </ng-container>
+
+                                        <tr mat-header-row
+                                            *matHeaderRowDef="displayedColumns && objectKeys(displayedColumns)"></tr>
+                                        <tr mat-row
+                                            *matRowDef="let row; columns: displayedColumns && objectKeys(displayedColumns);">
+                                        </tr>
+
+                                        <!-- Row shown when there is no matching data. -->
+                                        <tr class="mat-row" *matNoDataRow>
+                                            <td class="mat-cell" colspan="4">No data matching the filter
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <mat-paginator [pageSizeOptions]="[50, 100, 150, 200]"
+                                        aria-label="Select page of users"></mat-paginator>
+
+                                    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

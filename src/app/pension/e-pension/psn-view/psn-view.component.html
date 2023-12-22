@@ -1,0 +1,194 @@
+<mat-card class="m-3 mt-0" >
+    <div class="container-fluid">
+      <div class="row">
+        <div class="mt-2 border-3 border-bottom">
+          <span class="fs-5 p-2 heading_design">Personal Details</span>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div class="avatar-upload">
+            <span>Joint Photograph</span>
+            <!-- <div class="avatar-edit">
+              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+            </div> -->
+            <div class="avatar-preview">
+              <div id="imagePreview" [style.backgroundImage]="'url('+ jointImageUrl +')'" *ngIf="picData==''"> <i
+                  class="fa fa-edit"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div class="avatar-upload">
+            <span>Employee Photograph</span>
+
+            <div class="avatar-preview">
+              <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'"> <i class="fa fa-edit"></i>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Janadhaar Number</span>
+            <label>{{empDetails?.personalDetails?.janadharId}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Employee Name</span>
+            <label>{{empDetails?.personalDetails?.nameEn}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Employee ID</span>
+            <label>{{empDetails?.personalDetails?.employeeCode}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Payee ID </span>
+            <label>{{empDetails?.personalDetails?.payeeId}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>SSO ID </span>
+            <label>{{empDetails?.personalDetails?.ssoId}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Gender</span>
+            <label>{{empDetails?.personalDetails?.genderName}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Date of Birth</span>
+            <label>{{empDetails?.personalDetails?.dateOfBirth}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Height</span>
+            <label>{{empDetails?.personalDetails?.height}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Identification Mark</span>
+            <label>{{empDetails?.personalDetails?.identificationMarks}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Father's Name</span>
+            <label>{{empDetails?.personalDetails?.fatherName}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Mother's Name</span>
+            <label>{{empDetails?.personalDetails?.motherName}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Martial Status</span>
+            <label>{{empDetails?.personalDetails?.maritalStatus}}
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Martial Status</span>
+            <label>{{empDetails?.personalDetails?.maritalStatus}}</label>
+          </div>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Spouse name</span>
+            <label>{{empDetails?.personalDetails?.spouseName}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Disabled</span>
+            <label>{{empDetails?.personalDetails?.disable}}
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Disabled</span>
+            <label>{{empDetails?.personalDetails?.disable}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Type of Disability</span>
+            <label>{{empDetails?.personalDetails?.disabilityId}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Percentage of Disability</span>
+            <label>{{empDetails?.personalDetails?.disabilityPercent}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Blood Group</span>
+            <label>{{empDetails?.personalDetails?.bloodGrpName}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Email Id</span>
+            <label>{{empDetails?.personalDetails?.emailId}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+
+          <div>
+            <span>Mobile No</span>
+            <label>{{empDetails?.personalDetails?.mobileNo}}</label>
+          </div>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Nationality</span>
+            <label>{{empDetails?.personalDetails?.nationality}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Religion</span>
+            <label>{{empDetails?.personalDetails?.religionNameEn}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Pan Number</span>
+            <label>{{empDetails?.personalDetails?.pan}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Adhaar Number</span>
+            <label>{{empDetails?.personalDetails?.aadharRefNo}}</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+</mat-card>

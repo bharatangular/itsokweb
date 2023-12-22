@@ -1,0 +1,28 @@
+<mat-card class="card">
+    <form class="example-form">
+        <div class="row " style="text-align: center;">
+            <div class="col-12">
+                <h5>Login </h5>
+            </div>
+            <div class="col-12">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>User Name</mat-label>
+                    <input matInput placeholder="Enter your name" name="usename" [(ngModel)]="username">
+                </mat-form-field>
+            </div>
+            <div class="col-12">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Enter your password" value="" name="password" type="password"
+                        [(ngModel)]="password">
+                </mat-form-field>
+            </div>
+            <div class="col-12">
+                <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+            </div>
+        </div>
+    </form>
+
+
+
+</mat-card>

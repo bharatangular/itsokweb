@@ -1,0 +1,37 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+//   td, th {
+//     width: 25%;
+//   }
+tr.mat-footer-row {
+    height: 48px;
+    text-align: center;
+}
+.mat-elevation-z8 {    
+    overflow-x: auto;
+   }
+
+   tr.mat-header-row {
+    // background-color:#c3d8fb;
+}
+
+
+.month-dropdown{
+    text-align: right;
+}
+
+.mat-header-cell {
+  border-bottom: 1px solid #5A9CFF;
+  font-size: 14px;
+  font-weight: 600;
+  color: #414141;
+  font-family: "Poppins-m";
+  background-color: #EEF5FF;
+}

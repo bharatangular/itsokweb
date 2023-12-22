@@ -1,0 +1,77 @@
+@media print {
+    .pagebreak { page-break-before: always;}
+  }
+  .mat-header-cell {
+    // padding-left: 30px;
+    border-bottom: 1px solid #5A9CFF;
+    font-size: 13px;
+    align-content: center;
+    color: #414141;
+    font-family: "Poppins-m";
+    background-color: #EEF5FF;
+    min-width: 150px;
+    font-weight: bold;
+  }
+  app-filters {
+    position: relative;
+  }
+  :host ::ng-deep{
+    table {
+        width: 100%;
+        td {
+            min-width: 150px;
+            font-size: 13px;
+            text-align: left;  
+        }
+    }
+  }
+  .ancor{
+    color: var(--bs-link-color);
+    cursor: pointer;
+  }
+
+  .order .card-header h5 {
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+    color: #1f1f1f;
+  }
+  
+  .bg_light_blue{ background-color: #EEF5FF;}
+  
+  .btn_custome_r{ background-color:#ff000059 !important;}
+  .btn_custome_r:hover{filter: grayscale(100%);}
+  .btn_custome_g{ background-color: #0080008c !important;}
+  .btn_custome_g:hover{filter: grayscale(100%);}
+  
+  
+  
+  .w-5{ min-width:50px !important;}
+  .w-7{ min-width:70px !important;}
+  .w-8{ min-width:80px !important;}
+  .w-10{ min-width:100px !important;}
+
+  .clear-icon {
+    color: #999; /* Change the color of the cross icon as needed */
+  }
+  
+  .clear-icon:hover {
+    color: #f00; /* Change the color on hover if desired */
+  }
+
+  .editbutton {
+    display:inline;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #5564d8 !important;
+    color: #5564d8;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.editbutton .mat-icon{
+  line-height: inherit;
+}
+

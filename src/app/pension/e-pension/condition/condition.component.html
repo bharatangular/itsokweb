@@ -1,0 +1,99 @@
+<mat-card>
+  <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+    <mat-tab label="Conditions to be emposed">
+      <div class="tab-container mt-4">
+        <div class="container-fluid">
+          <form [formGroup]="conditionForm">
+            <div class="row mt-4">
+              <section class="example-section">
+                <p><mat-checkbox formControlName="condition1" color="primary"> Production of final LPC
+                    showing paid upto
+                    Date:-
+
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="picker" autocomplete="off"
+                        formControlName="condition1Date">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    Rs.
+                    <mat-form-field>
+                      <input matInput autocomplete="off" formControlName="condition1Amount">
+                    </mat-form-field>
+                    Per Month</mat-checkbox></p>
+
+                <p><mat-checkbox formControlName="condition2" color="primary"> Adjust of
+                    anticipatory/provisional pension
+                    paid, If any</mat-checkbox></p>
+                <p><mat-checkbox formControlName="condition3" color="primary">Adjust of
+                    anticipatory/provisional gratuity
+                    paid, If any</mat-checkbox></p>
+                <!-- <p><mat-checkbox formControlName="condition4" color="primary">Production of certificate under rule 29(1) of
+                    RSR</mat-checkbox></p> -->
+                <p><mat-checkbox formControlName="condition5" color="primary">Description roll of the payee
+                    duly attested
+                    by the head of the office </mat-checkbox></p>
+                <p><mat-checkbox formControlName="condition6" color="primary">Final consolidated NDC from
+                    the department
+                  </mat-checkbox></p>
+                <p><mat-checkbox formControlName="condition7" color="primary">No. DE pending or contemlated
+                    certificate
+                    from (Appointment Authority) </mat-checkbox></p>
+                <!-- <p><mat-checkbox formControlName="condition8" color="primary"> Certificate under rule (250c) of RSR from
+                    Appointment Authority </mat-checkbox></p> -->
+                <p><mat-checkbox formControlName="condition9" color="primary"> Service verification Date
+                    from-To :-
+                    <mat-form-field>
+                      <mat-date-range-input [rangePicker]="FromDate">
+                        <input matStartDate autocomplete="off" formControlName="condition9StartDate">
+                        <input matEndDate autocomplete="off" formControlName="condition9EndDate">
+                      </mat-date-range-input>
+                      <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
+                      <mat-date-range-picker #FromDate></mat-date-range-picker>
+                    </mat-form-field>
+                    from-To :- <mat-form-field>
+                      <mat-date-range-input [rangePicker]="FromDate1">
+                        <input matStartDate autocomplete="off" formControlName="condition9FromtDate">
+                        <input matEndDate autocomplete="off" formControlName="condition9TotDate">
+                      </mat-date-range-input>
+                      <mat-datepicker-toggle matSuffix [for]="FromDate1"></mat-datepicker-toggle>
+                      <mat-date-range-picker #FromDate1></mat-date-range-picker>
+                    </mat-form-field>in GA141
+                  </mat-checkbox></p>
+                <p><mat-checkbox formControlName="condition10" color="primary"> Certificate that no HBA/MCA
+                    except advance
+                    Rs. <mat-form-field>
+                      <input matInput autocomplete="off" formControlName="condition10Amount">
+                    </mat-form-field>/Rs. <mat-form-field>
+                      <input matInput autocomplete="off" formControlName="condition10Amount2">
+                    </mat-form-field>During Services </mat-checkbox></p>
+                <p><mat-checkbox formControlName="condition11" color="primary"> Certificate that no HBA/MCA
+                    was sanctioned
+                    to him/her during entire services </mat-checkbox></p>
+                <p><mat-checkbox formControlName="condition12" color="primary"> Certificate from the
+                    department that he/she
+                    was no re-employed after Rs. <mat-form-field>
+                      <input matInput autocomplete="off" formControlName="condition12Amount">
+                    </mat-form-field> </mat-checkbox></p>
+              </section>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button mat-stroked-button matStepperPrevious
+                class="btn btn-outline-cancel me-2">Previous</button>
+              <button class="btn btn-primary btn-cls" mat-raised-button color="primary" (click)="openDialog('','Request Confirmation','')">{{btnLabel}}
+              </button>
+              <!-- <button mat-button  (click)="stepper.reset()" class="btn btn-primary  ms-2">Reset</button> -->
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+</mat-card>
+
+
+
+
+

@@ -1,0 +1,615 @@
+<mat-tab-group [(selectedIndex)]="stepc">
+  <mat-tab label="Personal Details" [disabled]="true">
+    <div class="user_headign">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3 mb-3">
+          <div class="avatar-upload text-center">
+            <span class="d-block fw-bolder mb-2">Joint Photograph</span>
+
+            <div class="avatar-preview">
+              <div id="imagePreview" [style.backgroundImage]="'url('+ jointImageUrl +')'">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div class="avatar-upload text-center">
+            <span class="d-block fw-bolder mb-2">Employee Photograph</span>
+
+            <div class="avatar-preview">
+              <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row w-100">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Janadhaar Number</span>
+          <label class="fw-semibold">{{personalDetail?.janAadharId}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Employee Name</span>
+          <label class="fw-semibold">{{personalDetail?.firstName}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Employee Code</span>
+          <label class="fw-semibold">{{personalDetail?.employeeCode}}</label>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Gender</span>
+          <label class="fw-semibold">{{personalDetail?.genderNameEn}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Date of Birth</span>
+          <label class="fw-semibold">{{personalDetail?.dob |date}}</label>
+        </div>
+      </div>
+
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Father's Name</span>
+          <label class="fw-semibold">{{personalDetail?.fatherName}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Mother's Name</span>
+          <label class="fw-semibold">{{personalDetail?.motherName}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Martial Status</span>
+          <label class="fw-semibold">{{personalDetail?.maritalStatusName}}
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Spouse name</span>
+          <label class="fw-semibold">{{personalDetail?.spouseName}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Disabled</span>
+          <label class="fw-semibold">{{personalDetail?.disabilityStatus=="1"?"YES":"NO"}}
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Type of Disability</span>
+          <label class="fw-semibold">{{personalDetail?.disabilityTypeEn}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Percentage of Disability</span>
+          <label class="fw-semibold">{{personalDetail?.percentageOfDisability}}</label>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Email Id</span>
+          <label class="fw-semibold">{{personalDetail?.emailID}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+
+        <div>
+          <span class="d-block">Mobile No</span>
+          <label class="fw-semibold">{{personalDetail?.mobileNumber}}</label>
+        </div>
+
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Nationality</span>
+          <label class="fw-semibold">Indian</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Home State</span>
+          <label class="fw-semibold">{{personalDetail?.homeStateN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Home District</span>
+          <label class="fw-semibold">{{personalDetail?.homeDistrictN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Home Town</span>
+          <label class="fw-semibold">{{personalDetail?.homeTownN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Religion</span>
+          <label class="fw-semibold">{{personalDetail?.religionN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Pan Number</span>
+          <label class="fw-semibold">{{personalDetail?.pan}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Adhaar Number</span>
+          <label class="fw-semibold">{{personalDetail?.aadharRefNo}}</label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row w-100">
+      <div class="col-lg-12 text-end mb-4">
+        <button mat-button class="btn btn-primary  ms-2" color="primary"
+          style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button
+          (click)="nextStepc()">Next</button>
+      </div>
+    </div>
+
+  </mat-tab>
+  <mat-tab label="Service Details" [disabled]="true">
+    <div class="row w-100">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Service Status</span>
+          <label class="fw-semibold">{{serviceDetail?.serviceStatusN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Sub Service Status</span>
+          <label class="fw-semibold">{{serviceDetail?.subServiceStatusN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Employee Type</span>
+          <label class="fw-semibold">{{serviceDetail?.employeeTypeN}}</label>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Service Category</span>
+          <label class="fw-semibold">{{serviceDetail?.serviceCategoryN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Sub Service Category</span>
+          <label class="fw-semibold">{{serviceDetail?.subServiceCategoryN}}</label>
+        </div>
+      </div>
+
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Designation as per Service Cadre</span>
+          <label class="fw-semibold">{{serviceDetail?.designationAsPerServiceCadreN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Entitlement Status</span>
+          <label class="fw-semibold">{{serviceDetail?.entitlementStatusN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Gazetted/Non Gazetted</span>
+          <label class="fw-semibold">{{serviceDetail?.officerTypeIdN}}
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Service Quota</span>
+          <label class="fw-semibold">{{serviceDetail?.serviceQuotaN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Parent Department</span>
+          <label class="fw-semibold">{{serviceDetail?.parentDepartmentN}}
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Current Department</span>
+          <label class="fw-semibold">{{serviceDetail?.currentDepartmentN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Designation of Appointing Authority</span>
+          <label class="fw-semibold">{{serviceDetail?.appointingAuthorityN}}</label>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Appointed As</span>
+          <label class="fw-semibold">{{serviceDetail?.appointedAsN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+
+        <div>
+          <span class="d-block">Current Designation</span>
+          <label class="fw-semibold">{{serviceDetail?.currentDesignationN}}</label>
+        </div>
+
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Date Of Present Designation</span>
+          <label class="fw-semibold">{{serviceDetail?.dateOfPresentDesignation |date}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Joining Date</span>
+          <label class="fw-semibold">{{serviceDetail?.joiningDate |date}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Joining Time</span>
+          <label class="fw-semibold">{{serviceDetail?.joiningTimeN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Superannuation Date</span>
+          <label class="fw-semibold">{{serviceDetail?.retirementDate |date}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Date Of Joining Regular Service</span>
+          <label class="fw-semibold">{{serviceDetail?.dateOfJoiningRegularService |date}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Date Of Joining Present Ddo</span>
+          <label class="fw-semibold">{{serviceDetail?.dateOfJoiningPresentDDO |date}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">PRAN Type</span>
+          <label class="fw-semibold">{{serviceDetail?.pranType}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">GPF NO.</span>
+          <label class="fw-semibold">{{serviceDetail?.gpfNO}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">State Insurance Number</span>
+          <label class="fw-semibold">{{serviceDetail?.stateInsuranceNumber}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">RGHS Card No</span>
+          <label class="fw-semibold">{{serviceDetail?.rghsNO}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">BELT NO.</span>
+          <label class="fw-semibold">{{serviceDetail?.beltNo}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">PLI No.</span>
+          <label class="fw-semibold">{{serviceDetail?.pliNo}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">I.A.S CPNF No.</span>
+          <label class="fw-semibold">{{serviceDetail?.iasCpneNo}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">PAN No.</span>
+          <label class="fw-semibold">{{serviceDetail?.pPANNo}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="row w-100 mb-4">
+      <div class="col-lg-6 text-start">
+        <button mat-button class="btn btn-primary  ms-2" color="primary"
+          style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button mat-button
+          (click)="prevStepc()">Previous</button>
+      </div>
+      <div class="col-lg-6 text-end">
+        <button mat-button class="btn btn-primary  ms-2" color="primary"
+          style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button
+          (click)="nextStepc()">Next</button>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Family Details and Nomination" [disabled]="true">
+    <div class="row W-100">
+      <h3>Family Details:</h3>
+      <div style="overflow-x: auto;">
+        <table class="table table-striped table-hover border">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Relationship</th>
+              <th scope="col">Date of Birth</th>
+              <th scope="col">Janadhaar Id</th>
+              <th scope="col">Janadhaar Member Id</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Disabled</th>
+              <th scope="col">% Disability</th>
+              <th scope="col">Dependent</th>
+              <th scope="col">Is Employed</th>
+              <th scope="col">Is Raj.Govt.Employee</th>
+              <th scope="col">Employee Id</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of familyDetails; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{user?.name}}</td>
+              <td>{{getRelationName(user?.relationship)}}</td>
+              <td>{{user?.dob | date: "dd-MM-yyyy"}}</td>
+              <td>{{user?.janAadharId}}</td>
+              <td>{{user?.memberId}}</td>
+              <td>{{getGenderName(user?.gender)}}</td>
+              <th>{{user?.physicallyDisabled==1?"YES":"NO"}}</th>
+              <th>{{user?.percentageOfDisability}}</th>
+              <th>{{user?.dependent==1?"YES":"NO"}}</th>
+              <th>{{user?.employed==1?"YES":"NO"}}</th>
+              <th>{{user?.govEmployee==1?"YES":"NO"}}</th>
+              <th>{{user?.employeeId}}</th>
+
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <hr>
+      <h3>Nomini Details:</h3>
+      <div class="row w-100" style="overflow-x: auto;">
+        <table class="table table-striped table-hover border">
+          <thead>
+            <tr>
+              <th scope="col">Schemes</th>
+              <th scope="col">Name Of Nominee</th>
+              <th scope="col">Relation</th>
+              <th scope="col">Share %</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of geNomineeList(nominiDetails); let i = index">
+              <td>{{getScheme(item?.schemes)}}</td>
+              <td>{{item?.nameOfNominee}}</td>
+              <td>{{getRelationName(item?.relation)}}</td>
+              <td>{{item?.share}}</td>
+
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    <div class="row w-100 mb-4">
+      <div class="col-lg-6 text-start">
+        <button mat-button class="btn btn-primary  ms-2" color="primary"
+          style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button mat-button
+          (click)="prevStepc()">Previous</button>
+      </div>
+      <div class="col-lg-6 text-end">
+        <button mat-button class="btn btn-primary  ms-2" color="primary"
+          style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button
+          (click)="nextStepc()">Next</button>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Pay Entitlement Details" [disabled]="true">
+    <div class="row w-100">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Designation</span>
+          <label class="fw-semibold">{{payEntitlement?.designationN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Pay Commission</span>
+          <label class="fw-semibold">{{payEntitlement?.payCommissionN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Date of Entry in Existing Pay Band & Grade Pay</span>
+          <label
+            class="fw-semibold">{{payEntitlement?.dateOfEntryInExistingPayBandGradepay | date: "dd-MM-yyyy"}}</label>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Pay Scale</span>
+          <label class="fw-semibold">{{payEntitlement?.payScaleN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Date of present Pay Scale</span>
+          <label class="fw-semibold">{{payEntitlement?.dateOfPresentPayScale| date: "dd-MM-yyyy"}}</label>
+        </div>
+      </div>
+
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Grade Pay</span>
+          <label class="fw-semibold">{{payEntitlement?.gradePayN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Basic Pay</span>
+          <label class="fw-semibold">{{payEntitlement?.basicPayN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Special Pay</span>
+          <label class="fw-semibold">{{payEntitlement?.specialPay}}
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">NPA</span>
+          <label class="fw-semibold">{{payEntitlement?.NPA}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Dearness Allowance</span>
+          <label class="fw-semibold">{{payEntitlement?.dearnessAllowanceN}}
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Monthly Pension Treasury</span>
+          <label class="fw-semibold">{{payEntitlement?.monthlyPensionTreasuryN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Pension Initiate Office</span>
+          <label class="fw-semibold">{{payEntitlement?.pensionIniOffice}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Pension Initiate Office Name</span>
+          <label class="fw-semibold">{{payEntitlement?.pensionOfficeN}}</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+        <div>
+          <span class="d-block">Pension Initiate Office HO Name</span>
+          <label class="fw-semibold">{{payEntitlement?.pensionOfficeHoN}}</label>
+        </div>
+      </div>
+    </div>
+    <br>
+    <span class="text-danger">*If HO name is not showing then HO not present in concern office.Please contact office administrators.</span>
+    <div class="row w-100 mb-4">
+      <div class="col-lg-6 text-start">
+        <button mat-button class="btn btn-primary  ms-2" color="primary"
+          style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button mat-button
+          (click)="prevStepc()">Previous</button>
+      </div>
+      <div class="col-lg-6 text-end">
+        <button mat-button class="btn btn-primary  ms-2" color="primary"
+          style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button
+          (click)="nextStepc()">Next</button>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Documents" [disabled]="true">
+    <div class="card-body vieob">
+      <div class="row mList w-100">
+        <div class="col">
+          <h6><b>Document Name</b> </h6>
+
+        </div>
+        <div class="col">
+          <h6><b>Preview</b></h6>
+        </div>
+
+      </div>
+      <div class="row mList" *ngFor="let data of PdocumentList ">
+
+        <div class="col">
+          <h6>{{data?.documentName}} </h6>
+
+        </div>
+        <div class="col">
+          <h6><span style="color:blue;text-decoration: underline;"
+              (click)="showpreview(data.dmsDocumentId)">Preview</span></h6>
+        </div>
+
+      </div>
+      <div class="row mList" *ngFor="let data of serviceDetail?.documentList ">
+
+        <div class="col">
+          <h6>{{data?.documentName}} </h6>
+
+        </div>
+        <div class="col">
+          <h6><span style="color:blue;text-decoration: underline;"
+              (click)="showpreview(data.dmsDocumentId)">Preview</span></h6>
+        </div>
+
+      </div>
+    </div>
+    <div class="row w-100 mb-4">
+      <div class="col-lg-6 text-start">
+        <button mat-button class="btn btn-primary  ms-2" color="primary"
+          style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button mat-button
+          (click)="prevStepc()">Previous</button>
+      </div>
+      <div class="col-lg-6 text-end">
+        <button mat-button class="btn btn-primary  ms-2" color="primary"
+          style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-dialog-close
+          mat-raised-button>Ok</button>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

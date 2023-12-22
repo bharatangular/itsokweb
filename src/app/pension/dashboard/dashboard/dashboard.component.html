@@ -1,0 +1,473 @@
+
+  <div class="PensionManagement">
+    <div class="container mw-100">
+      <div class="row">
+        <div class="col-lg-12 p-3 pt-0">
+          <div class="row">
+            <div class="col-lg-12">
+              
+              <!-- (filterDash)="applyFilter($event)" -->
+              <app-dash-filter  (dataParmsFilter)="reviceParamsfilter($event)"  (getmonthyearData)="getMontData($event)" ></app-dash-filter>
+          
+
+            </div>
+            <div class="col-lg-7">
+              <div class="card p-0">
+
+                <div class="card-header p-3">
+                  
+                  <div class="p-0 border-bottom-0 bg-transparent dash-cursor d-flex dash-title" (click)="routerFunction(pensionMonth, pensionYear, zoneFlag,office_id_selection_flag, 'Total Retirement', '/pension/upcomingPensions')">
+                    <h3 class="font-18 mb-0 text-center ms-2 ">Total Retirement - {{dashboarData?.totalRetiree ? dashboarData?.totalRetiree : 0}}</h3>  
+                 
+                    
+                  </div>
+                  <!-- <div class="" (click)="detailReport(7)">
+                    
+                  </div> -->
+                  <!-- <div class="p-0 border-bottom-0 bg-transparent dash-cursor" (click)="detailReport(7)">
+                    <h3 class="font-18 mb-0">e-Pension Set - {{pensionZonalOfficeData && pensionZonalOfficeData?.pensionSetgenerated ? pensionZonalOfficeData?.pensionSetgenerated : 0}}</h3> 
+                    
+                  </div>
+
+                  <div class="p-0 border-bottom-0 bg-transparent dash-cursor" (click)="detailReport(3)">
+                    <h3 class="font-18 mb-0" >Number of Pension Kits Generated - {{totalPensionKit[0]?.totalPsnKit ? totalPensionKit[0]?.totalPsnKit : '0'}}</h3>
+                  </div> -->
+                  
+                </div>
+  
+  
+                <div class="row border-radius overview mx-1 p-3 py-3 card-box-scroll">
+
+                  <div class="col-lg-6">
+                    
+                    <div class="my-3 w-100">
+                      
+                      <div class="upcoming_box p-3  mt-1 bg_light_green rounded d-flex justify-content-between " >
+                        <span class="fs-7 my-1">IFPMS 2.0 Process</span>
+                        <h3 class="mb-0 text-end fs-4 dash-cursor" (click)="getEssPsnDetailsReport(1,'IFPMS 2.0 Process','ess')"> {{dashboarData?.ifms2  ? dashboarData?.ifms2  : 0 }}</h3>
+                      </div>
+                      <div class="col-lg-4"></div>
+                    </div>
+  
+                    <div class="mb-2 w-100">
+                      <div class="upcoming_box p-3  mt-1 bg_light_maron rounded d-flex justify-content-between "  >
+                        <span class="fs-7 my-1 dash-cursor" (click)="zoneOfficeWisePendancyReport1(10,'Pension Kit Generated e-Sign')">Pension Kit Generated e-Sign</span>
+                        <h3 class="mb-0 text-end fs-4 dash-cursor" (click)="detailReportcpogpo(3, 'Pension Kit Generated e-Sign')"> {{totalPensionKit && totalPensionKit[0]?.totalPsnKit ? totalPensionKit[0]?.totalPsnKit : '0'}} 
+                       
+                          
+                        
+                        </h3>
+                        <!-- <img src="../../../../assets/images/tap.png" style="height:25px;"> -->
+                        <!-- <span class="mat-expansion-indicator ng-tns-c2690051721-6 ng-trigger ng-trigger-indicatorRotate ng-star-inserted" style="transform: rotate(180deg);"></span> -->
+                      </div>                      
+                    </div>
+
+
+                    <div class="mb-3 w-100">
+                      
+                      <div class="upcoming_box p-3  mt-3 bg_light_blue_two rounded d-flex justify-content-between " >
+                        <span class="fs-7 my-1 dash-cursor" (click)="zoneOfficeWisePendancyReport1(11,'Pension Kit Pending for e-Sign')">Pension Kit Pending for e-Sign </span>
+                        <h3 class="mb-0 text-end fs-4 dash-cursor" (click)="detailReportcpogpo(9, 'Pension Kit Pending for e-Sign')"> {{totalPensionKitesign && totalPensionKitesign[0]?.totalPsnKit ? totalPensionKitesign[0]?.totalPsnKit : 0}}</h3>
+                        <!-- <img src="../../../../assets/images/tap.png" style="height:25px;"> -->
+                        <!-- <span class="mat-expansion-indicator ng-tns-c2690051721-6 ng-trigger ng-trigger-indicatorRotate ng-star-inserted" style="transform: rotate(180deg);"></span> -->
+                      </div>
+                      
+
+                    </div>
+  
+                  
+                  </div>
+
+                  <div class="col-lg-6">
+                    
+                    <div class="my-3 w-100">
+                      
+                      <div class="upcoming_box p-3 mt-1 bg_light_yello rounded d-flex justify-content-between " >
+                        <span class="fs-7 my-1">Not Initiated at HoO</span>
+                        <h3 class="mb-0 text-end fs-4 dash-cursor" style="margin-right: 51px; " (click)="getEssPsnDetailsReport(5, 'Not Initiated by Pensioner','ess')"> {{dashboarData?.psnNotInitiated ? dashboarData?.psnNotInitiated : 0}}</h3>
+                      </div>
+                      <div class="col-lg-4"></div>
+                    </div>
+  
+                    <div class="mb-3 w-100">
+                      <div class="upcoming_box  rounded ">
+                        <mat-accordion class=" w-100  inprocess ">
+                  
+                          <mat-expansion-panel [expanded]="false" class="bg_light_green">
+                            <mat-expansion-panel-header>
+                              <mat-panel-title class="mat-title1 " (click)="$event.stopPropagation();">
+                              <span class="dash-cursor" (click)="zoneInprocessObjection(2,'In-Process')">  In-Process </span>
+                              </mat-panel-title>
+                              <mat-panel-description (click)="InprocessDetail();$event.stopPropagation();" class="fs-4 font-bold text-dark dash-cursor">
+                                {{Inprocess()}}
+                              </mat-panel-description>
+                            </mat-expansion-panel-header>
+                           
+                            <label class=" w-100 p-2 mt-1  objection">
+                              Zonal <span  class="float-end px-2  objection font-bold text-dark">{{dashboarData && countInrpcoessZonal()}}</span>
+                            </label>
+                            <label class=" w-100 p-2 mt-1 r objection">
+                              HoO <span  class="float-end px-2  objection font-bold text-dark">{{ dashboarData?.pendingAtHo ? dashboarData?.pendingAtHo : 0}}</span>
+                            </label>
+                          </mat-expansion-panel>
+                        </mat-accordion>
+
+                        <!-- <div class="p-3 pb-0 mt-1 pt-2 d-flex justify-content-between " >
+                          <span class="fs-7 my-1 "  >In-Process</span>
+                          <h3 class="mb-0 text-end fs-4 dash-cursor" (click)="InprocessDetail()"> {{Inprocess()}}</h3>
+                        </div>
+
+                        <div class="p-3 pt-0 mt-0 pb-1 d-flex justify-content-between " >
+                          <span class="fs-7 my-1">Zonal - <b class="fs-6">{{pensionZonalOfficeData && pensionZonalOfficeData?.pendingAuditorZonal ? pensionZonalOfficeData?.pendingAuditorZonal : 0 + pensionZonalOfficeData && pensionZonalOfficeData?.pendingAaoZonal ? pensionZonalOfficeData?.pendingAaoZonal : 0 + pensionZonalOfficeData && pensionZonalOfficeData?.pendingZonalApprov ? pensionZonalOfficeData?.pendingZonalApprov : 0}}  </b></span>
+                          <span class="fs-7 my-1">HoO - <b class="fs-6">{{pensionZonalOfficeData&& pensionZonalOfficeData?.pendingAtHo ? pensionZonalOfficeData?.pendingAtHo : 0}}</b></span>
+                        </div> -->
+                      </div>
+
+                      
+                    </div>
+
+
+                    <div class="mb-3 w-100">
+                      <div class="upcoming_box bg_light_blue rounded">
+                        <!-- <mat-accordion class=" w-100  inprocess ">
+                  
+                          <mat-expansion-panel [expanded]="false"  class="bg_light_blue">
+                            <mat-expansion-panel-header>
+                              <mat-panel-title class="mat-title1 " (click)="$event.stopPropagation();">
+                 
+
+                                <span class="dash-cursor" (click)="zoneOfficeWisePendancyReport(3,'In-Process (Objection)');$event.stopPropagation();">   In-Process (Objection) </span>
+                              </mat-panel-title>
+                              <mat-panel-description (click)="detailReport(2);$event.stopPropagation();" class="fs-4 font-bold text-dark dash-cursor">
+                                {{pensionZonalOfficeData&& pensionZonalOfficeData?.objectionCases ? pensionZonalOfficeData?.objectionCases : 0}}
+                              </mat-panel-description>
+                            </mat-expansion-panel-header>
+                      
+                            <label class="authority w-100 p-2 mt-1  ">
+                              Zonal <span  class="float-end px-2  font-bold text-dark">{{pensionZonalOfficeData&& pensionZonalOfficeData?.objectionCasesZonal ? pensionZonalOfficeData?.objectionCasesZonal : 0}}</span>
+                            </label>
+                            <label class="authority w-100 p-2 mt-1 r ">
+                              HoO <span  class="float-end px-2  font-bold text-dark">{{pensionZonalOfficeData&& pensionZonalOfficeData?.objectionCasesHo ? pensionZonalOfficeData?.objectionCasesHo : 0}}</span>
+                            </label>
+                          </mat-expansion-panel>
+                        </mat-accordion> -->
+                        <!-- <div class="p-3 pb-0 mt-1 pt-2 d-flex justify-content-between " >
+                          <span class="fs-7 my-1">In-Process (Objection)</span>
+                          <h3 class="mb-0 text-end fs-4 dash-cursor" (click)="detailReport(2)"> {{pensionZonalOfficeData&& pensionZonalOfficeData?.objectionCases ? pensionZonalOfficeData?.objectionCases : 0}}</h3>
+                        </div> -->
+
+
+
+
+                        <div class="my-3 w-100">
+                      
+                          <div class=" p-3  mt-1  rounded d-flex justify-content-between " >
+                            <span class="fs-7 my-1 dash-cursor" (click)="zoneInprocessObjection(3,'In-Process (Objection)');$event.stopPropagation();">In-Process (Objection)</span>
+                            <h3 class="mb-0 text-end fs-4 dash-cursor" (click)="getEssPsnDetailsReport(7,'In-Process (Objection)', 'pss')" style="margin-right: 51px;">{{ dashboarData?.pendingHoObjection ? dashboarData?.pendingHoObjection : 0}}</h3>
+                          </div>
+                          <div class="col-lg-4"></div>
+                        </div>
+                        <!-- <div class="p-3 pt-0 pb-1 mt-0 d-flex justify-content-between " >
+                          <span class="fs-7 my-1">Zonal - <b class="fs-6">0</b></span>
+                          <span class="fs-7 my-1">HoO - <b class="fs-6">0</b></span>
+                        </div> -->
+                      </div> 
+                      
+
+                    </div>
+  
+                  
+                  </div>
+  
+                  
+                </div>
+  
+              </div>
+              <div>
+                <div class="card p-0">
+                  
+
+                  <div class="card-body p-3 " (click)="routerFunction(pensionMonth, pensionYear, zoneFlag,office_id_selection_flag, 'Commutation Request', '/pension/commutationrequest')">
+                <h3 class="font-18 mb-0 text-center ms-2 dash-cursor"> Commutation Request - {{commutationRequestTotal ? commutationRequestTotal : 0}}</h3> 
+                </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="col-lg-12">
+                <div class="card p-0">
+                  <div class="card-header d-flex justify-content-between p-3">
+                    <h3 class="font-18 mb-0">Upcoming Retirements</h3>
+                  </div>
+                  <div class="row  p-3 card-box-scroll">
+                    <div class="col-lg-12 min-height mt-0 p-3 pt-0" style="height: 260px;">
+
+                      <ng-container *ngIf="upcomingRetirementData?.length; else noResultsupcoming">
+                      <ng-container *ngFor="let data of upcomingRetirementData"  >
+                        <div class="upcoming_box p-3 mt-1 bg_light_green rounded d-flex justify-content-between dash-cursor" (click)="routerFunction(data?.monYear, pensionYear, zoneFlag,office_id_selection_flag, 'Upcoming Retirements', '/pension/upcomingPensions', 1)">
+                          <span class="fs-7 my-1"> {{data?.monYear}}</span>
+                          <h3 class="mb-0 text-end fs-4"> {{data?.totalEmp}}</h3>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    
+                    <ng-template #noResultsupcoming>
+                      <div class="card text-center ">
+                        No record found.
+                
+                      </div>
+                    </ng-template>
+                    </div>
+                    <div class="col-lg-8 border-start">
+
+                    </div>
+                  </div>
+          
+                </div>
+          
+              </div>
+
+                      
+              <!-- <app-upcoming-retirements (dataParms)="reviceParams($event)"  (totalRetirements)="totalRetirementsrecive($event)"></app-upcoming-retirements> -->
+            </div>
+          </div>
+  
+          <div class="row my-3 mt-2">
+
+            <!-- <div class="w-20">
+              <div class="card penssion_status five_field_height">              
+                <div class="py-3">
+                  <h1>01</h1>
+                </div>
+                <div class="col-md-12 payment_id">
+                  <label class="fw-bold d-md-block mb-4 mt-2">Pension-ESS Status </label>
+  
+                  <div class="w-100 text-center mb-4">
+                    <span class="fs-5 text-dark my-2 fw-bold main_cont">{{pensionApplicationData && pensionApplicationData?.totalRetirements ? pensionApplicationData?.totalRetirements : 0}}</span>
+                  </div>
+
+                 
+                  <label class="applications_possion w-100 p-2 mt-2 " >
+                    IFPMS 2.0 Process <span (click)="getEssPsnDetailsReport(1,'IFPMS 2.0 Process','ess')" class="float-end px-2  dash-cursor" >{{dashboarData?.ifms2  ? dashboarData?.ifms2  : 0 }}</span>
+                  </label>
+                  <label class="applications_possion w-100 p-2 mt-2 " >
+                    Not Initiated by Pensioner <span (click)="getEssPsnDetailsReport(2,'Not Initiated by Pensioner','ess')"  class="float-end px-2 dash-cursor ">{{dashboarData?.essNotInitiated  ? dashboarData?.essNotInitiated : 0 }}</span>
+                  </label>
+                 
+                  <label class="applications_possion w-100 p-2 mt-1 ">
+                    Pending at ESS <span (click)="getEssPsnDetailsReport(3, 'Pending at ESS','ess')"  class="float-end px-2 dash-cursor">{{dashboarData?.essPending ? dashboarData?.essPending : 0}}</span>
+                  </label>
+
+                  <label class="applications_possion w-100 p-2 mt-1  ">
+                    Approved  <span (click)="getEssPsnDetailsReport(4, 'Pension Approved','ess')" class="float-end px-2 dash-cursor">{{dashboarData?.essApproved ? dashboarData?.essApproved : 0}}</span>
+                  </label>
+                  
+
+
+                  <div (click)="routerFunction(pensionMonth , pensionYear, zoneFlag,office_id_selection_flag, 'Pension-ESS Status', '/pension/employeeSummary')" class="dash-cursor">
+                  
+                  </div>
+                  
+                </div>             
+              </div>
+            </div> -->
+  
+
+
+            <div class="col-lg-3 w0-20">
+              <div class="card penssion_status penssion_status_two five_field_height">
+                  <div class="py-3">
+                    <h1>01</h1>
+                  </div>
+                  <div class="col-md-12 payment_id ">
+                    <label class="fw-bold d-md-block mb-4 mt-2">e-Pension Status at HoO</label>
+                      
+                    <div class="w-100 text-center mb-4">
+                      <!-- <span class="fs-5 text-dark my-2 fw-bold main_cont">{{dashboarData?.essApproved ? dashboarData?.essApproved : 0}}</span> -->
+                      <!-- <span class="fs-5 text-dark my-2 fw-bold main_cont">{{pensionApplicationData && pensionApplicationData?.totalRetirements ? pensionApplicationData?.totalRetirements : 0}}</span> -->
+                      <span class="fs-5 text-dark my-2 fw-bold main_cont">{{dashboarData?.totalRetiree ? dashboarData?.totalRetiree : 0}}</span>
+                    </div>
+
+
+
+                    <!-- <div (click)="routerFunction(pensionMonth , pensionYear, zoneFlag,office_id_selection_flag, 'e-Pension Status at HO', '/pension/pensionSummary')" class="dash-cursor"> -->
+                    <label class="applications_possion w-100 p-2 mt-2 " >
+                      IFPMS 2.0 Process <span (click)="getEssPsnDetailsReport(1,'IFPMS 2.0 Process','ess')" class="float-end px-2  dash-cursor" >{{dashboarData?.ifms2  ? dashboarData?.ifms2  : 0 }}</span>
+                    </label>
+                    <label class="applications_possion w-100 p-2 mt-2 ">
+                      Not Initiated at HoO <span  (click)="getEssPsnDetailsReport(5, 'Not Initiated at HoO','ess')" class="float-end px-2 dash-cursor"> {{dashboarData?.psnNotInitiated ? dashboarData?.psnNotInitiated : 0}} </span>
+                    </label>
+                    <label class="applications_possion w-100 p-2 mt-1 ">
+                      Pending at HoO <span (click)="getEssPsnDetailsReport(6,'Pending at HoO','pss')" class="float-end px-2 dash-cursor">{{ dashboarData?.pendingAtHo ? dashboarData?.pendingAtHo : 0}}</span>
+                    </label>
+                    <label class="applications_possion w-100 p-2 mt-1 ">
+                      Objection from Pension Office <span (click)="getEssPsnDetailsReport(7,'Pending at HoO - Objection','pss')" class="float-end px-2 dash-cursor ">{{ dashboarData?.pendingHoObjection ? dashboarData?.pendingHoObjection : 0}}</span>
+                    </label>
+                    
+                    <label class="applications_possion w-100 p-2 mt-1 ">
+                      e-Pension Set Generated <span (click)="getEssPsnDetailsReport(8, 'e-Pension Set Generated','pss')" class="float-end px-2 dash-cursor">{{dashboarData?.epensionSet  ? dashboarData?.epensionSet  : 0}}</span>
+                    </label>
+                  </div>
+  
+                  <!-- </div> -->
+              </div>
+            </div>
+
+
+
+            <div class="col-lg-3 w0-20">
+              <div class="card penssion_status penssion_status_three five_field_height">
+                  <div class="py-3">
+                    <h1>02</h1>
+                  </div>
+                  <div class="col-md-12 payment_id">
+                    <label class="fw-bold d-md-block mb-4 mt-2 ">e-Pension Status at Pension Zonal Office </label>
+                    <div class="w-100 text-center mb-4">
+                      <span class="fs-5 text-dark my-2 fw-bold main_cont">{{dashboarData?.epensionSet  ? dashboarData?.epensionSet  : 0}}</span>
+                    </div>
+  
+                
+                    <label class="applications_possion w-100 p-2 mt-1 ">
+                      Pending at Auditor <span (click)="getEssPsnDetailsReport(9,'Pending at Auditor','pss')" class="float-end px-2 dash-cursor">{{ dashboarData?.pendingAuditorZone ? dashboarData?.pendingAuditorZone : 0}}</span>
+                    </label>
+                    
+                    <label class="applications_possion w-100 p-2 mt-1  ">
+                      Pending at AAO <span (click)="getEssPsnDetailsReport(10, 'Pending at AAO','pss')" class="float-end px-2 dash-cursor">{{ dashboarData?.pendingAaozone ? dashboarData?.pendingAaozone : 0}}</span>
+                    </label>
+                    <label class="applications_possion w-100 p-2 mt-1  ">
+                      Pending Zonal Approver <span (click)="getEssPsnDetailsReport(11, 'Pending Zonal Approver','pss')" class="float-end px-2 dash-cursor">{{ dashboarData?.pendingZoneApprvr ? dashboarData?.pendingZoneApprvr : 0}}</span>
+                    </label>
+                  
+
+                    <label class="applications_possion w-100 p-2 mt-1  ">
+                      Stopped Cases <span (click)="getEssPsnDetailsReport(14, 'Pending Zonal Approver','pss')" class="float-end px-2 dash-cursor">{{ dashboarData?.stoppedCases ? dashboarData?.stoppedCases : 0}}</span>
+                    </label>
+                 
+
+                    <mat-accordion class=" w-100 p-2 mt-1 dash-cursor">
+                  
+                      <mat-expansion-panel [expanded]="true" style="background-color: #eef5fe;" >
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Authority Generated
+                          </mat-panel-title>
+                          <mat-panel-description>
+                           
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!-- <p>I'm visible because I am open</p> -->
+                        <label class="applications_possion w-100 p-2 mt-1  ">
+                          Normal <span (click)="getEssPsnDetailsReport(13,'Authority Generated Normal','pss')" class="float-end px-2 dash-cursor">{{ dashboarData?.normalApproved ? dashboarData?.normalApproved : 0}}</span>
+                        </label>
+                        <label class="applications_possion w-100 p-2 mt-1 r ">
+                          AutoProcess <span (click)="getEssPsnDetailsReport(12,'Authority Generated AutoProcess','pss')" class="float-end px-2 dash-cursor">{{ dashboarData?.autoApproved ? dashboarData?.autoApproved : 0}}</span>
+                        </label>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+                  </div>
+              <!-- </div> -->
+            </div>
+  
+            <div class="col-lg-3 w0-20">
+              <div class="card penssion_status penssion_status_four five_field_height">
+                  <div class="py-3">
+                    <h1>03</h1>
+                  </div>
+                  <div class="col-md-12 payment_id">
+  
+                    <label class="fw-bold h-45 mb-5 mt-2">Number of Bills Generate, CPO, GPO</label>
+
+                    <!-- <label   class="applications_possion w-100 p-2 mt-4 ">
+                      Pending for Bill Generation<span class="float-end px-2 dash-cursor" >{{bills_CPO_GPO_Data   ?  getCPOValue(bills_CPO_GPO_Data)  : 0}}</span>
+                    </label> -->
+
+                    <label   class="applications_possion w-100 p-2 mt-1 ">
+                      Pending for Bill Generation<span class="float-end px-2 dash-cursor" (click)="billsCpoGpoDetail(9,'Pending for Bill Generation')">{{pendingBills   ?  pendingBills  : 0}}</span>
+                    </label>
+
+
+
+                    
+                  <div class="mt-4">
+                    <label   class="applications_possion w-100 p-2 mt-1 " >
+                      Bill Generated GPO<span class="float-end px-2 dash-cursor" (click)="billsCpoGpoDetail(1,'Bill Generated GPO', 'GPO')">{{bills_CPO_GPO_Data   ?  getGPOValue(bills_CPO_GPO_Data)  : 0}}</span>
+                    </label>
+                    <label   class="applications_possion w-100 p-2 mt-1 " >
+                      GPO Bill Pending<span class="float-end px-2 dash-cursor" (click)="billsCpoGpoDetail(6,'GPO Bill Pending Due to Error', 'GPO')">{{bills_CPO_GPO_Data   ?  getGPOBillError(bills_CPO_GPO_Data)  : 0}}</span>
+                    </label>
+                    <label   class="applications_possion w-100 p-2 mt-1 " >
+                      GPO Bill Stopped<span class="float-end px-2 dash-cursor" (click)="billsCpoGpoDetail(8,'GPO Bill Stopped after Bill Generate', 'GPO')">{{bills_CPO_GPO_Data   ?  getGPOStoppedError(bills_CPO_GPO_Data)  : 0}}</span>
+                    </label>
+                  </div>
+
+                  <div class="mt-4">
+                    <label   class="applications_possion w-100 p-2 mt-1 " >
+                      Bill Generated CPO<span class="float-end px-2 dash-cursor" (click)="billsCpoGpoDetail(2,'Bill Generated CPO', 'CPO')">{{bills_CPO_GPO_Data   ?  getCPOValue(bills_CPO_GPO_Data)  : 0}}</span>
+                    </label>
+                    <label   class="applications_possion w-100 p-2 mt-1 " >
+                      CPO Bill Pending<span class="float-end px-2 dash-cursor" (click)="billsCpoGpoDetail(5,'CPO Bill Pending Due to Error', 'CPO')">{{bills_CPO_GPO_Data   ?  getCPOBillError(bills_CPO_GPO_Data)  : 0}}</span>
+                    </label>
+                    <label   class="applications_possion w-100 p-2 mt-1 " >
+                      CPO Bill Stopped<span class="float-end px-2 dash-cursor" (click)="billsCpoGpoDetail(7,'CPO Bill Stopped after Bill Generate', 'CPO')">{{bills_CPO_GPO_Data   ?  getCPOStoppedError(bills_CPO_GPO_Data)  : 0}}</span>
+                    </label>
+                  </div>
+                 
+                  <!-- <ng-container *ngIf="bills_CPO_GPO_Data?.length; else noResultsbill">
+                  <ng-container  *ngFor="let data of bills_CPO_GPO_Data">
+                    <label (click)="routerFunction(pensionMonth , pensionYear, zoneFlag,office_id_selection_flag, 'Number of Bills Generate, CPO, GPO', 'pension/firstPensionReport')"   class="applications_possion w-100 p-2 mt-1 dash-cursor" >
+                      Bill Generated {{data?.billname}}<span class="float-end px-2">{{data?.total}}</span>
+                    </label>
+                  </ng-container>
+                  </ng-container> -->
+                  <!-- #noResultsbill -->
+                  <!-- <ng-template #noResultsbill> -->
+                    <!-- (click)="routerFunction(pensionMonth , pensionYear, zoneFlag,office_id_selection_flag, 'Number of Bills Generate, CPO, GPO', 'pension/firstPensionReport')" -->
+                    <!-- (click)="routerFunction(pensionMonth , pensionYear, zoneFlag,office_id_selection_flag, 'Number of Bills Generate, CPO, GPO', 'pension/firstPensionReport')" -->
+                    <!-- <label   class="applications_possion w-100 p-2 mt-4 ">
+                      Bill Generated CPO<span class="float-end px-2 dash-cursor" (click)="billsCpoGpoDetail(2,'Bill Generated CPO')">{{bills_CPO_GPO_Data   ?  getCPOValue(bills_CPO_GPO_Data)  : 0}}</span>
+                    </label>
+                    <label   class="applications_possion w-100 p-2 mt-1 dash-cursor">
+                      Bill Generated GPO<span class="float-end px-2" (click)="billsCpoGpoDetail(1, 'Bill Generated GPO')">{{bills_CPO_GPO_Data   ?  getGPOValue(bills_CPO_GPO_Data)  : 0}}</span>
+                    </label> -->
+              
+                  <!-- </ng-template> -->
+  
+                  </div>
+              </div>
+            </div>
+  
+         
+            <div class="col-lg-3 w0-20">
+              <div class="card penssion_status penssion_status_five five_field_height">
+                <div class="py-3">
+                  <h1>04</h1>
+                </div>
+                <div class="col-md-12 payment_id"> 
+                  <label class="fw-bold h-45 mb-4 mt-2">Total ECS First Payment made CPO, GPO</label>
+       
+                      <label class="applications_possion w-100 p-2 mt-4 " >
+                        Payment made CPO<span class="float-end px-2 dash-cursor" (click)="billsCpoGpoDetail(4, 'Payment made CPO', 'CPO')">{{payment_CPO_GPO_Data  ? getCPOValue(payment_CPO_GPO_Data) : 0}}</span>
+                      </label>
+                      <label class="applications_possion w-100 p-2 mt-1 ">
+                        Payment made GPO<span class="float-end px-2 dash-cursor" (click)="billsCpoGpoDetail(3, 'Payment made GPO', 'GPO')">{{payment_CPO_GPO_Data  ?  getGPOValue(payment_CPO_GPO_Data) : 0}}</span>
+                      </label>                  
+                 
+                </div>
+              </div>
+            </div>
+  
+  
+            
+      
+          </div>
+  
+  
+          
+        </div>
+  
+      </div>
+    </div>
+  
+  </div>

@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-lg-6">
+    <h3 class="mt-3">User Manual Form</h3>
+  </div>
+  <div class="col-lg-6">
+    <button mat-icon-button class="float-end " (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+
+
+
+
+
+
+<form [formGroup]="userManualform">
+
+  <div class="col-lg-12">
+    <div class="row">
+      <div class="col-lg-4">
+        <mat-form-field class="w-100">
+          <mat-label>User Manual Name</mat-label>
+          <input matInput placeholder="User Manual Name" formControlName="userManualName">
+
+        </mat-form-field>
+      </div>
+      <input matInput formControlName="createdDt" hidden>
+      <input matInput formControlName="modifiedDt" hidden>
+      <input matInput  formControlName="flag" hidden>
+      <div class="col-lg-4">
+        <mat-form-field class="w-100">
+          <mat-label>Select an user type</mat-label>
+          <mat-select (selectionChange)="fetchUserType($event)" formControlName="userType">
+            <mat-option *ngFor="let user of uniqueUserTypes"  [value]="user.userTypeId">{{ user.userType }}</mat-option>
+            <!-- <mat-option *ngFor="let user of uniqueUserTypes"  [value]="user.userTypeId">{{ user.userType }}</mat-option> -->
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="col-lg-4">
+          <mat-form-field class="w-100">
+            <mat-label>Select an user type</mat-label>
+            <mat-select   (change)="fetchUserType($event)" formControlName="user_type">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let userType of userTypeList" [value]="userType.userTypeId">{{ userType.userType }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div> -->
+      <div class="col-lg-4">
+        <!-- <mat-label>Select a file</mat-label> -->
+        <!-- <input #fileInput type="file" formControlName="doc_id" (change)="checkar_doc($event)" accept=".pdf"> -->
+        <!--  d-flex flex-column  -->
+        <div class="col-lg-2 file-uploder-container d-flex flex-column mt-2 w-100">
+          <label for="inputGroupFile" class="upload-lable-text btn py-2 ng-invalid">Drag & drop or
+            <span class="file-browse"> browse </span>
+          </label>
+          <div class="input-group custom-file-button">
+            <input type="file" (change)="checkar_doc($event)" formControlName="docId"
+              class="form-control file-upload-input hidden" id="inputGroupFile" accept=".pdf" hidden>
+          </div>
+        </div>
+        <ng-container *ngIf="isView">
+          <div class="text-end mb-5">
+
+            <button  mat-menu-item  (click)="common.Previewbydocid(docIdValue,'/pension/user-manual-update')" type="button">
+              <mat-icon>visibility</mat-icon>
+              <span>View Document</span>
+              </button>
+
+
+            <!-- <mat-icon style="color: rgb(17, 91, 187);"
+                (click)="common.Previewbydocid(docIdValue,'/pension/user-manual-update');">remove_red_eye</mat-icon> -->
+          </div>
+        </ng-container>
+
+      </div>
+
+
+      <!-- <div class="col-lg-2">
+        <mat-form-field class="w-100">
+          <mat-label>Select a file</mat-label>
+          <input matInput type="file" (change)="checkar_doc($event)">
+        </mat-form-field>
+
+        <span style="color:#afadad">(Ex.Head:2230-01-102-02-01)</span>
+      </div> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-0">
+      <!-- <mat-label>Is DE Pending?</mat-label>
+        <mat-radio-group aria-label="Select an option" formControlName="DE_Status" class="ms-3">
+            <mat-radio-button color="primary" value="1" class="mt-3"  (change)="showHideFields(1)">Yes</mat-radio-button>
+            <mat-radio-button color="primary" value="0" class="ms-3"  (change)="showHideFields(0)">No</mat-radio-button>
+        </mat-radio-group> -->
+      <mat-slide-toggle (change)="activate()"  formControlName="isActive" class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled">
+        <span *ngIf="act">Active</span>
+        <span *ngIf="deact"> Deactive </span>
+      </mat-slide-toggle>
+    </div>
+  </div>
+  <div class="col-lg-12 text-end">
+    <div class="mt-4 m-3">
+      <button type="submit" (click)="onSubmit()"
+        class="btn btn-sm btn-success add-items custome_btn ">Submit</button>
+    </div>
+  </div>
+
+</form>

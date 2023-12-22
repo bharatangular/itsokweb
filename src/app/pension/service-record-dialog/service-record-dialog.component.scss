@@ -1,0 +1,10 @@
+.min-height{ height: 250px; overflow-y: scroll;}
+
+.mat-option-text {
+    overflow: auto;
+    text-overflow: unset;
+  }
+  ::ng-deep .mat-select-panel {
+    width: auto;
+    max-width: 100%;
+}

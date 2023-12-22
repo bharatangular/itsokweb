@@ -1,0 +1,189 @@
+<mat-card class="m-3 mt-0 me-0 p-3 pt-1 mb-4">
+
+    <legend class="my-2"> Update Life Certificate Details</legend>
+ 
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 mt-3">
+            <form [formGroup]="LifeCertifict" >
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-1"  >                   
+                      <mat-form-field class="w-100">
+                        <input matInput placeholder="Enter PPO Number" type="number" maxlength="5" formControlName="ppoNumber" (keyup)="applyFilter($event)" #input>
+                        <mat-error *ngIf="LifeCertifict.get('ppoNumber')?.errors?.['required']"> Please Enter value</mat-error>
+                      </mat-form-field>
+                    </div>   
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-1"  >                   
+                        <mat-form-field class="w-100">
+                          <input matInput placeholder="Enter Last Four Digits Account Number" type="number" maxlength="4"  onKeyPress="if(this.value.length==4) return false;"  formControlName="accountNumber" (keyup)="applyFilter($event)" #input>
+                          <mat-error *ngIf="LifeCertifict.get('accountNumber')?.errors?.['required']"> Please Enter value</mat-error>
+                        </mat-form-field>
+                      </div>   
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                        <button class="btn btn-primary btn-cls" mat-raised-button color="primary" (click)="getLifeCertifictdetails()" [disabled]="!LifeCertifict.valid">Search</button> 
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+ 
+</mat-card>
+<mat-card class="m-3 mt-0 me-0 p-3 pt-1 mb-4" *ngIf="isvisible"><legend class="my-2"> Pensioner Details</legend> 
+
+
+    <div class="row">
+        <div class="row">           
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div class="avatar-upload">
+                <span>Employee Photograph</span>              
+                <div class="avatar-preview">
+                  <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                  
+                    <i class="fa fa-edit"></i>
+                  </div>
+                  <img [src]="picData" style=" width: auto;  height: 100%;" />
+                </div>
+              </div>    
+              </div>         
+              </div>
+
+              
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Janadhaar Number</span>
+            {{ProfileDetls?ProfileDetls.janAdharId :"N/A" }}
+          </div>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Employee Name</span>
+            <label>{{ProfileDetls?ProfileDetls.employeeName:"N/A"}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Employee ID</span>
+            <label>{{ProfileDetls?ProfileDetls.employeeCode:"N/A"}}</label>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>SSO ID </span>
+            <label>{{ProfileDetls?ProfileDetls.ssoId:"N/A"}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Gender</span>
+            <label>{{ProfileDetls?ProfileDetls.gender:"N/A"}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Date of Birth</span>
+            <label>{{ProfileDetls?ProfileDetls.dateOfBirth:"N/A"}}</label>
+          </div>
+        </div>
+
+       
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Blood Group</span>
+            <label>{{ProfileDetls?ProfileDetls?.bloodGroup:""}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Email Id</span>
+            <label>{{ProfileDetls?ProfileDetls.email:""}}</label>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+
+          <div>
+            <span>Mobile No</span>
+            <label>{{ProfileDetls?ProfileDetls?.mobileNumber:""}}</label>
+          </div>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          <div>
+            <span>Nationality</span>
+            <label>{{ProfileDetls?ProfileDetls.nationality:""}}</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+                <span>Current Address </span>
+                <label>{{ProfileDetls?ProfileDetls.currentAddress:""}}</label>
+              </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Date of Retirement</span>
+              <label>{{ProfileDetls?ProfileDetls.dateOfRetirement:""}}</label>
+            </div>
+          </div>      
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>             
+              <span>PPO Number</span>
+              <label>{{ProfileDetls?.ppoNo=='null'?'':ProfileDetls?.ppoNo}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>             
+              <span> Office Name </span>
+              <label>{{ProfileDetls?ProfileDetls.OfficeAddress:""}}</label>
+            </div>
+          </div>
+        
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+          
+          </div>
+
+      </div>
+  <!-- <div style="overflow-x: auto;">
+    <table class="table table-striped table-hover border">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Pensioner Id</th>
+          <th scope="col">PPO Number </th>
+          <th scope="col">Employee Code</th>
+          <th scope="col">SSO Id</th>
+          <th scope="col">Name</th> 
+          <th scope="col">PPO_Aprv_Date</th>           
+          <th scope="col">PPO Amount</th> 
+          <th scope="col">is_Active</th>        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ppouser of PainshanDetails; let i = index">     
+          <th scope="row">{{i + 1}}</th>
+          <td>{{ppouser.pensionerId}}</td>
+          <td>{{ppouser.ppoNo}}</td>
+          <td>{{ppouser.employeeCode}}</td>
+          <td>{{ppouser.ssoId}}</td>
+          <td>{{ppouser.nameEn}}</td>
+          <td>{{ppouser.ppoAprvDate}}</td>
+          <td>{{ppouser.ppoAmount}}</td>  
+          <td>{{ppouser.isActive}}</td>   
+        </tr>
+      </tbody>
+    </table>
+  </div>  -->
+
+
+
+     <div class="d-flex justify-content-end" >
+         <button class="btn btn-primary btn-cls mx-2" mat-raised-button color="primary" (click)="getLifeCertifictById()"> {{ButtonView}} Life Certificate</button>  
+         <!-- preview -->
+
+         <button class="btn btn-primary btn-cls" mat-raised-button color="primary" (click)="esignRequest()" *ngIf="iseSin" >Approve & eSign</button>    
+     </div> 
+</mat-card>
+

@@ -1,0 +1,1225 @@
+<div class="content-wrapper"*ngIf="drmaster">
+  <form [formGroup]="dr_Master" (ngSubmit)="onSubmit()">
+      <div class="row">
+          <h3>Create New DR</h3>
+          <hr>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Pay Commission</mat-label>
+                  <mat-select disableOptionCentering panelClass="myPanelClass" formControlName="Pay_Commission">
+                      <mat-option value="one">First option</mat-option>
+                      <mat-option value="two">Second option</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="submitted && f['Pay_Commission'].errors" class="text-danger">
+                      <div *ngIf="f['Pay_Commission'].errors?.['required']">
+                          This feild is required
+                      </div>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Entitlement Status</mat-label>
+                  <mat-select disableOptionCentering panelClass="myPanelClass" formControlName="Entitlement_Status">
+                      <mat-option value="one">First option</mat-option>
+                      <mat-option value="two">Second option</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="submitted && f['Entitlement_Status'].errors" class="text-danger">
+                      <div *ngIf="f['Entitlement_Status'].errors?.['required']">
+                          This feild is required
+                      </div>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>DR Rate %</mat-label>
+                  <input matInput placeholder="Placeholder" formControlName="DR_Rate" maxlength="3">
+                  <mat-error *ngIf="f['DR_Rate'].errors" class="text-danger">
+                      <div *ngIf="f['DR_Rate'].errors?.['required']">
+                          This feild is required
+                      </div>
+                      <div *ngIf="f['DR_Rate']?.touched && f['DR_Rate'].errors?.['pattern']">
+                          Enter only Number
+                      </div>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Order No</mat-label>
+                  <input matInput placeholder="Placeholder" formControlName="Order_No">
+                  <mat-error *ngIf="f['Order_No'].errors" class="text-danger">
+                      <div *ngIf="f['Order_No'].errors?.['required']">
+                          This feild is required
+                      </div>
+                      <div *ngIf="f['Order_No']?.touched && f['Order_No'].errors?.['pattern']">
+                          Enter only Number
+                      </div>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Order Date</mat-label>
+                  <input matInput [matDatepicker]="OrderDate" (click)="OrderDate.open()" (focus)="OrderDate.open()"
+                      formControlName="Order_Date" name="Order_Date" autocomplete="off" [max]="getToday()"
+                      readonly="">
+                  <mat-datepicker-toggle matSuffix [for]="OrderDate"></mat-datepicker-toggle>
+                  <mat-datepicker #OrderDate></mat-datepicker>
+                  <mat-error *ngIf="submitted && f['Order_Date'].errors" class="text-danger">
+                      <div *ngIf="f['Order_Date'].errors?.['required']">
+                          This feild is required
+                      </div>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>w.e.f DR date</mat-label>
+                  <input matInput [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()"
+                      formControlName="DR_date" name="DR_date" autocomplete="off">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="submitted && f['DR_date'].errors" class="text-danger">
+                      <div *ngIf="f['DR_date'].errors?.['required']">
+                          This feild is required
+                      </div>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <div class="space"><mat-label>Status</mat-label>
+                  <mat-slide-toggle color="primary" formControlName="Status"(change)="onChange($event)">
+                     {{status}}
+
+                  </mat-slide-toggle>
+              </div>
+          </div>
+          <div class="row align-item-center">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12">
+                  <div class="float-end">
+                      <button mat-button mat-dialog-close class="btn btn-outline-cancel"
+                          mat-stroked-button>Cancel</button>
+                      <button class="btn btn-primary  ms-2" mat-raised-button color="primary">Create</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </form>
+</div>
+
+
+
+<div class="content-wrapper" id="{{message}}" *ngIf="id===2">
+  <form [formGroup]="dr_Master" (ngSubmit)="onSubmit()">
+      <div class="row">
+          <div class="align-item-center">
+              <span class="align-items-end" style="float:right;">
+              <button mat-dialog-close class="btn-close" aria-label="Close"></button></span> <h3>Request Confirmation</h3>
+          </div>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Remarks</mat-label>
+                <textarea matInput placeholder="Type your comments here" rows="6"></textarea>
+              </mat-form-field>
+          <div class="row align-item-center">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12">
+                  <div class="float-end">
+                      <button class="btn btn-danger" mat-raised-button color="warn">Reject</button>
+                      <button class="btn btn-tertiary ms-2" mat-raised-button color="tertiary">Revert</button>
+                      <button class="btn btn-success ms-2" mat-raised-button>Approve</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </form>
+</div>
+
+<div class="content-wrapper cnfrmDialogStyl" *ngIf="id===14" >
+  <div class="">
+      <span class="text-center">
+         <div class="circle text-center ">
+            <mat-icon>done</mat-icon>
+         </div>
+         <h3 class="text-success mt-3">Successful</h3>
+      </span>
+
+  </div>
+  <!-- Please Write Message in this <P> tag after submit by employee -->
+  <p class="text-center">E-Pension generated successfully</p>
+
+  <div class="">
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12 btnStyle">
+              <button mat-dialog-close  class="btn btn-primary" aria-label="Close">Download E-Pension set</button>
+      </div>
+  </div>
+</div>
+<div class="content-wrapper cnfrmDialogStyl" *ngIf="id===4" >
+  <div class="">
+      <span class="text-center">
+         <div class="circle text-center ">
+            <mat-icon>done</mat-icon>
+         </div>
+         <h3 class="text-success mt-3">Successful</h3>
+      </span>
+
+  </div>
+  <p *ngIf="action=='REVESS'" class="text-center">Reference id  <b>{{reqId}}</b>  has been revert to Pension-ESS successfully</p>
+  <p *ngIf="action=='REV'" class="text-center">Reference id  <b>{{reqId}}</b>  has been revert to previous level successfully</p>
+  <p *ngIf="action=='FWD'" class="text-center">Reference id  <b>{{reqId}}</b>  has been forwarded successfully</p>
+  <p *ngIf="action=='REVHO'" class="text-center">Reference id  <b>{{reqId}}</b>  has been revert to HO successfully</p>
+  <p *ngIf="action=='ARV' || action=='ARVAD'" class="text-center">Reference id  <b>{{reqId}}</b>  has been Approved successfully</p>
+  <p *ngIf="action=='CRE'" class="text-center">Reference id  <b>{{reqId}}</b>  has been generated successfully</p>
+  <p *ngIf="action=='REJHO'" class="text-center">Reference id  <b>{{reqId}}</b>  has been revert to Pension-ESS successfully</p>
+  <!-- <p class="text-center" *ngIf="ppo_no!==''">PPO number <b>{{ppo_no}}</b> has been generated </p> -->
+  <div class="">
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12 btnStyle">
+              <button  mat-dialog-close  class="btn btn-primary btn-lg" aria-label="Close" (click)="finalclose()">OK</button> &nbsp;&nbsp;
+              <!-- <button *ngIf="ppo_no!==''" mat-dialog-close  class="btn btn-primary btn-lg" aria-label="Close" (click)="Download_PDF()">Save as PDF</button> -->
+      </div>
+  </div>
+</div>
+
+
+
+<div class="content-wrapper" id="{{message}}" *ngIf="id==1">
+  <form>
+      <div class="align-item-center">
+          <span class="align-items-end" style="float:right;">
+          <button mat-dialog-close class="btn-close" aria-label="Close"></button></span> <h3>{{message}}</h3>
+      </div>
+      <hr>
+      <div class="card-body vieob">
+          <div class="row mList" *ngFor="let data of datalist">
+            <div class="col">
+                <h6 *ngIf="data.actionTaken == 'CRE'">INITIATED </h6>
+                <h6 *ngIf="data.actionTaken == 'FWD'">FORWORDED </h6>
+                <h6 *ngIf="data.actionTaken == 'REV'">REVERT </h6>
+            </div>
+            <div class="col">
+                <h6>{{data.displayName}}</h6><p class="f-12 mt-2 mb-0">{{data.roleName}}</p><p class="f-12">{{data.levelType}}</p>
+            </div>
+            <div class="col">
+                <h6>{{data.remarks}}
+                </h6>
+            </div>
+            <div class="col">
+                <h6>{{data.modifiedDt | date}}</h6>
+            </div>
+          </div>
+      </div>
+      <hr>
+      <div class="row align-item-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12">
+              <div class="float-end">
+                  <button mat-button mat-dialog-close class="btn btn-outline-cancel" mat-stroked-button>Cancel</button>
+                  <button class="btn btn-primary  ms-2" mat-dialog-close mat-raised-button color="primary">OK</button>
+              </div>
+          </div>
+      </div>
+  </form>
+</div>
+
+<!-- ADD SERVICE RECORD POPUP -->
+<div style="height: 75vh; overflow: scroll;" class="content-wrapper" id="{{message}}" *ngIf="id==6">
+
+  <form [formGroup]="serviceRecordForm">
+      <div class="" >
+          <div class="align-item-center">
+              <span class="align-items-end" style="float:right;">
+              <button mat-dialog-close class="btn-close" aria-label="Close"></button></span> <h2>{{message}}</h2>
+          </div>
+
+          <div class="row p-4">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Total Service length</mat-label>
+                  <input matInput placeholder="Placeholder" formControlName="total_Service_Length">
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Qualifying Service(From Previous Organisation) </mat-label>
+                  <mat-date-range-input [rangePicker]="Qualifying1" [max]="maxDate">
+                      <input matStartDate #dateRangeStart1 formControlName="fromDate">
+                      <input matEndDate #dateRangeEnd1 formControlName="toDate"
+                      (dateChange)="dateRangeChangequalifying(dateRangeStart1, dateRangeEnd1)">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="Qualifying1"></mat-datepicker-toggle>
+                    <mat-date-range-picker #Qualifying1></mat-date-range-picker>
+              </mat-form-field>
+              <span>{{qualifyingServiceOtherOrganisationDate}}</span>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Non-Qualifying Service Date Range</mat-label>
+                  <mat-date-range-input [rangePicker]="Qualifying" [min]="nonMinDate" [max]="nonMaxDate">
+                      <input matStartDate  #dateRangeStart formControlName="nonQualifyingServicestart_Date">
+                      <input matEndDate  #dateRangeEnd formControlName="nonQualifyingServiceend_Date"
+                        (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="Qualifying"></mat-datepicker-toggle>
+                    <mat-date-range-picker #Qualifying></mat-date-range-picker>
+                  </mat-form-field>
+              <!-- <div class="col-12 service d-flex justify-content-end"><a class="service-link add-gap" href="JavaScript:Void(0);" color="primary">+ Add another Gap</a></div> -->
+                    </div>
+
+          <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <button type="button" class="btn btn-primary add" mat-raised-button color="success"[class.green]="isDisabled" [disabled]="is_Disabled" (click)="addAnothergap()">Add</button>
+          </div> -->
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3" *ngIf="isShowNomineeDetails">
+          <table class="table" id="tblNomineeDetail11">
+              <thead>
+              <th>Sr.No</th>
+              <th>Non Qualifying Service Date Range</th>
+              <th>Action</th>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let obj of gapArray;let i= index">
+                      <td>{{i+1}}</td>
+                      <td>{{obj.fromDate}}-{{obj.toDate}}</td>
+                      <td> <a href="JavaScript:Void(0);" (click)="removeFile(i,obj)">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
+                                  viewBox="0 0 16 16">
+                                  <path
+                                      d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                  <path fill-rule="evenodd"
+                                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                              </svg>
+                          </a>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Total Non-Qualifying Service</mat-label>
+                  <input matInput placeholder="Placeholder" formControlName="totalNonQualifyService">
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+            <mat-form-field class="w-100">
+                <mat-label>EOL Non-Qualifying Service Date Range</mat-label>
+                <mat-date-range-input [rangePicker]="Qualifying2" [min]="nonMinDate" [max]="nonMaxDate">
+                    <input matStartDate  #dateRangeStart2 formControlName="eolnonQualifyingServicestart_Date">
+                    <input matEndDate  #dateRangeEnd2 formControlName="eolnonQualifyingServiceend_Date"
+                    (dateChange)="eoldateRangeChange(dateRangeStart2.value, dateRangeEnd2.value)" >
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle matSuffix [for]="Qualifying2"></mat-datepicker-toggle>
+                  <mat-date-range-picker #Qualifying2></mat-date-range-picker>
+                </mat-form-field>
+            <!-- <div class="col-12 service d-flex justify-content-end"><a class="service-link add-gap" href="JavaScript:Void(0);" color="primary">+ Add another Gap</a></div> -->
+                  </div>
+
+
+
+                  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3" *ngIf="isShowNomineeDetails1">
+                    <table class="table" id="tblNomineeDetail11">
+                        <thead>
+                        <th>Sr.No</th>
+                        <th>EOL Non-Qualifying Service Date Range</th>
+                        <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let obj of gapArray1;let i= index">
+                                <td>{{i+1}}</td>
+                                <td>{{obj.fromDate}}-{{obj.toDate}}</td>
+                                <td> <a href="JavaScript:Void(0);" (click)="removeFile2(i,obj)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                            <path fill-rule="evenodd"
+                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                        <mat-form-field class="w-100">
+                            <mat-label>Total EOL Non-Qualifying Service</mat-label>
+                            <input matInput placeholder="Placeholder" formControlName="totaleolNonQualifyService">
+                        </mat-form-field>
+                    </div>
+
+
+                  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                    <mat-form-field class="w-100">
+                        <mat-label>Suspension period non treated as Qualifying Date Range</mat-label>
+                        <mat-date-range-input [rangePicker]="Qualifying9" [min]="nonMinDate" [max]="nonMaxDate">
+                            <input matStartDate  #dateRangeStart4 formControlName="Suspensionperiodnontreatedstart_Date">
+                            <input matEndDate  #dateRangeEnd4 formControlName="Suspensionperiodnontreatedend_Date"
+                            (dateChange)="susdateRangeChange(dateRangeStart4.value, dateRangeEnd4.value)">
+                          </mat-date-range-input>
+                          <mat-datepicker-toggle matSuffix [for]="Qualifying9"></mat-datepicker-toggle>
+                          <mat-date-range-picker #Qualifying9></mat-date-range-picker>
+                        </mat-form-field>
+                    <!-- <div class="col-12 service d-flex justify-content-end"><a class="service-link add-gap" href="JavaScript:Void(0);" color="primary">+ Add another Gap</a></div> -->
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3" *ngIf="isShowNomineeDetails2">
+                            <table class="table" id="tblNomineeDetail11">
+                                <thead>
+                                <th>Sr.No</th>
+                                <th>Suspension period non treated as Qualifying Date Range</th>
+                                <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let obj of gapArray2;let i= index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{obj.fromDate}}-{{obj.toDate}}</td>
+                                        <td> <a href="JavaScript:Void(0);" (click)="removeFile3(i,obj)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                                <mat-form-field class="w-100">
+                                    <mat-label>Total Suspension period non treated as Qualifying Service</mat-label>
+                                    <input matInput placeholder="Placeholder" formControlName="totalsusNonQualifyService">
+                                </mat-form-field>
+                            </div>
+
+                          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                            <mat-form-field class="w-100">
+                                <mat-label>Services Rendered below 18 years age Date Range</mat-label>
+                                <mat-date-range-input [rangePicker]="Qualifying4" [min]="nonMinDate" [max]="nonMaxDate">
+                                    <input matStartDate  #dateRangeStart5 formControlName="ServicesRenderedbelow18yearsagedstart_Date">
+                                    <input matEndDate  #dateRangeEnd5 formControlName="ServicesRenderedbelow18yearsageend_Date"
+                                    (dateChange)="reddateRangeChange(dateRangeStart5.value, dateRangeEnd5.value)">
+                                  </mat-date-range-input>
+                                  <mat-datepicker-toggle matSuffix [for]="Qualifying4"></mat-datepicker-toggle>
+                                  <mat-date-range-picker #Qualifying4></mat-date-range-picker>
+                                </mat-form-field>
+                            <!-- <div class="col-12 service d-flex justify-content-end"><a class="service-link add-gap" href="JavaScript:Void(0);" color="primary">+ Add another Gap</a></div> -->
+                                  </div>
+                                  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3" *ngIf="isShowNomineeDetails3">
+                                    <table class="table" id="tblNomineeDetail11">
+                                        <thead>
+                                        <th>Sr.No</th>
+                                        <th>Services Rendered below 18 years age Date Range</th>
+                                        <th>Action</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let obj of gapArray3;let i= index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{obj.fromDate}}-{{obj.toDate}}</td>
+                                                <td> <a href="JavaScript:Void(0);" (click)="removeFile4(i,obj)">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                            <path fill-rule="evenodd"
+                                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                        </svg>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                                        <mat-form-field class="w-100">
+                                            <mat-label>Total Services Rendered below 18 years age</mat-label>
+                                            <input matInput placeholder="Placeholder" formControlName="totalredNonQualifyService">
+                                        </mat-form-field>
+                                    </div>
+                                  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                                    <mat-form-field class="w-100">
+                                        <mat-label>Interruption in service condoned Under rule -17 Date Range</mat-label>
+                                        <mat-date-range-input [rangePicker]="Qualifying5" [min]="nonMinDate" [max]="nonMaxDate">
+                                            <input matStartDate  #dateRangeStart6 formControlName="InterruptioninservicecondonedUnderrule17start_Date">
+                                            <input matEndDate  #dateRangeEnd6 formControlName="InterruptioninservicecondonedUnderrule17end_Date"
+                                            (dateChange)="intdateRangeChange(dateRangeStart6.value, dateRangeEnd6.value)">
+                                          </mat-date-range-input>
+                                          <mat-datepicker-toggle matSuffix [for]="Qualifying5"></mat-datepicker-toggle>
+                                          <mat-date-range-picker #Qualifying5></mat-date-range-picker>
+                                        </mat-form-field>
+                                    <!-- <div class="col-12 service d-flex justify-content-end"><a class="service-link add-gap" href="JavaScript:Void(0);" color="primary">+ Add another Gap</a></div> -->
+                                          </div>
+                                          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3" *ngIf="isShowNomineeDetails4">
+                                            <table class="table" id="tblNomineeDetail11">
+                                                <thead>
+                                                <th>Sr.No</th>
+                                                <th>Interruption in service condoned Under rule -17 Date Range</th>
+                                                <th>Action</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let obj of gapArray4;let i= index">
+                                                        <td>{{i+1}}</td>
+                                                        <td>{{obj.fromDate}}-{{obj.toDate}}</td>
+                                                        <td> <a href="JavaScript:Void(0);" (click)="removeFile5(i,obj)">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                                </svg>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                                                <mat-form-field class="w-100">
+                                                    <mat-label>Total Interruption in service condoned Under rule -17 </mat-label>
+                                                    <input matInput placeholder="Placeholder" formControlName="totalintNonQualifyService">
+                                                </mat-form-field>
+                                            </div>
+                                          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+
+                                            <mat-form-field class="w-100">
+                                                <mat-label>Services Rendered by RVRES employees before merging in Govt Date Range</mat-label>
+                                                <mat-date-range-input [rangePicker]="Qualifying20" [min]="nonMinDate" [max]="nonMaxDate">
+                                                    <input matStartDate  #dateRangeStart25 formControlName="ServicesRenderedbyRVRESemployeesbeforemerginginGovtstart_Date">
+                                                    <input matEndDate  #dateRangeEnd25 formControlName="ServicesRenderedbyRVRESemployeesbeforemerginginGovtend_Date"
+                                                    (dateChange)="RVRESdateRangeChange(dateRangeStart25.value, dateRangeEnd25.value)">
+                                                  </mat-date-range-input>
+                                                  <mat-datepicker-toggle matSuffix [for]="Qualifying20"></mat-datepicker-toggle>
+                                                  <mat-date-range-picker #Qualifying20></mat-date-range-picker>
+                                                </mat-form-field>
+                                        </div>
+                                                  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3" *ngIf="isShowNomineeDetails10">
+                                                    <table class="table" id="tblNomineeDetail11">
+                                                        <thead>
+                                                        <th>Sr.No</th>
+                                                        <th>Services Rendered by RVRES employees before merging in Govt Date Range</th>
+                                                        <th>Action</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let obj of gapArray10;let i= index">
+                                                                <td>{{i+1}}</td>
+                                                                <td>{{obj.fromDate}}-{{obj.toDate}}</td>
+                                                                <td> <a href="JavaScript:Void(0);" (click)="removeFile6(i,obj)">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
+                                                                            viewBox="0 0 16 16">
+                                                                            <path
+                                                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                                            <path fill-rule="evenodd"
+                                                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                                        </svg>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                                                        <mat-form-field class="w-100">
+                                                            <mat-label>Total Services Rendered by RVRES employees before merging in Govt </mat-label>
+                                                            <input matInput placeholder="Placeholder" formControlName="totalRVRESNonQualifyService">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                                                        <mat-form-field class="w-100">
+                                                            <mat-label>Civil Service Date Range</mat-label>
+                                                            <mat-date-range-input [rangePicker]="Qualifying11" [min]="nonMinDate" [max]="nonMaxDate">
+                                                                <input matStartDate  #dateRangeStart8 formControlName="civilservicestart_Date">
+                                                                <input matEndDate  #dateRangeEnd8 formControlName="civilserviceend_Date"
+                                                                (dateChange)="CivildateRangeChange(dateRangeStart8.value, dateRangeEnd8.value)">
+                                                              </mat-date-range-input>
+                                                              <mat-datepicker-toggle matSuffix [for]="Qualifying11"></mat-datepicker-toggle>
+                                                              <mat-date-range-picker #Qualifying11></mat-date-range-picker>
+                                                            </mat-form-field>
+                                                        <!-- <div class="col-12 service d-flex justify-content-end"><a class="service-link add-gap" href="JavaScript:Void(0);" color="primary">+ Add another Gap</a></div> -->
+                                                              </div>
+                                                              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3" *ngIf="isShowNomineeDetails6">
+                                                                <table class="table" id="tblNomineeDetail">
+                                                                    <thead>
+                                                                    <th>Sr.No</th>
+                                                                    <th>Civil Service Date Range</th>
+                                                                    <th>Action</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr *ngFor="let obj of gapArray6;let i= index">
+                                                                            <td>{{i+1}}</td>
+                                                                            <td>{{obj.fromDate}}-{{obj.toDate}}</td>
+                                                                            <td> <a href="JavaScript:Void(0);" (click)="removeFile7(i,obj)">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
+                                                                                        viewBox="0 0 16 16">
+                                                                                        <path
+                                                                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                                                        <path fill-rule="evenodd"
+                                                                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                                                    </svg>
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                                                                    <mat-form-field class="w-100">
+                                                                        <mat-label>Total Civil Services  </mat-label>
+                                                                        <input matInput placeholder="Placeholder" formControlName="totalcivilService">
+                                                                    </mat-form-field>
+                                                                </div>
+                                                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                                                                    <mat-form-field class="w-100">
+                                                                        <mat-label>Military Service Date Range</mat-label>
+                                                                        <mat-date-range-input [rangePicker]="Qualifying12" [min]="nonMinDate" [max]="nonMaxDate">
+                                                                            <input matStartDate  #dateRangeStart9 formControlName="militryservicestart_Date">
+                                                                            <input matEndDate  #dateRangeEnd9 formControlName="militryserviceend_Date"
+                                                                            (dateChange)="MilitrydateRangeChange(dateRangeStart9.value, dateRangeEnd9.value)">
+                                                                          </mat-date-range-input>
+                                                                          <mat-datepicker-toggle matSuffix [for]="Qualifying12"></mat-datepicker-toggle>
+                                                                          <mat-date-range-picker #Qualifying12></mat-date-range-picker>
+                                                                        </mat-form-field>
+                                                                    <!-- <div class="col-12 service d-flex justify-content-end"><a class="service-link add-gap" href="JavaScript:Void(0);" color="primary">+ Add another Gap</a></div> -->
+                                                                          </div>
+                                                                          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3" *ngIf="isShowNomineeDetails7">
+                                                                            <table class="table" id="tblNomineeDetail">
+                                                                                <thead>
+                                                                                <th>Sr.No</th>
+                                                                                <th>Military Service Date Range</th>
+                                                                                <th>Action</th>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr *ngFor="let obj of gapArray7;let i= index">
+                                                                                        <td>{{i+1}}</td>
+                                                                                        <td>{{obj.fromDate}}-{{obj.toDate}}</td>
+                                                                                        <td> <a href="JavaScript:Void(0);" (click)="removeFile8(i,obj)">
+                                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
+                                                                                                    viewBox="0 0 16 16">
+                                                                                                    <path
+                                                                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                                                                    <path fill-rule="evenodd"
+                                                                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                                                                </svg>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                                                                                <mat-form-field class="w-100">
+                                                                                    <mat-label>Total Military Services  </mat-label>
+                                                                                    <input matInput placeholder="Placeholder" formControlName="totalMilitryService">
+                                                                                </mat-form-field>
+                                                                            </div>
+                                                  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                                                    <mat-form-field class="w-100">
+                                                        <mat-label>Other(Any other service not treated as qualifying) Date Range</mat-label>
+                                                        <mat-date-range-input [rangePicker]="Qualifying14" [min]="nonMinDate" [max]="nonMaxDate">
+                                                            <input matStartDate  #dateRangeStart14 formControlName="Otherstart_Date">
+                                                            <input matEndDate  #dateRangeEnd14 formControlName="Otherend_Date"
+                                                            (dateChange)="otherdateRangeChange(dateRangeStart14.value, dateRangeEnd14.value)">
+                                                          </mat-date-range-input>
+                                                          <mat-datepicker-toggle matSuffix [for]="Qualifying14"></mat-datepicker-toggle>
+                                                          <mat-date-range-picker #Qualifying14></mat-date-range-picker>
+                                                        </mat-form-field>
+                                                    <!-- <div class="col-12 service d-flex justify-content-end"><a class="service-link add-gap" href="JavaScript:Void(0);" color="primary">+ Add another Gap</a></div> -->
+                                                          </div>
+                                                          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3">
+                                                            <mat-form-field class="w-100">
+                                                                <mat-label>Total other Services  </mat-label>
+                                                                <input matInput placeholder="Placeholder" formControlName="totalOtherService">
+                                                            </mat-form-field>
+                                                        </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-0">
+              <mat-label>Is DE Pending?</mat-label>
+              <mat-radio-group aria-label="Select an option" formControlName="DE_Status" class="ms-3">
+                  <mat-radio-button color="primary" value="1" class="mt-3"  (change)="showHideFields(1)">Yes</mat-radio-button>
+                  <mat-radio-button color="primary" value="0" class="ms-3"  (change)="showHideFields(0)">No</mat-radio-button>
+              </mat-radio-group>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 " *ngIf="isDeStatus">
+              <mat-form-field class="w-100">
+                  <mat-label>Type Of DE</mat-label>
+                  <mat-select disableOptionCentering panelClass="myPanelClass" formControlName="DE_Type">
+                      <mat-option *ngFor="let obj of detypelist" [value]="obj.deTypeId">{{obj.deTypeName}}</mat-option>
+
+                  </mat-select>
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 " *ngIf="isDeStatus">
+              <mat-form-field class="w-100">
+                  <mat-label>DE Start Date - DE End Date</mat-label>
+                  <mat-date-range-input [rangePicker]="FromDate" [max]="maxDate2" [min]="maxDate">
+                    <input matStartDate formControlName="DEstart_Date" #dateRangeS readonly >
+                    <input matEndDate formControlName="DEend_Date" #dateRangeE readonly (dateChange)="deDateRangeChange2(dateRangeS, dateRangeE)">
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
+                  <mat-date-range-picker #FromDate></mat-date-range-picker>
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4" *ngIf="isDeStatus">
+              <mat-label>Penalty</mat-label>
+              <mat-radio-group aria-label="Select an option" class="ms-3" formControlName="Penalty">
+                  <mat-radio-button color="primary" value="1"class="mt-3"  (change)="showHideRemark(1)">Yes</mat-radio-button>
+                  <mat-radio-button color="primary" value="0" class="ms-3" (change)="showHideRemark(0)">No</mat-radio-button>
+              </mat-radio-group>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 " *ngIf="isPenalty">
+              <mat-form-field class="w-100">
+                  <mat-label>Type Of Penalty</mat-label>
+                  <mat-select disableOptionCentering panelClass="myPanelClass" formControlName="Penalty_Type">
+                    <mat-option *ngFor="let obj of penaltytypelist" [value]="obj.penaltyId">{{obj.penaltyName}}</mat-option>
+                  </mat-select>
+
+
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 mt-3" *ngIf="!isDeStatus">
+
+            <mat-label>No-DE Certificate</mat-label>
+            <div class="uploadfile">
+              <input type="file" id="fileDropRef" accept=".pdf" class="inputd" (change)="onChange2($event)" formControlName="nodeCertificate" >
+              <label for="fileDropRef">
+                <a matTooltip="Upload certificate" href="JavaScript:Void(0);">
+                  Upload No-DE certificate</a>
+              </label>
+            </div>
+            <div *ngIf="fileName" class="d-flex justify-content-between">
+              {{fileName}}
+              <a href="JavaScript:Void(0);" (click)="removeFile1()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                  <path fill-rule="evenodd"
+                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                </svg>
+              </a>
+            </div>
+
+
+    </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-3" >
+              <mat-form-field class="w-100" appearance="outline">
+                  <mat-label>Remarks</mat-label>
+                  <textarea matInput placeholder="Type your comments here" rows="2" formControlName="Remark"></textarea>
+              </mat-form-field>
+          </div>
+
+          <div class="row align-item-center">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12">
+                  <div class="float-end">
+                      <button mat-button mat-dialog-close class="btn btn-outline-cancel mr-5" mat-stroked-button>Cancel</button>
+                      <button type="button"class="btn btn-primary" mat-dialog-close mat-raised-button color="primary" (click)="onActivate()">+ Add Service Records</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+  </form>
+</div>
+
+
+
+<!-- "fullnfinalAmount": 3045,
+"interestAmount": 1153,
+"interestAmountCalculated": 3000000,
+"interestAmountDeposited": 253446,
+"lastBillMonth": 2,
+"lastBillYear": 2012,
+"loanAccountNo": "1083",
+"loanAmountDeposited": 147526,
+"loanAmountDrawn": 289250,
+"payId": 253,
+"premiumAmount": 1892,
+"totalInstallment": 180,
+"totalInstallmentDeposited": 120 -->
+<!-- ADD LOAN AND ADVANCE POPUP -->
+<div class="content-wrapper" id="{{message}}" *ngIf="id==7">
+  <form [formGroup]="loanAdvanceForm" (ngSubmit)="addEditLoanAdvance()">
+
+      <div class="align-item-center">
+          <span class="align-items-end" style="float:right;">
+          <button mat-dialog-close class="btn-close" aria-label="Close"></button></span> <h2>{{message}}</h2>
+      </div>
+      <div class="row p-3">
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Loan Type</mat-label>
+                  <mat-select formControlName="loanTypeId">
+                    <mat-option *ngFor="let obj of loantypelist" [value]="obj.loanTypeId">{{obj.loanTypeNameEn}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Treasury Name (Code)</mat-label>
+                  <mat-select  formControlName="treasury">
+                    <mat-option *ngFor="let obj of treasurylist" [value]="obj.treasCode">{{obj.treasNameEn}} ({{obj.treasCode}})</mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Sanction Number</mat-label>
+                  <input matInput placeholder="Sanction Number" formControlName="sanctionNumber" type="number">
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Sanction Date</mat-label>
+                    <input matInput [matDatepicker]="b_date" (click)="b_date.open()"
+                      (focus)="b_date.open()" formControlName="sanctionDate" name="sanctionDate"
+                      autocomplete="off" [max]="getToday()" placeholder="sanctionDate">
+                    <mat-datepicker-toggle matSuffix [for]="b_date"></mat-datepicker-toggle>
+                    <mat-datepicker #b_date></mat-datepicker>
+              </mat-form-field>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Sanction Amount </mat-label>
+                  <input matInput placeholder="Amount Sanction" formControlName="sanctionAmount" type="number">
+              </mat-form-field>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Principle Amount</mat-label>
+                  <input matInput placeholder="Principle" formControlName="principleAmount" (keypress)="principleAmtCheck()" value="" type="number" #principleAmount (blur)="calculateNetDues(principleAmount.value, recoveredAmount.value, interest.value)">
+
+                </mat-form-field>
+                <div class="text-danger" style="font-size: 12px !important;"  *ngIf= "((loanAdvanceForm.controls['sanctionAmount'].value) < (loanAdvanceForm.controls['principleAmount'].value))">
+                    Principle amount should be less then or equal to of sanction amount
+                  </div>
+
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+            <mat-form-field class="w-100">
+                <mat-label>Recovered Amount</mat-label>
+                <input matInput placeholder="Amount recovered" formControlName="recoveredAmount" #recoveredAmount type="number" (keyup)="calculateNetDues(principleAmount.value, recoveredAmount.value, interest.value)">
+            </mat-form-field>
+
+        </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+            <mat-form-field class="w-100">
+                <mat-label>Net Principle Amount</mat-label>
+                <input matInput placeholder="netPrinciple" formControlName="netPrinciple"  value="" type="number" [readonly]="true">
+
+              </mat-form-field>
+
+
+        </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Interest</mat-label>
+                  <input matInput placeholder="Intrest" formControlName="interest" #interest type="number" (keyup)="calculateNetDues(principleAmount.value, recoveredAmount.value, interest.value)">
+              </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+              <mat-form-field class="w-100">
+                  <mat-label>Net Due Amount</mat-label>
+
+                  <input matInput placeholder="Net due Pay" formControlName="netDueAmount" type="number">
+              </mat-form-field>
+          </div>
+          <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+
+                  <mat-label>No Dues Certificate</mat-label>
+                  <div class="uploadfile">
+                    <input type="file" id="fileDropRef" accept=".pdf" class="inputd" (change)="onChange1($event)" >
+                    <label for="fileDropRef">
+                      <a matTooltip="Upload certificate" href="JavaScript:Void(0);">
+                        Upload No Dues certificate</a>
+                    </label>
+                  </div>
+                  <div *ngIf="fileName" class="d-flex justify-content-between">
+                    {{fileName}}
+                    <a href="JavaScript:Void(0);" (click)="removeFile1()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
+                        viewBox="0 0 16 16">
+                        <path
+                          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                        <path fill-rule="evenodd"
+                          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                      </svg>
+                    </a>
+                  </div>
+
+
+          </div> -->
+          <div class="row align-item-center">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12">
+                  <div class="float-end">
+                      <button mat-button mat-dialog-close class="btn btn-outline-cancel mr-5" mat-stroked-button>Cancel</button>
+                      <button class="btn btn-primary"  mat-raised-button color="primary" type="submit">{{btnText}}</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </form>
+  <mat-label *ngIf="isformInvalid">Fill all fields</mat-label>
+</div>
+<div class="content-wrapper" id="{{message}}" *ngIf="id==20">
+    <form>
+        <div class="align-item-center">
+            <span class="align-items-end" style="float:right;">
+            <button mat-dialog-close class="btn-close" aria-label="Close"></button></span> <h3>{{message}}</h3>
+        </div>
+        <hr>
+        <div class="card-body vieob">
+            <div class="row mList" >
+                <div class="col">
+                    <h6 ><b>Objection</b> </h6>
+
+                </div>
+                <div class="col">
+                    <h6><b>Objection By</b></h6>
+                </div>
+                <div class="col">
+                    <h6><b>Remarks</b>
+                    </h6>
+                </div>
+                <div class="col">
+                    <h6><b>Date</b></h6>
+                </div>
+                <div class="col">
+                  <h6><b>Status</b></h6>
+              </div>
+              </div>
+            <div class="row mList" *ngFor="let data of objectionArray">
+              <div class="col">
+                  <h6 >{{data?.Objection}} </h6>
+
+              </div>
+              <div class="col">
+                  <h6>{{data.roleName}}</h6>
+              </div>
+              <div class="col">
+                  <h6>{{data.remark}}
+                  </h6>
+              </div>
+              <div class="col">
+                  <h6>{{data.CreatedAt}}</h6>
+              </div>
+              <div class="col">
+                <h6>{{!data.rejected?"Pending":"Removed"}}</h6>
+            </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row align-item-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12">
+                <div class="float-end">
+                    <button mat-button mat-dialog-close class="btn btn-outline-cancel" mat-stroked-button>Cancel</button>
+                    <button class="btn btn-primary  ms-2" mat-dialog-close mat-raised-button color="primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>
+  <div class="content-wrapper" id="{{message}}" *ngIf="id==21">
+    <form>
+        <div class="align-item-center">
+            <span class="align-items-end" style="float:right;">
+            <button mat-dialog-close class="btn-close" aria-label="Close"></button></span> <h3>{{message}}</h3>
+        </div>
+        <hr>
+        <div class="card-body vieob">
+            <div class="row mList" >
+                <div class="col">
+                    <h6 ><b>Document Name</b> </h6>
+
+                </div>
+                <div class="col">
+                    <h6><b>Preview</b></h6>
+                </div>
+
+              </div>
+            <div class="row mList" *ngFor="let data of documentList">
+
+              <div class="col" >
+                  <h6 >{{data?.docName}} </h6>
+
+              </div>
+              <div class="col" >
+                  <h6><span style="color:blue;text-decoration: underline;" (click)="showpreview(data.dmsDocId)">Preview</span></h6>
+              </div>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row align-item-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12">
+                <div class="float-end">
+                    <button mat-button mat-dialog-close class="btn btn-outline-cancel" mat-stroked-button>Cancel</button>
+                    <button class="btn btn-primary  ms-2" mat-dialog-close mat-raised-button color="primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>
+  <div class="content-wrapper" style=" overflow-y: scroll;" id="{{message}}" *ngIf="id==22">
+    <form>
+        <div class="align-item-center">
+            <span class="align-items-end" style="float:right;">
+            <button mat-dialog-close class="btn-close" aria-label="Close"></button></span> <h3>{{message}}</h3>
+        </div>
+        <hr>
+        <div class="card-body vieob">
+            <div class="row mList" >
+                <div class="col">
+                    <h6 ><b>Month</b> </h6>
+
+                </div>
+                <div class="col">
+                    <h6><b>Year</b></h6>
+                </div>
+                <div class="col">
+                    <h6><b>Amount(₹)  </b></h6>
+                </div>
+              </div>
+            <div class="row mList" *ngFor="let data of npaList">
+
+              <div class="col" >
+                  <h6 >{{data?.billMonth}} </h6>
+
+              </div>
+              <div class="col" >
+                  <h6 >{{data?.billYear}} </h6>
+
+              </div>
+              <div class="col" >
+                  <h6 >{{data?.Amount}}<b style="margin-left: 3px;">₹</b> </h6>
+
+              </div>
+
+
+            </div>
+        </div>
+        <hr>
+        <div class="row align-item-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12">
+                <div class="float-end">
+                    <!-- <button mat-button mat-dialog-close class="btn btn-outline-cancel" mat-stroked-button>Cancel</button> -->
+                    <button class="btn btn-primary  ms-2" mat-dialog-close mat-raised-button color="primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>
+
+  <div class="content-wrapper" id="{{message}}" *ngIf="id==40">
+    <form  [formGroup]="stopApprovalForm">
+        <div class="align-item-center">
+            <span class="align-items-end" style="float:right;">
+            <button mat-dialog-close class="btn-close m-3" aria-label="Close"></button></span> <h3 class="p-3 mb-0">{{message}}</h3>
+        </div>
+        <hr class="mt-0">
+        <div class="card-body vieob ">
+            <div class="mt-3" >
+              <h4 class="fs-5 text-center">Employee Basic Details </h4>
+                <div class="row text-start">
+
+                  <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                    <div>
+                      <span><b>Employee Code</b></span> &nbsp;
+                      <label >{{empDetails['employeeCode']}}</label>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                    <div>
+                      <span><b>Employee Name</b></span> &nbsp;
+                      <label>{{empDetails['employeeName']}}</label>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="mt-3 mx-auto">
+                <div class="row my-5 mb-0 text-start">
+
+
+
+                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                    <mat-label>Reason</mat-label>
+                    <mat-form-field class="example-full-width w-100" >
+
+                      <textarea rows="1" name="remarkde" formControlName="remarkde" matInput ></textarea>
+                    </mat-form-field>
+                    <div class="error-message text-danger"  *ngIf="reasonError">Reason is required.</div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <mat-label>Document </mat-label>
+                    <div class="file-uploder-container d-flex flex-column mt-2">
+                      <label for="inputGroupFile" class="upload-lable-text btn py-1">Drag & drop or <span
+                          class="file-browse"> browse </span></label>
+                      <div class="input-group custom-file-button">
+                        <input formControlName="stopDoc" type="file" class="form-control file-upload-input hidden" id="inputGroupFile" hidden (change)="selectFile($event)">
+                      </div>
+                      <!-- <div class="error-message text-danger " *ngIf="documentError">Please upload a document.</div> -->
+                    </div>
+                  </div>
+                    <div class="col-lg-2 my-4">
+
+                        <mat-spinner [diameter]="30" *ngIf="isLoading2" ></mat-spinner>
+                      </div>
+
+
+
+
+
+                </div>
+
+
+              </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12">
+                <div class="float-end">
+                    <button mat-button mat-dialog-close class="btn btn-outline-cancel mr-5" mat-stroked-button>Cancel</button>
+                    <button class="btn btn-primary"  mat-raised-button color="primary" (click)="StopAutoApprove()" >{{btnText}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>
+
+
+  <div class="content-wrapper" id="{{message}}" *ngIf="id==41">
+    <form  [formGroup]="stopApprovalForm">
+        <div class="align-item-center">
+            <span class="align-items-end" style="float:right;">
+            <button mat-dialog-close class="btn-close m-3" aria-label="Close"></button></span> <h3 class="p-3 mb-0">{{message}}</h3>
+        </div>
+        <hr class="mt-0">
+        <div class="card-body vieob ">
+            <div class="mt-3" >
+              <h4 class="fs-5 text-center">Employee Basic Details </h4>
+                <div class="row text-start">
+
+                  <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                    <div>
+                      <span><b>Employee Code</b></span> &nbsp;
+                      <label >{{empDetails['employeeCode']}}</label>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                    <div>
+                      <span><b>Employee Name</b></span> &nbsp;
+                      <label>{{empDetails['employeeName']}}</label>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="mt-3 mx-auto">
+                <div class="row my-5 mb-0 text-start">
+
+
+
+                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                    <mat-label>Reason</mat-label>
+                    <mat-form-field class="example-full-width w-100" >
+
+                      <textarea rows="1" name="remarkde" formControlName="remarkde" matInput ></textarea>
+                    </mat-form-field>
+                    <div class="error-message text-danger"  *ngIf="reasonError">Reason is required.</div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <mat-label>Document </mat-label>
+                    <div class="file-uploder-container d-flex flex-column mt-2">
+                      <label for="inputGroupFile" class="upload-lable-text btn py-1">Drag & drop or <span
+                          class="file-browse"> browse </span></label>
+                      <div class="input-group custom-file-button">
+                        <input formControlName="stopDoc" type="file" class="form-control file-upload-input hidden" id="inputGroupFile" hidden (change)="selectFile($event)">
+                      </div>
+                      <!-- <div class="error-message text-danger " *ngIf="documentError">Please upload a document.</div> -->
+                    </div>
+                  </div>
+                    <div class="col-lg-2 my-4">
+
+                        <mat-spinner [diameter]="30" *ngIf="isLoading2" ></mat-spinner>
+                      </div>
+
+
+
+
+
+                </div>
+
+
+              </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12">
+                <div class="float-end">
+                    <button mat-button mat-dialog-close class="btn btn-outline-cancel mr-5" mat-stroked-button>Cancel</button>
+                    <button class="btn btn-primary"  mat-raised-button color="primary" (click)="ReleaseAutoApprove()" >{{btnText}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>
+
+
+  <div class="content-wrapper" style=" overflow-y: scroll;" id="{{message}}" *ngIf="id==25">
+    <form>
+        <div class="align-item-center">
+            <span class="align-items-end" style="float:right;">
+            <button mat-dialog-close class="btn-close" aria-label="Close"></button></span> <h3>{{message}}</h3>
+        </div>
+        <hr>
+        <div class="card-body vieob">
+            <div class="row mList" >
+                <div class="col">
+                    <h6 ><b>Month</b> </h6>
+
+                </div>
+                <div class="col">
+                    <h6><b>Year</b></h6>
+                </div>
+                <div class="col">
+                    <h6><b>Amount(₹)  </b></h6>
+                </div>
+              </div>
+            <div class="row mList" *ngFor="let data of spePayList">
+
+              <div class="col" >
+                  <h6 >{{data?.billMonth}} </h6>
+
+              </div>
+              <div class="col" >
+                  <h6 >{{data?.billYear}} </h6>
+
+              </div>
+              <div class="col" >
+                  <h6 >{{data?.Amount}}<b style="margin-left: 3px;">₹</b> </h6>
+
+              </div>
+
+
+            </div>
+        </div>
+        <hr>
+        <div class="row align-item-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-12">
+                <div class="float-end">
+                    <!-- <button mat-button mat-dialog-close class="btn btn-outline-cancel" mat-stroked-button>Cancel</button> -->
+                    <button class="btn btn-primary  ms-2" mat-dialog-close mat-raised-button color="primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>

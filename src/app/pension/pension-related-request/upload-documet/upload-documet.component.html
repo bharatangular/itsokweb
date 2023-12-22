@@ -1,0 +1,61 @@
+<form [formGroup]="frmDoc" (ngSubmit)="uploadDoc()" *ngIf="IsSaveEnable">
+    <div class="row">
+        <div class="col-md-4 mt-4">
+            <mat-form-field class="w-90">
+                <mat-label>Documents Types</mat-label>
+                <mat-select matNativeControl formControlName="docTypeId" (selectionChange)="resetDoc()">
+                    <mat-option *ngFor="let mst of DocumentTypedata" value={{mst.docTypeId}}>
+                        {{mst.docName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+       
+   
+        <div class="col-md-3 mt-4" *ngIf="false">
+            <mat-form-field class="w-100">
+                <mat-label>Description</mat-label>
+                <input matInput  maxlength="25"  formControlName="description">
+            </mat-form-field>
+        </div>
+        <div class="col-md-3 mt-4">
+            <!-- <button type="button" class="btn btn-secondary ms-2" mat-raised-button color="secondary">Choose File</button> -->
+            <input type="file" #uploadFile (change)="selectFile($event)" class="d-block" >
+            <span class="text-blue fs-6">Max file size {{fileSize}}</span>
+        </div>
+        <div class="col-md-2 mt-4"  >
+            <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
+        </div>
+        <div class="col-md-3 mt-4">
+            <button mat-raised-button color="primary" > + Add a new document</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-border mt-5">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Documents Types</th>
+            <!-- <th>Description</th> -->
+            <th>Document Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let doc of documentList; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{getDocName(doc.docTypeId)?getDocName(doc.docTypeId):"Document"}}</td>
+            <!-- <td>{{doc.description}}</td> -->
+            <td>{{doc.documentName}}</td>
+            <td>
+                <button mat-icon-button type="button" (click)="getDocumentFile(doc)" color="primary">
+                    <mat-icon>remove_red_eye</mat-icon>
+                </button>
+                <button type="button" mat-icon-button color="warn" (click)="remove(i)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+             </td>
+        </tr>
+    </tbody>
+</table>

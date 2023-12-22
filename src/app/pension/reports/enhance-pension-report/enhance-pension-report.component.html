@@ -1,0 +1,205 @@
+
+<div class="container-fluid full">
+
+    
+    <div class="row">
+        <div class="col-lg-12 p-3 pt-0">
+    <div class="row">
+    
+    <div class="col-lg-12">
+    
+    <app-filters (dataParmsFilter)="reviceParamsfilter($event)" (filterDash)="reset($event)"></app-filters>
+    </div>
+    </div>
+    </div></div>
+
+
+
+    <div class="row">
+    <div class="row-12">
+      <div class="row">
+                
+        <div class="col-12 col-md-8 col-lg-12">
+            <div class="tab-content" id="nav-tabContent">
+        <!-- breadcrumb -->
+    <section>
+            <div class="content-wrapper">
+                <nav aria-label="breadcrumb">               
+                </nav>
+            </div>
+    </section>
+    
+    <mat-card>
+        <div class="content-wrapper"  style="margin-bottom: 30px;">
+            
+
+            
+            <div class="content-wrapper mb-2">
+                <div class="row justify-content-end mt-3">
+                    <div class="col-lg-4 month-dropdown" >
+                        <h2 class="mb-0 py-2">Enhance Pension </h2>
+                    </div>
+
+                    <div class="col-lg-6 text-end">
+                        <mat-form-field class="">
+                            <mat-label><mat-icon>search</mat-icon></mat-label>
+                            <input matInput (keyup)="applyFilter($event)"  placeholder="Search" #input >
+                       
+                        </mat-form-field>
+            
+                      
+            
+                    </div>
+                    <div class="col-lg-2 text-end px-4 d-flex justify-content-end align-items-center">
+                        <button (click)="exportToPdf('enhance_Pensioner', 'Enhance Pension Report')" class="btn btn_custome_r d-inline me-2 align-items-center justify-content-center mb-1 px-2"> 
+                            <img src="assets/images/pdf.png">
+                        </button>
+                        <button (click)="exportToExcel('Enhance Pension Report')"  class="btn btn_custome_g d-inline align-items-center justify-content-center mb-1 px-2"> 
+                            <img src="assets/images/excel.svg">
+                          
+                        </button>
+                    </div>
+                </div>         
+            </div>
+            
+
+
+            <div class="mb-5 mat-elevation-z8" style="overflow: auto;">
+                <table mat-table [dataSource]="dataSource" matSort class="w-100  mt-4" id="enhance_Pensioner">
+                    
+                    <ng-container matColumnDef="sNo">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>S.No.</th>
+                        <td mat-cell *matCellDef="let data"> {{data.sNo}}</td>
+                    </ng-container>
+                    
+                
+                    
+                    <ng-container matColumnDef="empNameAndCode" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.empNameAndCode}}</td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="refNo">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ref No</th>
+                        <td mat-cell *matCellDef="let row"> {{row.refNo}} </td>
+                    </ng-container>
+
+                    
+                            
+                    <ng-container matColumnDef="ppoNo">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>PPO No</th>
+                        <td mat-cell *matCellDef="let row"> {{row.ppoNo}} </td>
+                    </ng-container>
+                   
+                    
+
+                          
+                    <ng-container matColumnDef="dob">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth</th>
+                        <td mat-cell *matCellDef="let row"> {{row.dob}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ofcName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Office Name (Office ID)</th>
+                        <td  mat-cell *matCellDef="let row"> {{row.ofcName ? row.ofcName : '-'}} ({{row.officeId ? row.officeId : '-'}}) </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="treasCode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Treasury Code</th>
+                        <td mat-cell *matCellDef="let row"> {{row.treasCode}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="deptName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Dept Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.deptName}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="zoneName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Zone Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.zoneName}} </td>
+                    </ng-container>
+        
+                    
+                    <ng-container matColumnDef="accountNo" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Account No</th>
+                        <td mat-cell *matCellDef="let row" > {{row.accountNo}} </td>
+                    </ng-container>
+  
+
+     
+   
+                    <ng-container matColumnDef="psnAmt">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>PSN Amount</th>
+                        <td mat-cell *matCellDef="let row"> {{row.psnAmt}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="death_date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>PSN Death Date</th>
+                        <td mat-cell *matCellDef="let row"> {{row.death_date ? row.death_date : "-" }} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="enhancePsnAmt">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Enhance PSN Amount</th>
+                        <td mat-cell *matCellDef="let row"> {{row.enhancePsnAmt}} </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="enhancePsnEnd">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Enhance PSN End</th>
+                        <td mat-cell *matCellDef="let row"> {{row.enhancePsnEnd}} </td>
+                    </ng-container>
+        
+                    
+        
+                    <ng-container matColumnDef="familyPsnName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Family PSN Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.familyPsnName}} </td>
+                    </ng-container>
+        
+        
+                    
+                    <ng-container matColumnDef="familyPsnAmt">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Family PSN Amount</th>
+                        <td mat-cell *matCellDef="let row"> {{row.familyPsnAmt}} </td>
+                    </ng-container> 
+        
+           
+                    
+                    <!-- <ng-container matColumnDef="Action">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                        <td mat-cell *matCellDef="let row" > 
+                            <button mat-raised-button color="primary" class="btn btn-primary" (click)="View_Profile(row.employeeCode,row.employeeId,row.psnType)"
+                            *ngIf="row.dateOfJoining!=null">Initiate e-Pension</button>
+                        </td>
+        
+                    </ng-container> -->
+                   
+        
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell text-center" colspan="14">No Record Found. </td>
+                    </tr>
+                    <!-- Row shown when there is no matching data. -->
+                     <!-- <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="7">No data matching the filter "{{input.value}}"</td>
+                    </tr> -->
+                    
+                </table>
+        
+                <mat-paginator [pageSizeOptions]="[25,50,75,100]" aria-label="Select page of users"></mat-paginator>
+            </div>
+        </div>
+    </mat-card>
+                
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+    </div>
+

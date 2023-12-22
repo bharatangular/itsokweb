@@ -1,0 +1,165 @@
+<mat-card class="m-3 mt-0 me-0 p-3 pt-1 mb-4">
+
+    <div class="tab-container mt-4">
+        <div class="container-fluid">
+         <div class="row">
+   
+          
+        <div class="col-3 col-sm-3 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">           
+           <div class="avatar-upload">
+             <span> Old Joint Photograph</span> 
+             <div class="avatar-preview">
+               <div id="imagePreview" [style.backgroundImage]="'url('+ jointImageUrl +')'"> 
+                <i class="fa fa-edit"></i>
+               </div>
+             </div> 
+           </div>   
+         </div>
+        
+
+
+
+         <div class="col-3 col-sm-3 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">           
+            <div class="avatar-upload">
+              <span> New Joint Photograph</span> 
+              <div class="avatar-preview">
+                <div id="imagePreview" [style.backgroundImage]="'url('+ jointImageUrlNew +')'"> 
+                 <i class="fa fa-edit"></i>
+                </div>
+                <img [src]="picData" style=" width: auto;  height: 100%;" />
+              </div> 
+            </div>   
+          </div>
+        
+ 
+           <!-- <div class="col-3 col-sm-3 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">          
+            <div class="avatar-upload">
+              <span> Old Employee Photograph </span> 
+              <div class="avatar-preview">
+                <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'"> 
+                  <i class="fa fa-edit"></i>
+                </div>
+              </div>  
+            </div>  
+          </div>   -->
+
+
+             
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+              <div class="avatar-upload">
+                <span>Old Employee Photograph</span>              
+                <div class="avatar-preview">
+                  <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                  
+                    <i class="fa fa-edit"></i>
+                  </div>
+                  <img [src]="picData" style=" width: auto;  height: 100%;" />
+                </div>
+              </div>    
+              </div>         
+          
+
+
+          
+          
+          <div class="col-3 col-sm-3 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">          
+            <div class="avatar-upload">
+              <span> New Employee Photograph </span> 
+
+              <div class="avatar-preview">
+                <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrlNew +')'">
+                
+                  <i class="fa fa-edit"></i>
+                </div>
+                <img [src]="picData1" style=" width: auto;  height: 100%;" />
+              </div>
+
+               
+            </div>  
+          </div>      
+          
+   
+             </div>
+           </div>
+         </div>
+   
+
+
+
+
+<legend class="my-2"> Family's Update Details</legend> 
+  <div style="overflow-x: auto;">
+    <table class="table table-striped table-hover border">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">janAadhar Id</th>
+          <th scope="col">DOB</th>
+          <th scope="col">Family Mamber Id</th>
+          <th scope="col">Gender Id</th>  
+          <th scope="col">Member Id</th>           
+          <th scope="col">Govt Employee</th>           
+          <th scope="col">Relationship</th>           
+          <th scope="col">Martial Status</th>           
+          <th scope="col">isDisable</th>           
+          <th scope="col">Disability Percent</th>           
+          <!-- <th scope="col">Action</th> -->
+        </tr>
+ 
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of familyDtlsrecord ; let i = index">     
+          <th scope="row">{{i + 1}}</th>
+          <td>{{row.name}}</td>
+          <td>{{row.janAadharId}}</td>
+          <td>{{row.dob}}</td>  
+          <td>{{row.familyMamId}}</td>
+          <td>{{row.genderId}}</td>
+          <td>{{row.memberId}}</td>
+          <td>{{row.govEmployee}}</td>
+          <td>{{row.relationship}}</td>
+          <td>{{row.martialStatus}}</td>
+          <td>{{row.isDisable}}</td>
+          <td>{{row.disabilityPercent}}</td>
+          <td>
+            <!-- <button mat-icon-button color="primary" (click)="edit(i)"> <mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn" (click)="remove(i)"> <mat-icon>delete</mat-icon></button>  -->          
+        </tr>
+
+      </tbody>
+    </table>
+  </div> 
+  <legend class="my-2"> Nomine Details</legend>
+  <div style="overflow-x: auto;">
+    <table class="table table-striped table-hover border">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Member Id</th>
+          <th scope="col">Name</th>         
+          <th scope="col">Schemes</th>
+          <th scope="col">Relation</th>
+          <th scope="col">Share % </th>
+        </tr>
+ 
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of NomineeDetailsList; let i = index">     
+          <th scope="row">{{i + 1}}</th>
+          <td>{{user.memberId}}</td> 
+          <td>{{user.nameOfNominee}}</td>        
+          <td>{{user.schemes}}</td>  
+          <td>{{user.relation}}</td>  
+          <td>{{user.share}}</td>        
+          <td>             
+        </tr>
+      </tbody>
+    </table>
+  </div> 
+  <div class="d-flex justify-content-end"  >
+    <button class="btn btn-primary btn-cls" mat-raised-button color="primary" (click)="saveDraftApprove()"> Approverd </button> 
+   
+</div> 
+ 
+</mat-card>

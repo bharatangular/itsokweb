@@ -1,0 +1,406 @@
+<div class="emp_personal_dt">
+  <!-- <mat-tab-group animationDuration="0ms" class="mb-2">
+    <mat-tab label="Personal Details" class="text-black"></mat-tab>
+  </mat-tab-group>
+  <button type="button" class="float-end btn_mdf" *ngIf="config.registrationType === 0" mat-raised-button
+    color="primary" (click)="modify()">Modify</button> -->
+
+
+
+
+  <div class=" mt-3 mb-2 displayflex">
+    <h2 class="text-blue ms-3 mb-0">Personal Details </h2>
+    <button type="button" *ngIf="config.registrationType === 0" mat-raised-button color="primary"
+      (click)="modify()">Modify</button>
+  </div>
+  <div class="mb-3">
+    <div class="border-bottoms"></div>
+    <div class="border-bottom" ></div>
+  </div>
+
+  <!-- upload image -->
+
+  <div class="col-lg-4 offset-4 mb-3 text-center pt-5">
+    <h3>Employee Photo</h3>
+    <div class="align-items-center">
+      <div class="avatar-upload">
+        <div class="avatar-edit" >
+          <input type='file' id="imageUpload" accept=".png,.jpeg" #fileInput (change)="uploadFile($event)"  />
+        </div>
+        <div class="avatar-preview my-4">
+          <!-- <div id="imagePreview" [style.backgroundImage]="'url( imageUrl ')'">
+          </div> -->
+          <img [src]="imageUrl!=null?imageUrl:picData!=null?picData:'assets/images/male-avatar.jpg'" style="width: 130px; height: 100%; object-fit: cover;"/>
+
+          <!-- <img [src]="imageUrl" style=" width: auto;  height: 100%;"/> -->
+        </div>
+      </div>
+      <div class="ms-3" *ngIf="userAction.length==0 ||roleid==1">
+        <div *ngIf="uploadSelfPic">
+        <div class="fs-6 fw-semibold">Upload Recent Employee Photograph*</div>
+        <div class="font-size">You can upload a JPEG, GIF, or PNG file. Maximum file size is 500KB.</div>
+        <div class="mt-3">
+          <button class="px-5" mat-raised-button type="button" color="primary" (click)="fileInput.click()">
+            <mat-icon class="me-2">edit</mat-icon>Upload
+          </button>
+          <!-- <button mat-raised-button color="primary" type="button" class="ms-2 px-5">
+            <mat-icon class="me-3 ">delete</mat-icon>Remove
+          </button> -->
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="personalDetails" (submit)="onSubmit()">
+    <div class="row" *ngIf="config.registrationType === 1">
+      <div class="col-md-6 col-lg-4 md-4 mt-3  bg_light_color">
+        <mat-label class="mr-3">Employee Category</mat-label>
+        <mat-radio-group formControlName="employeeCategory" (change)="registrationType($event)">
+          <mat-radio-button [value]="true" color="primary" class="ms-3" checked>New</mat-radio-button>
+          <mat-radio-button [value]="false" color="primary" class="ms-3">Existing</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="false">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>Employee Code</mat-label>
+          <input formControlName="employeeCode" matInput>
+          <mat-icon  matSuffix *ngIf="personalDetails.value.employeeCategory == false">search</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3" >
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>Employee Code</mat-label>
+          <input formControlName="employeeId" matInput>
+          <mat-icon  matSuffix *ngIf="personalDetails.value.employeeCategory == false">search</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Janadhaar Id</mat-label>
+          <input matInput formControlName="janAadharId" numberOnly (ngModelChange)="getJanaadhaar($event)"
+            [maxlength]="10" >
+          <mat-hint
+            *ngIf="personalDetails.controls['janAadharId'].errors && personalDetails.controls['janAadharId']?.touched"
+            class="text-danger">
+            Enter 10 digit Janadhar Number.
+          </mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3"  >
+        <mat-form-field class="w-100">
+          <mat-label>Member Id</mat-label>
+          <mat-select formControlName="memberId" (selectionChange)="changeMember()" >
+            <mat-option [value]="item.jan_mid==0?item.hof_jan_m_id:item.jan_mid" *ngFor="let item of janaadhaarList" [disabled]="item.age <=18">
+              {{item.nameEng}} | {{item.jan_mid==0?item.hof_jan_m_id:item.jan_mid}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="isHead" >
+        <mat-form-field class="w-100">
+          
+          
+            <mat-label>Head of Family Member Id</mat-label>
+            <input formControlName="memberId" alphabetOnly matInput readonly>
+       
+        </mat-form-field>
+      </div> -->
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3 ">
+        <mat-form-field class="w-100 bg_light_color">
+          <mat-label>{{config.registrationType === 2 ? 'Name' : 'First Name'}} </mat-label>
+          <input formControlName="firstName" alphabetOnly matInput maxlength="100" minlength="2" [readonly]="isPayManager" >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="config.registrationType !== 2">
+        <mat-form-field class="w-100">
+          <mat-label>Middle Name</mat-label>
+          <input formControlName="middleName" alphabetOnly matInput>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="config.registrationType !== 2">
+        <mat-form-field class="w-100">
+          <mat-label>Last Name</mat-label>
+          <input formControlName="lastName" alphabetOnly matInput maxlength="100" minlength="2">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender" [disabled]="isPayManager">
+            <mat-option [value]="item.genId" *ngFor="let item of genderList">{{item.genNameEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label> Date of Birth</mat-label>
+          <!-- <input formControlName="dob" matInput > -->
+          <input matInput formControlName="dob" (ngModelChange)="changedob()" [matDatepicker]="picker" [disabled]="isPayManager"/>
+          <mat-datepicker-toggle matSuffix [for]="picker">
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker class="mat-piker">
+          </mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Date of Birth in Word</mat-label>
+          <input formControlName="dobInWord" matInput readonly="" />
+        </mat-form-field>
+      </div> -->
+
+      <!-- <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Height(in centimeter)</mat-label>
+          <input formControlName="height" matInput>
+        </mat-form-field>
+      </div> -->
+
+      <!-- <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Blood Group</mat-label>
+          <mat-select formControlName="bloodGroup" placeholder="--Select--" >
+            <mat-option [value]="item.bGrpId" *ngFor="let item of bloodGroupList">{{item.bGrpName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+      <!-- <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100" >
+          <mat-label>Identification Mark</mat-label>
+          <input formControlName="identificationMark" alphabetOnly minlength="10" matInput  >
+          <mat-hint
+            *ngIf="personalDetails.controls['identificationMark'].errors && personalDetails.controls['identificationMark'].touched"
+            class="text-danger">
+            Identification Mark should be minimum 10 character
+          </mat-hint>
+        </mat-form-field>
+      </div> -->
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>Father Name</mat-label>
+          <input formControlName="fatherName" alphabetOnly matInput [readonly]="isPayManager">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Mother Name </mat-label>
+          <input formControlName="motherName" alphabetOnly matInput >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>Marital Status</mat-label>
+          <mat-select formControlName="maritalStatus" (selectionChange)="onChangeMarital($event)"
+            placeholder="--Select--" [disabled]="isPayManager">
+            <mat-option [value]="item.mStatusId"
+              *ngFor="let item of maritalStatusList">{{item.mStatusName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="personalDetails.value.maritalStatus==1">
+        <mat-form-field class="w-100  bg_light_color" >
+          <mat-label>Spouse Name(field related to family details)</mat-label>
+          <input formControlName="spouseName" [readonly]="true" alphabetOnly matInput  >
+        </mat-form-field>
+        <!-- <a style="font-size: small;"><br>This field according family details</a> -->
+      </div>
+
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <div class="d-block mt-2"></div>
+        <mat-label>Disability Status</mat-label>
+        <mat-radio-group formControlName="disabilityStatus" (change)="changeDS($event)" #group>
+          <mat-radio-button class="example-margin ms-3" [value]="1" color="primary">Yes
+          </mat-radio-button>
+          <mat-radio-button class="example-margin" [value]="0" color="primary" class="ms-3">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="personalDetails.value.disabilityStatus ==  true">
+        <mat-form-field class="w-100">
+          <mat-label>Type of Disability</mat-label>
+          <mat-select formControlName="typeOfDisability" placeholder="--Select--">
+            <mat-option [value]="item.disabilityId"
+              *ngFor="let item of disabilityTypeList">{{item.disTypeEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="personalDetails.value.disabilityStatus == true">
+        <mat-form-field class="w-100">
+          <mat-label>Percentage of Disability</mat-label>
+          <input formControlName="percentageOfDisability" maxlength="3" numberOnly matInput (change)="checkRange()">
+          <mat-hint *ngIf="personalDetails.controls['percentageOfDisability'].errors" class="text-danger">
+            Percentage of Disability should be min 40 and max 100
+          </mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="personalDetails.value.disabilityStatus == true">
+        <mat-form-field class="w-100">
+          <mat-label> Disability Category</mat-label>
+          <mat-select formControlName="disabilityCategory" placeholder="--Select--">
+            <mat-option *ngFor="let item of disabilityCategorylist"
+              [value]="item.disabilityCatId">{{item.disabilityCatName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Email Id</mat-label>
+          <input type="email" formControlName="emailID" email type="email" matInput>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Mobile Number</mat-label>
+          <input formControlName="mobileNumber" [maxLength]="10" numberOnly matInput>
+          <mat-hint
+            *ngIf="personalDetails.controls['mobileNumber'].errors && personalDetails.controls['mobileNumber']?.touched"
+            class="text-danger">
+            Mobile Number should be minimum 10
+          </mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Nationality</mat-label>
+          <mat-select formControlName="nationality" (selectionChange)="nationalityChange()" [disabled]="isEnablefut">
+            <mat-option [value]="item.countryId"
+              *ngFor="let item of nationalityList">{{item.countryNameEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+                                                                                                                                                       
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+
+        <mat-form-field class="w-100">
+          <mat-label>Home State</mat-label>
+          <mat-select formControlName="homeState" (selectionChange)="getDistrict()" placeholder="--Select--" [disabled]="isEnablefut">
+            <mat-option [value]="item.stateId" *ngFor="let item of stateList">{{item.stNameEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Home District </mat-label>
+          <mat-select formControlName="homeDistrict" (selectionChange)="getCity()" placeholder="--Select--" [disabled]="isEnablefut">
+            <mat-option [value]="item.distId" *ngFor="let item of districtList">{{item.distNameEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Home Town</mat-label>
+          <mat-select formControlName="homeTown" placeholder="--Select--" [disabled]="isEnablefut">
+            <mat-option [value]="item.cityId" *ngFor="let item of cityList">{{item.cityNameEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>Social Category </mat-label>
+          <mat-select formControlName="socialCategory" placeholder="--Select--" [disabled]="isPayManager">
+            <mat-option [value]="item.categoryId" *ngFor="let item of casteCategoryList">{{item.catNameEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Religion </mat-label>
+          <mat-select formControlName="religion" placeholder="--Select--">
+            <mat-option [value]="item.religionId" *ngFor="let item of religionList">{{item.religionNameEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>Pan Number</mat-label>
+          <input formControlName="pan" matInput oninput="this.value = this.value.toUpperCase()" maxlength="10"
+            (ngModelChange)="getPanInfo($event)" [readonly]="isPayManager">
+          <mat-hint *ngIf="personalDetails.controls['pan'].errors && personalDetails.controls['pan']?.touched"
+            class="text-danger">
+            Please enter valid PAN eg "YURID1234F"
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100  bg_light_color">
+          <mat-label>Aadhar Refernce Number</mat-label>
+          <input formControlName="aadharRefNo" numberOnly matInput maxlength="12" ((keyup))="verifyAadhaar($event)" readonly>
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Passport Number</mat-label>
+          <input formControlName="passport" matInput oninput="this.value = this.value.toUpperCase()" maxlength="8">
+          <mat-hint *ngIf="personalDetails.controls['passport'].errors && personalDetails.controls['passport']?.touched"
+            class="text-danger">
+            Passport should be Minimum 8
+          </mat-hint>
+        </mat-form-field>
+      </div> -->
+
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3  bg_light_color">
+        <mat-label class="mr-3 ">Belong to Minority </mat-label>
+        <mat-radio-group formControlName="belongsToMinority" #min (change)="onItemChange($event)" [disabled]="isPayManager">
+          <mat-radio-button class="example-margin" [value]="1" color="primary" class="ms-3">Yes</mat-radio-button>
+          <mat-radio-button class="example-margin" [value]="0" color="primary" class="ms-3">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="personalDetails.value.belongsToMinority=='1'" >
+        <mat-form-field class="w-100">
+          <mat-label>Minority Category</mat-label>
+          <mat-select formControlName="minorityCategory" placeholder="--Select--">
+            <mat-option *ngFor="let item of minorityList" [value]="item.minorCatId">{{item.MinorCatNameEn}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <app-upload-documet [IsSaveEnable]="isSaveEnable" [config]="config" [userAction]="userAction"
+      [DocumentList]="docList" [subProcessId]="1" 
+      (EmpDocument)="getDocument($event)" [isDis]="personalDetails.value.disabilityStatus">
+    </app-upload-documet>
+
+    <div *ngIf="isSaveEnable">
+      <button type="submit" *ngIf="userAction.length === 0" mat-raised-button color="primary" class="mt-5">
+        {{config.registrationType === 0 ? 'Save' : 'Save as Draft'}}
+      </button>
+
+    </div>
+    <!-- <div *ngIf="isSaveEnable">
+      <button type="submit" *ngIf="userAction.length !== 0" mat-raised-button color="primary" class="mt-5">
+        {{config.registrationType === 0 ? 'Save' : 'Save as Draft'}}
+      </button>
+
+    </div> -->
+   
+  </form>
+</div>

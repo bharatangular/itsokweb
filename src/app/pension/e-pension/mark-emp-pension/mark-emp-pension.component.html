@@ -1,0 +1,247 @@
+<div class="container-fluid" style="background-color: #edf0f2;">
+    <div class="row">
+        <div class="col-12 mb-5">
+            <div class="registration-card">
+                <div class="heading-2 bodytext-color d-flex align-items-center mt-1 px-4 py-2 wbg stepper-title">
+                    Mark employee for first pension 
+                    <mat-icon class="primary ms-2">info</mat-icon>
+                </div>
+                <div>
+                    <form [formGroup]="searchEmployeeForm">
+                        <div class="tab-container mt-4">
+                            <div class="container-fluid">
+                                <mat-card class="mt-3">
+                                    <div class="row">
+                                        <div class="col-md-11 col-12">
+                                            <!-- <mat-label class="font-12 d-block">Employee Code</mat-label> -->
+                                            <mat-form-field class="example-full-width" class="w-100">
+                                                <input matInput formControlName="empCode" placeholder="Enter Employee Code" #empCode required>
+                                            </mat-form-field>
+                                            <span class="text-danger display_block mb-1 pb-1"  *ngIf="(searechEmpFormControl.empCode.touched && searechEmpFormControl.empCode.errors) || (isSearch && searechEmpFormControl.empCode.errors)">
+                                                Employee Code is required
+                                            </span>
+                                        </div>
+                                        <div class="col-md-1 col-12">
+                                            <mat-label class="font-12 d-block"> <br /></mat-label>
+                                            <button class="btn btn-primary btn-cls" mat-raised-button color="primary"
+                                                (click)="searchEmpBasiceDetailsApi(searechEmpFormControl.empCode.value)"><mat-icon>search</mat-icon> </button>
+                                        </div>
+                                    </div>
+                                </mat-card>
+
+                                <mat-card class="mt-3" *ngIf="resultEmpData && resultServiceData && !loading">
+                                    <div class="row">
+                                        <h4 class="fs-5">Employee Basic Details </h4>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span><b>Employee Code</b></span>  &nbsp;
+                                              <label>{{searechEmpFormControl.empCode.value}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span><b>Employee ID</b></span>  &nbsp;
+                                              <label>{{resultEmpData.employeeId}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span><b>Pan No.</b></span>  &nbsp;
+                                              <label>{{resultEmpData.pan}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span><b>Designation</b></span>  &nbsp;
+                                              <label>{{resultServiceData.currentDesignation}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span><b>Parent Department</b></span>  &nbsp;
+                                              <label>{{resultServiceData.parentDepartment}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span><b>Employee Name</b></span>  &nbsp;
+                                              <label>{{resultEmpData.firstName}}</label>
+                                            </div>
+                                        </div> 
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span><b>Father Name</b></span>  &nbsp;
+                                              <label>{{resultEmpData.fatherName}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                                            <div>
+                                              <span><b>Retirement Date</b></span>  &nbsp;
+                                              <label>{{resultEmpData.dateOfRetirement | date: 'yyyy-MM-dd'}}</label>
+                                            </div>
+                                        </div>
+
+    
+                                    </div>
+                                </mat-card>
+
+                                <mat-card class="mt-3" *ngIf="loading">
+                                    <mat-spinner class="myspinner m-auto"></mat-spinner>
+                                </mat-card>
+
+                                <mat-card class="mt-3">
+                                    <div class="row">
+                                        <div class="col-md-4 col-4 mb-2">
+                                            <h6 class="fs-5">Type Of Retirement</h6>
+                                            <mat-radio-group formControlName="retirementTypes" class="d-block mb-2">
+                                                <mat-radio-button class="example-full-width pr-3 " value="vrs"
+                                                    (change)="clickRetirementTypes('vrs')" [checked]="rType == 'vrs'">VRS</mat-radio-button>
+                                                <mat-radio-button class="example-full-width px-3" value="crs"
+                                                    (change)="clickRetirementTypes('crs')" [checked]="rType == 'crs'">CRS</mat-radio-button>
+                                                <mat-radio-button class="example-full-width px-3" value="death"
+                                                    (change)="clickRetirementTypes('death')" [checked]="rType == 'death'">Death In Service</mat-radio-button>
+                                            </mat-radio-group>
+                                            <span class="text-danger display_block mb-1 pb-1" *ngIf="(searechEmpFormControl.retirementTypes.touched && searechEmpFormControl.retirementTypes.errors) || (isSubmitted && searechEmpFormControl.retirementTypes.errors)"> Select Retirement Type </span>
+                                        </div>
+
+                                        <div class="col-md-3 col-3 mb-2" *ngIf="rType =='death'">
+                                            <h6 class="fs-5">Nominee Other Then Wife</h6>
+                                            <mat-radio-group >
+                                                <mat-radio-button class="example-full-width pr-3 " value="Yes" [checked]="otherThenWife == 'Yes'"
+                                                    (change)="clickOtherThenWifeType('otherThenWife')">Yes
+                                                </mat-radio-button>
+                                                <mat-radio-button class="example-full-width px-3" value="No"  [checked]="otherThenWife == 'No'"
+                                                (change)="clickOtherThenWifeType('Wife')">No</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                        <div class="col-md-3 col-3">
+                                            <!-- <mat-label class="font-12 d-block"> Last Working Date </mat-label> -->
+                                            <mat-form-field class="example-full-width" class="w-100">
+                                                <input matInput [matDatepicker]="picker" placeholder="Last Working Date" formControlName="lastWorkingDate"
+                                                    id="lastWorkingDate">
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                            </mat-form-field>
+                                            <span class="text-danger display_block mb-1 pb-1" *ngIf="(searechEmpFormControl.lastWorkingDate.touched && searechEmpFormControl.lastWorkingDate.errors) || (isSubmitted && searechEmpFormControl.lastWorkingDate.errors)"> Last Working Date is required </span>
+                                        </div>  
+                                    </div>
+                                    
+                                </mat-card>
+
+                                <mat-card class="mt-3" *ngIf="isNominee">
+                                    <div class="row" >
+                                        <div class="row"> 
+                                            <h5 class="fs-5">Nominee Details</h5>
+                                            <div formArrayName="nominee"
+                                                *ngFor="let item of searchEmployeeForm.get('nominee').controls; let i = index">
+
+                                                <div class="row" [formGroupName]="i">
+                                                    <div class="col-md-3 col-md-3">
+                                                        <mat-label class="font-12 d-block">Name Of Nominee</mat-label>
+                                                        <mat-form-field class="example-full-width" class="w-100">
+                                                            <input matInput formControlName="nameOfNominee">
+                                                        </mat-form-field>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-md-3">
+                                                        <mat-label class="font-12 d-block">Relation Name</mat-label>
+                                                        <mat-form-field class="example-full-width" class="w-100">
+                                                            <input matInput formControlName="relationName">
+                                                        </mat-form-field>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-md-3">
+                                                        <mat-label class="font-12 d-block">Share</mat-label>
+                                                        <mat-form-field class="example-full-width" class="w-100">
+                                                            <input matInput formControlName="share">
+                                                        </mat-form-field>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-md-3">
+                                                        <mat-label class="font-12 d-block">Select Nominee Persion
+                                                        </mat-label>
+                                                        <mat-checkbox class="example-full-width mt-4"
+                                                            formControlName="nomineePersion" [checked]="selectedPerson[i] == i"
+                                                            (change)="selectNomineePerson(item, i)">
+                                                        </mat-checkbox>
+                                                    </div>
+                                                    <input matInput formControlName="relationshipId" hidden>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-card>
+
+                                <mat-card class="mt-3">
+                                    <div class="row">
+                                        <!-- <div class="col-md-3 col-3">
+                                            <div formArrayName="empDocumentArray" *ngFor="let row of searchEmployeeForm.get('empDocumentArray').controls; let i = index">
+                                                <div [formGroupName]="i">
+                                                    <h4 class="fs-5">Document Details </h4>
+                                                    <mat-label class="font-12 d-block">Attach Document</mat-label>
+                                                    <mat-form-field class="example-full-width" class="w-100">
+                                                        <input matInput type="file" formControlName="attachDocument"
+                                                            id="attachDocument" multiple class="inputd"
+                                                            (change)="onFileSelected($event, i)">
+                                                    </mat-form-field>
+                                                    <span class="text-danger display_block mb-1 pb-1" *ngIf="(searechEmpFormControl.attachDocument.touched && searechEmpFormControl.attachDocument.errors) || (isSubmitted && searechEmpFormControl.attachDocument.errors)">
+                                                        Documnet is required
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                                        <div class="col-md-3 col-3">
+                                            <!-- <mat-label class="font-12 d-block">Attach Document</mat-label> -->
+                                            <!-- <div class="example-full-width" class="w-100">
+                                                <input type="file" formControlName="attachDocument"
+                                                    id="attachDocument" multiple class="inputd"
+                                                    (change)="onFileSelected($event)">
+                                            </div> -->
+
+
+                                            <div class="file-uploder-container d-flex flex-column mt-2 mb-3">
+                                                <label *ngIf="!fileName" for="inputGroupFile" class="upload-lable-text btn py-3">Drag & drop or <span class="file-browse"> browse </span></label>                 
+                                                <label *ngIf="fileName" for="inputGroupFile" class="upload-lable-text btn py-3">{{fileName}}</label>                 
+                                                <div class="input-group custom-file-button">                     
+                                                    <input type="file" formControlName="attachDocument"
+                                                    id="attachDocument" multiple  class="form-control file-upload-input hidden" (change)="onFileSelected($event)" id="inputGroupFile" hidden>                 
+                                                </div>               
+                                            </div>
+                                            <span class="text-danger display_block mb-1 pb-1" *ngIf="(searechEmpFormControl.attachDocument.touched && searechEmpFormControl.attachDocument.errors) || (isSubmitted && searechEmpFormControl.attachDocument.errors)">
+                                                Documnet is required
+                                            </span>
+                                        </div>
+                                        <div class="col-md-9 col-md-9">
+                                            <!-- <mat-label class="font-12 d-block mt-4"> Remarks</mat-label> -->
+                                            <mat-form-field class="example-full-width" class="w-100">
+                                                <textarea matInput formControlName="retirementRemarks"
+                                                    placeholder="Enter Remarks"></textarea>
+                                            </mat-form-field>
+                                            <span class="text-danger display_block mb-1 pb-1" *ngIf="(searechEmpFormControl.retirementRemarks.touched && searechEmpFormControl.retirementRemarks.errors) || (isSubmitted && searechEmpFormControl.retirementRemarks.errors)">
+                                                Remark is required
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row text-end">
+                                        <div class="col-lg-10"></div>
+                                        <div class="col-md-2 col-md-2 my-1">
+    
+                                            <button class="btn btn-primary btn-cls" mat-raised-button color="primary"
+                                                (click)="onSubmit()">submit
+                                            </button>
+                                        </div>
+    
+                                    </div>
+                                </mat-card>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- </mat-tab> -->
+                    <!-- </mat-tab-group> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

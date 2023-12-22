@@ -1,0 +1,7 @@
+@media print {
+    .pagebreak { page-break-before: always;}
+}
+
+th.mat-header-cell { text-align: left; background: #c3d8fb; color: #000; font-size: 14px; padding-left: 10px; font-weight: 600;}
+td.mat-cell{border-bottom-width: 1px; border-right-width: 1px; padding: 0 0 0 10px; border-color: #fcf8f8;}
+td.mat-cell:last-child{ border-right: none;}

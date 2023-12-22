@@ -1,0 +1,55 @@
+<mat-card>
+<div class="tab-container mt-4">
+    <div class="first-pension-tabs-container">
+      <div class="first-pension-tab-btns d-flex align-items-center">
+       
+      </div>
+      <div class="tab-content">
+        <div class="container-fluid p-2 pb-0 pt-3" style="background-color: #edf2fa;">
+          <div class="tab-filter-option-container row">
+            <div
+              class="col-12">
+              
+              <div class="row justify-content-center">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2 mt-2 ">
+                    <h3>Update Employee LR </h3>
+                </div>                                    
+                
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 gx-1 mx-2 col-xl-offset-3">
+                  <mat-form-field appearance="outline" class="w-100" >
+                    <mat-label>Employee code</mat-label>
+                    <input matInput placeholder="Employee code" [(ngModel)]="EmpCode" #input />
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 gx-1 mx-2 col-xl-offset-3">
+                    <mat-form-field appearance="outline" class="w-100" >
+                      <mat-label>Treasury Code</mat-label>
+                      <input matInput placeholder="Treasury code" [(ngModel)]="TreasuryCode" #input />
+                    </mat-form-field>
+                  </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 gx-1 mx-2">
+                    <button mat-raised-button color="primary" type="submit" class="big-btn-padding"
+                    (click)="getEmployeeData()">
+                   Update
+                    </button>
+                </div>
+          
+                
+              
+              </div>
+            
+            </div>
+          
+          </div>
+        </div>
+
+       
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</mat-card>

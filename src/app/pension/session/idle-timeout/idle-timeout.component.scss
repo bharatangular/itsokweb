@@ -1,0 +1,138 @@
+.success {
+    color: #23966B;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.success_subtext {
+    font-size: 20px;
+}
+
+.reject {
+    color: #E54849;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+// varify otp css
+
+.mendetory-class {
+    color: #E2574C;
+}
+
+::ng-deep .input-otp-group {
+
+    .mat-form-field.mat-form-field.mat-form-field-appearance-outline>div.mat-form-field-wrapper>div.mat-form-field-flex>div.mat-form-field-infix {
+        .mat-input-element {
+            font-size: 24px;
+            text-align: center;
+        }
+    }
+
+    .otp-width {
+        width: 50px;
+    }
+
+    .proceed-otp {
+        box-shadow: 0px 5px 10px #A4C0ED;
+    }
+
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.blink {
+    color: #E54849;
+    animation: blink 1s infinite;
+}
+
+
+//withdraw css
+
+.quick-info-container {
+    background-color: #F8FBFD;
+    border: 1px solid #E8F3FC;
+    border-radius: 5px;
+}
+
+.eligible-days-container {
+    background-color: #F8B94E0F;
+    border: 1px solid #F8B94E6F;
+}
+
+.earned-advance-salary-container {
+    background-color: #52BB9C1A;
+    border: 1px solid #52BB9C80;
+}
+
+.amount-repaid-container {
+    background-color: #F8FBFD;
+    border: 1px solid #2A6DD9;
+    height: 100%;
+}
+
+.need-help-section {
+    background-color: #EDF3FC;
+}
+
+/* ----------------------------------------------
+  ---Dialog Popup---
+  ---------------------------------------------- */
+.modal-icon-image-box img {
+    width: 250px;
+}
+
+.modal-icon {
+    width: 30px;
+}
+
+.failed_img {
+    width: 130px;
+}
+
+.coming-soon-image img {
+    width: 115px;
+}
+
+.primary-bg{
+    background-image: linear-gradient(120deg, #599AFD, #1A53B0);
+}
+
+.dialog-color-bg-height{
+    height: 500px;
+}
+
+::ng-deep .varify-otp-container{
+    .mat-dialog-container{
+        padding: 0px;
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width:991px){
+    .dialog-color-bg-height{
+        height: 75px;
+    }
+
+    .input-otp-group{
+        .otp-width{
+            width: 35px;
+        }
+    }
+}
+// ::ng-deep .cdk-overlay-dark-backdrop
+// {
+//     background-color: rgba(151, 151, 151, 1);
+// }

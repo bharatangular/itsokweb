@@ -1,0 +1,54 @@
+<div class="container-fluid  mb-5">
+    <div class="row">
+      <div class="col-12" >
+        <mat-card >
+          <div class="bootstrap-tab-design">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Employee Code</mat-label>
+      <input matInput placeholder="Emp. code" value="" [(ngModel)]="employeeCode">
+    </mat-form-field>
+  
+    <div class="example-button-row">
+  
+        <button mat-flat-button color="primary" (click)="serachEmployee()">Serach</button>
+   
+      </div>
+
+
+
+
+  </div>
+<div *ngIf="employeeCode ==505">
+    <mat-form-field class="example-full-width">
+      <mat-label>office Code</mat-label>
+      <input matInput placeholder="office code" value="" [(ngModel)]="officecode" >
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="getOfficeName()">Serach</button>
+    <div class="example-button-row">
+  
+        office Name  {{"N/A"}}
+   
+      </div>
+</div>
+
+      <div *ngIf="officecode==505">
+  <div>
+    <mat-radio-group aria-label="Select an option" [(ngModel)]="raidobutton">
+        <mat-radio-button [value]="0" >Yes</mat-radio-button>
+        <mat-radio-button [value]="1">NO</mat-radio-button>
+      </mat-radio-group>
+      <p *ngIf="raidobutton == '0'">Selected Yes</p>
+      <p *ngIf="raidobutton == '1'">Selected NO</p>
+  </div>
+  <div>
+    <button mat-flat-button color="primary" (click)="changeOffice()">Submit</button>
+    <button mat-flat-button color="primary" mat-dialog-close >Close</button>
+    </div>
+
+</div>
+  </mat-card>
+  </div>
+  </div>
+  </div>
+  

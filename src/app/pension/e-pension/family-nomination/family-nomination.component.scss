@@ -1,0 +1,94 @@
+.tab-container {
+  height: calc(100vh - 687px) !important;
+}
+
+.allRadious {
+  border-radius: 1rem;
+}
+
+.family-details-card-container {
+  border: 0.063rem solid #ddddddc4;
+  border-radius: 0.625rem;
+  background-color: white;
+}
+
+.family-card-header {
+  background-color: #eef5ff;
+  height: 3.5rem;
+  border-radius: 0.3rem 0.3rem 0rem 0rem;
+}
+//   .member-base-details{
+//     position: absolute;
+//     content: "";
+//     top: -2rem;
+//     left: 0.625rem;
+//   }
+.family-member-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.member-image img {
+  object-fit: cover;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+  border: 0.125rem solid white;
+  margin-top: 1.6rem;
+}
+
+.relation-tag {
+  background-color: white;
+  border-radius: 0.313rem;
+  font-size: 0.75rem;
+}
+
+.family-card-body {
+  position: relative;
+}
+
+.pan-aadhar-number-container {
+  border-bottom: 0.063rem solid #ddddddc4;
+}
+
+.view-details-btn {
+  text-decoration: none;
+  cursor: pointer !important;
+  color: var(--primary);
+}
+
+.datatable tr th {
+  background: #eef5ff !important;
+  font-size: 16px;
+  color: #231e60;
+  font-weight: 600;
+  padding: 20px;
+}
+
+.datatable tr td {
+  background: #ffffff !important;
+  padding: 20px;
+}
+
+label {
+  display: block;
+  padding-bottom: 10px;
+}
+
+div span {
+  display: block;
+  padding-bottom: 1px;
+  font-weight: 600;
+}
+
+div label a {
+  text-decoration: none;
+  color: #3584cf;
+  display: block;
+  font-size: 12px;
+  cursor: pointer;
+}
+.f-12 {
+  font-size: 0.75rem;
+}

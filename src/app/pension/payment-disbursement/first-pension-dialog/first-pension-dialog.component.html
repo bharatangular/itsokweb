@@ -1,0 +1,362 @@
+<div class="first-payment-modal" *ngIf="!isShow">
+  <div class="mb-3">
+
+    <div class="align-item-center">
+      <span class="align-items-end" style="float:right;">
+        <button mat-dialog-close class="btn-close" aria-label="Close"></button></span>
+      <h1>Stop Reason</h1>
+    </div>
+  </div>
+  <div class="spinner" *ngIf="isLoading">
+    <mat-spinner strokeWidth="4"></mat-spinner>
+  </div>
+  <form [formGroup]="stopReasonForm" (ngSubmit)="uploadDoc()">
+    <div class="group-gap" formArrayName="addDynamicElement">
+      <ng-container *ngFor="let item of addDynamicElement.controls; let i = index">
+        <div class="d-flex gap-2" [formGroupName]="i">
+          <div class="d-flex justify-content-start align-items-start">
+            <mat-checkbox class="component-border checkbox-radius-4 bottom-margin-auto py-2" color="primary"
+              formControlName="checked">
+              <div *ngIf="!item.value.checked">{{item.value.reasonName}}</div>
+            </mat-checkbox>
+            <div class="ms-3">
+              <mat-accordion class="accordion-custom-stop" *ngIf="item.value.checked">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                  [expanded]="true">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{item.value.reasonName}}
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="checkbox-check-content ps-4">
+                    <div class="row mt-3">
+                      <div class="col-xs-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
+                        <div class="birth-date-container col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12"
+                          *ngIf="item.value.reasonId==1">
+                          <div><mat-label>Date of Death</mat-label></div>
+                          <mat-form-field appearance="outline" class="w-100">
+                            <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="row" *ngIf="item.value.reasonId==7||item.value.reasonId==8">
+                          <div class="input-field-model col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                            <div><mat-label>Order No</mat-label></div>
+                            <mat-form-field appearance="outline" class="w-100">
+                              <input matInput formControlName="orderNo" />
+                            </mat-form-field>
+                          </div>
+                          <div class="birth-date-container col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                            <div><mat-label>Order Date</mat-label></div>
+                            <mat-form-field appearance="outline" class="w-100">
+                              <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" formControlName="date">
+                              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                              <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="file-uploder-container d-flex flex-column mt-2">
+                            <div class="upload-lable-text btn py-2">
+                              <label *ngIf="!item.value.fileName" for="inputGroupFile_{{i}}"><span>Drag & drop or</span>
+                                <span class="file-browse"> browse </span></label>
+                              <div *ngIf="item.value.fileName" class="d-flex justify-content-center align-items-center">
+                                <span style="color:#3281CC;">{{item.value.fileName}}</span>
+                                <a href="JavaScript:Void(0);" (click)="removeCheque(i, $event)">
+                                  <mat-icon color="warn" class="fs-5">delete_forever</mat-icon>
+                                </a>
+                              </div>
+                            </div>
+                            <div class="input-group custom-file-button">
+                              <input type="file" class="form-control file-upload-input hidden" id="inputGroupFile_{{i}}"
+                                (change)="onChangeCheque(i, $event)" hidden>
+                            </div>
+                          </div>
+                          <div class="comment-text-container mt-3">
+                            <mat-label>Additional Comments</mat-label>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <textarea rows="5" cols="40" matInput placeholder="Ex. It makes me feel..."
+                                formControlName="remark"></textarea>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+
+
+          </div>
+          <div>
+
+          </div>
+        </div>
+      </ng-container>
+
+
+
+    </div>
+
+
+
+    <!-- <div class="stop-reasons-options-container mt-3">
+        <div class="stop-reason-content mt-2 d-flex justify-content-start align-items-start">
+            <div class="checkbox-division d-flex flex-column gap-2">
+                <mat-checkbox  class="component-border checkbox-radius-4 bottom-margin-auto" color="primary"
+                *ngFor="let item of stopReasonData;" (change)="onchangedeath(item.reasonId,item.reasonDesc)">
+                <div class="check-text-container ms-2">{{item.reasonDesc}}</div>
+                </mat-checkbox>
+            </div>
+             <div class="">
+                <mat-accordion class="accordion-custom-stop">
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" [expanded]="true">
+                        <mat-expansion-panel-header >
+                            <mat-panel-title>
+                                {{headerValue}}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="checkbox-check-content ps-4">
+                            <div class="row mt-3">
+                                <div class="col-xs-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12" *ngFor="let obj of attributesArray">
+                                    <div class="birth-date-container col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" *ngIf="flag==1||flag==4">
+                                        <div *ngIf="obj.type=='DatePicker'"><mat-label>Date of Death*</mat-label></div>
+                                        <mat-form-field appearance="outline" class="w-100" *ngIf="obj.type=='DatePicker'">
+                                            <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" [(ngModel)]="obj.key">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field-model col-6 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" *ngIf="obj.type=='TextBox'">
+                                            <div><mat-label>Order No*</mat-label></div>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput placeholder="123456" #input  [(ngModel)]="obj.key"/>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="birth-date-container col-6 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" *ngIf="obj.type=='DatePicker1'">
+                                            <div><mat-label>Order date*</mat-label></div>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" [(ngModel)]="obj.key">
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="flag==1||flag==2||flag==3||flag==4||flag==5||flag==6||flag==7||flag==8">
+                                        <div class="file-uploder-container d-flex flex-column mt-2" *ngIf="obj.type=='File'">
+                                            <div class="upload-lable-text btn py-2">
+                                                <label *ngIf="!chequeFile" for="inputGroupFile" ><span>Drag & drop or</span> <span
+                                                    class="file-browse"> browse </span></label>
+                                                <div *ngIf="chequeFile" class="d-flex justify-content-center align-items-center">
+                                                    <span style="color:#3281CC;">{{chequeFile}}</span>
+                                                    <a href="JavaScript:Void(0);" (click)="removeCheque()">
+                                                   <mat-icon color="warn" class="fs-5">delete_forever</mat-icon>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="input-group custom-file-button" >
+                                                <input type="file" class="form-control file-upload-input hidden" id="inputGroupFile" (change)="onChangeCheque($event)" hidden>
+                                            </div>
+                                        </div>
+
+                                        <div class="comment-text-container mt-3" *ngIf="obj.type=='TextArea'">
+                                            <mat-label>Additional Comments</mat-label>
+                                            <mat-form-field class="example-full-width" appearance="outline">
+                                                <textarea rows="5" cols="40" matInput placeholder="Ex. It makes me feel..." [(ngModel)]="obj.key" ></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+
+    </div> -->
+
+    <div class="border-btn-component mt-4 float-end">
+      <button mat-button mat-dialog-close class="btn btn-outline-cancel" mat-stroked-button>Cancel</button>
+      <button type="submit" mat-raised-button color="primary" class="big-btn-padding ms-2">Submit</button>
+    </div>
+
+  </form>
+</div>
+
+
+
+<div class="first-payment-modal" *ngIf="isShow">
+  <div class="stop-reason-content mt-2 d-flex flex-column align-items-center">
+    <div class="modal-iocn-image-box">
+      <img src="assets/images/check.svg" alt="icon">
+    </div>
+    <div class="modeal-text-container mt-2 mx-3 d-flex flex-column align-items-center">
+
+      <p class="heading-1 text-align-center m-0 bodytext-color">First pension has been stopped.</p>
+
+    </div>
+    <div class="border-btn-component mt-4">
+      <!-- <button mat-stroked-button color="primary" class="big-btn-with-icon-padding me-3">View Bill</button> -->
+      <button mat-button mat-dialog-close class="btn btn-outline-cancel" mat-stroked-button (click)="redirectTo()">OK</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!--
+<div class="first-payment-modal" *ngIf="id==8">
+    <div class="reason-for-stop-container row">
+        <div class="stop-reason-heading col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <p class="heading-2 m-0">Reason For Stop</p>
+        </div>
+        <div class="dialog-close-btn-container col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 text-end" mat-dialog-close>
+            <img src="../../../assets/images/cross.svg" alt="closeIcon">
+        </div>
+    </div>
+
+    <div class="stop-reasons-options-container mt-3">
+        <div class="stop-reason-content mt-2">
+            <div class="stop-reason-content mt-2" >
+
+
+                <mat-checkbox  class="component-border checkbox-radius-4 bottom-margin-auto" color="primary"
+                *ngFor="let item of stopReasonData;" (change)="onchangedeath(item.reasonId)">
+                <div class="check-text-container ms-2">{{item.reasonDesc}}</div>
+                </mat-checkbox>
+            </div>
+            <form [formGroup]="stopReasonForm">
+                <div class="group-gap" formArrayName="addDynamicElement">
+                <div class="row" *ngFor="let item of addDynamicElement1">
+                  <div class="col-11">
+                    <ng-container *ngFor="let item of addDynamicElement.controls; let i = index">
+                      <div class="d-flex gap-2"  [formGroupName]="i">
+                       <mat-form-field class="w-100">
+                         <mat-label>Recovery Type</mat-label>
+                         <input matInput placeholder="Recovery Type" formControlName="recoveryType">
+                       </mat-form-field>
+                       <mat-form-field class="w-100">
+                         <mat-label>Recovery Amount</mat-label>
+                         <input matInput placeholder="Recovery Amount" formControlName="recoveryAmount">
+                       </mat-form-field>
+                       <mat-form-field class="w-100">
+                         <mat-label>Recovery Head</mat-label>
+                         <input matInput placeholder="Recovery Head" formControlName="recoveryHead">
+                       </mat-form-field>
+                       <a href="JavaScript:Void(0);" class="mt-4"  *ngIf="i!==0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                          class="bi bi-trash" viewBox="0 0 16 16">
+                          <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                          <path fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                      </a>
+                        </div>
+                   </ng-container>
+                  </div>
+                <div class="col-1 mt-3">
+                  <button type="button" class="btn btn-sm btn-success add-items" (click)="addItems()">Add Items</button>
+                </div>
+                </div>
+              </div>
+            </form>
+        </div>
+    </div>
+    <div class="border-btn-component mt-4" *ngIf="isBtnHideShow">
+        <button mat-stroked-button color="primary" class="big-btn-with-icon-padding float-end" type="submit" (click)="stopReasonFun()">Submit</button>
+    </div>
+</div> -->
+
+
+
+
+<!-- <div class="first-payment-modal" *ngIf="id==8">
+    <div class="reason-for-stop-container row">
+        <div class="stop-reason-heading col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <p class="heading-2 m-0">Reason For Stop</p>
+        </div>
+        <div class="dialog-close-btn-container col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 text-end" mat-dialog-close>
+            <img src="../../../assets/images/cross.svg" alt="closeIcon">
+        </div>
+    </div>
+
+    <div class="stop-reasons-options-container mt-3">
+        <div class="stop-reason-content mt-2">
+            <div class="stop-reason-content mt-2" >
+
+
+                <mat-checkbox  class="component-border checkbox-radius-4 bottom-margin-auto" color="primary"
+                *ngFor="let item of stopReasonData;" (change)="onchangedeath(item.reasonId)">
+                <div class="check-text-container ms-2">{{item.reasonDesc}}</div>
+                </mat-checkbox>
+            </div>
+            <div class="checkbox-check-content ps-4">
+                <div class="row mt-3">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
+
+                        <div class="birth-date-container col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" *ngIf="flag==1">
+                            <div><mat-label>Date of Death*</mat-label></div>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" [(ngModel)]="deathDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="row" *ngIf="flag==2">
+                            <div class="input-field-model col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                <div><mat-label>Order No*</mat-label></div>
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input matInput placeholder="123456" #input [(ngModel)]="orderNo"/>
+                                </mat-form-field>
+                            </div>
+                            <div class="birth-date-container col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                <div><mat-label>Order Date*</mat-label></div>
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" [(ngModel)]="orderDate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="flag==1||flag==2||flag==3||flag==4||flag==5||flag==6">
+                        <div class="file-uploder-container d-flex flex-column mt-2">
+                            <div class="upload-lable-text btn py-2">
+                                <label *ngIf="!chequeFile" for="inputGroupFile" ><span>Drag & drop or</span> <span
+                                    class="file-browse"> browse </span></label>
+                                <div *ngIf="chequeFile" class="d-flex justify-content-center align-items-center">
+                                    <span style="color:#3281CC;">{{chequeFile}}</span>
+                                    <a href="JavaScript:Void(0);" (click)="removeCheque()">
+                                   <mat-icon color="warn" class="fs-5">delete_forever</mat-icon>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="input-group custom-file-button" >
+                                <input type="file" class="form-control file-upload-input hidden" id="inputGroupFile" (change)="onChangeCheque($event)" hidden>
+                            </div>
+                        </div>
+                        <div class="comment-text-container mt-3" >
+                            <mat-label>Additional Comments</mat-label>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <textarea rows="5" cols="40" matInput placeholder="Ex. It makes me feel..." [(ngModel)]="commonRemark"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-btn-component mt-4" *ngIf="isBtnHideShow">
+        <button mat-stroked-button color="primary" class="big-btn-with-icon-padding float-end" type="submit" (click)="stopReasonFun()">Submit</button>
+    </div>
+</div> -->

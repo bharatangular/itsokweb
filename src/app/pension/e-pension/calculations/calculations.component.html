@@ -1,0 +1,476 @@
+<mat-card>
+  <mat-tab-group animationDuration="0ms" color="primary" class="big-btn-padding">
+    <mat-tab label="Pay Details">
+      <div class="tab-container mt-4">
+        <div class="row container-fluid">
+          <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                            <div>
+                              <span>Half Year Pension</span>
+                              <label>{{calculationsPayDetails?.halfYearPension}}</label>
+                            </div>
+                          </div> -->
+          <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                            <div>
+                              <span>Half Year Gratuity</span>
+                              <label>{{calculationsPayDetails?.halfYearGratuity}}</label>
+                            </div>
+                          </div> -->
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Budget Head</span>
+              <label>
+                <!-- Pensions and Other Retirement Benefits  -->
+                <span>(2071-01-101-01-00)</span>
+              </label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New Changes -->
+              <span>Pension Rule</span>
+              <label>Superannuation
+                <label>(Rule-30,RCS Pension Rules,1996)</label>
+              </label>
+              <!-- <label>{{calculationsPayDetails?.personalPay}}</label> -->
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Basic Pay</span>
+              <label>{{calculationsPayDetails?.basicPay}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Pay Matrix</span>
+              <label>{{calculationsPayDetails?.payMatrix}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Pay Level</span>
+              <label>{{calculationsPayDetails?.payLevel}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Average Pay</span>
+              <label>{{calculationsPayDetails?.averagePay}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>NPA/NCA</span>
+              <label>{{calculationsPayDetails?.npa}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Special Pay</span>
+              <label>{{calculationsPayDetails?.specialPay}}</label>
+            </div>
+          </div>
+          <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                            <div>
+                              <span>Service Gratuity</span>
+                              <label>{{calculationsPayDetails?.serviceGratuity}}</label>
+                            </div>
+                          </div> -->
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>Pay Commision</span>
+              <label>{{calculationsPayDetails?.payCommissionNameEn}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>CCA</span>
+              <label>{{calculationsPayDetails?.cca}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <!-- New Changes -->
+              <span>DA Amount</span>
+              <label>{{calculationsPayDetails?.da}}</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+            <div>
+              <span>HRA</span>
+              <label>{{calculationsPayDetails?.hra}}</label>
+            </div>
+          </div>
+          <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-3">
+                            <div>
+                              <span>Personal Pay</span>
+                              <label>{{calculationsPayDetails?.personalPay}}</label>
+                            </div>
+                          </div> -->
+          <div class="d-flex justify-content-end">
+            <button mat-raised-button tabindex="-1" type="button" color="primary" class="btn btn-primary  ms-2"
+              (click)='moveToSelectedTab("Types of Additional Allowance,Recovery and Deductions Details")'>Next</button>
+
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Types of Additional Allowance,Recovery and Deductions Details">
+      <div class="tab-container container-fluid mt-4">
+        <form [formGroup]="formARD">
+          <div class="row">
+            <div class="row" *ngIf="empInfo.roleId==='49'">
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div>
+                  <span>Recovery Type</span>
+                  <label>{{calculationsArdDetails?.recoveryType}}</label>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div>
+                  <span>Recovery Amount</span>
+                  <label>{{calculationsArdDetails?.recoveryAmount}}</label>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div>
+                  <span>Recovery Head</span>
+                  <label>{{calculationsArdDetails?.recoveryHead}}</label>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div>
+                  <span>Deduction Type</span>
+                  <label>{{calculationsArdDetails?.deductionType}}</label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div>
+                  <span>Deduction Amount</span>
+                  <label>{{calculationsArdDetails?.deductionAmount}}</label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div>
+                  <span>Deduction Head</span>
+                  <label>{{calculationsArdDetails?.deductionHead}}</label>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div>
+                  <span>Allowance Type</span>
+                  <label>dd</label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div>
+                  <span>Allowance Amount</span>
+                  <label>{{calculationsArdDetails?.allowanceAmount}}</label>
+                </div>
+
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div>
+                  <span>Allowance Head</span>
+                  <label>{{calculationsArdDetails?.allowanceHead}}</label>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div>
+                  <span>With Held Reason</span>
+                  <label>{{calculationsArdDetails?.withHeldReason}}</label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div>
+                  <span>With Held Amount</span>
+                  <label>{{calculationsArdDetails?.withHeldAmount}}</label>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="empInfo.aid==='58233' && empInfo.roleId!=='49'">
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <mat-form-field class="w-100">
+                  <mat-label> Recovery Type</mat-label>
+                  <input matInput placeholder="Recovery Type" formControlName="recoveryType">
+                </mat-form-field>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <mat-form-field class="w-100">
+                  <mat-label>Recovery Amount</mat-label>
+                  <input matInput placeholder="Recovery Amount" formControlName="recoveryAmount">
+                </mat-form-field>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <mat-form-field class="w-100">
+                  <mat-label>Recovery Head</mat-label>
+                  <input matInput placeholder="Recovery Head" formControlName="recoveryHead">
+                </mat-form-field>
+              </div>
+              <!-- </div> -->
+              <!-- <div class="row" *ngIf="empInfo.aid==='58233'"> -->
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <mat-form-field class="w-100">
+                  <mat-label>Deduction Type</mat-label>
+                  <input matInput placeholder="Deduction Type" formControlName="deductionType">
+                </mat-form-field>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <mat-form-field class="w-100">
+                  <mat-label>Deduction Amount</mat-label>
+                  <input matInput placeholder="Deduction Amount" formControlName="deductionAmount">
+                </mat-form-field>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <mat-form-field class="w-100">
+                  <mat-label>Deduction Head</mat-label>
+                  <input matInput placeholder="Deduction Head" formControlName="deductionHead">
+                </mat-form-field>
+              </div>
+              <!-- </div> -->
+              <!-- <div class="row" *ngIf="empInfo.aid==='58233'"> -->
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <mat-form-field class="w-100">
+                  <mat-label>Allowance Type</mat-label>
+                  <input matInput placeholder="Allowance Type" formControlName="allowanceType">
+                </mat-form-field>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <mat-form-field class="w-100">
+                  <mat-label>Allowance Amount</mat-label>
+                  <input matInput placeholder="Allowance Amount" formControlName="allowanceAmount">
+                </mat-form-field>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <mat-form-field class="w-100">
+                  <mat-label>Allowance Head</mat-label>
+                  <input matInput placeholder="Allowance Head" formControlName="allowanceHead">
+                </mat-form-field>
+              </div>
+              <!-- </div> -->
+
+              <!-- <div class="row" *ngIf="empInfo.aid==='58233'"> -->
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <mat-form-field class="w-100">
+                  <mat-label>With Held Reason</mat-label>
+                  <input matInput placeholder="With Held Reason" formControlName="withHeldReason">
+                </mat-form-field>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <mat-form-field class="w-100">
+                  <mat-label>With Held Amount</mat-label>
+                  <input matInput placeholder="With Held Amount" formControlName="withHeldAmount">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" *ngIf="userDetails.roleid!='1'">
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 ">
+                <div>
+                  <span>Additional Allowance Amount</span>
+                  <label>{{calculationsArdDetails?.Additional_Amount}}</label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 ">
+                <div>
+                  <span>Recovery Type Amount</span>
+                  <label>{{calculationsArdDetails?.Recovery_Amount}}</label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 ">
+                <div>
+                  <span>Deduction Type Amount</span>
+                  <label>{{calculationsArdDetails?.Deduction_Amount}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+
+
+          </div>
+        </form>
+        <div class="d-flex justify-content-end">
+          <!-- <button class="btn btn-outline-cancel ms-2" mat-stroked-button
+              (click)="prevStepc()">Previous</button> -->
+          <button mat-stroked-button tabindex="-1" (click)='moveToSelectedTab("Pay Details")' type="button"
+            class="btn btn-outline-cancel ms-2">Previous</button>
+          <button mat-raised-button tabindex="-1" type="button" color="primary" class="btn btn-primary  ms-2"
+            (click)='moveToSelectedTab("Pension Details")'>Next</button>
+        </div>
+
+      </div>
+    </mat-tab>
+    <mat-tab label="Pension Details">
+      <div class="tab-container">
+        <div class="container-fluid mt-4">
+          <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 ">
+              <div>
+                <span>Pension Amount</span>
+                <label>{{pensionCommutation?.pensionAmount}}</label>
+              </div>
+            </div>
+
+            <!-- <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                            <div>
+                            <span>Budget Head for Pension Disbursement</span>
+                            <label>Directorate</label>
+                          </div>
+                          </div> -->
+
+            <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+              <div>
+                <span>Family Pension</span>
+                <label>{{pensionCommutation?.familyPension}}</label>
+              </div>
+            </div>
+
+            <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+              <div>
+                <span>Enhance Pension</span>
+                <label>{{pensionCommutation?.enhancedPension}}</label>
+              </div>
+            </div>
+
+            <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+              <div>
+                <span>DR Rate</span>
+                <label>38</label>
+              </div>
+            </div>
+
+            <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+              <div>
+                <span>Enchance Date</span>
+                <label>{{pensionCommutation?.enhancedPensionDate}}</label>
+              </div>
+            </div>
+
+            <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+              <div>
+                <span>DCRG (Gratuity)</span>
+                <label>{{pensionCommutation?.gratuityAmount}}</label>
+              </div>
+            </div>
+
+
+
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+              <span>Payable DCRG</span>
+              <label>{{pensionCommutation?.gratuityAmount}}</label>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+              <span>Budget Head For Gratuity</span>
+              <label>
+                <!-- Gratuity -->
+                <!-- <br> -->
+                2071-01-104-01-01
+              </label>
+            </div>
+
+            <div class=" col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+              <div>
+                <span>Applicable Emolument</span>
+                <label>{{pensionCommutation?.lastEmolument}}</label>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="d-flex justify-content-end">
+          <!-- <button class="btn btn-outline-cancel ms-2" mat-stroked-button
+            (click)="prevStepc()">Previous</button> -->
+          <button mat-stroked-button tabindex="-1"
+            (click)='moveToSelectedTab("Types of Additional Allowance,Recovery and Deductions Details")' type="button"
+            class="btn btn-outline-cancel ms-2">Previous</button>
+          <button mat-raised-button tabindex="-1" type="button" color="primary" class="btn btn-primary  ms-2"
+            (click)='moveToSelectedTab("Commutation Details")'>Next</button>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Commutation Details">
+      <div class="tab-container mt-4">
+        <div class="container-fluid">
+          <form [formGroup]="commutationDetailsForm">
+            <div class="row">
+
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3"
+                *ngIf="userDetails.roleid!='1' || empInfo.roleId==='49'">
+                <div>
+                  <span>Commutation Effective Date</span>
+                  <label>{{calculationsCommutationDetails?.effectiveDate | date: 'dd/MM/YYYY' }}</label>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3"
+                *ngIf="empInfo.aid==='58233' &&  empInfo.roleId!=='49'">
+                <mat-form-field class="w-100">
+                  <mat-label> Commutation Effective Date</mat-label>
+                  <input matInput [matDatepicker]="OrderDate" (click)="OrderDate.open()" (focus)="OrderDate.open()"
+                    formControlName="effectiveDate" name="Order_Date" autocomplete="off" [max]="getToday()"
+                    placeholder="Placeholder">
+                  <mat-datepicker-toggle matSuffix [for]="OrderDate"></mat-datepicker-toggle>
+                  <mat-datepicker #OrderDate></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+              <!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3" *ngIf="empInfo.aid==='58233'">
+                                <mat-form-field class="w-100">
+                                  <mat-label> Budget Head for Commutation</mat-label>
+                                  <mat-select disableOptionCentering panelClass="myPanelClass" formControlName="budgetHead"
+                                    placeholder="Placeholder">
+                                    <mat-option value="Director">Director</mat-option>
+                                    <mat-option value="Ad Director">Ad Director</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div> -->
+
+
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                <div>
+                  <span>Budget Head for Commutation</span>
+                  <label>
+                    <!-- Commuted Value of Pension For Employee<br> -->
+                    <span> 2071-01-102-01-01</span> </label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                <div>
+                  <span>Commutation Amount</span>
+                  <label>{{pensionCommutation?.commutationAmount}}</label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                <div>
+                  <span>Commutation Factor</span>
+                  <label>{{pensionCommutation?.commutedFactor}}</label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                <div>
+                  <span> Commutation Value</span>
+                  <label>{{pensionCommutation?.pensionCommuted}}</label>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button mat-stroked-button matStepperPrevious class="btn btn-outline-cancel me-2">Previous</button>
+              <button class="btn btn-primary  ms-2" color="primary" mat-raised-button mat-button matStepperNext
+                (click)="nextStepC()">{{btnLabel}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

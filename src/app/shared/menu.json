@@ -1,0 +1,183 @@
+{
+  "psnAdmin": [{"name": "Pension Management",
+  "sub": [{
+      "name": "Dashboard",
+      "url": "/pension/dashboard"
+    }]},
+    {
+      "name": "Reports",
+      "sub": [{
+          "name": "Employee Summary",
+          "url": "/pension/employeeSummary"
+        },
+        {
+          "name": "Pension Summary",
+          "url": "/pension/pensionSummary"
+        },
+        {
+          "name": "First Pension",
+          "url": "/pension/firstPensionReport"
+        },
+        {
+          "name": "Pending Cases Zonal Wise",
+          "url": "/pension/pendingFiles"
+        },
+        {
+          "name": "Enhance Pensioner",
+          "url": "/pension/enhancePensionReport"
+        },
+        {
+          "name": "Zonal Wise Final Report",
+          "url": "/pension/zonalwisefinalreport"
+        },
+        {
+          "name": "Upcoming Pensioners",
+          "url": "/pension/upcomingPensions"
+        }
+
+      ]
+    }
+    
+
+  ],
+  "maker": [{"name": "Pension Management",
+  "sub": [{
+    "name": "Dashboard",
+    "url": "/pension/Inbox"
+  },
+
+  {
+    "name": "Upcoming Pensioners",
+    "url": "/pension/e-Pension/PensionerList"
+  },
+  {
+    "name": "Relieve Employee",
+    "url": "/pension/e-Pension/markemprelieve"
+  },
+ 
+  {
+    "name": "Pension Calculation",
+    "url": "/pension/e-Pension/pensioncalculation"
+  },
+  {
+    "name": "Check Application Status",
+    "url": "/e-Pension/checkapplicationstatus"
+  },
+  {
+    "name": "Office wise(Role wise) Request Report",
+    "url": "/rolesbyreport"
+  }]}],
+  "zonalApprover": [{"name": "Pension Management",
+  "sub": [
+    {
+      "name": "Dashboard",
+      "url": "/pension/Inbox"
+    },
+    {
+      "name": "Check Application Status",
+      "url": "/e-Pension/checkapplicationstatus"
+    },
+    {
+      "name": "Office wise(Role wise) Request Report",
+      "url": "/rolesbyreport"
+    },
+    {
+      "name": "Process Role Assign",
+      "url": "/pension/processrole"
+    },
+    {
+      "name": "E-Sign Pending List",
+      "url": "/pension/e-Pension/pendingEsign"
+    },
+    
+    {
+      "name": "Approved Pensioners",
+      "url": "/e-Pension/adPensionerList"
+    },
+    {
+      "name": "Stop Pension",
+      "url": "/pension/PaymentDisbursement/FirstPension"
+    }
+  ]}],
+  "chekar": [{"name": "Pension Management",
+  "sub": [{
+    "name": "Dashboard",
+    "url": "/pension/Inbox"
+  },
+  {
+    "name": "Check Application Status",
+    "url": "/e-Pension/checkapplicationstatus"
+  },
+  {
+    "name": "Office wise(Role wise) Request Report",
+    "url": "/rolesbyreport"
+  }
+  ],
+  "auditior": [{
+    "name": "Dashboard",
+    "url": "/pension/Inbox"
+  },
+  {
+    "name": "Check Application Status",
+    "url": "/e-Pension/checkapplicationstatus"
+  },
+  {
+    "name": "Office wise(Role wise) Request Report",
+    "url": "/rolesbyreport"
+  }
+
+  ]}],
+  "aao": [{"name": "Pension Management",
+  "sub": [{
+    "name": "Dashboard",
+    "url": "/pension/Inbox"
+  },
+  {
+    "name": "Check Application Status",
+    "url": "/e-Pension/checkapplicationstatus"
+  },
+  {
+    "name": "Office wise(Role wise) Request Report",
+    "url": "/rolesbyreport"
+  }
+  ]}],
+  "approver": [{"name": "Pension Management",
+  "sub": [
+    {
+      "name": "Dashboard",
+      "url": "/pension/Inbox"
+    },
+    {
+      "name": "Check Application Status",
+      "url": "/e-Pension/checkapplicationstatus"
+    },
+    {
+      "name": "Office wise(Role wise) Request Report",
+      "url": "/rolesbyreport"
+    },
+    {
+      "name": "Mark Employee DE",
+      "url": "/pension/e-Pension/markempde"
+    },
+    {
+      "name": "Approved Pensioner List",
+      "url": "/pension/e-Pension/hoApproveList"
+    }
+   
+  ]}],
+  "ad": [{"name": "Pension Management",
+  "sub": [
+    {
+      "name": "Dashboard",
+      "url": "/pension/Inbox"
+    },
+    {
+      "name": "Check Application Status",
+      "url": "/e-Pension/checkapplicationstatus"
+    },
+    {
+      "name": "Office wise(Role wise) Request Report",
+      "url": "/rolesbyreport"
+    }
+  ]}]
+}

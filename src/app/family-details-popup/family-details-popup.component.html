@@ -1,0 +1,167 @@
+<div>
+    <div class="d-flex justify-content-between align-item-center">
+        <div class="mt-1">
+            <h2>Family Member Details</h2>
+        </div>
+        <div class="heading-close">
+            <button mat-icon-button aria-label="close dialog" mat-dialog-close class="text-end">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+
+<div class="popupDivStyle family-details-card-container mt-3">
+
+    <div class="family-card-header m-1  p-2 d-flex justify-content-end align-items-center">
+        <span class="relation-tag py-1 px-4 fw-bolder">{{familyDetails.relationshipTypeEn}}</span>
+    </div>
+    <div class="family-card-body">
+        <div class="member-base-details d-flex align-items-center">
+            <div class="member-image">
+                <img src="./assets/images/sonImg.jfif" alt="member-image">
+            </div>
+            <div class="name-birth-details ms-1 member-image-1">
+                <small class="member-name  pb-1">Name of the family member</small>
+                <h3 class="member-gender-birth-date f-12">{{familyDetails.nameEn}}</h3>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+        <div class="row pb-0 p-5">
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Name of the Family Member</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.nameEn}}</p>
+                </mat-label>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Gender</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.genderEn}}</p>
+                </mat-label>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Relation</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.relationshipTypeEn}}</p>
+                </mat-label>
+            </div>
+            <!--  -->
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Marital Status</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.maritalStatusName}}</p>
+                </mat-label>
+            </div>
+              <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <!-- New Changes -->
+                <mat-label class="fs-6 fw-bolder">PAN Number</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.panNo=='null'?'':familyDetails.panNo}}</p>
+                </mat-label>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Aadhaar Number</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.aadharRefernceId}}</p>
+                </mat-label>
+            </div>
+            <!--  -->
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <!-- New Changes -->
+               <mat-label class="fs-6 fw-bolder">Janadhar  Number</mat-label>
+               <mat-label>
+                   <p class="pLabelInfo">{{familyDetails.janadharId=='null'?'':familyDetails.janadharId}}</p>
+               </mat-label>
+           </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Mobile Number</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.mobileNo}}</p>
+                </mat-label>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Date Of Birth</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.dob}}</p>
+                </mat-label>
+            </div>
+            <!--  -->
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Employed</mat-label><br>
+
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.isRajGovEmployee}}</p>
+                </mat-label>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Is Disabled ?</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails?.disabilityPercent>0 ?'Y':'N'}}</p>
+                </mat-label>
+               
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Percentage Of Disability</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.disabilityPercent}}</p>
+                </mat-label>
+            </div>
+            <!--  -->
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Address</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.Address}}</p>
+                </mat-label>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">SSO ID</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.ssoid}}</p>
+                </mat-label>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Nationality</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.nationality}}</p>
+                </mat-label>
+            </div>
+            <!--  -->
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Bank Account No.</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.bankAccountNo}}</p>
+                </mat-label>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <!-- New Changes -->
+                <mat-label class="fs-6 fw-bolder">Bank Branch</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.bankBranchNameEn=='null'?'':familyDetails.bankBranchNameEn}}</p>
+                </mat-label>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                <mat-label class="fs-6 fw-bolder">Bank IFSC</mat-label>
+                <mat-label>
+                    <p class="pLabelInfo">{{familyDetails.ifscCode}}</p>
+                </mat-label>
+            </div>
+            <!--  -->
+
+            <!--  -->
+        </div>
+
+</div>
+<div class="row align-item-center mt-2">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="float-end">
+            <!-- <button mat-button mat-dialog-close class="btn btn-outline-cancel" mat-stroked-button>Close</button> -->
+            <button mat-button mat-dialog-close class="btn btn-primary  ms-2" color="primary" mat-raised-button mat-button>Ok</button>
+        </div>
+    </div>
+</div>
+</div>

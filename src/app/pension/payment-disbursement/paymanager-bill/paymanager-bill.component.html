@@ -1,0 +1,318 @@
+<!-- <div class="border-btn-component mt-4">
+    <button mat-stroked-button color="primary" class="big-btn-with-icon-padding float-end" (click)="stopReason('Reason For Stop',1)">Open Dialog</button>
+</div> -->
+
+
+<div class="container-fluid  mb-5">
+    <div class="row">
+      <div class="col-12">
+        <mat-card>
+          <div class="bootstrap-tab-design">
+            <div class="first-pension-container" id="first-pension">
+                <h3>Pay Manager Bill</h3>
+                <div class="tab-container mt-4">
+                    <div class="first-pension-tabs-container">
+                      
+                      <div class="first-pension-tab-btns d-flex align-items-center">
+                        <div class="first-pension-radio-options">
+                          <mat-radio-group aria-label="Select an option" color="primary">
+                          
+                            <mat-radio-button value="gpo" class="radio-border component-border me-4"
+                              (change)="getPensionerDetailsGPO()" [checked]="true">GPO</mat-radio-button>
+                              <mat-radio-button value="cpo" class="radio-border component-border me-4" 
+                              (change)="getPensionerDetailsCPO()">CPO</mat-radio-button>
+                          </mat-radio-group>
+                        </div>
+                      </div>
+                      <div class="tab-content mt-3">
+                        <div class="container-fluid">
+                          <div class="tab-filter-option-container row">
+                            <div
+                              class="tab-filter-option-field col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 col-xxl-10">
+                              <div class="row">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1">
+                                  <mat-form-field appearance="outline" color="primary" (keyup)="applyFilter1($any($event.target).value)">
+                                    <mat-label>PPO Number</mat-label>
+                                    <input matInput [(ngModel)]="ppoNo" placeholder="Ex. ium" #input />
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 mx-2">
+                                  <mat-form-field appearance="outline" (change)="filterData()">
+                                    <mat-label>Employee ID</mat-label>
+                                    <input matInput placeholder="Ex. ium" [(ngModel)]="empId" #input />
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1 me-2">
+                                  <mat-form-field appearance="outline" (change)="filterData()">
+                                    <mat-label>Service Category</mat-label>
+                                    <mat-select disableOptionCentering panelClass="myPanelClass"
+                                      [(ngModel)]="serviceCat">
+                                      <mat-option value="">Select Service Category</mat-option>
+                                      <mat-option *ngFor="let item of serviceCategory"
+                                        [value]="item.serviceCategoryId">{{item.serviceCategoryNameEn}}</mat-option>
+                                    </mat-select>
+
+                                  </mat-form-field>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 gx-1">
+                                  <mat-form-field appearance="outline" (change)="filterData()">
+                                    <mat-label>Treasury</mat-label>
+                                    <mat-select disableOptionCentering panelClass="myPanelClass"
+                                      [(ngModel)]="Treasury">
+                                      <mat-option *ngFor="let obj of treasurylist" [value]="obj.treasCode">{{obj.treasNameEn}} ({{obj.treasCode}})</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="tab-filter-btn tab-filter-option-field col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2 col-xxl-2">
+                              <div class="raised-btn-component">
+                                <button mat-raised-button color="primary" type="submit" class="big-btn-padding"
+                                  (click)="filterData()">
+                                  Apply
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="" style="overflow: auto;">
+                          <table mat-table [dataSource]="dataSource" matSort class="w-100">
+                            <!-- <ng-container matColumnDef="check">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding">
+                              </th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding">
+                                <mat-checkbox class="component-border checkbox-radius-4 me-2" color="primary"
+                                  (change)=" $event.checked === true ? element.is_Disabled = false : element.is_Disabled = true">
+
+                                </mat-checkbox>
+                              </td>
+                            </ng-container> -->
+                            <!-- Pensioner Details Column -->
+                            <ng-container matColumnDef="Pensioner Details">
+                              <th mat-header-cell *matHeaderCellDef class="table-heading table-col-padding">
+                                Pensioner Details
+                              </th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding">
+                                <div class="pensioner-details-container my-2">
+                                  <div class="name-with-icon d-flex align-items-center">
+                                    <p class="m-0">{{element.employeeName}}</p>
+                                    <div class="first-pension-info-icons d-flex align-items-center ms-2">
+                                      <mat-icon class="info-icon" color="primary">info
+                                        <div class="tooltipcontent-component left"
+                                          style="left: 36px; top: -15px; position: absolute;">
+                                          <div class="subtitle-2">{{element.departmentName}}</div>
+                                          <div class="bodytext-1 mt-2"> Bank Account - <span>
+                                              {{element.accountNumber}} </span></div>
+                                          <div class="bodytext-1 mt-2">
+                                            IFSC - <span> {{element.ifscCode}}
+                                            </span></div>
+                                        </div>
+                                      </mat-icon>
+                                    </div>
+                                  </div>
+                                  <div class="emp-id">
+                                     <p class="m-0">
+                                      <span>({{element.employeeCode}})</span>
+                                    </p>
+                                  </div>
+                                  <!-- <div class="view-pension-kit-link" *ngIf="element.dmsDocId!=null">
+                                    <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                      (click)="getPdfPreview(element,'1')">View Pension Kit</a>
+                                  </div> -->
+                                </div>
+                              </td>
+                            </ng-container>
+
+                            <!-- PPO Number Column -->
+                            <ng-container matColumnDef="PPO Number">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding">
+                                PPO Number</th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding">
+                                <p class="m-0"> {{element.ppoNumber}} </p>
+                                <!-- <div class="view-pension-kit-link mt-3" *ngIf="element.pensionerId!=null ">
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                    (click)="getGpoPpoCpoPreview(element.pensionerId,1)">View PPO</a>
+                                </div> -->
+                                
+                              </td>
+                            </ng-container>
+                            <!-- CPO Number Column -->
+                            <ng-container matColumnDef="CPO Number">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding">
+                              CPO Number</th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding">
+                                <p class="m-0"> {{element.cpoNumber}} </p>
+                                <!-- <div class="view-pension-kit-link mt-3" *ngIf="element.pensionerId!=null " >
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                    (click)="getGpoPpoCpoPreview(element.pensionerId,3)">View CPO</a>
+                                </div> -->
+                                
+                              </td>
+                            </ng-container>
+                          
+                            <ng-container matColumnDef="GPO Number">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding">
+                              GPO Number</th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding">
+                                <p class="m-0"> {{element.gpoNumber}} </p>
+                                <!-- <div class="view-pension-kit-link mt-3" *ngIf="element.pensionerId!=null ">
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                    (click)="getGpoPpoCpoPreview(element.pensionerId,2)">View GPO</a>
+                                </div> -->
+                               
+                              
+                              </td>
+                            </ng-container>
+                          
+
+                            <!-- Service Category Column -->
+                            <ng-container matColumnDef="Service Category">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding"> Service Category</th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding">
+                                <p class="m-0">{{element.serviceCategoryNameEn}}</p>
+                                <!-- <div class="view-pension-kit-link mt-3" *ngIf="element.refNo!=null ">
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                    (click)="billPreview(element.refNo,element.issuanceDate,1)">View Inner Bill</a>
+                                </div> -->
+                              
+                              </td>
+                            </ng-container>
+
+                            <!-- Treasury Name Column -->
+                            <ng-container matColumnDef="Treasury Name">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding">Treasury Name</th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding">
+                                <p class="m-0"> {{element.treasuryNameEn}} </p>
+                                <!-- <div class="view-pension-kit-link mt-3" *ngIf="element.refNo!=null ">
+                                  <a matTooltip="View Details" href="JavaScript:Void(0);"
+                                    (click)="billPreview(element.refNo,element.issuanceDate,2)">View Outer Bill</a>
+                                </div> -->
+                              </td>
+                            </ng-container>
+                            <!-- CPO & Budget Head Column -->
+                            <ng-container matColumnDef="CPO Amt. & Budget Head">
+                              <th mat-header-cell *matHeaderCellDef><span>{{name}}</span></th>
+                              <td mat-cell *matCellDef="let element">
+                                <div class="cpo-budget-head-container my-2">
+                                  <div class="name-with-icon">
+                                    <p class="m-0">₹{{element.netPayableAmount}}</p>
+                                    <p class="m-0">{{element.cpoBudgetHead}}</p>
+                                  </div>
+                                  <div class="emp-id">
+                                    <p class="m-0">{{element.gpoBudgetHead}} </p>
+                                  </div>
+                                </div>
+                              </td>
+                            </ng-container>
+
+                            <!-- Issuance Date Column -->
+                            <ng-container matColumnDef="Issuance Date">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding">
+                                Issuance Date</th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding">
+                                <p class="m-0">{{element.issuanceDate | date}}</p>
+                              </td>
+                            </ng-container>
+
+                            <!-- Date of Retirement Column -->
+                            <ng-container matColumnDef="Date of Retirement">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding">
+                                Date of Retirement</th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding">
+                                <p class="m-0">{{element.dateOfRetirement | date}}</p>
+                                
+                              </td>
+                            </ng-container>
+                            <ng-container matColumnDef="isDe">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding">
+                                DE</th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding">
+                                <p class="m-0"> {{element.isDe=='Y'?'Yes':'No'}}</p>
+                               
+                              </td>
+                            </ng-container>
+                            <!-- Total Deduction Column -->
+                            <ng-container matColumnDef="Total Deduction">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding" [hidden]="isCPO">Total
+                                Deduction</th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding" [hidden]="isCPO">
+                                <div class="deduction-amount-head-container my-2">
+                                  <div class="name-with-icon d-flex align-items-center">
+                                    <p class="m-0">₹ {{element.deductionRecoveryAmount?element.deductionRecoveryAmount:0}}</p>
+                                    <!-- <div class="first-pension-info-icons d-flex align-items-center ms-2">
+                                                                              <mat-icon class="info-icon" color="primary">info
+                                                                                  <div class="tooltipcontent-component left" style="left: 36px; top: -15px; position: absolute;">
+                                                                                      <div class="subtitle-2">
+                                                                                          Department of Finance
+                                                                                      </div>
+                                                                                      <div class="bodytext-1 mt-2">
+                                                                                          Bank Account - <span>{{element.accountNumber}}</span>
+                                                                                      </div>
+                                                                                      <div class="bodytext-1 mt-2">
+                                                                                          IFSC - <span> {{element.ifscCode}}</span>
+                                                                                      </div>
+                                                                                  </div>
+                                                                              </mat-icon>
+                                                                          </div> -->
+                                  </div>
+                                  <div class="emp-id">
+                                    <p class="m-0">{{element.deductionRecoveryHead}}</p>
+                                  </div>
+                                </div>
+                              </td>
+                            </ng-container>
+
+                            <!-- Net Payable Amount Column -->
+                            <ng-container matColumnDef="Net Payable Amount">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding">
+                                Net Payable Amount</th>
+                              <td mat-cell *matCellDef="let element" class="table-col-padding">
+                                <p class="m-0"> ₹ {{element.netPayableAmount?element.netPayableAmount:0}}</p>
+                               
+                              </td>
+                            </ng-container>
+                          
+                            <!-- Action Column -->
+                            <ng-container matColumnDef="Action" id="1">
+                              <th mat-header-cell *matHeaderCellDef class="table-col-padding">
+                                Action</th>
+                              <td mat-cell *matCellDef="let element">
+                                <button mat-stroked-button color="primary" class="big-btn-padding"
+                                  
+                                  (click)="generateBill('Generate Bill',element)">Bill forward to Treasury</button>
+                              </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns">
+                            </tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns" [ngClass]="{'make-red': row.isDe=='Y' }">
+                            </tr>
+
+                            <!-- Row shown when there is no matching data. -->
+                            <tr class="mat-row" *matNoDataRow>
+                              <td class="mat-cell" colspan="4">
+                                No data matching the filter "{{ input.value }}"
+                              </td>
+                            </tr>
+                          </table>
+                          <mat-paginator [pageSizeOptions]="[5,25, 50, 500,1000]"
+                            aria-label="Select page of users"></mat-paginator>
+                          <!-- <mat-paginator (page)="paginatorHtmlElement.nativeElement.querySelector('div.mat-select-value > span > span').innerHTML = paginator.pageSize == 2147483647?
+                                                        'Max': paginator.pageSize" <div length="dataSource"></div> #paginator #paginatorElement  [pageIndex]="0" [pageSizeOptions]="[5, 10, 25, 50, 100, 2147483647]"
+                                                        [pageSize]="10">
+                                                      </mat-paginator> -->
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  

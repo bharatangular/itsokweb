@@ -1,0 +1,95 @@
+
+<div class="container"> 
+  <div class="row d-flex align-items-center">
+    <div class="col-7"> 
+      <h3>User Name: {{data.message.data.displayName}}</h3>
+      <h3>Set User Multi Role</h3>
+     
+    </div>
+  </div>
+  <div class="row d-flex align-items-center pb-2" style="margin-bottom: 20px;">
+
+    <div class="col col-sm-3">
+      <mat-label>Module Name</mat-label>
+      
+    <mat-form-field class="example-full-width font-12 font-weight-600 text-dark w-100 my-3" appearance="outline">
+      <mat-select class="py-5p" matNativeControl  #module  placeholder="Module Name"  (valueChange)=" getwfprocess(module.value)">
+        <mat-option value="{{item.id}}" *ngFor="let item of modulelist;let i=index">{{item.name}}</mat-option>
+    </mat-select>
+    </mat-form-field> 
+    </div>
+    
+    <div class="col col-sm-3">
+      <mat-label>Process Name</mat-label>
+      
+    <mat-form-field class="example-full-width font-12 font-weight-600 text-dark w-100 my-3" appearance="outline">
+      <mat-select class="py-5p" matNativeControl  #process  placeholder="Process Name" (valueChange)=" getwflevel(process.value)">
+        <mat-option value="{{item.processId}}" *ngFor="let item of processList;let i=index">{{item.processName}}</mat-option>
+    </mat-select>
+    </mat-form-field> 
+    </div>
+    <div class="col col-sm-3">
+      <mat-label>Process Level</mat-label>
+      
+    <mat-form-field class="example-full-width font-12 font-weight-600 text-dark w-100 my-3" appearance="outline">
+      <mat-select class="py-5p" matNativeControl #level placeholder="Process Level" (valueChange)="getmstworktask(level.value)">
+        <mat-option [value]="item.processLevelId" *ngFor="let item of levelList;let i=index">{{item.levelType}}</mat-option>
+    </mat-select>
+    </mat-form-field>
+    </div>
+    <div class="col col-sm-3">
+      <mat-label>Role Name</mat-label>
+      
+    <mat-form-field class="example-full-width font-12 font-weight-600 text-dark w-100 my-3" appearance="outline">
+      <mat-select class="py-5p" matNativeControl #role id="role" placeholder="Role Name" (valueChange)="getRoletask(role.value)">
+        <mat-option [value]="item.processTaskId" *ngFor="let item of roleList;let i=index">{{item.taskRoleName}}</mat-option>
+    </mat-select>
+    </mat-form-field>
+    </div>
+    <div class="col col-sm-3">
+      <button class="btn btn-primary" mat-raised-button color="primary"  type="submit" (click)="assignRole()">Add Role</button>
+    </div>
+  </div>
+  
+    <div class="card">
+      <table mat-table [dataSource]="dataSource" matSort class="w-100">
+        <ng-container matColumnDef="SR.NO.">
+          <th mat-header-cell *matHeaderCellDef> SR.NO.</th>
+          <td mat-cell *matCellDef="let item;let i=index;"> {{i+1}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="processName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Process Name </th>
+        <td mat-cell *matCellDef="let item"> {{getProcessName(item)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="processLevel">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Process Name </th>
+      <td mat-cell *matCellDef="let item"> {{getLevelName(item)}} </td>
+  </ng-container>
+  
+      <ng-container matColumnDef="Role">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+          <td mat-cell *matCellDef="let item"> {{item.taskRoleName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Remove">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Remove </th>
+          <td mat-cell *matCellDef="let item">
+            <button class="btn btn-primary" mat-raised-button color="primary"  type="button" (click)="removeRole(item)">Remove</button> 
+          </td>
+      </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter</td>
+        </tr>
+      </table>
+  
+      <!-- Pagination -->
+      <mat-paginator #paginatorRef [pageSizeOptions]="[5,10, 20,50, 100,500,1000]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

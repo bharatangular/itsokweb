@@ -1,0 +1,99 @@
+<div class="container-fluid mb-5">
+  <mat-card> 
+    
+    <div class="row mx-1" style="background: #edf2fa;">
+
+      <div class="col-lg-4 pt-2 offset-3">        
+          <!-- <mat-label>Input code</mat-label> -->
+          <mat-form-field class="example-full-width w-100">
+            <input matInput placeholder="Employee Code" [(ngModel)]="empCode"  [ngModelOptions]="{standalone: true}" oninput="this.value = this.value.toUpperCase()">
+          </mat-form-field>
+        
+      </div>
+      <div class="col-lg-2 text-start pt-3">
+        <button mat-raised-button color="primary" (click)="fetchDetails()">Find Details</button>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-lg-4 mb-3 text-center pt-5 offset-2">
+        <h3>Employee Photo</h3>
+        <div class="align-items-center">
+          <div class="avatar-upload">
+            <div class="avatar-edit" >
+              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event,1)"  />
+            </div>
+            <div class="avatar-preview my-4">
+              <!-- <div id="imagePreview" [style.backgroundImage]="'url( imageUrl ')'">
+              </div> -->
+              <img [src]="imageUrl!=null?imageUrl:picData!=null?picData:'assets/images/male-avatar.jpg'" style="width: 130px; height: 100%; object-fit: cover;"/>
+    
+              <!-- <img [src]="imageUrl" style=" width: auto;  height: 100%;"/> -->
+            </div>
+          </div>
+          <div class="ms-3" >
+            <div class="fs-6 fw-semibold">Upload Recent Employee Photograph*</div>
+            <div class="font-size">You can upload a JPG, GIF, or PNG file. Maximum file size is 500KB.</div>
+            <div class="mt-3">
+              <button class="px-5" mat-raised-button type="button" color="primary" (click)="fileInput.click()">
+                <mat-icon class="me-2">edit</mat-icon>Upload
+              </button>
+              <!-- <button mat-raised-button color="primary" type="button" class="ms-2 px-5">
+                <mat-icon class="me-3 ">delete</mat-icon>Remove
+              </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-3 text-center pt-5">
+        <h3>Joint Photo</h3>
+        <div class="align-items-center">
+          <div class="avatar-upload">
+            <div class="avatar-edit" >
+              <input type='file' id="imageUpload1" accept=".png, .jpg, .jpeg" #fileInput1 (change)="uploadFile($event,2)"  />
+            </div>
+            <div class="avatar-preview my-4" style="width: 260px;">
+              <!-- <div id="imagePreview" [style.backgroundImage]="'url( imageUrl ')'">
+              </div> -->
+              <img [src]="jointUrl!=null?jointUrl:jointData!=null?jointData:'assets/images/joint_user.jpg'" style="width: 130px; height: 100%; object-fit: cover;"/>
+    
+              <!-- <img [src]="imageUrl" style=" width: auto;  height: 100%;"/> -->
+            </div>
+          </div>
+          <div class="ms-3" >
+            <div class="fs-6 fw-semibold">Upload Recent Joint Photograph*</div>
+            <div class="font-size">You can upload a JPG, GIF, or PNG file. Maximum file size is 500KB.</div>
+            <div class="mt-3">
+              <button class="px-5" mat-raised-button type="button" color="primary" (click)="fileInput1.click()">
+                <mat-icon class="me-2">edit</mat-icon>Upload
+              </button>
+              <!-- <button mat-raised-button color="primary" type="button" class="ms-2 px-5">
+                <mat-icon class="me-3 ">delete</mat-icon>Remove
+              </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<hr>
+      <div class="col-lg-12 text-start pt-3">
+        <h2>Preview</h2>
+        <button mat-raised-button color="primary" class="px-5 mb-2" (click)="common.Preview(PKData)">Pension Kit </button>
+        <button mat-raised-button color="primary" class="px-5 mb-2 mx-2" (click)="common.Preview(PKSData)">Pension Kit Summary</button>
+      </div>
+      <hr>
+      <div class="col-lg-12 text-end pt-3">
+        <button mat-raised-button color="primary" class="px-5 mb-2" (click)="directEsign()">E-Sign</button> <br>
+        <div class="font-size">
+            <i>* Generate New Pension Kit and Pension Kit Summary</i>
+        </div>
+      </div>
+
+    </div>
+</mat-card>
+</div>
+

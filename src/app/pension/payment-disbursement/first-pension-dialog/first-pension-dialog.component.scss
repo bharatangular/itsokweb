@@ -1,0 +1,119 @@
+.first-payment-modal{
+	min-width: 450px;
+	z-index: 1021 !important;
+  position: relative;
+}
+.first-payment-modal form .group-gap{
+  height: 50vh;
+  overflow: auto;
+}
+.mat-checkbox-checked{
+	padding-top: 15px;
+  .check-text-container{
+    display: none;
+  }
+}
+
+.checkbox-check-content{
+	::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick{
+        color: var(--primary) !important;
+    }
+}
+::ng-deep .mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix
+{
+  padding: 0.4em 0px 0.8em;
+}
+
+
+
+
+.upload-lable-text{
+  background-color: #2A6DD90F;
+  border: 1px dashed #006FE1;
+}
+
+.file-browse{
+	color: var(--primary);
+	text-decoration: underline;
+}
+
+.comment-text-container{
+	.mat-form-field{
+		display: block !important;
+	}
+}
+
+.birth-date-container{
+	::ng-deep .mat-form-field-wrapper{
+		padding: 0px !important;
+	}
+}
+
+.stop-reason-content{
+	::ng-deep .mat-checkbox-layout{
+		width: 100%;
+		display: flex;
+		align-items: center;
+	}
+	::ng-deep .mat-checkbox-label{
+		width: 100%;
+	}
+	::ng-deep .mat-checkbox-inner-container{
+		margin: inherit !important;
+	}
+
+}
+
+.accordion-custom-stop{
+	::ng-deep .mat-expansion-panel-header{
+		background-color: #f5f7fa;
+	}
+
+	.mat-expansion-panel-header-title{
+		font-size: 1rem;
+		font-weight: 600;
+	}
+}
+
+.modal-80vh{
+	height: 80vh;
+}
+
+
+::ng-deep .first-payment-modal {
+	.mat-dialog-container {
+		overflow: none !important;
+
+	}
+  }
+
+
+  table {
+	width: 100%;
+  }
+  .stopreason{
+    z-index: 2021 !important;
+  }
+
+.spinner {
+  position: absolute;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 45%;
+  left: 40%;
+}
+
+/* Transparent Overlay */
+.spinner:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(207, 206, 206, 0.3);
+}

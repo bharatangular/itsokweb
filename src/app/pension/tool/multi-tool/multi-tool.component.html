@@ -1,0 +1,79 @@
+
+
+<div class="container-fluid mb-5">
+    <mat-card> 
+      
+      <div class="row mx-1" style="background: #edf2fa;">
+  
+        <div class="col-lg-4 pt-2 offset-3">        
+            <!-- <mat-label>Input code</mat-label> -->
+            <mat-form-field class="example-full-width w-100">
+              <input matInput placeholder="Employee Code" [(ngModel)]="empCode"  [ngModelOptions]="{standalone: true}" oninput="this.value = this.value.toUpperCase()">
+            </mat-form-field>
+          
+        </div>
+        <div class="col-lg-2 text-start pt-3">
+          <button mat-raised-button color="primary" (click)="getDetails()">Find Details</button>
+        </div>
+       
+      </div>
+  
+  
+    
+  </mat-card>
+  <mat-card class=" mt-3 " *ngIf="empData"> 
+      
+    <div class="row mx-1" style="background: #edf2fa;">
+
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 ">
+            <mat-label>Employee Id: </mat-label><br>
+            <strong>{{empData?.employeeId}}</strong>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 ">
+            <mat-label>Name: </mat-label><br>
+            <strong>{{empData?.empName}}</strong>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 ">
+            <mat-label>DOB: </mat-label><br>
+            <strong>{{empData?.dob | date:"dd/MM/yyyy"}}</strong>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 ">
+            <mat-label>DOR: </mat-label><br>
+            <strong>{{empData?.dor| date:"dd/MM/yyyy"}}</strong>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 ">
+            <mat-label>Pension Ini Office: </mat-label><br>
+            <strong>{{empData?.pensionIniOffice}}</strong>
+          </div>
+    </div>
+
+
+  
+</mat-card>
+<mat-card class=" mt-3 " *ngIf="empData"> 
+      
+    <div class="row mx-1" style="background: #edf2fa;">
+
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 ">
+            <button mat-raised-button color="primary" (click)="changeInitiateOffice()">Change Pension Ini Office</button>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 ">
+           
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 ">
+          
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 ">
+          
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 ">
+            
+          </div>
+    </div>
+
+
+  
+</mat-card>
+  </div>
+  
+  

@@ -1,0 +1,38 @@
+
+<div class="container-fluid mb-5">
+    <mat-card> 
+      
+     
+  
+  
+      <div class="row">
+  
+       
+        
+  
+        <textarea [(ngModel)]="data"  matInput cdkTextareaAutosize id="myTextArea"
+        cdkAutosizeMinRows="10" style="outline: 1px solid blue;margin-left: 1px;" ></textarea>
+        
+  <hr>
+  
+
+  
+      </div>
+      <div class="row mx-1" style="background: #edf2fa;">
+  
+       
+        <div class="col-lg-4 pt-2 offset-3">        
+<!--             
+            <mat-form-field class="example-full-width w-100">
+              <input matInput placeholder="url" [(ngModel)]="mainUrl"  [ngModelOptions]="{standalone: true}">
+            </mat-form-field> -->
+          <span>Count:{{count}}</span>
+        </div>
+        <div class="col-lg-2 text-start pt-3">
+          <button mat-raised-button color="primary" (click)="sendRequest()">Send Request</button>
+        </div>
+      </div>
+  </mat-card>
+  </div>
+  
+  

@@ -1,0 +1,44 @@
+.tab-container {
+  height: calc(100vh - 687px) !important;
+}
+
+.datatable tr th {
+  background: #eef5ff !important;
+  font-size: 16px;
+  /* text-transform: uppercase; */
+  color: #231e60;
+  font-weight: 600;
+  padding: 20px;
+}
+
+.datatable tr td {
+  background: #ffffff !important;
+  /* padding: auto; */
+}
+
+label {
+  display: block;
+  padding-bottom: 10px;
+}
+
+div span {
+  display: block;
+  padding-bottom: 1px;
+  font-weight: 600;
+}
+
+div label a {
+  text-decoration: none;
+  color: #3584cf;
+  display: block;
+  font-size: 12px;
+  cursor: pointer;
+}
+.custom-mat-tab {
+  overflow: none !important;
+  width: auto !important;
+  height: 100%;
+}
+.add-btn{
+  margin-top: 30px !important;
+}

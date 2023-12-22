@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": true,
+    "typescript.tsserver.watchOptions": {
+        "typescript.validate.enable": true,
+        "javascript.validate.enable": true,
+    }
+}

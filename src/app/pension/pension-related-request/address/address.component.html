@@ -1,0 +1,312 @@
+<mat-tab-group animationDuration="0ms" class="mb-2">
+  <mat-tab label="Address Details" class="text-black"></mat-tab>
+</mat-tab-group>
+<button type="button" class="float-end btn_mdf" *ngIf="config.registrationType === 0"
+  mat-raised-button color="primary" (click)="modify()">Modify</button>
+<form [formGroup]="saveAddress" (ngSubmit)="verifyMobileNo()">
+
+  <div class="row bg-light_blue m-3 p-2">
+    <legend class="my-2 Currenaddress fs-6">Permanent Address</legend>
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <mat-form-field class="w-100">
+        <mat-label>State </mat-label>
+        <mat-select matNativeControl #mySelectP id="State" formControlName="permanentState" name="item-name"
+          (selectionChange)='stateChange()' disableOptionCentering panelClass="myPanelClass">
+          <mat-option *ngFor="let mst of stateList" [value]="mst.stateId">
+            {{mst.stNameEn}}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+
+    </div>
+
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <mat-form-field class="w-100">
+        <mat-label>District </mat-label>
+        <mat-select matNativeControl #mySelectD id="District" formControlName="permanentDistrict"
+          (selectionChange)="districtChange()">
+          <mat-option *ngFor="let mst of permanentdistrictList" [value]=mst.distId>
+            {{mst.distNameEn}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+    </div>
+
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <div class="mt-3">
+        <mat-label><b>Area</b></mat-label>
+        <input matInput style="display:none" required>
+        <mat-radio-group #group class="flex-wrap px-3" (change)="onRuralUrbanChange()"  formControlName="permanentArea">
+          <mat-radio-button name="pArea" id="areaR" [value]="1" color="primary">Rural</mat-radio-button>
+          <mat-radio-button class="ml-5 px-3" name="pArea" id="areaU" [value]="2" color="primary">Urban
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+
+    <ng-container *ngIf="saveAddress.value.permanentArea == 1">
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Block</mat-label>
+          <mat-select matNativeControl (selectionChange)="changeBlock()" formControlName="permanentBlock"
+            disableOptionCentering panelClass="myPanelClass">
+            <mat-option *ngFor="let mst of permanentBlockList" [value]="mst.blockId">
+              {{mst.blockNameEn}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Panchayat </mat-label>
+          <mat-select matNativeControl  panelClass="myPanelClass"
+            (selectionChange)="getPanchayatWard3()" formControlName="permanentPanchayat">
+            <mat-option *ngFor="let mst of permanentPanchayatList" value={{mst.gramPId}}>
+              {{mst.gramPNm}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </ng-container>
+
+
+    <ng-container *ngIf="saveAddress.value.permanentArea == 2">
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Muncipal</mat-label>
+          <mat-select matNativeControl disableOptionCentering panelClass="myPanelClass"
+            (selectionChange)="changeMuncipal()" formControlName="permanentMunicipal">
+            <mat-option *ngFor="let mst of muncipalList" value={{mst.munPId}}>
+              {{mst.munPName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Ward </mat-label>
+          <mat-select matNativeControl disableOptionCentering panelClass="myPanelClass" id=""
+            formControlName="permanentWard">
+            <mat-option *ngFor="let mst of wardlist" value={{mst.wardId}}>
+              {{mst.wardNameEn}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </ng-container>
+
+
+    <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="saveAddress.value.permanentArea == 1">
+      <mat-form-field class="w-100">
+        <mat-label>Village/ Street / Nagar </mat-label>
+        <mat-select matNativeControl disableOptionCentering panelClass="myPanelClass" id=""
+          formControlName="permanentVillage">
+          <mat-option *ngFor="let mst of permanentVillageList" value={{mst.villId}}>
+            {{mst.villNameEn}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <mat-form-field class="w-100">
+        <mat-label>House No</mat-label>
+        <input matInput formControlName="permanentHouseNo" maxlength="150">
+      </mat-form-field>
+    </div>
+
+
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <mat-form-field class="w-100">
+        <mat-label>Pin Code</mat-label>
+        <input matInput numberOnly maxlength="6" formControlName="permanentPincode">
+
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <mat-form-field class="w-100">
+        <mat-label>Assembly</mat-label>
+        <mat-select matNativeControl disableOptionCentering panelClass="myPanelClass"
+          formControlName="permanentAssembly" id="">
+          <mat-option *ngFor="let mst of assemblyList" [value]="mst.assemblyId">
+            {{mst.assemblyNameEn}}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+    </div>
+
+  </div>
+
+<div class="bg-light_blue m-3 p-3">
+  <legend class="mb-3 Currenaddress fs-6 mt-2">Current Address</legend>
+  <section class="example-section">
+    <mat-checkbox (change)="changeValue($event)" formControlName="addressType" color="primary"><b>Same As Permanent
+        Address</b>
+    </mat-checkbox>
+  </section>
+  <div class="row mt-2">
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <mat-form-field class="w-100">
+        <mat-label>State</mat-label>
+        <mat-select matNativeControl #mySelectP id="State" formControlName="currentState" name="item-name"
+          (selectionChange)='stateChangeCurrent()' disableOptionCentering panelClass="myPanelClass">
+          <mat-option *ngFor="let mst of stateList" [value]="mst.stateId">
+            {{mst.stNameEn}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <mat-form-field class="w-100">
+        <mat-label>District </mat-label>
+        <mat-select matNativeControl #mySelectD id="District" formControlName="currentDistrict" disableOptionCentering
+          panelClass="myPanelClass" (selectionChange)="districtChangeCurrent()">
+          <mat-option *ngFor="let mst of currentDistrictList" [value]="mst.distId">
+            {{mst.distNameEn}}
+          </mat-option>
+        </mat-select>
+
+
+      </mat-form-field>
+
+
+    </div>
+
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <div class="mt-3">
+        <mat-label><b>Area</b></mat-label>
+        <input matInput style="display:none" required>
+        <mat-radio-group #group class="flex-wrap px-3" formControlName="currentArea">
+          <mat-radio-button name="cArea" [value]="1" color="primary"
+            (change)="onRuralUrbanChangeCurrent()">Rural</mat-radio-button>
+          <mat-radio-button class="ml-5 px-3" name="cArea" [value]="2" color="primary"
+            (change)="onRuralUrbanChangeCurrent()">Urban
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+
+    </div>
+
+
+    <ng-container *ngIf="saveAddress.value.currentArea == 1">
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Block</mat-label>
+          <mat-select matNativeControl (selectionChange)="changeBlockCurrent()" formControlName="currentBlock"
+            disableOptionCentering panelClass="myPanelClass">
+            <mat-option *ngFor="let mst of currentBlockList" [value]="mst.blockId">
+              {{mst.blockNameEn}}
+            </mat-option>
+
+
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Panchayat </mat-label>
+          <mat-select matNativeControl disableOptionCentering panelClass="myPanelClass" (selectionChange)="getPanchayatWard4()"
+            formControlName="currentPanchayat">
+            <mat-option *ngFor="let mst of currentPanchayatList" value={{mst.gramPId}}>
+              {{mst.gramPNm}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </ng-container>
+
+
+    <ng-container *ngIf="saveAddress.value.currentArea == 2">
+      <div class="col-md-6 col-lg-4 md-4 mt-3">
+        <mat-form-field class="w-100">
+          <mat-label>Muncipal</mat-label>
+          <mat-select matNativeControl disableOptionCentering panelClass="myPanelClass" (selectionChange)="getPanchayatWardcurrent()" formControlName="currentMunicipal">
+            <mat-option *ngFor="let mst of muncipalListcurrent" [value]=mst.munPId>
+              {{mst.munPName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-4 mt-3 col-lg-4 col-xl-4 col-xxl-4">
+        <mat-form-field class="w-100">
+          <mat-label>Ward </mat-label>
+          <mat-select matNativeControl disableOptionCentering panelClass="myPanelClass" id=""
+            formControlName="currentWard">
+            <mat-option *ngFor="let mst of wardlistcurrent" value={{mst.wardId}}>
+              {{mst.wardNameEn}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </ng-container>
+
+
+    <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="saveAddress.value.currentArea == 1">
+      <mat-form-field class="w-100">
+        <mat-label>Village/ Street / Nagar </mat-label>
+        <mat-select matNativeControl disableOptionCentering panelClass="myPanelClass" id=""
+          formControlName="currentVillage">
+          <mat-option *ngFor="let mst of currentVillageList" value={{mst.villId}}>
+            {{mst.villNameEn}}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <mat-form-field class="w-100">
+        <mat-label>House No</mat-label>
+        <input matInput formControlName="currentHouseNo" maxlength="150">
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <mat-form-field class="w-100">
+        <mat-label>Pin Code</mat-label>
+        <input matInput numberOnly maxlength="6" formControlName="currentPincode">
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-lg-4 md-4 mt-3">
+      <mat-form-field class="w-100">
+        <mat-label>Assembly</mat-label>
+        <mat-select matNativeControl disableOptionCentering panelClass="myPanelClass" formControlName="currentAssembly"
+          id="">
+          <mat-option *ngFor="let mst of assemblyListCurrent" [value]="mst.assemblyId">
+            {{mst.assemblyNameEn}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+  <!-- <app-upload-documet [DocumentList] = "saveAddress.value.documentList" [subProcessId]="2"  (EmpDocument)="getDocument($event)"></app-upload-documet> -->
+  <div style="display: inline-block; width: 50%">
+    <button *ngIf="isSaveEnable " type="submit" mat-raised-button color="primary" class="mt-5">
+      {{ roleid=='3'?'Save':'Verify & Save' }}
+    </button>
+
+    <!-- <ng-container *ngIf="userAction.length > 0">
+      <button type="submit" *ngFor="let item of userAction" mat-raised-button color="primary" (click)="action = item.action" class="mt-5 me-2">
+        {{item.actionLabel}}
+      </button>
+    </ng-container> -->
+  </div>
+
+</form>

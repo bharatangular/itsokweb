@@ -1,0 +1,169 @@
+<div class="container-fluid full">
+    <div class="row">
+        <div class="col-lg-12 p-3 pt-0">
+    <div class="row">
+    
+    <div class="col-lg-12">
+    
+    <app-filters (dataParmsFilter)="reviceParamsfilter($event)" (filterDash)="reset($event)" [isNavigateFromDashbord]='isNavigate' [filtersData]="filterDetails"></app-filters>
+    </div>
+    </div>
+    </div></div>
+
+
+
+<div class="row">
+<div class="row-12">
+ <div class="row">
+           
+   <div class="col-12 col-md-8 col-lg-12">
+       <div class="tab-content" id="nav-tabContent">
+   <!-- breadcrumb -->
+<section>
+       <div class="content-wrapper"> 
+           <nav aria-label="breadcrumb">               
+           </nav>
+       </div> 
+</section>
+
+
+<mat-card>
+    <div class="content-wrapper"  style="margin-bottom: 30px;">
+     <!--  <div class="row justify-content-end mt-3">
+           <div class="row justify-content-start py-2">
+
+               <div class="col-lg-8 month-dropdown" >
+                   <h2>Zonal User Wise Pendency</h2>
+
+               </div>
+
+               <div class="col-lg-4 text-end px-4 d-flex justify-content-end align-items-center">
+                   <button (click)="exportToPdf('zone_user_wise_summary','Zonal User Wise Pendency')" class="btn btn-danger d-inline me-2 align-items-center justify-content-center mb-1 px-4"> <span>PDF</span></button>
+                   <button (click)="exportToExcel('Zonal User Wise Pendency')"  class="btn btn-primary d-inline align-items-center justify-content-center mb-1 px-4"> <span>EXCEL </span></button>
+               </div>
+
+           </div>
+       </div>     -->     
+
+   
+            
+   <div class="content-wrapper mb-2">
+    <div class="row justify-content-end mt-3">
+        <div class="col-lg-8 month-dropdown" >
+            <h2 class="mb-0 py-2">Zone User wise Pendency </h2>
+        </div>
+        <div class="col-lg-4 text-end px-4 d-flex justify-content-end align-items-center">
+            <button (click)="exportToPdf('zone_user_wise_summary','Zone user wise pendency')" class="btn btn_custome_r d-inline me-2 align-items-center justify-content-center mb-1 px-2"> 
+                <img src="assets/images/pdf.png">
+            </button>
+            <button (click)="exportToExcel('Zone user wise pendency')"  class="btn btn_custome_g d-inline align-items-center justify-content-center mb-1 px-2"> 
+                <img src="assets/images/excel.svg">
+             
+            </button>
+        </div>
+    </div>         
+</div>
+
+
+   <div class="mat-elevation-z8" style="overflow: auto;">
+       <table mat-table [dataSource]="dataSource" matSort class="w-100 mt-4" id="zone_user_wise_summary">
+           
+           <ng-container matColumnDef="sNo" >
+               <th mat-header-cell *matHeaderCellDef >S.NO.</th>
+               <td mat-cell *matCellDef="let row">{{row.sNo ? row.sNo : '0'}}                         
+               </td>
+           </ng-container> 
+           
+           
+           <ng-container matColumnDef="zoneName" >
+            <th mat-header-cell *matHeaderCellDef >Zone Name</th>
+            <td mat-cell *matCellDef="let row">{{row?.zoneName ? row?.zoneName : '0'}}                         
+            </td>
+        </ng-container> 
+
+        <ng-container matColumnDef="psnNotInitiated" >
+            <th mat-header-cell *matHeaderCellDef >Not Initiated at HoO </th>
+            <td mat-cell  *matCellDef="let row">  <a class="ancor" (click)="zoneOfficeRoleWiseReport('6', 'Not Initiated', row)">{{row.psnNotInitiated ? row.psnNotInitiated : '0' }}</a>                        
+            </td>
+        </ng-container> 
+        <!-- psnNotInitiated -->
+        <!-- Total of Zones(Pendency) -->
+        <ng-container matColumnDef="pendingAtHo">
+            <th mat-header-cell *matHeaderCellDef >Pending at HoO</th>
+            <td mat-cell *matCellDef="let row"><a class="ancor" (click)="zoneOfficeRoleWiseReport('7', 'Pending at HoO', row)">{{row.pendingAtHo ? row.pendingAtHo : '0' }}</a>  </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pendingHoObjection">
+            <th mat-header-cell *matHeaderCellDef >Objection from Pension Office</th>
+            <td mat-cell *matCellDef="let row"><a class="ancor" (click)="zoneOfficeRoleWiseReport('8', 'Pending at HoO - Objection', row)">{{row.pendingHoObjection ? row.pendingHoObjection : '0' }}</a>  </td>
+        </ng-container>
+           <!-- <ng-container matColumnDef="pendingHodMaker">
+               <th mat-header-cell *matHeaderCellDef >Pending at HoO Maker</th>
+               <td mat-cell (click)="zoneOfficeRoleWiseReport('1', 'Pending at HoO Maker', row)"*matCellDef="let row"><a class="ancor">{{row.pendingHodMaker ? row.pendingHodMaker : '0' }}</a>  </td>
+           </ng-container>
+
+           <ng-container matColumnDef="pendingHoChecker" >
+               <th mat-header-cell *matHeaderCellDef >Pending at HoO Checker</th>
+               <td mat-cell (click)="zoneOfficeRoleWiseReport('2', 'Pending at HoO Checker', row)"*matCellDef="let row"> <a class="ancor">{{row.pendingHoChecker ? row.pendingHoChecker : '0'}}</a> </td>
+           </ng-container>
+
+           <ng-container matColumnDef="pendingHodApprover">
+               <th mat-header-cell *matHeaderCellDef >Pending at HoO Approver</th>
+               <td mat-cell (click)="zoneOfficeRoleWiseReport('3', 'Pending at HoO Approver', row)"*matCellDef="let row"> <a class="ancor">{{row.pendingHodApprover ? row.pendingHodApprover : '0'}} </a></td>
+           </ng-container> -->
+
+           <!-- <ng-container matColumnDef="rejectedHodApprvr">
+            <th mat-header-cell *matHeaderCellDef >Rejected HOD Approver</th>
+            <td mat-cell (click)="zoneOfficeRoleWiseReport('5', 'Rejected at HOD Approver')"*matCellDef="let row"><a class="ancor"> {{row.rejectedHodApprvr ? row.rejectedHodApprvr : '0'}}</a> </td>
+        </ng-container> -->
+
+            
+        <ng-container matColumnDef="pendingAuditorZone">
+            <th mat-header-cell *matHeaderCellDef >Pending at Auditor Zonal </th>
+            <td mat-cell *matCellDef="let row"> <a class="ancor" (click)="zoneOfficeRoleWiseReport('9', 'Pending at Auditor Zonal', row)">{{row.pendingAuditorZone ? row.pendingAuditorZone : '0' }} </a> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pendingAaozone">
+            <th mat-header-cell *matHeaderCellDef >Pending at AAO Zonal </th>
+            <td mat-cell *matCellDef="let row"> <a class="ancor" (click)="zoneOfficeRoleWiseReport('10', 'Pending at AAO Zonal', row)">{{row.pendingAaozone ? row.pendingAaozone : '0' }} </a> </td>
+        </ng-container>
+
+         
+        <ng-container matColumnDef="pendingZoneApprvr">
+            <th mat-header-cell *matHeaderCellDef >Pending at Approver Zonal </th>
+            <td mat-cell *matCellDef="let row"> <a class="ancor" (click)="zoneOfficeRoleWiseReport('11', 'Pending at Zonal (Approver)', row)">{{row.pendingZoneApprvr ? row.pendingZoneApprvr : '0' }} </a> </td>
+        </ng-container>
+         
+           <ng-container matColumnDef="autoApproved">
+               <th mat-header-cell *matHeaderCellDef >Approved at Zonal</th>
+               <td mat-cell *matCellDef="let row"><a class="ancor" (click)="zoneOfficeRoleWiseReport('12', 'Approved at Zonal', row)"> {{row.autoApproved ? total(row.autoApproved,row.normalApproved)  :'0'}}</a> </td>
+           </ng-container>
+
+          
+           <tr class="mat-row" *matNoDataRow>
+               <td class="mat-cell text-center" colspan="8">No Record found. </td>
+           </tr>
+           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>    
+       </table>
+
+       <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
+
+   </div>
+   </div>
+</mat-card>
+           
+       </div>
+   </div>
+   </div>
+</div>
+</div>
+
+
+
+
+</div>
+
+
+
+

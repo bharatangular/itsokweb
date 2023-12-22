@@ -1,0 +1,414 @@
+<div class="emp_service_dt">
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Service Details" class="text-black"></mat-tab>
+  </mat-tab-group>
+  <button type="button" class="float-end btn_mdf" *ngIf="config.registrationType === 0"
+  mat-raised-button color="primary" (click)="modify()">Modify</button>
+  <div class="row mb-5">
+    <form [formGroup]="serviceDetails" (submit)="onSubmit()">
+      <div class="mt-2">
+        <mat-expansion-panel *ngIf="this.config.registrationType == 3"  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Previous Employee Details
+            </mat-panel-title>
+            <hr>
+          </mat-expansion-panel-header>
+          <div class=" border-top">
+            <div class="row mt-2">
+              <div class="col-md-6 col-lg-4 md-4 mt-3">
+                <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                  <mat-label>Previous Service Category</mat-label>
+                  <input matInput maxlength="400" disabled placeholder="dummy data" readonly>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 col-lg-4 md-4 mt-3">
+                <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                  <mat-label>Previous Service Sub-Category</mat-label>
+                  <input matInput maxlength="400" disabled placeholder="dummy data" readonly>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-lg-4 md-4 mt-3">
+                <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                  <mat-label>Previous Designation</mat-label>
+                  <input matInput maxlength="400" disabled placeholder="dummy data">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 col-lg-4 md-4 mt-3">
+                <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                  <mat-label>Length Of Service</mat-label>
+                  <input matInput maxlength="400" disabled placeholder="dummy data">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Service Status</mat-label>
+          
+            <mat-select formControlName="serviceStatus" (selectionChange)="ChangeServiceStatus()">
+            
+              <mat-option [value]="item.serviceStatusId" 
+                *ngFor="let item of serviceStatus">{{item.serviceStatusName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Sub Service Status</mat-label>
+            <mat-select formControlName="subServiceStatus" (selectionChange)="getEmployeeType()">
+              <mat-option [value]="item.subServiceStatusId"
+                *ngFor="let item of subServiceStatus">{{item.subServiceStatusName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Employee Type</mat-label>
+            <mat-select formControlName="employeeType">
+              <mat-option [value]="item.statusId"
+                *ngFor="let item of getEmployeeTypeList">{{item.statusName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>Service Category</mat-label>
+            <mat-select formControlName="serviceCategory" (selectionChange)="ChangeserviceCategory()" [disabled]="  isPayManager">
+              <mat-option [value]="item.srvcCatId"
+                *ngFor="let item of getServiceCategoryList">{{item.srvcCatNameEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100 ">
+            <mat-label>Sub Service Category/Cadre </mat-label>
+            <mat-select formControlName="subServiceCategory" (selectionChange)="empServiceDetails()" >
+              <mat-option [value]="item.serviceSubCatId"
+                *ngFor="let item of getSubServiceCategoryList">{{item.subServiceCatNameEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <!-- (selectionChange)="getDepartment()" -->
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Designation as per Service Cadre</mat-label>
+              <mat-select formControlName="designationAsPerServiceCadre"(selectionChange)="getDepartment()"  >
+                <mat-option [value]="item.serviceDesignationId" *ngFor="let item of designationAsPerServiceCadrelist">{{item.serviceDesignationName}}</mat-option> 
+              
+                <!-- <mat-option [value]="item.cadreId" *ngFor="let item of designationAsPerServiceCadrelist">{{item.cadreNameEn}}</mat-option> -->
+              </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>Entitlement Status</mat-label>
+            <mat-select formControlName="entitlementStatus" [disabled]="isPayManager">
+              <mat-option [value]="item.entId" *ngFor="let item of entitalmentList">{{item.entStatus}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>Gazetted/Non Gazetted</mat-label>
+            <mat-select formControlName="officerTypeId" [disabled]="isPayManager">
+              <mat-option [value]="item.officerTypeId"
+                *ngFor="let item of officerTypeList">{{item.officerType}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>Service Quota</mat-label>
+            <mat-select formControlName="serviceQuota" (selectionChange)="changeSQ($event)" [disabled]="isPayManager">
+              <mat-option [value]="item.quotaId"
+                *ngFor="let item of getServiceQuotaList">{{item.quotaNameEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <!-- <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Appointment Order No.</mat-label>
+            <input matInput formControlName="appointmentOrderNo" maxlength="400" >
+          </mat-form-field>
+        </div> -->
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Appointment Order Date</mat-label>
+            <input matInput readonly="" formControlName="appointmentOrderDate" [matDatepicker]="picker0"
+              [max]="today" [disabled]="isEnablefut" (dateChange)="dateChange1($event)"/>
+            <mat-datepicker-toggle matSuffix [for]="picker0">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker0 class="mat-piker"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <!-- <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Order Issuing Authority / Office</mat-label>
+            <mat-select formControlName="orderIssuingAuthority" [disabled]="isEnablefut">
+              <mat-option [value]="item.deptId" *ngFor="let item of departmentList">{{item.deptNameEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div> -->
+        <!--  -->
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>Parent Department</mat-label>
+            <mat-select formControlName="parentDepartment" [disabled]="isPayManager">
+              <mat-option [value]="item.deptId" *ngFor="let item of departmentList">{{item.deptNameEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>Current Department</mat-label>
+           
+            <mat-select formControlName="currentDepartment" [disabled]="isPayManager">
+              <!-- <input #search (keyup)="onKey1(search.value)"> -->
+              <mat-option [value]="item.deptId" *ngFor="let item of selectedStates">{{item.deptNameEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Designation of Appointing Authority </mat-label>
+            <mat-select formControlName="appointingAuthority">
+              <mat-option [value]="item.desgId" *ngFor="let item of designationList">{{item.desgDescEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Appointed As </mat-label>
+            <mat-select formControlName="appointedAs" [disabled]="isEnablefut">
+              <mat-option [value]="item.desgId" *ngFor="let item of designationList">{{item.desgDescEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>Current Designation</mat-label>
+            <mat-select formControlName="currentDesignation" [disabled]="isPayManager" (selectionChange)="designationChange()">
+              <mat-option [value]="item.desgId" *ngFor="let item of designationList">{{item.desgDescEn}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Date Of Present Designation</mat-label>
+            <input matInput readonly="" formControlName="dateOfPresentDesignation" [matDatepicker]="picker2"
+              [max]="today" />
+            <mat-datepicker-toggle matSuffix [for]="picker2">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker2 class="mat-piker"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>Joining Date</mat-label>
+            <input matInput readonly="" formControlName="joiningDate" 
+              [matDatepicker]="picker5" [disabled]="isPayManager"/>
+            <mat-datepicker-toggle matSuffix [for]="picker5">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker5 class="mat-piker"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Joining Time(Forenoon/Afternoon)</mat-label>
+            <mat-select formControlName="joiningTime" [disabled]="isEnablefut">
+              <mat-option [value]="item.timeId" *ngFor="let item of timeTypeList">{{item.timeType}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>Superannuation Date</mat-label>
+            <input matInput readonly="" formControlName="retirementDate" [matDatepicker]="picker6" [disabled]="isPayManager">
+            <mat-datepicker-toggle matSuffix [for]="picker6">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker6 class="mat-piker"></mat-datepicker  >
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>Date Of Joining Regular Service</mat-label>
+            <input matInput readonly="" formControlName="dateOfJoiningRegularService" [matDatepicker]="picker1"
+              [max]="today"  [disabled]="isPayManager"/>
+            <mat-datepicker-toggle matSuffix [for]="picker1">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker1 class="mat-piker"></mat-datepicker>
+          </mat-form-field>
+        </div>
+      
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>Date Of Joining Present Ddo</mat-label>
+            <input matInput readonly="" formControlName="dateOfJoiningPresentDDO" [matDatepicker]="picker3"
+              [max]="today"  [disabled]="isPayManager"/>
+            <mat-datepicker-toggle matSuffix [for]="picker3">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker3 class="mat-piker"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <!-- <div class="col-md-6 col-lg-4 md-4 mt-3">
+                    <mat-label>Date Of Confirmation in Present Cadre</mat-label>
+                    <mat-form-field class="w-100">
+                        <input matInput readonly="" formControlName="dateOfConfirmationInPresentCadre" [matDatepicker]="picker4" />
+                        <mat-datepicker-toggle matSuffix [for]="picker4">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker4 class="mat-piker"></mat-datepicker>
+                    </mat-form-field>
+                </div> -->
+    
+        <!-- <div class="col-md-6 col-lg-4 md-4 mt-3">
+                    <mat-label>Annual Increment Date</mat-label>
+                    <mat-form-field class="w-100">
+                        <input matInput readonly="" formControlName="annualIncrementDate" [matDatepicker]="picker6" />
+                        <mat-datepicker-toggle matSuffix [for]="picker6">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker6 class="mat-piker"></mat-datepicker>
+                    </mat-form-field>
+                </div> -->
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>PRAN Type</mat-label>
+            <input matInput formControlName="pranType">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>GPF NO.</mat-label>
+            <input matInput formControlName="gpfNO" [readonly]="isPayManager">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100  bg_light_color">
+            <mat-label>State Insurance Number</mat-label>
+            <input matInput formControlName="stateInsuranceNumber" [readonly]="isPayManager">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>RGHS Card No</mat-label>
+            <input matInput formControlName="rghsNO">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>BELT NO.</mat-label>
+            <input matInput formControlName="beltNo">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>PLI No.</mat-label>
+            <input matInput formControlName="pliNo">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>I.A.S CPNF No.</mat-label>
+            <input matInput formControlName="iasCpneNo">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="false">
+          <mat-form-field class="w-100">
+            <mat-label>PAN No.</mat-label>
+            <input matInput formControlName="pPANNo">
+          </mat-form-field>
+        </div>
+        <div class="d-block mt-3"></div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-label>Is Ex-service man?</mat-label>
+          <div class="d-block mt-2"></div>
+          <mat-radio-group formControlName="areYouExServiceMan" #group (change)="areYouExServiceMan()">
+            <mat-radio-button class="example-margin" [value]="1" color="primary" class="">Yes </mat-radio-button>
+            <mat-radio-button class="example-margin" [value]="0" color="primary" class="ms-3">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="serviceDetails.value.areYouExServiceMan==1">
+          <mat-label>Are you getting pension from previous military service</mat-label>
+          <div class="d-block mt-2"></div>
+          <mat-radio-group formControlName="areYouGettingPensionFromThePreviousMilitaryService" #group (change)="areYouGettingPensionFromThePreviousMilitaryService()">
+            <mat-radio-button class="example-margin" [value]="1" color="primary" class="">Yes</mat-radio-button>
+            <mat-radio-button class="example-margin" [value]="0" color="primary" class="ms-3">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-3">
+          <mat-label>Are you getting civil service pension</mat-label>
+          <div class="d-block mt-2"></div>
+          <mat-radio-group formControlName="areYouGettingCivilServicePension" #group (change)="areYouGettingCivilServicePension()">
+            <mat-radio-button class="example-margin" [value]="1" color="primary" class="">Yes</mat-radio-button>
+            <mat-radio-button class="example-margin" [value]="0" color="primary" class="ms-3">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        
+
+        <div class="col-md-6 col-lg-4 md-4 mt-4" *ngIf="serviceDetails.value.areYouExServiceMan==1 && serviceDetails.value.areYouGettingPensionFromThePreviousMilitaryService==1" >
+          <mat-form-field class="w-100">
+            <mat-label>Military PPO No.</mat-label>
+            <input matInput formControlName="ppoNo" numberOnly maxlength="12">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-4" *ngIf="serviceDetails.value.areYouExServiceMan==1 && serviceDetails.value.areYouGettingPensionFromThePreviousMilitaryService==1">
+          <mat-form-field class="w-100">
+            <mat-label>Military Pension Amount</mat-label>
+            <input matInput numberOnly formControlName="pensionAmount">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-4" *ngIf="serviceDetails.value.areYouGettingCivilServicePension==1" >
+          <mat-form-field class="w-100">
+            <mat-label>Civil PPO No.</mat-label>
+            <input matInput formControlName="civilppoNo" numberOnly maxlength="12">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4 md-4 mt-4" *ngIf="serviceDetails.value.areYouGettingCivilServicePension==1">
+          <mat-form-field class="w-100">
+            <mat-label>Civil Pension Amount</mat-label>
+            <input matInput numberOnly formControlName="civilpensionAmount">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="isJudge">
+        <mat-label>Are you promoted from Advocate?</mat-label>
+        <div class="d-block mt-2"></div>
+        <mat-radio-group formControlName="areYouPromAdv">
+          <mat-radio-button class="example-margin" [value]="1" color="primary" class="">Yes </mat-radio-button>
+          <mat-radio-button class="example-margin" [value]="0" color="primary" class="ms-3">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="col-md-6 col-lg-4 md-4 mt-3" *ngIf="serviceDetails.value.areYouPromAdv==1">
+        <mat-label>Select Benefit Years</mat-label>
+        <div class="d-block mt-2"></div>
+        <mat-radio-group formControlName="benefitYears"  >
+          <mat-radio-button class="example-margin" [value]="3" color="primary" class="">3 Years </mat-radio-button>
+          <mat-radio-button class="example-margin" [value]="7" color="primary" class="ms-3">7 Years</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <!-- <app-upload-documet [IsSaveEnable]="isSaveEnable" [config]="config" [DocumentList]="serviceDetails.value.documentList" [subProcessId]="2"
+        (EmpDocument)="getDocument($event)">
+      </app-upload-documet>
+     -->
+        <div class="col-12" *ngIf="isSaveEnable && userAction.length === 0">
+          <button *ngIf="isSaveEnable" type="submit" mat-raised-button color="primary" class="mt-5">
+            {{config.registrationType === 0 ? 'Save' : 'Save as Draft'}}
+          </button>
+        </div>
+        <!-- <div class="col-12" *ngIf="isSaveEnable && userAction.length !== 0">
+          <button *ngIf="isSaveEnable" type="submit" mat-raised-button color="primary" class="mt-5">
+            {{config.registrationType === 0 ? 'Save' : 'Save as Draft'}}
+          </button>
+        </div> -->
+    </form>
+  </div>
+</div>

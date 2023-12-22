@@ -1,0 +1,403 @@
+<div>
+  <div class="d-flex justify-content-between align-item-center">
+    <div class="mt-1">
+      <h2>Employee Details</h2>
+    </div>
+  </div>
+
+  <div class="popupDivStyle family-details-card-container mt-3">
+
+    <div class="family-card-header m-1  p-2 d-flex justify-content-end align-items-center">
+      <span class="relation-tag py-1 px-4 fw-bolder"><strong>{{personalDetail?.employeeCode}}</strong></span>
+    </div>
+    <div class="family-card-body">
+      <div class="member-base-details d-flex align-items-center">
+        <div class="member-image">
+          <img src="http://ifmstest.rajasthan.gov.in/pension/assets/images/sonImg.jfif" alt="member-image">
+        </div>
+        <div class="name-birth-details ms-1 member-image-1">
+          <small class="member-name  pb-1">Name</small>
+          <h3 class="member-gender-birth-date f-12">{{personalDetail?.firstName}}</h3>
+        </div>
+      </div>
+    </div>
+    <mat-tab-group class="mt-4" [(selectedIndex)]="stepc">
+      <mat-tab label="Employee Personal Details" [disabled]="true">
+
+        <div class="row pb-0 p-5 w-100">
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder"> Date Of Birth</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{personalDetail?.dob| date: "dd-MM-yyyy"}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Marital Status </mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{getMaritalStatusName(personalDetail?.maritalStatus)}}</p>
+            </mat-label>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder"> Social Category</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{getCasteCategoryName(personalDetail?.socialCategory)}}</p>
+            </mat-label>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Religion</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{getReligionName(personalDetail?.religion)}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Pan Number</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{personalDetail?.pan}}</p>
+            </mat-label>
+          </div>
+
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Aadhar Refernce Number</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{personalDetail?.aadharRefNo}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Belong to Minority</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{personalDetail?.belongsToMinority==1?"YES":"NO"}}</p>
+            </mat-label>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 "
+            *ngIf="personalDetail?.belongsToMinority==1">
+            <mat-label class="fs-6 fw-bolder">Minority Category</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{getMinorityListName(personalDetail?.minorityCategory)}}</p>
+            </mat-label>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 text-end mb-4">
+              <button mat-button class="btn btn-primary  ms-2" color="primary"
+                style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button
+                (click)="nextStepc()">Next</button>
+            </div>
+          </div>
+
+        </div>
+      </mat-tab>
+      <mat-tab label="Employee Service Details" [disabled]="true">
+
+
+        <div class="row pb-0 p-5 w-100">
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Date Of Joining </mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{serviceDetails?.joiningDate| date: "dd-MM-yyyy"}}</p>
+            </mat-label>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder"> Date Of Retirement </mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{serviceDetails?.retirementDate| date: "dd-MM-yyyy"}}</p>
+            </mat-label>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Service Category</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{entitlementDetails?.serviceCategoryName}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Sub Service Category</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{entitlementDetails?.subServiceCategoryName}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Entitlement Status</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{getEntitalmentName(serviceDetails?.entitlementStatus)}}</p>
+            </mat-label>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Gazetted/Non Gazetted</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{serviceDetails?.officerType}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Service Quota</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{getServiceQuotaName(serviceDetails?.serviceQuota)}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Parent Department</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{serviceDetails?.parentDepartmentName}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Current Department</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{serviceDetails?.currentDepartmentName}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Current Designation</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{serviceDetails?.currentDesignationName}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Date Of Joining Regular Service</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{serviceDetails?.dateOfJoiningRegularService | date: "dd-MM-yyyy"}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Date Of Joining Present Ddo</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{serviceDetails?.dateOfJoiningPresentDDO | date: "dd-MM-yyyy"}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">GPF NO.</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{serviceDetails?.gpfNO}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">State Insurance Number</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{serviceDetails?.stateInsuranceNumber}}</p>
+            </mat-label>
+          </div>
+        </div>
+
+        <div class="row w-100 mb-4">
+          <div class="col-lg-6 text-start">
+            <button mat-button class="btn btn-primary  ms-2" color="primary"
+              style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button mat-button
+              (click)="prevStepc()">Previous</button>
+          </div>
+          <div class="col-lg-6 text-end">
+            <button mat-button class="btn btn-primary  ms-2" color="primary"
+              style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button
+              (click)="nextStepc()">Next</button>
+          </div>
+        </div>
+
+
+      </mat-tab>
+
+      <mat-tab label="Bank Deatils" [disabled]="true">
+        <div class="row pb-0 p-5 w-100">
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Bank Name</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{employeeBankDetails?.bankNameEn}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Branch Name</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{employeeBankDetails?.branchNameEn}}</p>
+            </mat-label>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">IFSC CODE</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{employeeBankDetails?.ifscCode}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Bank Account No.</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{employeeBankDetails?.bankAccountNumber}}</p>
+            </mat-label>
+          </div>
+        </div>
+
+        <div class="row w-100 mb-4">
+          <div class="col-lg-6 text-start">
+            <button mat-button class="btn btn-primary  ms-2" color="primary"
+              style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button mat-button
+              (click)="prevStepc()">Previous</button>
+          </div>
+          <div class="col-lg-6 text-end">
+            <button mat-button class="btn btn-primary  ms-2" color="primary"
+              style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button
+              (click)="nextStepc()">Next</button>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Employee Pay-Entitlement Details" [disabled]="true">
+
+
+        <div class="row pb-0 p-5 w-100">
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder"> Designation</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{getDesignationName(entitlementDetails?.designation)}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Pay Commission </mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{PayCommissionName(entitlementDetails?.payCommission)}}</p>
+            </mat-label>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder"> Date of Entry in Existing Pay Band & Grade Pay </mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{entitlementDetails?.dateOfEntryInExistingPayBandGradepay| date: "dd-MM-yyyy"}}</p>
+            </mat-label>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Pay Scale</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{payScaleName(entitlementDetails?.payScale)}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Basic Pay</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{entitlementDetails?.basicPay}}</p>
+            </mat-label>
+          </div>
+
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Special Pay</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{entitlementDetails?.specialPay}}</p>
+            </mat-label>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">NPA</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{entitlementDetails?.NPA}}</p>
+            </mat-label>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+            <mat-label class="fs-6 fw-bolder">Dearness Allowance</mat-label>
+            <mat-label>
+              <p class="pLabelInfo">{{entitlementDetails?.dearnessAllowance}}</p>
+            </mat-label>
+          </div>
+        </div>
+
+        <div class="row w-100" *ngIf="isReason">
+          <div class="col-lg-4 text-end">
+            <h4 class="my-1 mt-4">Reason for Revision:</h4>
+          </div>
+          <div class="col-lg-4">
+            <mat-form-field class="w-100 md-4 mt-3">
+              <mat-select matNativeControl [(ngModel)]="reason" placeholder="*Reason for Rivision">
+                <mat-option *ngFor="let mst of reasonRevison" [value]="mst.psnReason">
+                  {{mst.psnReason}}
+                </mat-option>
+              </mat-select>
+              <!-- <input [(ngModel)]="reason" placeholder="Reason for Rivision"  matInput > -->
+            </mat-form-field>
+            <span style=" font-size: 13px;color: #ce3131;">*You can select multiple "Reason for Revision"...</span>
+          </div>
+          <div class="col-lg-4">
+            <button mat-button class="btn btn-primary  md-4 mt-3" color="primary"
+              style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button mat-button
+              (click)="saveReason()">Add Reason</button>
+          </div>
+
+        </div>
+        <div class="row w-100" *ngIf="isReason">
+
+          <table class="table" style="margin: 0; padding: 0; overflow: hidden; border: 0;"
+            *ngIf="reasonRevisonList.length>0">
+            <thead>
+              <tr>
+                <th>S.No.</th>
+                <th>Reason</th>
+              </tr>
+              <!-- <tr>
+  
+          </tr> -->
+            </thead>
+            <tbody>
+              <tr *ngFor="let field of reasonRevisonList;let i=index">
+                <td class="pt-4">{{i+1}}</td>
+                <td class="pt-4">{{field}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="flgEss">
+            <div class="row w-100">
+              <div class="col-lg-8">
+                <p class="pLabelTextInfo">यदि ऊपर दिए गए डेटा में कोई त्रुटि हो तो कृपया पहले पे-मेनेजर पर सुधार करवाए,
+                  फिर इस बटन पर क्लिक करें|
+                  (विवरण 24 घंटे के भीतर अपडेट कर दिया जाएगा। इसलिए कृपया प्रतीक्षा करें) <mat-icon>arrow_forward
+                  </mat-icon>
+                </p>
+              </div>
+              <div class="col-lg-4 text-end">
+                <button class="btn btn-primary  ms-2" color="primary" (click)="getRefBaseData()"
+                  style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);">Refresh Data From
+                  Pay-Manager</button> </div>
+            </div>
+        </div>
+        <hr>
+        <div *ngIf="flgEss" class="align-item-center mt-2">
+          
+            <div class="row w-100">
+              <div class="col-lg-3 text-start">
+                <button mat-button class="btn btn-primary  ms-2" color="primary"
+                  style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button mat-button
+                  (click)="prevStepc()">Previous</button>
+              </div>
+              <div class="col-lg-6">
+                <p class="pLabelInfo">यदि ऊपर दिए गए डेटा में कोई त्रुटि नहीं हैं तो फॉर्म भरे |<mat-icon>arrow_forward
+                  </mat-icon>
+                </p>
+              </div>
+              <div class="col-lg-3 text-end">
+                <button mat-button class="btn btn-primary  ms-2" color="primary"
+                  style="background: linear-gradient(90deg, #599afd 0%, #1b54b1 100%);" mat-raised-button mat-button
+                  (click)="dialog_close()">Continue</button>
+              </div>
+            </div>
+        </div>
+        <hr>
+
+        <div *ngIf="!flgEss" class="row align-item-center mt-2 w-100">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <div class="row">
+              <div class="col-lg-8">
+                <p class="pLabelInfo">{{mess}}</p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+
+
+</div>
