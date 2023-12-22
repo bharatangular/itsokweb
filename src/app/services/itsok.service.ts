@@ -14,11 +14,11 @@ import { AppConfig } from '../app.config';
 })
 export class ItsokService {
   private menuConfig = new BehaviorSubject({ url: 'Inbox' });
-  config:AppConfig=new AppConfig();
+  config: AppConfig = new AppConfig();
   headers = new HttpHeaders();
-  mainUrl:any="http://127.0.0.1:8090/api/";
-  imageUrl:any="E:/itsok/file_structure/"
-  constructor(private http: HttpClient, private _errService:ErrorService, private router:Router) { }
+  mainUrl: any = "https://e627-110-235-219-165.ngrok-free.app/api/";
+  imageUrl: any = "E:/itsok/file_structure/"
+  constructor(private http: HttpClient, private _errService: ErrorService, private router: Router) { }
   set configMenu(value) {
     this.menuConfig.next(value);
   }
@@ -39,7 +39,7 @@ export class ItsokService {
     headers.append("Access-Control-Allow-Origin", "*");
     headers.append("Access-Control-Allow-Credentials", "true");
   }
-  postisok(url: any,data: any): Observable<any> {
+  postisok(url: any, data: any): Observable<any> {
     this.createAuthorizationHeader(this.headers);
     this.headers = new HttpHeaders().append("contentType", "text/xml");
     //this.headers = new HttpHeaders().append("Content-Type", "application/x-www-form-urlencoded");

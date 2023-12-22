@@ -11,6 +11,7 @@ export class AdminSignupComponent implements OnInit {
   config: AppConfig = new AppConfig();
   constructor(public api: ItsokService) { }
   ngOnInit(): void {
+    this.api.configMenu = { url: "Admin Sign-up" };
   }
   username: any = "";
   mobile: any

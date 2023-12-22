@@ -14,36 +14,43 @@ import { MedicineUpdateDialogComponent } from '../medicine-update-dialog/medicin
 })
 export class MedicineUpdateComponent implements OnInit {
 
-  constructor(public api:ItsokService,
-              public common:CommonService,
-              public dialog:MatDialog) { }
+  constructor(public api: ItsokService,
+    public common: CommonService,
+    public dialog: MatDialog) { }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  displayedColumns: string[] =["code","name","type","mrp","sales_price","Action"];
+  displayedColumns: string[] = ["code", "name", "type", "mrp", "sales_price", "Action"];
   dataSource = new MatTableDataSource();
+  from: any = 11400;
   ngOnInit(): void {
     this.api.configMenu = { url: "Medicines Upadte" };
     this.getMedicineList()
   }
-  getMedicineList()
-  {
-    let from=11400
-    let data={
-      "from":from,
-      "to":from+50
+  getMedicineList() {
+
+    let data = {
+      "from": this.from,
+      "to": this.from + 50
     }
-    this.api.postisok("medicineList",data).subscribe((res:any)=>{
-      console.log("res",res);
+    this.api.postisok("medicineList", data).subscribe((res: any) => {
+      console.log("res", res);
       this.dataSource = new MatTableDataSource(res);
-    
+
     })
   }
-  editMedicine(medicine:any)
-  {
-    this.dialog.open(MedicineUpdateDialogComponent,{  width: '70%', data: {message: medicine ,id:1},  disableClose: true}).afterClosed()
-    .subscribe((data:any) => {
-     console.log(data)
-     
-    });
+  editMedicine(medicine: any) {
+    this.dialog.open(MedicineUpdateDialogComponent, { width: '70%', data: { message: medicine, id: 1 }, disableClose: true }).afterClosed()
+      .subscribe((data: any) => {
+        console.log(data)
+
+      });
+  }
+  prevStepc() {
+    this.from = this.from - 50;
+    this.getMedicineList();
+  }
+  nextStepc() {
+    this.from = this.from + 50;
+    this.getMedicineList();
   }
 }

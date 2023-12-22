@@ -1,197 +1,127 @@
 <div class="container-fluid breadcrums-bar-container">
-    <div class="d-flex align-items-center px-3 py-2 overflow-auto text-nowrap">
-        <div class="back-btn-container position-sticky start-0">
-            <div class="raised-btn-component d-flex align-items-center">
-                <button mat-raised-button class="d-md-none px-0 me-3"
-                    (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
-                <button mat-raised-button color="primary" class="big-btn-with-icon-padding" (click)="redirecttoInfo()">
-                    <mat-icon>chevron_left</mat-icon>
-                    Back
-                </button>
-            </div>
+  <div class="d-flex align-items-center px-3 py-2 overflow-auto text-nowrap">
+    <div class="back-btn-container position-sticky start-0">
+      <div class="raised-btn-component d-flex align-items-center">
+        <button mat-raised-button class="d-md-none px-0 me-3" (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" class="big-btn-with-icon-padding" (click)="redirecttoInfo()">
+          <mat-icon>chevron_left</mat-icon>
+          Back
+        </button>
+      </div>
 
-        </div>
-        <div class="breadcrumbs-component ms-4">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a (click)="gotoDashboard()">It's OK Pharmacy</a></li>
-                    <mat-icon>keyboard_arrow_right</mat-icon>
-                    <li class="breadcrumb-item active" aria-current="page">{{url}}</li>
-                </ol>
-            </nav>
-        </div>
     </div>
+    <div class="breadcrumbs-component ms-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a (click)="gotoDashboard()">It's OK Pharmacy</a></li>
+          <mat-icon>keyboard_arrow_right</mat-icon>
+          <li class="breadcrumb-item active" aria-current="page">{{url}}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
 
-    <mat-drawer-container class="ifms-sidebar-container" autosize>
-        <mat-drawer #drawer opened class="ifms-sidebar-sidenav" [mode]="isLargeScreen() ? 'side' : 'over'"
-            [opened]="isLargeScreen()">
-            <div class="sidebar" id="side-bar">
-                <mat-card class="side_card mt-2">
-                    <mat-card-content>
-                        <div class="toggle-btn-container d-flex justify-content-between align-items-center">
-                            <p class="w-100 mat-h3 font-weight-600 font-18 mb-0 text-white text-center heading_with_bg"
-                                color="primary">It's OK Pharmacy</p>
-                            <button class="toggler-button p-0 d-none d-md-block" mat-button
-                                (click)="toggle_sm(1);rotate()">
-                                <mat-icon>chevron_left</mat-icon>
-                            </button>
-                        </div>
-                        <div class="card-body px-0 min-height-2 mt-2">
-                            <mat-nav-list class="list_item font-14 mb-5 list_item_two">
-                                <mat-accordion class="side-bar side-bar-menu-hover">
+  <mat-drawer-container class="ifms-sidebar-container" autosize>
+    <mat-drawer #drawer opened class="ifms-sidebar-sidenav" [mode]="isLargeScreen() ? 'side' : 'over'"
+      [opened]="isLargeScreen()">
+      <div class="sidebar" id="side-bar">
+        <mat-card class="side_card mt-2">
+          <mat-card-content>
+            <div class="toggle-btn-container d-flex justify-content-between align-items-center">
+              <p class="w-100 mat-h3 font-weight-600 font-18 mb-0 text-white text-center heading_with_bg"
+                color="primary">It's OK Pharmacy</p>
+              <button class="toggler-button p-0 d-none d-md-block" mat-button (click)="toggle_sm(1);rotate()">
+                <mat-icon>chevron_left</mat-icon>
+              </button>
+            </div>
+            <div class="card-body px-0 min-height-2 mt-2">
+              <mat-nav-list class="list_item font-14 mb-5 list_item_two">
+                <mat-accordion class="side-bar side-bar-menu-hover">
 
-                                    <mat-expansion-panel (opened)="panelOpenState = true"
-                                        (closed)="panelOpenState = false" [expanded]="panelOpenState">
-                                        <mat-expansion-panel-header>
-                                            <mat-panel-title>
-                                                <img src="./assets/images/Management_icon.svg">
-                                                <span class="ms-3">It's OK Pharmacy</span>
-                                            </mat-panel-title>
-                                        </mat-expansion-panel-header>
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                    [expanded]="panelOpenState">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <img src="./assets/images/Management_icon.svg">
+                        <span class="ms-3">It's OK Pharmacy</span>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
 
-                                       
-                                        <!-- <ul class="mt-3 expension-child" *ngIf="empinfo?.roleId=='29'">
+
+                    <!-- <ul class="mt-3 expension-child" *ngIf="empinfo?.roleId=='29'">
                                             <a [routerLink]="['pension/pss/request-life-cert']">
                                                 <li class="side-bar-style">Life Certificate Request</li>
                                             </a>
 
                                         </ul> -->
-                                       
-
-
-                                    </mat-expansion-panel>
 
 
 
-                                </mat-accordion>
-
-                                <mat-accordion *ngIf="isMaster"  class="side-bar side-bar-menu-hover">
-
-                                    <mat-expansion-panel (opened)="panelOpenState2 = false"
-                                        (closed)="panelOpenState2 = false" [expanded]="panelOpenState2">
-                                        <mat-expansion-panel-header>
-                                            <mat-panel-title>
-                                                <img src="./assets/images/Management_icon.svg">
-                                                <span class="ms-3"> Master Configuration</span>
-                                            </mat-panel-title>
-
-                                        </mat-expansion-panel-header>
-
-
-                                        <ul class="mt-3 expension-child" >
-                                            <a [routerLink]="['pension/tool/masterconfigscreen']">
-                                                <li class="side-bar-style">Master Config Screen</li>
-                                            </a>
-                                        </ul>
-
-                                        <ul class="mt-3 expension-child" >
-                                            <a [routerLink]="['pension/tool/processLabelMapping']">
-                                                <li class="side-bar-style">Process Level Mapping</li>
-                                            </a>
-                                        </ul>
-
-                                        <ul class="mt-3 expension-child" >
-                                            <a [routerLink]="['pension/tool/processTaskConfig']">
-                                                <li class="side-bar-style">Process Task Config</li>
-                                            </a>
-                                        </ul>
-
-                                        <ul class="mt-3 expension-child" >
-                                            <a [routerLink]="['pension/tool/processTaskAction']">
-                                                <li class="side-bar-style">Process Task Action</li>
-                                            </a>
-                                        </ul>
-
-                                    </mat-expansion-panel>
-                                </mat-accordion>
+                  </mat-expansion-panel>
 
 
 
-                                <!-- Reports  -->
-                                <ng-container *ngIf="report">
-                                    <mat-accordion class="side-bar side-bar-menu-hover mt-2">
+                </mat-accordion>
 
-                                        <mat-expansion-panel (opened)="panelOpenState1 = true"
-                                            (closed)="panelOpenState1 = false" [expanded]="panelOpenState1">
-                                            <mat-expansion-panel-header>
-                                                <mat-panel-title>
-                                                    <img src="./assets/images/Management_icon.svg">
-                                                    <span class="ms-3"> Reports</span>
-                                                </mat-panel-title>
-                                            </mat-expansion-panel-header>
+                <mat-accordion *ngIf="isMaster" class="side-bar side-bar-menu-hover">
 
-                                            <ul class="mt-3 expension-child">
-                                                <!-- <a [routerLink]="['pension/employeeSummary']"><li class="side-bar-style">Pension ESS Summary</li></a> -->
-                                                <a [routerLink]="['pension/pensionSummary']">
-                                                    <li class="side-bar-style">e-Pension Summary</li>
-                                                </a>
-                                                <a [routerLink]="['pension/upcomingPensions']">
-                                                    <li class="side-bar-style">Upcoming Pensioners </li>
-                                                </a>
-                                                <!-- <a [routerLink]="['pension/upcomingPensionerReport']"><li class="side-bar-style">Upcoming Pensioner List</li></a> -->
-                                                <a [routerLink]="['pension/firstPensionReport']">
-                                                    <li class="side-bar-style">First Pension</li>
-                                                </a>
-                                                <!-- <a [routerLink]="['pension/pendingFiles']"><li class="side-bar-style">Pending cases Zone wise</li></a> -->
-                                                <a [routerLink]="['pension/enhancePensionReport']">
-                                                    <li class="side-bar-style">Enhance Pension</li>
-                                                </a>
-                                                <!-- <a [routerLink]="['pension/officeDetByOffId']"><li class="side-bar-style">Office Details By Office ID</li></a>
-                                        <a [routerLink]="['pension/psnPendFilesOfficeWise']"><li class="side-bar-style">Pending Files Office Wise</li></a>
-                                        <a [routerLink]="['pension/psnPendingStatusDetails']"><li class="side-bar-style">Pensioner Pending Status Details</li></a> -->
-                                                <a [routerLink]="['pension/zoneofficewisependancyreport']">
-                                                    <li class="side-bar-style">Zone User wise Pendency</li>
-                                                </a>
-                                                <a [routerLink]="['pension/zonalwisefinalreport']">
-                                                    <li class="side-bar-style">Zone wise Final Cases</li>
-                                                </a>
-                                                <a [routerLink]="['pension/totalretirement']">
-                                                    <li class="side-bar-style"> Service Category wise Retirement</li>
-                                                </a>
-                                                <a [routerLink]="['pension/employeepensionstatus']">
-                                                    <li class="side-bar-style"> Employee ESS and Pension Status</li>
-                                                </a>
-                                                <a [routerLink]="['pension/commutationrequest']">
-                                                    <li class="side-bar-style"> Commutation Request </li>
-                                                </a>
-                                                <a [routerLink]="['pension/pensionuserlist']">
-                                                    <li class="side-bar-style"> Pension User List </li>
-                                                </a>
-                                                <a [routerLink]="['pension/psslifecertificate']">
-                                                    <li class="side-bar-style"> Pss Life Certificate </li>
-                                                </a>
-                                                <!--  -->
-                                                <!-- <a [routerLink]="['pension/eployeepensionstatus']"><li class="side-bar-style"> Employee ESS and Pension Status </li></a> -->
-                                            </ul>
+                  <mat-expansion-panel (opened)="panelOpenState2 = false" (closed)="panelOpenState2 = false"
+                    [expanded]="panelOpenState2">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <img src="./assets/images/Management_icon.svg">
+                        <span class="ms-3"> Master Configuration</span>
+                      </mat-panel-title>
 
-                                        </mat-expansion-panel>
-
-                                    </mat-accordion>
-                                </ng-container>
-                                <!-- Reports -->
-
-                            </mat-nav-list>
-                        </div>
+                    </mat-expansion-panel-header>
 
 
-                     
+                    <ul class="mt-3 expension-child">
+                      <a [routerLink]="['pension/tool/masterconfigscreen']">
+                        <li class="side-bar-style">Master Config Screen</li>
+                      </a>
+                    </ul>
 
-                        <div class="card help border-0">
-                            <div class="card-header border-bottom-0 bg-transparent d-flex justify-content-between">
-                                <h3>Need Help ?</h3> <img src="./assets/images/support.svg" class="helpimg" />
-                            </div>
-                            <div class="card-body">
-                                <p>Have questions or concerns regarding your profile? Our experts are here to help!</p>
-                                <button class="btn btn-primary">Chat with Us</button>
-                            </div>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
+                    <ul class="mt-3 expension-child">
+                      <a [routerLink]="['pension/tool/processLabelMapping']">
+                        <li class="side-bar-style">Process Level Mapping</li>
+                      </a>
+                    </ul>
+
+                    <ul class="mt-3 expension-child">
+                      <a [routerLink]="['pension/tool/processTaskConfig']">
+                        <li class="side-bar-style">Process Task Config</li>
+                      </a>
+                    </ul>
+
+                    <ul class="mt-3 expension-child">
+                      <a [routerLink]="['pension/tool/processTaskAction']">
+                        <li class="side-bar-style">Process Task Action</li>
+                      </a>
+                    </ul>
+
+                  </mat-expansion-panel>
+                </mat-accordion>
+
+
+
+
+
+              </mat-nav-list>
             </div>
-        </mat-drawer>
-        <div class="ifms-sidebar-sidenav-content" style="background-color: #edf0f2;">
-            <router-outlet></router-outlet>
-        </div>
-    </mat-drawer-container>
+
+
+
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-drawer>
+    <div class="ifms-sidebar-sidenav-content" style="background-color: #edf0f2;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
 
 </div>

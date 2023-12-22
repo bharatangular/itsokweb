@@ -1,1 +1,14 @@
-<p>admin-dashboard works!</p>
+<mat-card class="card">
+
+  <div class="row">
+    <div *ngFor="let item of menuList">
+      <div class="col-12" (click)="redirctTo(item)">
+        <mat-card class="card1">
+          <mat-label>{{item.menu_nameEn}}</mat-label>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+
+</mat-card>
