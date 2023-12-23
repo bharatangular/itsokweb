@@ -40,32 +40,28 @@ const routes: Routes = [
     loadChildren: () => import('../itsok/itsok.module').then(m => m.itsok)
   },
   {
-    path: 'Inbox',
-    loadChildren: () => import('./inbox/inbox.module').then(m => m.InboxModule)
-  },
-  {
-    path:'HoEmployee',
-    component:HoEmployeeComponent
+    path: 'HoEmployee',
+    component: HoEmployeeComponent
 
   },
   {
-    path:'service',
-    component:ServiceRecordDialogComponent
+    path: 'service',
+    component: ServiceRecordDialogComponent
 
   },
   {
-    path:'view-objection',
-    component:ViewObjectionComponent
+    path: 'view-objection',
+    component: ViewObjectionComponent
 
   },
   {
-    path:'ess-report',
-    component:EssReportComponent
+    path: 'ess-report',
+    component: EssReportComponent
 
   },
   {
     path: 'findData',
-    component:AdminQueryComponent
+    component: AdminQueryComponent
   },
 
   {
@@ -78,15 +74,15 @@ const routes: Routes = [
   },
   {
     path: 'autoApprovePensioner',
-   component:MultiESignComponent
+    component: MultiESignComponent
   },
   {
     path: 'dynamicAutoApprove',
-   component:DynamicAutoApproveComponent
+    component: DynamicAutoApproveComponent
   },
   {
     path: 'revisedAutoApprove',
-   component:RevisedPensionerListComponent
+    component: RevisedPensionerListComponent
   },
   {
     path: 'Reports',
@@ -102,11 +98,11 @@ const routes: Routes = [
   },
   {
     path: 'pensionEssView',
-    component:PensionEssViewComponent
+    component: PensionEssViewComponent
   },
   {
     path: 'sendData',
-    component:SendDataComponent
+    component: SendDataComponent
   },
   {
     path: 'PensionInitiatedComponent',
@@ -163,7 +159,7 @@ const routes: Routes = [
   },
   {
     path: 'pensionkit',
-    loadChildren: ()=> import('./pension-kit/pension-kit.module').then(m => m.PensionKitModule)
+    loadChildren: () => import('./pension-kit/pension-kit.module').then(m => m.PensionKitModule)
   },
   {
     path: 'admin',

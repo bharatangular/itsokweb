@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ItsokService } from 'src/app/services/itsok.service';
 import { NgxImageCompressService } from 'ngx-image-compress';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-medicine-update-dialog',
   templateUrl: './medicine-update-dialog.component.html',
@@ -10,13 +11,28 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 export class MedicineUpdateDialogComponent implements OnInit {
   imageUrl: any;
   imageUrl2: any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { message: any, id: any, fromDate: any },
+  medicine: any;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<MedicineUpdateDialogComponent>, private imageCompress: NgxImageCompressService,
-    public api: ItsokService, public dialog: MatDialog) { }
+    public api: ItsokService, public dialog: MatDialog,
+    private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
+    this.medicine = this.formbuilder.group({
+
+      code: ['', Validators.required,],
+      name: ['', Validators.required,],
+      type: ['', Validators.required,],
+      mrp: ['', Validators.required,],
+      sales_price: ['', Validators.required,]
+    })
     this.getimage();
+    if (this.data) {
+      console.log("data", this.data.message)
+      this.medicine.patchValue({ ...this.data.message })
+    }
+
   }
   getimage() {
     let data = {
@@ -30,7 +46,7 @@ export class MedicineUpdateDialogComponent implements OnInit {
 
         this.imageUrl = res[0].image
       }
-      console.log("this.imageUrl", this.imageUrl);
+      // console.log("this.imageUrl", this.imageUrl);
     })
   }
   uploadFile(event: any) {

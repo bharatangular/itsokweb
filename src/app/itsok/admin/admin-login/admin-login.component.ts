@@ -37,7 +37,7 @@ export class AdminLoginComponent implements OnInit {
     console.log("data", data)
     this.api.postisok("adminLogin", data).subscribe((res: any) => {
       console.log("res", res);
-      if (res.count == 1) {
+      if (res[0].count == 1) {
         this.router.navigate(['itsok/dashboard'])
       } else {
         alert("Please enter right username or password.")

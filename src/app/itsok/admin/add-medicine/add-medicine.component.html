@@ -8,12 +8,12 @@
   <div class="popupDivStyle family-details-card-container mt-3">
 
     <div class="family-card-header m-1  p-2 d-flex justify-content-end align-items-center">
-      <span class="relation-tag py-1 px-4 fw-bolder"><strong>{{data.message?.name}}</strong></span>
+      <!-- <span class="relation-tag py-1 px-4 fw-bolder"><strong>{{data.message?.name}}</strong></span> -->
     </div>
     <div class="family-card-body">
       <div class="member-base-details d-flex align-items-center">
         <div class="member-image">
-          <img [src]=imageUrl alt="member-image">
+          <img [src]=imageUrl2?imageUrl2:imageUrl alt="member-image">
           <button class="editbutton" (click)="fileInput1.click()">
             <mat-icon>edit</mat-icon>
           </button>
@@ -25,8 +25,12 @@
 
         </div>
         <div class="name-birth-details ms-1 member-image-1">
-          <small class="member-name  pb-1">Name</small>
-          <h3 class="member-gender-birth-date f-12">{{data.message?.name}}</h3>
+          <small class="member-name  pb-1">Add New Medicine</small>
+          <div class="avatar-edit">
+            <input type='file' id="imageUpload" accept=".xlsx,.xls" #fileInput2 hidden (change)="excelUpload($event)" />
+            <button class="btn btn-primary btn-cls mx-2 my-2" mat-raised-button mat-dialog-close color="primary"
+              (click)="fileInput2.click()">Upload Excel</button>
+          </div>
         </div>
       </div>
     </div>
@@ -70,7 +74,7 @@
 
 
             <button class="btn btn-primary btn-cls mx-2 my-2" mat-raised-button mat-dialog-close color="primary"
-              (click)="dialog.closeAll()">Cancel</button>
+              (click)="insertMedicine()">Add</button>
           </div>
         </div>
       </div>

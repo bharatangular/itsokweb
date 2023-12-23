@@ -9,12 +9,12 @@ const routes: Routes = [
 
   {
     path: '',
-    loadChildren: () => import('./pension/commonapp.module').then(m => m.CommonappModule)
-   },
-   {
+    loadChildren: () => import('./itsok/itsok.module').then(m => m.itsok)
+  },
+  {
     path: 'itsok',
-    loadChildren: () => import('./pension/commonapp.module').then(m => m.CommonappModule)
-   }
+    loadChildren: () => import('./itsok/itsok.module').then(m => m.itsok)
+  }
   //  , {
   //   path: 'PensionApplication',
   //   loadChildren: () => import('./pension-application/pension-application.module').then(m => m.PensionApplicationModule)
@@ -34,7 +34,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash:true, relativeLinkResolution: 'legacy'})],
+  imports: [RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 
 })

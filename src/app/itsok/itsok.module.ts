@@ -8,6 +8,7 @@ import { MedicineUpdateDialogComponent } from './admin/medicine-update-dialog/me
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminSignupComponent } from './admin/admin-signup/admin-signup.component';
+import { AddMedicineComponent } from './admin/add-medicine/add-medicine.component';
 
 
 
@@ -19,12 +20,16 @@ import { AdminSignupComponent } from './admin/admin-signup/admin-signup.componen
 
 const routes: Routes = [
   {
+    path: '',
+    component: AdminLoginComponent
+  },
+  {
     path: 'medicine-update',
     component: MedicineUpdateComponent
   },
   {
-    path: 'login',
-    component: AdminLoginComponent
+    path: 'add-medicine',
+    component: AddMedicineComponent
   },
   {
     path: 'dashboard',
@@ -42,7 +47,8 @@ const routes: Routes = [
     MedicineUpdateDialogComponent,
     AdminLoginComponent,
     AdminDashboardComponent,
-    AdminSignupComponent
+    AdminSignupComponent,
+    AddMedicineComponent
   ],
   imports: [
     CommonModule,
