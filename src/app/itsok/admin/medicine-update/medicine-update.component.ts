@@ -21,7 +21,7 @@ export class MedicineUpdateComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   displayedColumns: string[] = ["code", "name", "type", "mrp", "sales_price", "Action"];
   dataSource = new MatTableDataSource();
-  from: any = 11400;
+  from: any = 1;
   ngOnInit(): void {
     this.api.configMenu = { url: "Medicines Upadte" };
     this.getMedicineList()

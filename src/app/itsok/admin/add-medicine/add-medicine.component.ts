@@ -19,7 +19,7 @@ export class AddMedicineComponent implements OnInit {
     public filetoexcel: FileExcelService) { }
 
   ngOnInit(): void {
-
+    this.api.configMenu = { url: "Add Medicine" };
     this.medicine = this.formbuilder.group({
 
       code: ['', Validators.required,],
@@ -76,7 +76,14 @@ export class AddMedicineComponent implements OnInit {
 
       this.filetoexcel.convertExcelToJson(file).then((res: any) => {
         res = JSON.parse(res);
-        console.log("data", res)
+        console.log("res", res);
+        let data = {
+          "jsonData": res
+        }
+        console.log("data", data);
+        this.api.postisok("insertMedicineExcel", data).subscribe((res: any) => {
+          console.log(res)
+        })
       })
 
 

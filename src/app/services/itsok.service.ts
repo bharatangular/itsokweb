@@ -16,7 +16,7 @@ export class ItsokService {
   private menuConfig = new BehaviorSubject({ url: 'Inbox' });
   config: AppConfig = new AppConfig();
   headers = new HttpHeaders();
-  mainUrl: any = "https://e627-110-235-219-165.ngrok-free.app/api/";
+  mainUrl: any = "https://okpharmacy.in/api/";
   imageUrl: any = "E:/itsok/file_structure/"
   constructor(private http: HttpClient, private _errService: ErrorService, private router: Router) { }
   set configMenu(value) {
