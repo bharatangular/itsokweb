@@ -1,35 +1,46 @@
+DELIMITER $$
+CREATE DEFINER=`itsokco`@`localhost` PROCEDURE `SP_order_details`(IN `json_data` JSON, IN `in_type` INT(10))
 BEGIN
    
-    DECLARE p_status INT(10);
+   
     DECLARE v_id INT(10);
-
-SET p_status =0;
- SET v_id = JSON_UNQUOTE(JSON_EXTRACT(json_data, '$.orderListId'));
+    DECLARE v_from INT(10);
+    DECLARE v_to INT(10);
+    
+ SET v_id = JSON_UNQUOTE(JSON_EXTRACT(json_data, '$.orderId'));
+  SET v_from = JSON_UNQUOTE(JSON_EXTRACT(json_data, '$.from'));
+  SET v_to = JSON_UNQUOTE(JSON_EXTRACT(json_data, '$.to'));
 IF in_type= 1 THEN
   
-    SELECT a.*,b.*,c.id as orderListId,c.product_id,c.quantity_ordered,c.quantity_ordered from perent_order a
-    left join login_user b on b.user_id=a.user_id
-    left join order_details c on c.p_order_id=a.o_id
-    where a.status='pending';
-  END IF;
-
-
-SET p_status =1;
+    SELECT a.*,b.*,c.id as orderListId,c.product_id,c.quantity_ordered,c.price_each from perent_order a
+    left join login_user b on a.user_id=b.user_id
+    left join order_details c on a.o_id=c.p_order_id
+    where a.status='pending' between v_from and v_to;
 
 ELSEIF in_type= 2 THEN
-SELECT a.*,b.*,c.id as orderListId,c.product_id,c.quantity_ordered,c.quantity_ordered from perent_order a
-    left join login_user b on b.user_id=a.user_id
-    left join order_details c on c.p_order_id=a.o_id
-    where a.status='complete';
+SELECT a.*,b.*,c.id as orderListId,c.product_id,c.quantity_ordered,c.price_each from perent_order a
+    left join login_user b on a.user_id=b.user_id
+    left join order_details c on a.o_id=c.p_order_id
+    where a.status='complete' between v_from and v_to;;
+    
 ELSEIF in_type= 3 THEN
-SELECT a.*,b.*,c.id as orderListId,c.product_id,c.quantity_ordered,c.quantity_ordered from perent_order a
-    left join login_user b on b.user_id=a.user_id
-    left join order_details c on c.p_order_id=a.o_id
-    where a.status='cancel';
+SELECT a.*,b.*,c.id as orderListId,c.product_id,c.quantity_ordered,c.price_each from perent_order a
+    left join login_user b on a.user_id=b.user_id
+    left join order_details c on a.o_id=c.p_order_id
+    where a.status='cancel' between v_from and v_to;;
+    
     ELSEIF in_type= 4 THEN
 SELECT  prescription from order_details
     where id=v_id;
+    
+    ELSEIF in_type= 5 THEN
+UPDATE perent_order set STATUS='complete'
+    where o_id=v_id;
+    
+    ELSEIF in_type= 6 THEN
+UPDATE perent_order set STATUS='cancel'
+    where o_id=v_id;
+    
 END IF;	
-
-select p_status as pStatus;
-END
+END$$
+DELIMITER ;
