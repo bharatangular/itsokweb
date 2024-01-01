@@ -1,8 +1,8 @@
 <mat-card class="card">
 
   <div class="row">
-    <div *ngFor="let item of menuList">
-      <div class="col-12" (click)="redirctTo(item)">
+    <div class="col-4" *ngFor="let item of menuList">
+      <div (click)="redirctTo(item)">
         <mat-card class="card1">
           <mat-label>{{item.menu_nameEn}}</mat-label>
         </mat-card>

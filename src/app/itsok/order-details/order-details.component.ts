@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { AppConfig } from 'src/app/app.config';
 import { CommonService } from 'src/app/services/common.service';
 import { ItsokService } from 'src/app/services/itsok.service';
+import { OrderDetailsDialogComponent } from '../admin/order-details-dialog/order-details-dialog.component';
 
 @Component({
   selector: 'app-order-details',
@@ -56,7 +57,11 @@ export class OrderDetailsComponent implements OnInit {
   //     });
   // }
   viewOrderDeatils(data: any) {
+    this.dialog.open(OrderDetailsDialogComponent, { width: '70%', data: { message: data, id: 1 }, disableClose: true }).afterClosed()
+      .subscribe((data: any) => {
+        console.log(data)
 
+      });
   }
   markCompleteOrder(item: any) {
     let data = {

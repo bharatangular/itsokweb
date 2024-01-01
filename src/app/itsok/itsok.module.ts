@@ -12,6 +12,8 @@ import { AddMedicineComponent } from './admin/add-medicine/add-medicine.componen
 import { UploadExcelComponent } from './admin/upload-excel/upload-excel.component';
 import { WhatsappEntryComponent } from './admin/whatsapp-entry/whatsapp-entry.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrderDetailsDialogComponent } from './admin/order-details-dialog/order-details-dialog.component';
+import { ImagePreviewComponent } from './image-preview/image-preview.component';
 
 
 
@@ -67,7 +69,9 @@ const routes: Routes = [
     AddMedicineComponent,
     UploadExcelComponent,
     WhatsappEntryComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    OrderDetailsDialogComponent,
+    ImagePreviewComponent
   ],
   imports: [
     CommonModule,
