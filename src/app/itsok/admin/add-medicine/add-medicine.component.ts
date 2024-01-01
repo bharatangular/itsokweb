@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgxImageCompressService } from 'ngx-image-compress';
+import { AppConfig } from 'src/app/app.config';
 import { FileExcelService } from 'src/app/services/file-excel-service.service';
 import { ItsokService } from 'src/app/services/itsok.service';
 
@@ -13,20 +15,27 @@ export class AddMedicineComponent implements OnInit {
   imageUrl: any;
   imageUrl2: any;
   medicine: any;
+  config: AppConfig = new AppConfig();
   constructor(
     public api: ItsokService,
     private formbuilder: FormBuilder,
-    public filetoexcel: FileExcelService) { }
+    public filetoexcel: FileExcelService,
+    public router: Router) { }
 
   ngOnInit(): void {
+    let login = this.config.getDetails("login");
+    if (login == "1")
+      this.router.navigate(['itsok/dashboard'])
+    else
+      alert("First login.");
     this.api.configMenu = { url: "Add Medicine" };
     this.medicine = this.formbuilder.group({
 
-      code: ['', Validators.required,],
+
       name: ['', Validators.required,],
       type: ['', Validators.required,],
       mrp: ['', Validators.required,],
-      sales_price: ['', Validators.required,]
+
     })
     this.imageUrl = "assets/itsokMedicine/no_image.jpg"
 

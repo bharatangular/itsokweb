@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppConfig } from 'src/app/app.config';
 import { ItsokService } from 'src/app/services/itsok.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ItsokService } from 'src/app/services/itsok.service';
   styleUrls: ['./admin-login.component.scss']
 })
 export class AdminLoginComponent implements OnInit {
-
+  config: AppConfig = new AppConfig();
   constructor(public api: ItsokService, public router: Router) { }
 
   ngOnInit(): void {
@@ -38,6 +39,7 @@ export class AdminLoginComponent implements OnInit {
     this.api.postisok("adminLogin", data).subscribe((res: any) => {
       console.log("res", res);
       if (res[0].count == 1) {
+        this.config.storeDetails("login", "1");
         this.router.navigate(['itsok/dashboard'])
       } else {
         alert("Please enter right username or password.")

@@ -1,4 +1,3 @@
-<!-- 
 <section class="header-section sticky-top-header">
     <div class="header-container">
         <div class="container-fluid  ">
@@ -36,8 +35,8 @@
             </div>
             <div class="row py-1 main-header-background">
                 <div class="col-6">
-                 
-                    <div class="left-main-header">
+
+                    <!-- <div class="left-main-header">
                         <div class="left-main-header-image-box">
                             <img src="assets/images/ashok-national.svg" alt="image">
                         </div>
@@ -45,13 +44,14 @@
                             <p class="depart-heading">DEPARTMENT OF FINANCE</p>
                             <p class="depart-subheading2">Integrated Financial Management System</p>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
-                <div class="col-6">
+                <!-- <div class="col-6">
                     <div class="right-main-header float-end me-lg-2 pt-2">
                         <div class="search-box-container d-none d-sm-none d-md-none d-lg-inline me-3">
-                            <input type="text" placeholder="Search" name="search" id="header-search" class="header-search">
+                            <input type="text" placeholder="Search" name="search" id="header-search"
+                                class="header-search">
                             <i class="search-bar-icon">
                                 <svg width="14" height="14" fill="currentColor" class="bi bi-search"
                                     viewBox="0 0 16 16">
@@ -61,11 +61,15 @@
                             </i>
                         </div>
 
-                        <button #ddTrigger="matMenuTrigger" mat-button [matMenuTriggerFor]="one" class="font-14 mt-0 me-2" *ngIf="roleList.length>1"><mat-icon color="primary" class="me-2" >supervised_user_circle</mat-icon> <span class="">Roles</span></button>
-                        <mat-menu #one="matMenu" [overlapTrigger]="false" class="matmenucontant" style="min-height:inherit !important;">
-                          
+                        <button #ddTrigger="matMenuTrigger" mat-button [matMenuTriggerFor]="one"
+                            class="font-14 mt-0 me-2" *ngIf="roleList.length>1"><mat-icon color="primary"
+                                class="me-2">supervised_user_circle</mat-icon> <span class="">Roles</span></button>
+                        <mat-menu #one="matMenu" [overlapTrigger]="false" class="matmenucontant"
+                            style="min-height:inherit !important;">
+
                             <div class="dropdown text-center" *ngFor="let role of roleList;let i=index">
-                                <button mat-button class="d-block w-100 text-start"  (click)="redirectToDashboard(i)">{{role.payeeRoleName}}</button>                                
+                                <button mat-button class="d-block w-100 text-start"
+                                    (click)="redirectToDashboard(i)">{{role.payeeRoleName}}</button>
                             </div>
                         </mat-menu>
 
@@ -80,45 +84,60 @@
                         <div class="avatar d-inline me-2" [matMenuTriggerFor]="logout">
                             <img src="{{ssoimg}}">
                         </div>
-                        <mat-menu #logout="matMenu" [overlapTrigger]="false" class="matmenucontant" style="min-height:inherit !important; margin-top: 25px;">
-                            
-                            <div class="dropdown text-center" >
-                                <button mat-button class="d-block w-100 text-start logout-button" (click)="backToSpace()"><mat-icon class="f-20">group_work</mat-icon> Back To Space</button>
-                                <button mat-button class="d-block w-100 text-start logout-button" (click)="changeDeskAndRole()"><mat-icon class="f-20">supervised_user_circle</mat-icon> Change Desk & Role</button>
-                                <button mat-button class="d-block w-100 text-start"  (click)="logout1()" ><mat-icon class="f-20 mx-1">power_settings_new</mat-icon>Logout</button>
-                                
+                        <mat-menu #logout="matMenu" [overlapTrigger]="false" class="matmenucontant"
+                            style="min-height:inherit !important; margin-top: 25px;">
+
+                            <div class="dropdown text-center">
+                                <button mat-button class="d-block w-100 text-start logout-button"
+                                    (click)="backToSpace()"><mat-icon class="f-20">group_work</mat-icon> Back To
+                                    Space</button>
+                                <button mat-button class="d-block w-100 text-start logout-button"
+                                    (click)="changeDeskAndRole()"><mat-icon
+                                        class="f-20">supervised_user_circle</mat-icon> Change Desk & Role</button>
+                                <button mat-button class="d-block w-100 text-start" (click)="logout1()"><mat-icon
+                                        class="f-20 mx-1">power_settings_new</mat-icon>Logout</button>
+
                             </div>
                         </mat-menu>
                         <div class="d-inline">
-                          <p class="mb-0 ml-2" style="display: inline-grid;" >{{empinfo?.displayName}}<br>
-                          <span style="font-size:12px;">{{empinfo?.ssoId}}</span>
-                          </p>
+                            <p class="mb-0 ml-2" style="display: inline-grid;">{{empinfo?.displayName}}<br>
+                                <span style="font-size:12px;">{{empinfo?.ssoId}}</span>
+                            </p>
                         </div>
                     </div>
-                </div>
-               
-            </div>   
-            <div class="row middle-header-info-container p-2">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8-col-xxl-8 d-flex align-items-center" style="font-size: 12px;">
+                </div> -->
+
+            </div>
+            <!-- <div class="row middle-header-info-container p-2">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8-col-xxl-8 d-flex align-items-center"
+                    style="font-size: 12px;">
                     <ul class="d-flex mb-0">
                         <li>
-                            <p class="m-0 active middle-menu-border p-0 pe-2">Dept.Code : <br><span>{{decLevelData?decLevelData.DeptId:""}}</span></p>
+                            <p class="m-0 active middle-menu-border p-0 pe-2">Dept.Code :
+                                <br><span>{{decLevelData?decLevelData.DeptId:""}}</span>
+                            </p>
                         </li>
                         <li>
                             <p class="m-0 active p-0 px-2">{{decLevelData?decLevelData.levelValueDesc:""}}</p>
                         </li>
                         <li>
-                            <p class="m-0 active middle-menu-border p-0 px-2" >DDO.Code : <br><span>{{decLevelData?decLevelData.levelValueCode:""}}</span></p>
+                            <p class="m-0 active middle-menu-border p-0 px-2">DDO.Code :
+                                <br><span>{{decLevelData?decLevelData.levelValueCode:""}}</span>
+                            </p>
                         </li>
                         <li>
-                            <p class="m-0 active p-0 px-2 middle-menu-border" >Designation : <br><span>{{decLevelData?decLevelData?.userInfo.designation:""}}</span></p>
+                            <p class="m-0 active p-0 px-2 middle-menu-border">Designation :
+                                <br><span>{{decLevelData?decLevelData?.userInfo.designation:""}}</span>
+                            </p>
                         </li>
                         <li>
-                            <p class="m-0 active p-0 px-2 middle-menu-border" >Office ID : <br><span>{{decLevelData?decLevelData.OfficeId:""}}</span></p>
+                            <p class="m-0 active p-0 px-2 middle-menu-border">Office ID :
+                                <br><span>{{decLevelData?decLevelData.OfficeId:""}}</span>
+                            </p>
                         </li>
-                        
-                      
-                      
+
+
+
                     </ul>
                 </div>
                 <div class="col-md-12 col-lg-12 col-xl-4 col-xxl-4 d-none d-md-block">
@@ -127,44 +146,45 @@
                             <div class="float-end">
                                 <div class="d-flex align-items-center">
                                     <div class="white_bg p-2">
-                                         <span>Selected Role</span><span
+                                        <span>Selected Role</span><span
                                             class="light_grey_bg py-1 px-4 ms-2">{{selectedrole}}</span>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row menu-bar-container">
                 <div class="col-12">
                     <nav class="navbar navbar-expand-md">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="#">
+                            <!-- <a class="navbar-brand" href="#">
                                 <img width="100px" src="assets/images/rajifms-logo.png">
-                            </a>
-                            <button class="navbar-toggler border-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                              
+                            </a> -->
+                            <button class="navbar-toggler border-none" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                                aria-label="Toggle navigation">
+
                                 <img src="assets/images/navbar-icon.svg" alt="nav-icon">
                             </button>
                             <div class="collapse navbar-collapse justify-content-around" id="navbarNav">
                                 <ul class="navbar-nav menu-options">
                                     <li class="nav-item" (click)="redirecttodashoboard()">
-                                        <a class="nav-link navlinkcursor"  aria-current="page" >My Dashboard</a>
+                                        <a class="nav-link navlinkcursor" aria-current="page">My Dashboard</a>
+                                    </li>
+                                    <!-- <li class="nav-item">
+                                        <a class="nav-link navlinkcursor">Budget Management</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link navlinkcursor" >Budget Management</a>
+                                        <a class="nav-link navlinkcursor">Disbursement Engine</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link navlinkcursor" >Disbursement Engine</a>
-                                    </li>
+                                        <a class="nav-link active" aria-current="page">Revenue Management</a>
+                                    </li> -->
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" >Revenue Management</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link navlinkcursor" >Accounting</a>
+                                        <a class="nav-link navlinkcursor" (click)="redirectToAdminLogin()">Log Out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -174,4 +194,4 @@
             </div>
         </div>
     </div>
-</section> -->
+</section>

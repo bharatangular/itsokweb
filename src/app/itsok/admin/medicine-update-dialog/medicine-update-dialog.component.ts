@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { ItsokService } from 'src/app/services/itsok.service';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-medicine-update-dialog',
   templateUrl: './medicine-update-dialog.component.html',
@@ -15,7 +16,8 @@ export class MedicineUpdateDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<MedicineUpdateDialogComponent>, private imageCompress: NgxImageCompressService,
     public api: ItsokService, public dialog: MatDialog,
-    private formbuilder: FormBuilder) { }
+    private formbuilder: FormBuilder,
+    public router: Router) { }
 
   ngOnInit(): void {
 

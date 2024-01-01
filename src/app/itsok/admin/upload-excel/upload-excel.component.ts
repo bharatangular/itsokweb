@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { AppConfig } from 'src/app/app.config';
 import { CommonService } from 'src/app/services/common.service';
 import { FileExcelService } from 'src/app/services/file-excel-service.service';
 import { ItsokService } from 'src/app/services/itsok.service';
@@ -14,7 +16,7 @@ import { runInThisContext } from 'vm';
 })
 export class UploadExcelComponent implements OnInit {
   constructor(public api: ItsokService,
-    public common: CommonService, public filetoexcel: FileExcelService
+    public common: CommonService, public filetoexcel: FileExcelService, public router: Router
   ) { }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -23,7 +25,13 @@ export class UploadExcelComponent implements OnInit {
   count: any = 0;
   medicineList: any[] = []
   errorList: any[] = []
+  config: AppConfig = new AppConfig();
   ngOnInit(): void {
+
+    let login = this.config.getDetails("login");
+    console.log(login)
+    if (login == "1") { }
+    else { alert("First login."); }
     this.api.configMenu = { url: "Upload Excel" };
 
   }

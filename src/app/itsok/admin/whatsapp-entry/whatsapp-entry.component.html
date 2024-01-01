@@ -1,0 +1,103 @@
+<div>
+    <div class="d-flex justify-content-between align-item-center">
+        <div class="mt-1">
+            <h2>Add Whatsapp Order</h2>
+        </div>
+    </div>
+
+    <div class="popupDivStyle family-details-card-container mt-3">
+
+        <div class="family-card-header m-1  p-2 d-flex justify-content-end align-items-center">
+            <!-- <span class="relation-tag py-1 px-4 fw-bolder"><strong>{{data.message?.name}}</strong></span> -->
+        </div>
+        <div class="family-card-body">
+            <div class="member-base-details d-flex align-items-center">
+
+                <!-- <div class="name-birth-details ms-1 member-image-1">
+                    <small class="member-name  pb-1">Add Whatsapp Order</small>
+
+                </div> -->
+            </div>
+        </div>
+
+
+
+        <form [formGroup]="medicine">
+            <div class="row pb-0 p-5 w-100">
+                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                    <mat-form-field class="w-100  " appearance="outline">
+                        <mat-label>Whatsapp No.</mat-label>
+                        <input formControlName="mobile_no" type="number" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                    <mat-form-field class="w-100  " appearance="outline">
+                        <mat-label>User Name</mat-label>
+                        <input formControlName="name" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                    <mat-form-field class="w-100  " appearance="outline">
+                        <mat-label>Patient Name</mat-label>
+                        <input formControlName="patient_name" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                    <mat-form-field class="w-100  " appearance="outline">
+                        <mat-label>Patient Age</mat-label>
+                        <input formControlName="patient_age" type="number" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                    <mat-form-field class="w-100  " appearance="outline">
+                        <mat-label>Doctor Name</mat-label>
+                        <input formControlName="dr_name" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                    <mat-form-field class="w-100 " appearance="outline">
+                        <mat-label>Total Amount</mat-label>
+                        <input formControlName="totalAmount" type="number" matInput>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4 ">
+                    <div class="family-card-body">
+
+                        <div class="member-image">
+                            <img [src]=imageUrl2?imageUrl2:imageUrl alt="member-image">
+                            <button class="editbutton" (click)="fileInput1.click()">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <div class="avatar-edit">
+                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput1 hidden
+                                    (change)="uploadFile($event)" />
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="name-birth-details ms-1 mx-5">
+                        <small class="member-name">Upload Prescription</small>
+
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12 text-end">
+
+
+                        <button class="btn btn-primary btn-cls mx-2 my-2" mat-raised-button mat-dialog-close
+                            color="primary" (click)="insertRecord()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+    </div>
+
+
+
+</div>

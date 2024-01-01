@@ -1,0 +1,35 @@
+BEGIN
+   
+    DECLARE p_status INT(10);
+    DECLARE v_id INT(10);
+
+SET p_status =0;
+ SET v_id = JSON_UNQUOTE(JSON_EXTRACT(json_data, '$.orderListId'));
+IF in_type= 1 THEN
+  
+    SELECT a.*,b.*,c.id as orderListId,c.product_id,c.quantity_ordered,c.quantity_ordered from perent_order a
+    left join login_user b on b.user_id=a.user_id
+    left join order_details c on c.p_order_id=a.o_id
+    where a.status='pending';
+  END IF;
+
+
+SET p_status =1;
+
+ELSEIF in_type= 2 THEN
+SELECT a.*,b.*,c.id as orderListId,c.product_id,c.quantity_ordered,c.quantity_ordered from perent_order a
+    left join login_user b on b.user_id=a.user_id
+    left join order_details c on c.p_order_id=a.o_id
+    where a.status='complete';
+ELSEIF in_type= 3 THEN
+SELECT a.*,b.*,c.id as orderListId,c.product_id,c.quantity_ordered,c.quantity_ordered from perent_order a
+    left join login_user b on b.user_id=a.user_id
+    left join order_details c on c.p_order_id=a.o_id
+    where a.status='cancel';
+    ELSEIF in_type= 4 THEN
+SELECT  prescription from order_details
+    where id=v_id;
+END IF;	
+
+select p_status as pStatus;
+END

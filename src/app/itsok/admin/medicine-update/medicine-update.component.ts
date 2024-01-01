@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CommonService } from 'src/app/services/common.service';
 import { ItsokService } from 'src/app/services/itsok.service';
 import { MedicineUpdateDialogComponent } from '../medicine-update-dialog/medicine-update-dialog.component';
+import { Router } from '@angular/router';
+import { AppConfig } from 'src/app/app.config';
 
 @Component({
   selector: 'app-medicine-update',
@@ -13,16 +15,21 @@ import { MedicineUpdateDialogComponent } from '../medicine-update-dialog/medicin
   styleUrls: ['./medicine-update.component.scss']
 })
 export class MedicineUpdateComponent implements OnInit {
-
+  config: AppConfig = new AppConfig();
   constructor(public api: ItsokService,
     public common: CommonService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public router: Router) { }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   displayedColumns: string[] = ["code", "name", "type", "mrp", "sales_price", "Action"];
   dataSource = new MatTableDataSource();
   from: any = 1;
   ngOnInit(): void {
+    let login = this.config.getDetails("login");
+    console.log(login)
+    if (login == "1") { }
+    else { alert("First login."); }
     this.api.configMenu = { url: "Medicines Upadte" };
     this.getMedicineList()
   }

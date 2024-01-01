@@ -10,6 +10,8 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AdminSignupComponent } from './admin/admin-signup/admin-signup.component';
 import { AddMedicineComponent } from './admin/add-medicine/add-medicine.component';
 import { UploadExcelComponent } from './admin/upload-excel/upload-excel.component';
+import { WhatsappEntryComponent } from './admin/whatsapp-entry/whatsapp-entry.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 
@@ -43,8 +45,16 @@ const routes: Routes = [
   {
     path: 'upload-excel',
     component: UploadExcelComponent
+  },
+  {
+    path: 'whatsapp',
+    component: WhatsappEntryComponent
   }
-
+  ,
+  {
+    path: 'order-details',
+    component: OrderDetailsComponent
+  }
 ]
 
 @NgModule({
@@ -55,7 +65,9 @@ const routes: Routes = [
     AdminDashboardComponent,
     AdminSignupComponent,
     AddMedicineComponent,
-    UploadExcelComponent
+    UploadExcelComponent,
+    WhatsappEntryComponent,
+    OrderDetailsComponent
   ],
   imports: [
     CommonModule,

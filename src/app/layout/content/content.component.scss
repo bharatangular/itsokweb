@@ -42,13 +42,13 @@
 
 .side-bar {
   .mat-expansion-panel-header-title span {
-      font-weight: bold;
+    font-weight: bold;
   }
 }
 
 .side-bar .mat-expansion-panel:hover {
   span {
-      color: #2a6dd9;
+    color: #2a6dd9;
   }
 }
 
@@ -61,7 +61,7 @@
   height: 50px;
 
   .mat-expansion-panel-header-title span {
-      color: #2a6dd9;
+    color: #2a6dd9;
   }
 }
 
@@ -91,13 +91,13 @@
   margin-top: 0px !important;
 }
 
-.example-container{
+.example-container {
   background-color: #edf0f2;
 }
 
-.example-sidenav{
-  .mat-card:not([class*=mat-elevation-z]){
-      box-shadow: none;
+.example-sidenav {
+  .mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: none;
   }
 }
 
@@ -108,7 +108,7 @@
 
 
 .sidebar {
-  width: 330px;
+  width: 0px;
   height: 100%;
   overflow-y: auto;
 }
@@ -187,12 +187,14 @@
 ::ng-deep .mat-expansion-panel-content .mat-expansion-panel-body {
   padding: 0px 10px 10px !important;
 }
-.mat-list-base .mat-list-item, .mat-list-base .mat-list-option
-{
+
+.mat-list-base .mat-list-item,
+.mat-list-base .mat-list-option {
   height: 40px;
   margin: 5px 0;
 
 }
+
 .mat-expansion-indicator::after {
   color: #2a6dd9;
 }
@@ -255,7 +257,7 @@ body {
 
 
 // mat expansion panel for side nav
-.active-link{
+.active-link {
   color: #2a6dd9;
   font-weight: 800;
   background-color: #e9eff9 !important;
@@ -267,14 +269,14 @@ body {
   background: linear-gradient(-90deg, rgba(89, 154, 253, 1) 0%, rgba(27, 84, 177, 1) 100%);
   border-radius: 8px;
   color: #fff;
-  min-width: 38px!important;
+  min-width: 38px !important;
   line-height: 23px;
   height: 38px;
   transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
   margin: auto;
 }
 
-.toggler-button.active{
+.toggler-button.active {
   transform: rotate(180deg);
   transition-duration: 500ms;
 }
@@ -290,12 +292,13 @@ body {
 
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .toggler-button{
+  .toggler-button {
     transform: rotate(180deg);
     transition-duration: 500ms;
   }
-  .toggler-button.active{
-    transform: rotate(0deg)!important;
+
+  .toggler-button.active {
+    transform: rotate(0deg) !important;
     transition-duration: 500ms;
   }
 }
@@ -305,24 +308,26 @@ body {
     border-radius: 0rem;
   }
 
-  .sidebar{
+  .sidebar {
     width: 300px;
-    .mat-panel-title span, .mat-nav-list a
-    {
-      font-size: 14px!important;
+
+    .mat-panel-title span,
+    .mat-nav-list a {
+      font-size: 14px !important;
     }
-    .mat-card{
+
+    .mat-card {
       padding: 10px !important;
     }
 
     .heading_with_bg {
       margin-right: 0px;
     }
-  
-    .mat-expansion-panel-header{
+
+    .mat-expansion-panel-header {
       padding: 0px 12px;
     }
-    
+
   }
 
 
